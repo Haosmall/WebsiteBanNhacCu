@@ -23,7 +23,7 @@ public class Ward {
 	@Column(name = "ward_id")
 	private int wardId;
 
-	@Column(name = "ward_name")
+	@Column(name = "ward_name", columnDefinition = "NVARCHAR(MAX)")
 	private String wardName;
 
 	@ManyToOne(fetch = FetchType.EAGER)

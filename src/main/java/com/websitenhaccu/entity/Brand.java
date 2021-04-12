@@ -9,7 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -26,7 +25,7 @@ public class Brand {
 	@Column(name = "brand_id")
 	private String brandID;
 	
-	@Column(name = "brand_name")
+	@Column(name = "brand_name", columnDefinition = "NVARCHAR")
 	private String brandName;
 	
 	@OneToMany(mappedBy = "brand", fetch = FetchType.LAZY)

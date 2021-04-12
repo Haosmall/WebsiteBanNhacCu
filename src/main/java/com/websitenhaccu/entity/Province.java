@@ -27,7 +27,7 @@ public class Province {
 	@Column(name = "province_id")
 	private int provinceId;
 
-	@Column(name = "province_name")
+	@Column(name = "province_name", columnDefinition = "NVARCHAR(MAX)")
 	private String provinceName;
 
 	@OneToMany(mappedBy = "province", fetch = FetchType.LAZY)

@@ -20,7 +20,7 @@ public class Contact {
 	@Column(name = "contact_id")
 	private String contactId;
 	
-	@Column(name = "address")
+	@Column(name = "address", columnDefinition = "NVARCHAR(MAX)")
 	private String address;
 	
 	@Column(name = "email")

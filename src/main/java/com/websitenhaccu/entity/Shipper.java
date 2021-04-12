@@ -23,7 +23,7 @@ public class Shipper {
 	@Column(name = "phone")
 	private String phone;
 	
-	@Column(name = "company_name")
+	@Column(name = "company_name", columnDefinition = "NVARCHAR(MAX)")
 	private String companyName;
 
 }

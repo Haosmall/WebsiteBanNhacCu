@@ -28,10 +28,10 @@ public class Product {
 	@Column(name = "product_id")
 	private String productId;
 
-	@Column(name = "product_name")
+	@Column(name = "product_name", columnDefinition = "NVARCHAR(MAX)")
 	private String productName;
 
-	@Column(name = "description")
+	@Column(name = "description", columnDefinition = "NTEXT")
 	private String description;
 
 	@Column(name = "image")
@@ -43,7 +43,7 @@ public class Product {
 	@Column(name = "selling_price")
 	private double sellingPrice;
 
-	@Column(name = "origin")
+	@Column(name = "origin", columnDefinition = "NVARCHAR(MAX)")
 	private String origin;
 
 	@Column(name = "status")

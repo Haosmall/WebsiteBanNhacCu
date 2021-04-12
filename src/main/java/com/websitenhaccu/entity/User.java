@@ -29,10 +29,10 @@ public class User {
 	@Column(name = "user_id")
 	private String userId;
 	
-	@Column(name = "first_name")
+	@Column(name = "first_name", columnDefinition = "NVARCHAR(MAX)")
 	private String firstName;
 	
-	@Column(name = "last_name")
+	@Column(name = "last_name", columnDefinition = "NVARCHAR(MAX)")
 	private String lastName;
 	
 	@Column(name = "email")
@@ -41,7 +41,7 @@ public class User {
 	@Column(name = "birthday")
 	private Date birthday;
 	
-	@Column(name = "address")
+	@Column(name = "address", columnDefinition = "NVARCHAR(MAX)")
 	private String address;
 	
 	@Enumerated

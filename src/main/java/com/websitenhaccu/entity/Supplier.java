@@ -5,8 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Type;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,11 +20,10 @@ public class Supplier {
 	@Column(name = "supplier_id")
 	private String supplierID;
 
-	@Type(type = "org.hibernate.type.StringNVarcharType")
-	@Column(name = "company_name")
+	@Column(name = "company_name", columnDefinition = "NVARCHAR(MAX)")
 	private String companyName;
 
-	@Column(name = "address")
+	@Column(name = "address", columnDefinition = "NVARCHAR(MAX)")
 	private String address;
 	
 	@Column(name = "phone")

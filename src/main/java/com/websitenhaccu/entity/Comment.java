@@ -39,7 +39,7 @@ public class Comment implements Serializable{
 	@JoinColumn(name = "product_id")
 	private Product product;
 	
-	@Column(name = "comment")
+	@Column(name = "comment", columnDefinition = "NVARCHAR(MAX)")
 	private String comment;
 	
 	@Column(name = "date_comment")

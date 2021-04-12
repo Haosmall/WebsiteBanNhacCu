@@ -33,7 +33,7 @@ public class Order {
 	@Column(name = "order_date")
 	private Date orderDate;
 
-	@Column(name = "ship_address")
+	@Column(name = "ship_address", columnDefinition = "NVARCHAR(MAX)")
 	private String shipAddress;
 
 	@Column(name = "phone")

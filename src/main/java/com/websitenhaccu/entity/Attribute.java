@@ -26,7 +26,7 @@ public class Attribute {
 	@Column(name = "attribute_id")
 	private String attributeID;
 
-	@Column(name = "attribute_name")
+	@Column(name = "attribute_name", columnDefinition = "NVARCHAR")
 	private String attributeName;
 	
 	@OneToMany(mappedBy = "attribute", fetch = FetchType.LAZY)

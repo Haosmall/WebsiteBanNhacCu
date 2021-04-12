@@ -38,7 +38,7 @@ public class ProductLine implements Serializable {
 	@JoinColumn(name = "category_id")
 	Category category;
 
-	@Column(name = "line_name")
+	@Column(name = "line_name", columnDefinition = "NVARCHAR(MAX)")
 	private String lineName;
 
 	@Column(name = "tax")

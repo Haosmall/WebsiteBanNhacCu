@@ -29,13 +29,12 @@ public class District {
 	@Column(name = "district_id")
 	private int districtId;
 	
-	@Column(name = "district_name")
+	@Column(name = "district_name", columnDefinition = "NVARCHAR(MAX)")
 	private String districtName;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "province_id")
 	private Province province;
-	
 	
 	@OneToMany(mappedBy = "district", fetch = FetchType.LAZY)
 	@EqualsAndHashCode.Exclude

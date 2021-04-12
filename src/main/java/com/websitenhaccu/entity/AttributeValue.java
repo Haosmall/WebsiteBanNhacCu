@@ -2,6 +2,7 @@ package com.websitenhaccu.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
@@ -18,10 +19,10 @@ import lombok.NoArgsConstructor;
 @Table(name = "AttributeValues")
 @IdClass(AttributeValue_PK.class)
 @Data
-@AllArgsConstructor 
+@AllArgsConstructor
 @NoArgsConstructor
-public class AttributeValue implements Serializable{
-	
+public class AttributeValue implements Serializable {
+
 	/**
 	 * 
 	 */
@@ -31,12 +32,13 @@ public class AttributeValue implements Serializable{
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "attribute_id")
 	private Attribute attribute;
-	
+
 	@Id
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "product_id")
 	private Product product;
-	
+
+	@Column(name = "value", columnDefinition = "NVARCHAR(MAX)")
 	private String value;
 
 }

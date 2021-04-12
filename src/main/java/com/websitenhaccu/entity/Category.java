@@ -26,7 +26,7 @@ public class Category {
 	@Column(name = "category_id")
 	private String categoryId;
 
-	@Column(name = "category_name")
+	@Column(name = "category_name", columnDefinition = "NVARCHAR")
 	private String categoryName;
 
 	@OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
