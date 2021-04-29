@@ -1,23 +1,22 @@
-package com.websitenhaccu.controller;
+package com.websitenhaccu.controller.admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.websitenhaccu.dto.UserDTO;
 import com.websitenhaccu.service.UserService;
 
 @Controller
-public class Test {
+@RequestMapping("/admin")
+public class HomeAdmin {
 	@Autowired
 	UserService userService;
 
-	@RequestMapping("/user")
+	@RequestMapping("/home")
 	public ModelAndView getUser() {
-		UserDTO user = userService.getByEmail("nhathao");
 
-		return new ModelAndView("User", "user", user);
+		return new ModelAndView("admin/home");
 	}
 
 }
