@@ -13,9 +13,9 @@ public class Test {
 	@Autowired
 	UserService userService;
 
-	@RequestMapping("/user")
+	@RequestMapping("/user-info")
 	public ModelAndView getUser() {
-		UserDTO user = userService.getByEmail("nhathao");
+		UserDTO user = userService.getByEmail("admin");
 
 		return new ModelAndView("User", "user", user);
 	}

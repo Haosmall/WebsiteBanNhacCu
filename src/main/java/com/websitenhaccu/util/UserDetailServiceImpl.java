@@ -6,7 +6,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.websitenhaccu.entity.User;
+import com.websitenhaccu.entity.NguoiDung;
 import com.websitenhaccu.repository.UserRepository;
 
 @Service
@@ -19,7 +19,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
 		// lấy người dùng có user là có username
-		User nguoiDung = userRepository.findByEmail(username);
+		NguoiDung nguoiDung = userRepository.findByEmail(username);
 
 		if (nguoiDung == null)
 			throw new UsernameNotFoundException("Tài khoản email không tồn tại");

@@ -20,6 +20,6 @@ public class AttributeValue_PK implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private String attribute;
-	private String product;
+	private String sanPham;
 
 }

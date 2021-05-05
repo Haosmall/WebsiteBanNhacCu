@@ -12,12 +12,17 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.websitenhaccu.util.CustomSuccessHandler;
+
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private UserDetailsService userDetailsService;
+	
+	 @Autowired
+	 CustomSuccessHandler customSuccessHandler;
 	
 	@Bean
 	public PasswordEncoder passwordEncoder() {
@@ -37,7 +42,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		http.cors().and().csrf().disable()
 			.authorizeRequests()
-        		.antMatchers("/user/**").hasRole("USER")
+				.antMatchers("/register").permitAll()
+				.antMatchers("/verify-email").permitAll()
+				.antMatchers("/forgot-password").permitAll()
+				.antMatchers("forgot-password/enter-password").permitAll()
+        		.antMatchers("/*").hasRole("USER")
         		.antMatchers("/admin/**").hasRole("ADMIN")
         		.anyRequest().permitAll()
 				.and()
@@ -45,8 +54,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 						.loginPage("/login")
 						.usernameParameter("email")
 						.passwordParameter("password")
-						.defaultSuccessUrl("/")
+						.successHandler(customSuccessHandler)
+//						.defaultSuccessUrl("/")
 						.failureUrl("/login?error")
+						.permitAll()
+				.and()
+					.logout()
+					.logoutSuccessUrl("/login")
+						.permitAll()
 				.and()
 					.exceptionHandling()
 						.accessDeniedPage("/403");

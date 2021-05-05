@@ -8,5 +8,9 @@
 </head>
 <body>
 	Admin page
+	<br>
+	<p>${ user.userId }</p>
+	<p>${ user.email }</p>
+	<p>${ user.role }</p>
 </body>
 </html>

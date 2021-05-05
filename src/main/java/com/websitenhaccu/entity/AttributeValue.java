@@ -35,8 +35,8 @@ public class AttributeValue implements Serializable {
 
 	@Id
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "product_id")
-	private Product product;
+	@JoinColumn(name = "san_pham_id")
+	private SanPham sanPham;
 
 	@Column(name = "value", columnDefinition = "NVARCHAR(MAX)")
 	private String value;

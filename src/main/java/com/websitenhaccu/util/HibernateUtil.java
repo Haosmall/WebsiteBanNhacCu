@@ -6,25 +6,25 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
-import com.websitenhaccu.entity.Ads;
+import com.websitenhaccu.entity.QuangCao;
 import com.websitenhaccu.entity.Attribute;
 import com.websitenhaccu.entity.AttributeValue;
-import com.websitenhaccu.entity.Brand;
-import com.websitenhaccu.entity.Category;
-import com.websitenhaccu.entity.Comment;
-import com.websitenhaccu.entity.Contact;
-import com.websitenhaccu.entity.Discount;
-import com.websitenhaccu.entity.District;
-import com.websitenhaccu.entity.Gender;
-import com.websitenhaccu.entity.Order;
-import com.websitenhaccu.entity.OrderDetail;
-import com.websitenhaccu.entity.OrderDetail_PK;
-import com.websitenhaccu.entity.Product;
-import com.websitenhaccu.entity.ProductLine;
-import com.websitenhaccu.entity.Province;
-import com.websitenhaccu.entity.Supplier;
-import com.websitenhaccu.entity.User;
-import com.websitenhaccu.entity.Ward;
+import com.websitenhaccu.entity.ThuongHieu;
+import com.websitenhaccu.entity.DanhMuc;
+import com.websitenhaccu.entity.BinhLuan;
+import com.websitenhaccu.entity.LienHe;
+import com.websitenhaccu.entity.GiamGia;
+import com.websitenhaccu.entity.QuanHuyen;
+import com.websitenhaccu.entity.GioiTinh;
+import com.websitenhaccu.entity.HoaDon;
+import com.websitenhaccu.entity.ChiTietHoaDon;
+import com.websitenhaccu.entity.ChiTietHoaDon_PK;
+import com.websitenhaccu.entity.SanPham;
+import com.websitenhaccu.entity.DongSanPham;
+import com.websitenhaccu.entity.TinhThanh;
+import com.websitenhaccu.entity.NhaCungCap;
+import com.websitenhaccu.entity.NguoiDung;
+import com.websitenhaccu.entity.PhuongXa;
 
 public class HibernateUtil {
 
@@ -35,27 +35,27 @@ public class HibernateUtil {
 
 		StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
 		Metadata metadata = new MetadataSources(registry)
-                .addAnnotatedClass(Ads.class)
+                .addAnnotatedClass(QuangCao.class)
                 .addAnnotatedClass(Attribute.class)
                 .addAnnotatedClass(AttributeValue.class)
                 .addAnnotatedClass(AttributeValue.class)
-                .addAnnotatedClass(Brand.class)
-                .addAnnotatedClass(Category.class)
-                .addAnnotatedClass(Comment.class)
-                .addAnnotatedClass(Comment.class)
-                .addAnnotatedClass(Contact.class)
-                .addAnnotatedClass(Discount.class)
-                .addAnnotatedClass(Gender.class)
-                .addAnnotatedClass(Order.class)
-                .addAnnotatedClass(OrderDetail.class)
-                .addAnnotatedClass(OrderDetail_PK.class)
-                .addAnnotatedClass(Product.class)
-                .addAnnotatedClass(ProductLine.class)
-                .addAnnotatedClass(Supplier.class)
-                .addAnnotatedClass(User.class)
-                .addAnnotatedClass(Province.class)
-                .addAnnotatedClass(District.class)
-                .addAnnotatedClass(Ward.class)
+                .addAnnotatedClass(ThuongHieu.class)
+                .addAnnotatedClass(DanhMuc.class)
+                .addAnnotatedClass(BinhLuan.class)
+                .addAnnotatedClass(BinhLuan.class)
+                .addAnnotatedClass(LienHe.class)
+                .addAnnotatedClass(GiamGia.class)
+                .addAnnotatedClass(GioiTinh.class)
+                .addAnnotatedClass(HoaDon.class)
+                .addAnnotatedClass(ChiTietHoaDon.class)
+                .addAnnotatedClass(ChiTietHoaDon_PK.class)
+                .addAnnotatedClass(SanPham.class)
+                .addAnnotatedClass(DongSanPham.class)
+                .addAnnotatedClass(NhaCungCap.class)
+                .addAnnotatedClass(NguoiDung.class)
+                .addAnnotatedClass(TinhThanh.class)
+                .addAnnotatedClass(QuanHuyen.class)
+                .addAnnotatedClass(PhuongXa.class)
 				.getMetadataBuilder()
 				.build();
 		sessionFactory = metadata.getSessionFactoryBuilder().build();
