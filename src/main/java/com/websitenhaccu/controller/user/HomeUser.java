@@ -11,7 +11,7 @@ import com.websitenhaccu.service.UserService;
 import com.websitenhaccu.util.CustomUserDetails;
 
 @Controller
-
+@RequestMapping("/user")
 public class HomeUser {
 	@Autowired
 	UserService userService;

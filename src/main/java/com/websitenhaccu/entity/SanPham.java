@@ -79,7 +79,7 @@ public class SanPham {
 	private List<AttributeValue> listAttributeValues;
 
 	@ManyToOne
-	@JoinColumn(name = "danh_muc_id")
-	private DanhMuc danhMuc;
+	@JoinColumn(name = "dong_san_pham_id")
+	private DongSanPham dongSanPham;
 
 }

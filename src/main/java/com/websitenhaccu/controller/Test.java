@@ -15,9 +15,14 @@ public class Test {
 
 	@RequestMapping("/user-info")
 	public ModelAndView getUser() {
-		UserDTO user = userService.getByEmail("admin");
 
-		return new ModelAndView("User", "user", user);
+		return new ModelAndView("User");
 	}
+//	@RequestMapping("/user-info")
+//	public ModelAndView getUser() {
+//		UserDTO user = userService.getByEmail("admin");
+//		
+//		return new ModelAndView("User", "user", user);
+//	}
 
 }
