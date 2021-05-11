@@ -740,9 +740,231 @@
 
 
             </div>
+		
+		<!-- Slider đàn sản phẩm tùy chọn(Đàn trống) -->
+		<div class="container mt-3 product__options highlight">
+
+            <div class="row">
+                <h2 class="product__title__slider">Trống</h2>
+                <div class="product__list--wrapper">
+                    <div class="product__option__list" style="transform: translateX(-1140px);">
+
+                        <div class="option__item">
+                            <div class="option__item__img">
+                                <img src="<c:url value='/static/assets/img/yamaha_logo.png'/>" alt="">
+                            </div>
+                            <p class="option__item__name"><b>Đàn guitar rexona yamaha</b></p>
+
+                            <div class="option__item__additional">
+                                <p>Thương hiệu: <b>Durex cực mạnh</b></p>
+                                <p>Xuất xứ: <b>Ý</b></p>
+                            </div>
+                            <p class="option__item__money">123000000 VND</p>
+                        </div>
+
+                        <div class="option__item">
+                            <div class="option__item__img">
+                                <img src="<c:url value='/static/assets/img/yamaha_logo.png'/>" alt="">
+                            </div>
+                            <p class="option__item__name"><b>Đàn guitar rexona yamaha</b></p>
+
+                            <div class="option__item__additional">
+                                <p>Thương hiệu: <b>Durex cực mạnh</b></p>
+                                <p>Xuất xứ: <b>Ý</b></p>
+                            </div>
+                            <p class="option__item__money">123000000 VND</p>
+                        </div>
+
+                        <div class="option__item">
+                            <div class="option__item__img">
+                                <img src="<c:url value='/static/assets/img/yamaha_logo.png'/>" alt="">
+                            </div>
+                            <p class="option__item__name"><b>Đàn guitar rexona yamaha</b></p>
+
+                            <div class="option__item__additional">
+                                <p>Thương hiệu: <b>Durex cực mạnh</b></p>
+                                <p>Xuất xứ: <b>Ý</b></p>
+                            </div>
+                            <p class="option__item__money">123000000 VND</p>
+                        </div>
+
+                        <div class="option__item">
+                            <div class="option__item__img">
+                                <img src="<c:url value='/static/assets/img/yamaha_logo.png'/>" alt="">
+                            </div>
+                            <p class="option__item__name"><b>Đàn guitar rexona yamaha</b></p>
+
+                            <div class="option__item__additional">
+                                <p>Thương hiệu: <b>Durex cực mạnh</b></p>
+                                <p>Xuất xứ: <b>Ý</b></p>
+                            </div>
+                            <p class="option__item__money">123000000 VND</p>
+                        </div>
+
+                        <div class="option__item">
+                            <div class="option__item__img">
+                                <img src="<c:url value='/static/assets/img/yamaha_logo.png'/>" alt="">
+                            </div>
+                            <p class="option__item__name"><b>Đàn guitar rexona yamaha</b></p>
+
+                            <div class="option__item__additional">
+                                <p>Thương hiệu: <b>Durex cực mạnh</b></p>
+                                <p>Xuất xứ: <b>Ý</b></p>
+                            </div>
+                            <p class="option__item__money">123000000 VND</p>
+                        </div>
+
+                        <div class="option__item">
+                            <div class="option__item__img">
+                                <img src="<c:url value='/static/assets/img/yamaha_logo.png'/>" alt="">
+                            </div>
+                            <p class="option__item__name"><b>Đàn guitar rexona yamaha</b></p>
+
+                            <div class="option__item__additional">
+                                <p>Thương hiệu: <b>Durex cực mạnh</b></p>
+                                <p>Xuất xứ: <b>Ý</b></p>
+                            </div>
+                            <p class="option__item__money">123000000 VND</p>
+                        </div>
+
+                        <div class="option__item">
+                            <div class="option__item__img">
+                                <img src="<c:url value='/static/assets/img/yamaha_logo.png'/>" alt="">
+                            </div>
+                            <p class="option__item__name"><b>Đàn guitar rexona yamaha</b></p>
+
+                            <div class="option__item__additional">
+                                <p>Thương hiệu: <b>Durex cực mạnh</b></p>
+                                <p>Xuất xứ: <b>Ý</b></p>
+                            </div>
+                            <p class="option__item__money">123000000 VND</p>
+                        </div>
+
+
+                    </div>
+                    <i class="fas fa-chevron-right move arrow"></i>
+                    <i class="fas fa-chevron-left move arrow--left" style="opacity: 0.5;"></i>
+
+                </div>
 
 
 
+            </div>
+
+        </div>
+        
+        <!-- ------------------------ -->
+		
+		<div class="container mt-3 mb-2 product__options highlight">
+
+            <div class="row">
+                <h2 class="product__title__slider">KÈN</h2>
+                <div class="product__list--wrapper">
+                    <div class="product__option__list">
+
+                        <div class="option__item">
+                            <div class="option__item__img">
+                                <img src="<c:url value='/static/assets/img/yamaha_logo.png'/>" alt="">
+                            </div>
+                            <p class="option__item__name"><b>Đàn guitar rexona yamaha</b></p>
+
+                            <div class="option__item__additional">
+                                <p>Thương hiệu: <b>Durex cực mạnh</b></p>
+                                <p>Xuất xứ: <b>Ý</b></p>
+                            </div>
+                            <p class="option__item__money">123000000 VND</p>
+                        </div>
+
+                        <div class="option__item">
+                            <div class="option__item__img">
+                                <img src="<c:url value='/static/assets/img/yamaha_logo.png'/>" alt="">
+                            </div>
+                            <p class="option__item__name"><b>Đàn guitar rexona yamaha</b></p>
+
+                            <div class="option__item__additional">
+                                <p>Thương hiệu: <b>Durex cực mạnh</b></p>
+                                <p>Xuất xứ: <b>Ý</b></p>
+                            </div>
+                            <p class="option__item__money">123000000 VND</p>
+                        </div>
+
+                        <div class="option__item">
+                            <div class="option__item__img">
+                                <img src="<c:url value='/static/assets/img/yamaha_logo.png'/>" alt="">
+                            </div>
+                            <p class="option__item__name"><b>Đàn guitar rexona yamaha</b></p>
+
+                            <div class="option__item__additional">
+                                <p>Thương hiệu: <b>Durex cực mạnh</b></p>
+                                <p>Xuất xứ: <b>Ý</b></p>
+                            </div>
+                            <p class="option__item__money">123000000 VND</p>
+                        </div>
+
+                        <div class="option__item">
+                            <div class="option__item__img">
+                                <img src="<c:url value='/static/assets/img/yamaha_logo.png'/>" alt="">
+                            </div>
+                            <p class="option__item__name"><b>Đàn guitar rexona yamaha</b></p>
+
+                            <div class="option__item__additional">
+                                <p>Thương hiệu: <b>Durex cực mạnh</b></p>
+                                <p>Xuất xứ: <b>Ý</b></p>
+                            </div>
+                            <p class="option__item__money">123000000 VND</p>
+                        </div>
+
+                        <div class="option__item">
+                            <div class="option__item__img">
+                                <img src="<c:url value='/static/assets/img/yamaha_logo.png'/>" alt="">
+                            </div>
+                            <p class="option__item__name"><b>Đàn guitar rexona yamaha</b></p>
+
+                            <div class="option__item__additional">
+                                <p>Thương hiệu: <b>Durex cực mạnh</b></p>
+                                <p>Xuất xứ: <b>Ý</b></p>
+                            </div>
+                            <p class="option__item__money">123000000 VND</p>
+                        </div>
+
+                        <div class="option__item">
+                            <div class="option__item__img">
+                                <img src="<c:url value='/static/assets/img/yamaha_logo.png'/>" alt="">
+                            </div>
+                            <p class="option__item__name"><b>Đàn guitar rexona yamaha</b></p>
+
+                            <div class="option__item__additional">
+                                <p>Thương hiệu: <b>Durex cực mạnh</b></p>
+                                <p>Xuất xứ: <b>Ý</b></p>
+                            </div>
+                            <p class="option__item__money">123000000 VND</p>
+                        </div>
+
+                        <div class="option__item">
+                            <div class="option__item__img">
+                                <img src="<c:url value='/static/assets/img/yamaha_logo.png'/>" alt="">
+                            </div>
+                            <p class="option__item__name"><b>Đàn guitar rexona yamaha</b></p>
+
+                            <div class="option__item__additional">
+                                <p>Thương hiệu: <b>Durex cực mạnh</b></p>
+                                <p>Xuất xứ: <b>Ý</b></p>
+                            </div>
+                            <p class="option__item__money">123000000 VND</p>
+                        </div>
+
+
+                    </div>
+                    <i class="fas fa-chevron-right move arrow"></i>
+                    <i class="fas fa-chevron-left move arrow--left"></i>
+
+                </div>
+
+
+
+            </div>
+
+        </div>
 
 
         </div>

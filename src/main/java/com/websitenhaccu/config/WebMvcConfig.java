@@ -22,6 +22,7 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -55,16 +56,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
 		registry.addResourceHandler("/static/**").addResourceLocations("/resources/");
 	}
 
-	// cấu hình database
-//	@Bean
-//	public DataSource dataSource() {
-//		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-//		dataSource.setDriverClassName(environment.getRequiredProperty("jdbc.driverClassName"));
-//		dataSource.setUrl(environment.getRequiredProperty("jdbc.url"));
-//		dataSource.setUsername(environment.getRequiredProperty("jdbc.username"));
-//		dataSource.setPassword(environment.getRequiredProperty("jdbc.password"));
-//		return dataSource;
-//	}
 	@Bean
 	public DataSource dataSource() throws PropertyVetoException {
 		ComboPooledDataSource dataSource = new ComboPooledDataSource();
@@ -115,7 +106,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
 		return new PersistenceExceptionTranslationPostProcessor();
 	}
-	
+
 	@Bean
 	public MessageSource messageSource() {
 		ReloadableResourceBundleMessageSource bundleMessageSource = new ReloadableResourceBundleMessageSource();
@@ -123,31 +114,34 @@ public class WebMvcConfig implements WebMvcConfigurer {
 		bundleMessageSource.setDefaultEncoding("utf-8");
 		return bundleMessageSource;
 	}
-	
+
 	// Gởi email
-		@Bean
-		public JavaMailSender getMailSender() {
-			JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-		
-			
-			mailSender.setHost("smtp.gmail.com");
-			mailSender.setPort(587);
-			mailSender.setUsername("nhathao00852370@gmail.com");
-			mailSender.setPassword("testemail");
+	@Bean
+	public JavaMailSender getMailSender() {
+		JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
 
-			Properties javaMailProperties = new Properties();
-			javaMailProperties.put("mail.smpt.starttls.enable", "true");
-			javaMailProperties.put("mail.smpt.auth", "true");
-			javaMailProperties.put("mail.transport.protocol", "smtp");
-			javaMailProperties.put("mail.debug", "true");
-			
-			javaMailProperties.put("mail.smtp.socketFactory.port", "465");  
-			javaMailProperties.put("mail.smtp.socketFactory.class","javax.net.ssl.SSLSocketFactory");  
-			javaMailProperties.put("mail.smtp.socketFactory.fallback", "false");  
-			
-			mailSender.setJavaMailProperties(javaMailProperties);
-			
-			return mailSender;
-		}
+		mailSender.setHost("smtp.gmail.com");
+		mailSender.setPort(587);
+		mailSender.setUsername("nhathao00852370@gmail.com");
+		mailSender.setPassword("testemail");
 
+		Properties javaMailProperties = new Properties();
+		javaMailProperties.put("mail.smpt.starttls.enable", "true");
+		javaMailProperties.put("mail.smpt.auth", "true");
+		javaMailProperties.put("mail.transport.protocol", "smtp");
+		javaMailProperties.put("mail.debug", "true");
+
+		javaMailProperties.put("mail.smtp.socketFactory.port", "465");
+		javaMailProperties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+		javaMailProperties.put("mail.smtp.socketFactory.fallback", "false");
+
+		mailSender.setJavaMailProperties(javaMailProperties);
+
+		return mailSender;
+	}
+
+	@Bean
+	public RestTemplate restTemplate() {
+		return new RestTemplate();
+	}
 }

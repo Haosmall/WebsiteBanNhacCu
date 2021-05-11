@@ -20,7 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.websitenhaccu.dto.UserDTO;
 import com.websitenhaccu.service.UserService;
-import com.websitenhaccu.util.UserValidator;
+import com.websitenhaccu.validator.UserValidator;
 
 @Controller
 public class LoginController {

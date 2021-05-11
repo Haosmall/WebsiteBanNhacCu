@@ -1,6 +1,6 @@
 .header {
-    border: 1px solid black;
     background-color: #960100;
+    padding: 0.7rem 0;
 }
 .header__item {
     display: flex;
@@ -24,6 +24,3 @@
     color: white;
 }
 
-.header {
-    padding: 1rem 0;
-}

@@ -12,7 +12,7 @@ import com.websitenhaccu.util.CustomUserDetails;
 
 @Controller
 @RequestMapping("/admin")
-public class HomeAdmin {
+public class HomeAdminController {
 	@Autowired
 	UserService userService;
 
@@ -33,6 +33,7 @@ public class HomeAdmin {
 		} else {
 			email = principal.toString();
 		}
+		
 		UserDTO user = userService.getByEmail(email);
 
 		return new ModelAndView("admin/home", "user", user);

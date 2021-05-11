@@ -12,7 +12,7 @@ import com.websitenhaccu.util.CustomUserDetails;
 
 @Controller
 @RequestMapping("/user")
-public class HomeUser {
+public class HomeUserController {
 	@Autowired
 	UserService userService;
 

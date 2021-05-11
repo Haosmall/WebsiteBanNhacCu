@@ -8,6 +8,10 @@
 <dec:head />
 <title><dec:title /></title>
 
+<link rel = "icon" href = 
+"<c:url value="/static/assets/img/logo.png"/>" 
+        type = "image/x-icon">
+
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -92,6 +96,31 @@
 						<a class="collapse-item" href="utilities-other.html">Other</a>
 					</div>
 				</div></li>
+				
+			<!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                    aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Khác</span>
+                </a>
+                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Nhà cung cấp:</h6>
+                        <a class="collapse-item" href="<c:url value='/admin/nha-cung-cap/danh-sach-nha-cung-cap'/>">Danh sách nhà cung cấp</a>
+                        <a class="collapse-item" href="<c:url value='/admin/nha-cung-cap/them-nha-cung-cap'/>">Thêm nhà cung cấp</a>
+                        <div class="collapse-divider"></div>
+                        
+                        <h6 class="collapse-header">Thương hiệu:</h6>
+                        <a class="collapse-item" href="login.html">Danh sách thương hiệu</a>
+                        <div class="collapse-divider"></div>
+                        
+                        <h6 class="collapse-header">Bình luận:</h6>
+                        <a class="collapse-item" href="login.html">Danh sách Bình luận</a>
+                        <div class="collapse-divider"></div>
+                    </div>
+                </div>
+            </li>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider d-none d-md-block">

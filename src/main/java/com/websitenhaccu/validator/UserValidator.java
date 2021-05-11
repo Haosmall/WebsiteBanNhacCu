@@ -1,4 +1,4 @@
-package com.websitenhaccu.util;
+package com.websitenhaccu.validator;
 
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
