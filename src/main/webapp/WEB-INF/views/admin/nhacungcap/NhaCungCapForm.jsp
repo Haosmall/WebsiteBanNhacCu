@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Thêm nhà cung cấp</title>
+<title>${ formTitle }</title>
 </head>
 <body>
 
@@ -17,15 +17,15 @@
 			<div class="col-lg-3"></div>
 
 			<div class="col-lg-6">
-				<h1 style="text-align: center;">Thêm Nhà cung cấp</h1>
+				<h1 style="text-align: center;">${ formTitle }</h1>
 				<form:form action="" method="POST" modelAttribute="nhaCungCap">
-
+					<form:hidden path="maNhaCungCap" />
 					<div class="form-group">
 						<label>Tên nhà cung cấp:</label>
 						<form:input path="tenNhaCungCap" class="form-control" />
-						<form:errors path="tenNhaCungCap" cssClass="error" ></form:errors>
+						<form:errors path="tenNhaCungCap" cssClass="error"></form:errors>
 					</div>
-					
+
 					<div class="form-group">
 						<label>Email:</label>
 						<form:input path="email" class="form-control" />
@@ -40,9 +40,33 @@
 
 					<div class="form-group">
 						<label>website:</label>
-						<form:input path="website" class="form-control" type="url"/>
+						<form:input path="website" class="form-control" type="url" />
 						<form:errors path="website" cssClass="error"></form:errors>
 					</div>
+
+
+
+
+					<%-- <form:select path="tinh" cssClass="form-control" >
+						<c:forEach items="${tinhs}" var="tp">
+
+							<c:choose>
+								<c:when test="${tp.getValue() eq nguoiDung.tinhThanhPho }">
+									<option value="${tp.getKey()}" selected="true">${tp.getValue()}</option>
+								</c:when>
+
+								<c:otherwise>
+									<option value="${tp.getKey()}">${tp.getValue()}</option>
+								</c:otherwise>
+							</c:choose>
+
+						</c:forEach>
+					</form:select> --%>
+
+
+
+
+
 
 					<div class="form-group">
 						<label>Địa chỉ:</label>
@@ -50,7 +74,7 @@
 						<form:errors path="diaChi" cssClass="error"></form:errors>
 					</div>
 
-					<button type="submit" class="btn btn-success">Thêm</button>
+					<button type="submit" class="btn btn-success">${ formButton }</button>
 					<button type="reset" class="btn btn-danger">Hủy</button>
 
 				</form:form>
@@ -59,8 +83,9 @@
 
 			<div class="col-lg-3"></div>
 		</div>
-		
-		<a href="<c:url value='/admin/nha-cung-cap/danh-sach-nha-cung-cap' />">Quay lại</a>
+
+		<a href="<c:url value='/admin/nha-cung-cap/danh-sach-nha-cung-cap' />">Quay
+			lại</a>
 
 
 

@@ -36,7 +36,7 @@ public class ThuongHieu {
         parameters = {
             @Parameter(name = MyGenerator.INCREMENT_PARAM, value = "1"),
             @Parameter(name = MyGenerator.VALUE_PREFIX_PARAMETER, value = "TH"),
-            @Parameter(name = MyGenerator.NUMBER_FORMAT_PARAMETER, value = "%05d") })
+            @Parameter(name = MyGenerator.NUMBER_FORMAT_PARAMETER, value = "%05d") }) //Tạo id có dạng TH00001, TH00002,...
 	@Column(name = "thuong_hieu_id")
 	private String id;
 	

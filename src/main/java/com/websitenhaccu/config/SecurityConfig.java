@@ -47,7 +47,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //				.antMatchers("/verify-email").permitAll()
 //				.antMatchers("/forgot-password").permitAll()
 //				.antMatchers("forgot-password/enter-password").permitAll()
-				.antMatchers("/user/**, /gio-hang/dat-hang" ).hasRole("USER")
+//				.antMatchers("/user/**, /gio-hang/dat-hang" ).hasRole("USER")
+				.antMatchers("/user/**" ).hasRole("USER")
 				.antMatchers("/admin/**").hasRole("ADMIN")
 				.anyRequest()
 	            

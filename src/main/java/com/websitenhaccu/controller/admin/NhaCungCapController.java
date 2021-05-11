@@ -3,24 +3,18 @@ package com.websitenhaccu.controller.admin;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.websitenhaccu.dto.UserDTO;
 import com.websitenhaccu.entity.NhaCungCap;
 import com.websitenhaccu.service.NhaCungCapService;
-import com.websitenhaccu.service.UserService;
-import com.websitenhaccu.util.CustomUserDetails;
 import com.websitenhaccu.validator.NhaCungCapValidator;
 
 /**
@@ -32,7 +26,7 @@ import com.websitenhaccu.validator.NhaCungCapValidator;
 public class NhaCungCapController {
 
 	@Autowired
-	NhaCungCapService nhaCungCapService;
+	private NhaCungCapService nhaCungCapService;
 
 	@Autowired
 	private NhaCungCapValidator nhaCungCapValidator;
@@ -67,29 +61,48 @@ public class NhaCungCapController {
 	/**
 	 * Hiển thi form cập nhật thông tin nhà cung cấp
 	 * 
+	 * @param model
 	 * @param id
 	 * @return
 	 */
 	@GetMapping(value = "/cap-nhat-thong-tin-nha-cung-cap")
-	public ModelAndView capNhatThongTinNCCView(@RequestParam("id") String id) {
+	public String capNhatThongTinNCCView(Model model, @RequestParam("id") String id) {
 
+		
 		NhaCungCap nhaCungCap = nhaCungCapService.getNhaCungCapTheoMaNCC(id);
-
-		return new ModelAndView("admin/nhacungcap/CapNhatNhaCungCap", "nhaCungCap", nhaCungCap);
+		
+		model.addAttribute("nhaCungCap", nhaCungCap);
+		model.addAttribute("formTitle", "Cập nhật nhà cung cấp");
+		model.addAttribute("formButton", "Lưu");
+		
+		return "admin/nhacungcap/NhaCungCapForm";
 	}
 
 	/**
 	 * Cập nhật thông tin nhà cung cấp
 	 * 
-	 * @param id
+	 * @param model
+	 * @param nhaCungCap
+	 * @param bindingResult
 	 * @return
 	 */
 	@PostMapping(value = "/cap-nhat-thong-tin-nha-cung-cap")
-	public ModelAndView capNhatThongTinNCC(@RequestParam("id") String id) {
+	public String capNhatThongTinNCC(Model model, @ModelAttribute("nhaCungCap") NhaCungCap nhaCungCap,  BindingResult bindingResult) {
+		
+		nhaCungCapValidator.validate(nhaCungCap, bindingResult);
 
-		NhaCungCap nhaCungCap = nhaCungCapService.getNhaCungCapTheoMaNCC(id);
+		if (bindingResult.hasErrors()) {
+			
+			model.addAttribute("nhaCungCap", nhaCungCap);
+			model.addAttribute("formTitle", "Cập nhật nhà cung cấp");
+			model.addAttribute("formButton", "Lưu");
+			
+			return "admin/nhacungcap/NhaCungCapForm";
+		}
 
-		return new ModelAndView("admin/nhacungcap/CapNhatNhaCungCap", "nhaCungCap", nhaCungCap);
+		nhaCungCapService.themNhaCungCap(nhaCungCap);
+
+		return "redirect:/admin/nha-cung-cap/danh-sach-nha-cung-cap";
 	}
 
 	/**
@@ -115,30 +128,41 @@ public class NhaCungCapController {
 	@GetMapping(value = "/them-nha-cung-cap")
 	public String themNhaCungCap(Model model) {
 
+		
 		model.addAttribute("nhaCungCap", new NhaCungCap());
-
-		return "admin/nhacungcap/ThemNhaCungCap";
+		
+		model.addAttribute("formTitle", "Thêm nhà cung cấp");
+		model.addAttribute("formButton", "Thêm");
+		
+		return "admin/nhacungcap/NhaCungCapForm";
 
 	}
 
+	
 	/**
 	 * Thêm nhà cung cấp
 	 * 
+	 * @param model
 	 * @param nhaCungCap
 	 * @param bindingResult
 	 * @return
 	 */
 	@PostMapping(value = "/them-nha-cung-cap")
-	public String themNhaCungCap(@ModelAttribute("nhaCungCap") NhaCungCap nhaCungCap, BindingResult bindingResult) {
+	public String themNhaCungCap(Model model, @ModelAttribute("nhaCungCap") NhaCungCap nhaCungCap, BindingResult bindingResult) {
 
 		nhaCungCapValidator.validate(nhaCungCap, bindingResult);
 
 		if (bindingResult.hasErrors()) {
-			return "admin/nhacungcap/ThemNhaCungCap";
+			
+			model.addAttribute("nhaCungCap", nhaCungCap);
+			model.addAttribute("formTitle", "Thêm nhà cung cấp");
+			model.addAttribute("formButton", "Thêm");
+			
+			return "admin/nhacungcap/NhaCungCapForm";
 		}
 
 		nhaCungCapService.themNhaCungCap(nhaCungCap);
-//		return "redirect:/admin/nha-cung-cap/them-nha-cung-cap";
+		
 		return "redirect:/admin/nha-cung-cap/danh-sach-nha-cung-cap";
 
 	}

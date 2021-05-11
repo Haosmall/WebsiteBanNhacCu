@@ -13,5 +13,4 @@ public interface NhaCungCapService {
 	
 	public void themNhaCungCap(NhaCungCap nhaCungCap);
 	
-	public void capNhatNhaCungCap(NhaCungCap nhaCungCap);
 }
