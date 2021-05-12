@@ -25,13 +25,10 @@ public class NhaCungCap {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "nhaCungCap_generator")
-    @GenericGenerator(
-        name = "nhaCungCap_generator", 
-        strategy = "com.websitenhaccu.util.MyGenerator", 
-        parameters = {
-            @Parameter(name = MyGenerator.INCREMENT_PARAM, value = "1"),
-            @Parameter(name = MyGenerator.VALUE_PREFIX_PARAMETER, value = "NCC"),
-            @Parameter(name = MyGenerator.NUMBER_FORMAT_PARAMETER, value = "%05d") })
+	@GenericGenerator(name = "nhaCungCap_generator", strategy = "com.websitenhaccu.util.MyGenerator", parameters = {
+			@Parameter(name = MyGenerator.INCREMENT_PARAM, value = "1"),
+			@Parameter(name = MyGenerator.VALUE_PREFIX_PARAMETER, value = "NCC"),
+			@Parameter(name = MyGenerator.NUMBER_FORMAT_PARAMETER, value = "%05d") })
 	@Column(name = "nha_cung_cap_id")
 	private String maNhaCungCap;
 
@@ -49,5 +46,14 @@ public class NhaCungCap {
 
 	@Column(name = "website")
 	private String website;
+
+	public NhaCungCap(String tenNhaCungCap, String diaChi, String soDienThoai, String email, String website) {
+		super();
+		this.tenNhaCungCap = tenNhaCungCap;
+		this.diaChi = diaChi;
+		this.soDienThoai = soDienThoai;
+		this.email = email;
+		this.website = website;
+	}
 
 }

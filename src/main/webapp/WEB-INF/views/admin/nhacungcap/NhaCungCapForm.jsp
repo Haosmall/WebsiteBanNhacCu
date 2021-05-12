@@ -17,9 +17,11 @@
 			<div class="col-lg-3"></div>
 
 			<div class="col-lg-6">
-				<h1 style="text-align: center;">${ formTitle }</h1>
-				<form:form action="" method="POST" modelAttribute="nhaCungCap">
+				<h1 style="text-align: center;" id='formTitle'>${ formTitle }</h1>
+				<form:form action="" method="POST" modelAttribute="nhaCungCapDTO">
+
 					<form:hidden path="maNhaCungCap" />
+
 					<div class="form-group">
 						<label>Tên nhà cung cấp:</label>
 						<form:input path="tenNhaCungCap" class="form-control" />
@@ -39,39 +41,44 @@
 					</div>
 
 					<div class="form-group">
-						<label>website:</label>
+						<label>Website:</label>
 						<form:input path="website" class="form-control" type="url" />
 						<form:errors path="website" cssClass="error"></form:errors>
 					</div>
 
 
 
-
-					<%-- <form:select path="tinh" cssClass="form-control" >
-						<c:forEach items="${tinhs}" var="tp">
-
-							<c:choose>
-								<c:when test="${tp.getValue() eq nguoiDung.tinhThanhPho }">
-									<option value="${tp.getKey()}" selected="true">${tp.getValue()}</option>
-								</c:when>
-
-								<c:otherwise>
-									<option value="${tp.getKey()}">${tp.getValue()}</option>
-								</c:otherwise>
-							</c:choose>
-
-						</c:forEach>
-					</form:select> --%>
-
-
-
-
-
+					<div class="form-group">
+						<label>Tỉnh/ thành phố:</label>
+						<select id="tinh" Class="form-control">
+							<option value="-1" selected>Chọn Tỉnh/ Thành phố</option>
+						</select>
+					</div>
+					
+					<form:hidden path="tinhThanhPho"/>
+					
+					<div class="form-group">
+						<label>Huyện/ Quận:</label>
+						<select id="huyen" Class="form-control">
+							<option value="-1" selected>Chọn Huyện/ Quận</option>
+						</select>
+					</div>
+					
+					<form:hidden path="quanHuyen"/>
 
 					<div class="form-group">
-						<label>Địa chỉ:</label>
+						<label>Xã/ Phường:</label>
+						<select id="xa" Class="form-control">
+							<option value="-1" selected>Chọn Xã/ Phường</option>
+						</select>
+					</div>
+					
+					<form:hidden path="phuongXa"/>
+
+					<div class="form-group">
+						<label>Số nhà, tên đường:</label>
 						<form:input path="diaChi" class="form-control" />
-						<form:errors path="diaChi" cssClass="error"></form:errors>
+						<form:errors path="diaChi" Class="error"></form:errors>
 					</div>
 
 					<button type="submit" class="btn btn-success">${ formButton }</button>
@@ -87,10 +94,9 @@
 		<a href="<c:url value='/admin/nha-cung-cap/danh-sach-nha-cung-cap' />">Quay
 			lại</a>
 
-
-
-
 	</div>
 	<!-- /.container-fluid -->
+
+	<script src="<c:url value="/static/assets/js/diaChi.js"/>"></script>
 </body>
 </html>

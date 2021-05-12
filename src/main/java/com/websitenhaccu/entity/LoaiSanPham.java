@@ -26,7 +26,7 @@ public class LoaiSanPham {
 	@Column(name = "loai_san_pham_id")
 	private String id;
 
-	@Column(name = "ten_loai_san_pham", columnDefinition = "NVARCHAR")
+	@Column(name = "ten_loai_san_pham", columnDefinition = "NVARCHAR(MAX)")
 	private String tenLoaiSanPham;
 
 //	@OneToMany(mappedBy = "danhMuc", fetch = FetchType.LAZY)

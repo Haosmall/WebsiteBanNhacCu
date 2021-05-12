@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.websitenhaccu.converter.NhaCungCapConverter;
+import com.websitenhaccu.dto.NhaCungCapDTO;
 import com.websitenhaccu.entity.NhaCungCap;
 import com.websitenhaccu.service.NhaCungCapService;
 import com.websitenhaccu.validator.NhaCungCapValidator;
@@ -30,6 +32,9 @@ public class NhaCungCapController {
 
 	@Autowired
 	private NhaCungCapValidator nhaCungCapValidator;
+	
+	@Autowired
+	private NhaCungCapConverter nhaCungCapConverter;
 
 	/**
 	 * xem danh sách nhà cung cấp
@@ -71,7 +76,9 @@ public class NhaCungCapController {
 		
 		NhaCungCap nhaCungCap = nhaCungCapService.getNhaCungCapTheoMaNCC(id);
 		
-		model.addAttribute("nhaCungCap", nhaCungCap);
+		NhaCungCapDTO nhaCungCapDTO = nhaCungCapConverter.toNhaCungCapDTO(nhaCungCap);
+		
+		model.addAttribute("nhaCungCapDTO", nhaCungCapDTO);
 		model.addAttribute("formTitle", "Cập nhật nhà cung cấp");
 		model.addAttribute("formButton", "Lưu");
 		
@@ -87,13 +94,15 @@ public class NhaCungCapController {
 	 * @return
 	 */
 	@PostMapping(value = "/cap-nhat-thong-tin-nha-cung-cap")
-	public String capNhatThongTinNCC(Model model, @ModelAttribute("nhaCungCap") NhaCungCap nhaCungCap,  BindingResult bindingResult) {
+	public String capNhatThongTinNCC(Model model, @ModelAttribute("nhaCungCapDTO") NhaCungCapDTO nhaCungCapDTO,  BindingResult bindingResult) {
+		
+		NhaCungCap nhaCungCap = nhaCungCapConverter.toNhaCungCap(nhaCungCapDTO);
 		
 		nhaCungCapValidator.validate(nhaCungCap, bindingResult);
 
 		if (bindingResult.hasErrors()) {
 			
-			model.addAttribute("nhaCungCap", nhaCungCap);
+			model.addAttribute("nhaCungCapDTO", nhaCungCapDTO);
 			model.addAttribute("formTitle", "Cập nhật nhà cung cấp");
 			model.addAttribute("formButton", "Lưu");
 			
@@ -129,7 +138,7 @@ public class NhaCungCapController {
 	public String themNhaCungCap(Model model) {
 
 		
-		model.addAttribute("nhaCungCap", new NhaCungCap());
+		model.addAttribute("nhaCungCapDTO", new NhaCungCapDTO());
 		
 		model.addAttribute("formTitle", "Thêm nhà cung cấp");
 		model.addAttribute("formButton", "Thêm");
@@ -148,8 +157,10 @@ public class NhaCungCapController {
 	 * @return
 	 */
 	@PostMapping(value = "/them-nha-cung-cap")
-	public String themNhaCungCap(Model model, @ModelAttribute("nhaCungCap") NhaCungCap nhaCungCap, BindingResult bindingResult) {
-
+	public String themNhaCungCap(Model model, @ModelAttribute("nhaCungCapDTO") NhaCungCapDTO nhaCungCapDTO, BindingResult bindingResult) {
+		
+		NhaCungCap nhaCungCap = nhaCungCapConverter.toThemNhaCungCap(nhaCungCapDTO);
+		
 		nhaCungCapValidator.validate(nhaCungCap, bindingResult);
 
 		if (bindingResult.hasErrors()) {
