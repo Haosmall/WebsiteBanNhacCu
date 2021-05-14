@@ -4,20 +4,12 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Component;
 
+import com.websitenhaccu.constant.DiaChiConstant;
 import com.websitenhaccu.dto.NhaCungCapDTO;
 import com.websitenhaccu.entity.NhaCungCap;
 
 @Component
 public class NhaCungCapConverter {
-
-	private static final String PHUONG = "Phường";
-	private static final String XA = "Xã";
-	private static final String THITRAN = "Thị trấn";
-	private static final String QUAN = "Quận";
-	private static final String HUYEN = "Huyện";
-	private static final String THIXA = "Thị xã";
-	private static final String TINH = "Tỉnh";
-	private static final String THANHPHO = "Thành phố";
 
 	public NhaCungCap toNhaCungCap(NhaCungCapDTO nhaCungCapDTO) {
 
@@ -42,13 +34,13 @@ public class NhaCungCapConverter {
 		StringBuffer buffer = new StringBuffer(diaChiDTO);
 
 //		Kiểm tra và lưu vào biến diaChi theo thứ tự cấp hành chính  <Số nhà, tên đường>, <Phường/ Xã/ Thị trấn>, <Quận/ Thị xã/ Huyện>, <Thành phố/ Tỉnh>
-		if (phuongXa.contains(PHUONG) || phuongXa.contains(XA) || phuongXa.contains(THITRAN)) {
+		if (phuongXa.contains(DiaChiConstant.PHUONG) || phuongXa.contains(DiaChiConstant.XA) || phuongXa.contains(DiaChiConstant.THITRAN)) {
 			buffer.append(", " + phuongXa);
 		}
-		if (quanHuyen.contains(QUAN) || quanHuyen.contains(HUYEN) || quanHuyen.contains(THIXA)) {
+		if (quanHuyen.contains(DiaChiConstant.QUAN) || quanHuyen.contains(DiaChiConstant.HUYEN) || quanHuyen.contains(DiaChiConstant.THIXA)) {
 			buffer.append(", " + quanHuyen);
 		}
-		if (tinhThanh.contains(TINH) || tinhThanh.contains(THANHPHO)) {
+		if (tinhThanh.contains(DiaChiConstant.TINH) || tinhThanh.contains(DiaChiConstant.THANHPHO)) {
 			buffer.append(", " + tinhThanh);
 		}
 
@@ -91,13 +83,13 @@ public class NhaCungCapConverter {
 		StringBuffer buffer = new StringBuffer(diaChiDTO);
 
 //		Kiểm tra và lưu vào biến diaChi theo thứ tự cấp hành chính  <Số nhà, tên đường>, <Phường/ Xã/ Thị trấn>, <Quận/ Thị xã/ Huyện>, <Thành phố/ Tỉnh>
-		if (phuongXa.contains(PHUONG) || phuongXa.contains(XA) || phuongXa.contains(THITRAN)) {
+		if (phuongXa.contains(DiaChiConstant.PHUONG) || phuongXa.contains(DiaChiConstant.XA) || phuongXa.contains(DiaChiConstant.THITRAN)) {
 			buffer.append(", " + phuongXa);
 		}
-		if (quanHuyen.contains(QUAN) || quanHuyen.contains(HUYEN) || quanHuyen.contains(THIXA)) {
+		if (quanHuyen.contains(DiaChiConstant.QUAN) || quanHuyen.contains(DiaChiConstant.HUYEN) || quanHuyen.contains(DiaChiConstant.THIXA)) {
 			buffer.append(", " + quanHuyen);
 		}
-		if (tinhThanh.contains(TINH) || tinhThanh.contains(THANHPHO)) {
+		if (tinhThanh.contains(DiaChiConstant.TINH) || tinhThanh.contains(DiaChiConstant.THANHPHO)) {
 			buffer.append(", " + tinhThanh);
 		}
 
@@ -144,11 +136,11 @@ public class NhaCungCapConverter {
 			if (temp.length > 1) {
 //				Lưu thông tin địa chỉ theo cấp hành chính
 				for (String string : temp) {
-					if (string.contains(TINH) || string.contains(THANHPHO)) {
+					if (string.contains(DiaChiConstant.TINH) || string.contains(DiaChiConstant.THANHPHO)) {
 						tinhThanhPho = string;
-					} else if (string.contains(QUAN) || string.contains(HUYEN) || string.contains(THIXA)) {
+					} else if (string.contains(DiaChiConstant.QUAN) || string.contains(DiaChiConstant.HUYEN) || string.contains(DiaChiConstant.THIXA)) {
 						quanHuyen = string;
-					} else if (string.contains(PHUONG) || string.contains(XA) || string.contains(THITRAN)) {
+					} else if (string.contains(DiaChiConstant.PHUONG) || string.contains(DiaChiConstant.XA) || string.contains(DiaChiConstant.THITRAN)) {
 						phuongXa = string;
 					} else {
 						buffer.append(string + ", ");
@@ -164,11 +156,11 @@ public class NhaCungCapConverter {
 
 			} else {
 
-				if (diaChiNCC.contains(TINH) || diaChiNCC.contains(THANHPHO)) {
+				if (diaChiNCC.contains(DiaChiConstant.TINH) || diaChiNCC.contains(DiaChiConstant.THANHPHO)) {
 					tinhThanhPho = diaChiNCC;
-				} else if (diaChiNCC.contains(QUAN) || diaChiNCC.contains(HUYEN) || diaChiNCC.contains(THIXA)) {
+				} else if (diaChiNCC.contains(DiaChiConstant.QUAN) || diaChiNCC.contains(DiaChiConstant.HUYEN) || diaChiNCC.contains(DiaChiConstant.THIXA)) {
 					quanHuyen = diaChiNCC;
-				} else if (diaChiNCC.contains(PHUONG) || diaChiNCC.contains(XA) || diaChiNCC.contains(THITRAN)) {
+				} else if (diaChiNCC.contains(DiaChiConstant.PHUONG) || diaChiNCC.contains(DiaChiConstant.XA) || diaChiNCC.contains(DiaChiConstant.THITRAN)) {
 					phuongXa = diaChiNCC;
 				} else {
 					diaChi = diaChiNCC;

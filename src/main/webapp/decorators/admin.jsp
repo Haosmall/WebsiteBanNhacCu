@@ -120,6 +120,10 @@
                         <h6 class="collapse-header">Bình luận:</h6>
                         <a class="collapse-item" href="login.html">Danh sách Bình luận</a>
                         <div class="collapse-divider"></div>
+                        
+                        <h6 class="collapse-header">Cửa hàng:</h6>
+                        <a class="collapse-item" href="<c:url value='/admin/thong-tin-cua-hang'/>">Thông tin cửa hàng</a>
+                        <div class="collapse-divider"></div>
                     </div>
                 </div>
             </li>
