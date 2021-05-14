@@ -35,6 +35,12 @@ public class LienHeController {
 	public String hienThiThongTin(Model model) {
 		
 		LienHe lienHe = lienHeService.getLienHe();
+		
+		if(lienHe == null) {
+			lienHe = new LienHe("Số 12, Nguyễn Văn Bảo, Phường 04, Quận Gò Vấp, Thành phố Hồ Chí Minh", "dhcn@iuh.edu.vn", "0123456789");
+			lienHeService.themLienHe(lienHe);
+		}
+		
 		LienHeDTO lienHeDTO = lienHeConverter.toLienHeDTO(lienHe);
 		
 		model.addAttribute( "lienHe", lienHe);

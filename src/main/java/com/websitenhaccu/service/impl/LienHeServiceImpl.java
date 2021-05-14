@@ -41,8 +41,11 @@ public class LienHeServiceImpl implements LienHeService {
 
 	@Override
 	public LienHe getLienHe() {
-		return getTatCaLienHe().get(0);
+		List<LienHe> lienHes = getTatCaLienHe();
+		if (lienHes.size() > 0)
+			return lienHes.get(0);
+		else
+			return null;
 	}
-	
 
 }
