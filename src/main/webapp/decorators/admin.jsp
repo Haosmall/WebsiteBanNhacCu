@@ -114,7 +114,18 @@
                         <div class="collapse-divider"></div>
                         
                         <h6 class="collapse-header">Thương hiệu:</h6>
-                        <a class="collapse-item" href="login.html">Danh sách thương hiệu</a>
+                        <a class="collapse-item" href="<c:url value='/admin/thuong-hieu/danh-sach-thuong-hieu'/>">Danh sách thương hiệu</a>
+                        <a class="collapse-item" href="<c:url value='/admin/thuong-hieu/them-thuong-hieu'/>">Thêm thương hiệu</a>
+                        <div class="collapse-divider"></div>
+                        
+                        <h6 class="collapse-header">Loại sản phẩm:</h6>
+                        <a class="collapse-item" href="<c:url value='/admin/loai-san-pham/danh-sach-loai-san-pham'/>">Danh sách loại sản phẩm</a>
+                        <a class="collapse-item" href="<c:url value='/admin/loai-san-pham/them-loai-san-pham'/>">Thêm loại sản phẩm</a>
+                        <div class="collapse-divider"></div>
+                        
+                        <h6 class="collapse-header">Dòng sản phẩm:</h6>
+                        <a class="collapse-item" href="<c:url value='/admin/dong-san-pham/danh-sach-dong-san-pham'/>">Danh sách dòng sản phẩm</a>
+                        <a class="collapse-item" href="<c:url value='/admin/dong-san-pham/them-dong-san-pham'/>">Thêm dòng sản phẩm</a>
                         <div class="collapse-divider"></div>
                         
                         <h6 class="collapse-header">Bình luận:</h6>

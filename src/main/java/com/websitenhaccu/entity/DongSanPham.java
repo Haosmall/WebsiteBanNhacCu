@@ -6,11 +6,18 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
+
+import com.websitenhaccu.util.MyGenerator;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -31,6 +38,14 @@ public class DongSanPham implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "dongSanPham_generator")
+    @GenericGenerator(
+        name = "dongSanPham_generator",
+        strategy = "com.websitenhaccu.util.MyGenerator", 
+        parameters = {
+            @Parameter(name = MyGenerator.INCREMENT_PARAM, value = "1"),
+            @Parameter(name = MyGenerator.VALUE_PREFIX_PARAMETER, value = "DSP"),
+            @Parameter(name = MyGenerator.NUMBER_FORMAT_PARAMETER, value = "%05d") })
 	@Column(name = "dong_san_pham_id")
 	private String id;
 
