@@ -15,7 +15,9 @@ import com.websitenhaccu.entity.DongSanPham;
 import com.websitenhaccu.entity.ThuongHieu;
 
 import org.apache.commons.io.IOUtils;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ThuongHieuConverter {
 	/**
 	 * 

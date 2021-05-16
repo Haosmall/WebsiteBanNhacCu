@@ -15,7 +15,7 @@
 		<!-- Row input -->
 		<div class="row">
 			<div class="col-lg-3"></div>
-
+ có
 			<div class="col-lg-6">
 				<h1 style="text-align: center;">${formTitle}</h1>
 

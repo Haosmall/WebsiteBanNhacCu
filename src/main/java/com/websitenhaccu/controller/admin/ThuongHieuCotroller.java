@@ -1,12 +1,9 @@
 package com.websitenhaccu.controller.admin;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +15,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -28,13 +24,9 @@ import com.websitenhaccu.entity.ThuongHieu;
 import com.websitenhaccu.service.ThuongHieuService;
 import com.websitenhaccu.validator.ThuongHieuValidator;
 
-import javax.servlet.http.Part;
 import javax.sql.rowset.serial.SerialBlob;
 import javax.sql.rowset.serial.SerialException;
-import javax.mail.Multipart;
-import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
-import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @MultipartConfig(maxFileSize = 16177251)
@@ -46,13 +38,14 @@ public class ThuongHieuCotroller {
 	@Autowired
 	private ThuongHieuValidator thuongHieuValidator;
 
+	@Autowired
+	private ThuongHieuConverter thuongHieuConverter;
+
 	@GetMapping("/danh-sach-thuong-hieu")
 	public ModelAndView getTatcaThuonghieu() {
 		List<ThuongHieu> danhsachThuonghieu = thuongHieuService.getTatCaThuongHieu();
 
 		List<ThuongHieuDTO> listThuongHieuDTO = new ArrayList<ThuongHieuDTO>();
-
-		ThuongHieuConverter thuongHieuConverter = new ThuongHieuConverter();
 
 		for (ThuongHieu thuongHieu : danhsachThuonghieu) {
 			ThuongHieuDTO thuongHieuDTO = thuongHieuConverter.toThuongHieuDTO(thuongHieu);
@@ -65,7 +58,7 @@ public class ThuongHieuCotroller {
 	@GetMapping("/chi-tiet-thuong-hieu")
 	public ModelAndView getChitietThuonghieu(String id) {
 		ThuongHieu thuongHieu = thuongHieuService.getThuonghieuBangMa(id);
-		ThuongHieuConverter thuongHieuConverter = new ThuongHieuConverter();
+
 		ThuongHieuDTO thuongHieuDTO = thuongHieuConverter.toThuongHieuDTO(thuongHieu);
 		return new ModelAndView("admin/thuonghieu/ChiTietThuongHieu", "thuongHieu", thuongHieuDTO);
 	}
@@ -85,14 +78,6 @@ public class ThuongHieuCotroller {
 	public String ThemThuongHieu(@RequestParam("hinhAnh") MultipartFile filePart,
 			@ModelAttribute("thuongHieu") ThuongHieu thuongHieu, BindingResult bindingResult, Model model)
 			throws IOException, SerialException, SQLException {
-
-//		thuongHieuValidator.validate(thuongHieu, bindingResult);
-//		if (bindingResult.hasErrors()) {
-//			model.addAttribute("formTitle", "Thêm thương hiệu");
-//			model.addAttribute("formButton", "Thêm");
-//			model.addAttribute("thuongHieu", thuongHieu);
-//			return "addmin/thuonghieu/FormThuongHieu";
-//		}
 
 		byte[] bytes = filePart.getBytes();
 		Blob blob = new SerialBlob(bytes);
@@ -117,13 +102,8 @@ public class ThuongHieuCotroller {
 		model.addAttribute("formTitle", "Cập nhật thương hiệu");
 		model.addAttribute("formButton", "Cập nhật");
 
-		ThuongHieuConverter thuongHieuConverter = new ThuongHieuConverter();
-		ThuongHieuDTO thuongHieuDTO = thuongHieuConverter.toThuongHieuDTO(thuongHieu);
 		model.addAttribute("thuongHieu", thuongHieu);
 
-//		Blob blob = thuongHieu.getHinhAnh();
-//		int blobLength = (int) blob.length();  
-//		byte[] blobAsBytes = blob.getBytes(1, blobLength);
 		model.addAttribute("blob", thuongHieu.getHinhAnh());
 
 		return "admin/thuonghieu/FormThuongHieu";
@@ -134,35 +114,12 @@ public class ThuongHieuCotroller {
 			@ModelAttribute("thuongHieu") ThuongHieu thuongHieu, BindingResult bindingResult, Model model)
 			throws IOException, SerialException, SQLException {
 
-//		thuongHieuValidator.validate(thuongHieu, bindingResult);
-//		if (bindingResult.hasErrors()) {
-//			model.addAttribute("formTitle", "Cập nhật thương hiệu");
-//			model.addAttribute("formButton", "Cập nhật");
-//
-//			ThuongHieuConverter thuongHieuConverter = new ThuongHieuConverter();
-////			ThuongHieuDTO thuongHieuDTO = thuongHieuConverter.toThuongHieuDTO(thuongHieu);
-//			model.addAttribute("thuongHieu", thuongHieuDTO);
-//			
-//			return "admin/thuonghieu/FormThuongHieu";
-//		}
-
-//		System.out.println("++++++++++++++++++" + filePart);
-//		
-//		byte[] bytes = filePart.getBytes();
-//		System.out.println("++++++++++++++++++" + bytes);
-//		
-//		if (bytes.length > 0) {
-//			Blob blob = new SerialBlob(bytes);
-//			System.out.println("++++++++++++++++++"+ blob);
-//			
-//			if (blob.length() > 0)
-//		}
-		if(filePart.getSize() > 0) {
+		if (filePart.getSize() > 0) {
 			byte[] bytes = filePart.getBytes();
 			Blob blob1 = new SerialBlob(bytes);
 			thuongHieu.setHinhAnh(blob1);
 		}
-		
+
 		thuongHieuService.CapnhatThuonghieu(thuongHieu);
 		return "redirect:/admin/thuong-hieu/danh-sach-thuong-hieu";
 	}
