@@ -1,5 +1,6 @@
 package com.websitenhaccu.service.impl;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,17 @@ public class ThuongHieuServiceImpl implements ThuongHieuService{
 	@Override
 	public void CapnhatThuonghieu(ThuongHieu thuongHieu){
 		if(thuongHieu != null) {
+				if(thuongHieu.getHinhAnh() != null) {
+					thuonghieuRepository.save(thuongHieu);
+					return;
+				}
+				else {
+					ThuongHieu thuongHieu2 = getThuonghieuBangMa(thuongHieu.getId());
+					if(thuongHieu2.getHinhAnh() != null) {
+						thuongHieu.setHinhAnh(thuongHieu2.getHinhAnh());
+						thuonghieuRepository.save(thuongHieu);
+					}
+				}
 			thuonghieuRepository.save(thuongHieu);
 		}
 	}

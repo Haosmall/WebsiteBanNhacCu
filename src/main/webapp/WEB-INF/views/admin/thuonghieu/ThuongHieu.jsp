@@ -26,8 +26,7 @@
 
 			<div class="col-lg-2">
 				<div class="form-group">
-					<label for="exampleInputEmail1">&#160;</label> 
-					<a type="button"
+					<label for="exampleInputEmail1">&#160;</label> <a type="button"
 						class="form-control btn btn-primary table__btn"
 						href="<c:url value='/admin/thuong-hieu/them-thuong-hieu'/>">Thêm
 						thương hiệu</a>
@@ -43,6 +42,7 @@
 					<tr>
 						<th>STT</th>
 						<th>Mã thương hiệu</th>
+						<th>Hình ảnh</th>
 						<th>Tên thương hiệu</th>
 						<th></th>
 					</tr>
@@ -55,10 +55,12 @@
 						<tr>
 							<td>${ counter.count }</td>
 							<td>${ thuonghieu.id }</td>
+							<td><c:if test="${thuonghieu.hinhAnhBase64 != null}">
+									<img src="data:image/jpg;base64,${thuonghieu.hinhAnhBase64}"
+										width="120" height="80" />
+								</c:if></td>
 							<td>${ thuonghieu.tenThuongHieu }</td>
-							<td>
-
-								<input type="button" class="btn btn-primary table__btn"
+							<td><input type="button" class="btn btn-primary table__btn"
 								value="Chi tiết"
 								onclick="location.href='<c:url value='/admin/thuong-hieu/chi-tiet-thuong-hieu?id=${ thuonghieu.id }' />'">
 
