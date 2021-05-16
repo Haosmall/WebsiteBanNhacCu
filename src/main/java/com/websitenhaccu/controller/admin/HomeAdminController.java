@@ -3,6 +3,7 @@ package com.websitenhaccu.controller.admin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -24,7 +25,7 @@ public class HomeAdminController {
 //	}
 
 	@RequestMapping("/home")
-	public ModelAndView getUser() {
+	public String getUser(Model model) {
 
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String email;
@@ -35,7 +36,8 @@ public class HomeAdminController {
 		}
 		
 		UserDTO user = userService.getByEmail(email);
+		model.addAttribute("user", user);
 
-		return new ModelAndView("admin/home", "user", user);
+		return "admin/sanpham/SanPham";
 	}
 }

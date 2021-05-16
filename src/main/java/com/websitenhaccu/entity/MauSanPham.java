@@ -1,6 +1,7 @@
 package com.websitenhaccu.entity;
 
 import java.io.Serializable;
+import java.sql.Blob;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -16,12 +18,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "AttributeValues")
-@IdClass(AttributeValue_PK.class)
+@Table(name = "Mau_SanPhams")
+@IdClass(MauSanPham_PK.class)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AttributeValue implements Serializable {
+public class MauSanPham implements Serializable {
 
 	/**
 	 * 
@@ -30,15 +32,19 @@ public class AttributeValue implements Serializable {
 
 	@Id
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "attribute_id")
-	private Attribute attribute;
+	@JoinColumn(name = "mau_id")
+	private Mau mau;
 
 	@Id
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "san_pham_id")
 	private SanPham sanPham;
 
-	@Column(name = "value", columnDefinition = "NVARCHAR(MAX)")
-	private String value;
+	@Column(name = "so_luong")
+	private int soLuong;
+	
+	@Lob
+	@Column(name = "hinh_anh")
+	private Blob hinhAnh;
 
 }

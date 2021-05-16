@@ -1,16 +1,22 @@
 package com.websitenhaccu.entity;
 
-import java.sql.Blob;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
+
+import com.websitenhaccu.util.MyGenerator;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,17 +31,19 @@ import lombok.ToString;
 @NoArgsConstructor
 public class SanPham {
 	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "loaiSanPham_generator")
+	@GenericGenerator(name = "loaiSanPham_generator", strategy = "com.websitenhaccu.util.MyGenerator", parameters = {
+			@Parameter(name = MyGenerator.INCREMENT_PARAM, value = "1"),
+			@Parameter(name = MyGenerator.VALUE_PREFIX_PARAMETER, value = "SP"),
+			@Parameter(name = MyGenerator.NUMBER_FORMAT_PARAMETER, value = "%06d") })
 	@Column(name = "san_pham_id")
 	private String id;
 
 	@Column(name = "ten_san_pham", columnDefinition = "NVARCHAR(MAX)")
 	private String tenSanPham;
 
-	@Column(name = "mo_ta", columnDefinition = "NTEXT")
+	@Column(name = "mo_ta", columnDefinition = "NTEXT(MAX)")
 	private String moTa;
-
-	@Column(name = "hinh_anh")
-	private Blob hinhAnh;
 
 	@Column(name = "gia_nhap")
 	private double giaNhap;
@@ -69,14 +77,15 @@ public class SanPham {
 	@EqualsAndHashCode.Exclude
 	private List<ChiTietHoaDon> chiTietHoaDons;
 
-//	@OneToOne(mappedBy = "product", cascade = CascadeType.ALL)
-//    @PrimaryKeyJoinColumn
-//    private Product discount;
+	@OneToMany(mappedBy = "sanPham", fetch = FetchType.LAZY)
+	@ToString.Exclude
+	@EqualsAndHashCode.Exclude
+	private List<GiamGia> giamGias;
 
 	@OneToMany(mappedBy = "sanPham")
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude
-	private List<AttributeValue> listAttributeValues;
+	private List<MauSanPham> mauSanPhams;
 
 	@ManyToOne
 	@JoinColumn(name = "dong_san_pham_id")

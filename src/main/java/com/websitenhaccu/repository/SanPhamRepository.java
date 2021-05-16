@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.websitenhaccu.entity.SanPham;
 
-public interface SanPhamRepository extends JpaRepository<SanPham, String>{
-	public List<SanPham> findByTenSanPhamContainingAndDongSanPhamTenDongSanPhamAndXuatXuAndDongSanPhamThuongHieuTenThuongHieu(String tenSanPham, String tenDongSanPham, String xuatXu, String tenThuongHieu, Pageable page);
+public interface SanPhamRepository extends JpaRepository<SanPham, String> {
+
+	public List<SanPham> findByTenSanPhamContainingAndDongSanPhamTenDongSanPhamAndXuatXuAndDongSanPhamThuongHieuTenThuongHieu(
+			String tenSanPham, String tenDongSanPham, String xuatXu, String tenThuongHieu, Pageable page);
 }

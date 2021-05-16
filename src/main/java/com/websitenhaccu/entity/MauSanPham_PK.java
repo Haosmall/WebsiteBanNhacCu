@@ -12,14 +12,14 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AttributeValue_PK implements Serializable {
+public class MauSanPham_PK implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private String attribute;
+	private int mau;
 	private String sanPham;
 
 }
