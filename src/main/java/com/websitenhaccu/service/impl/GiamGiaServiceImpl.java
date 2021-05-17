@@ -16,9 +16,9 @@ public class GiamGiaServiceImpl implements GiamGiaService{
 	private GiamGiaRepository giamGiaRepository;
 
 	@Override
-	public GiamGia getGiamGiaTheoNgayHienTai(Date ngayHienTai) {
+	public GiamGia getGiamGiaTheoNgayHienTai(Date ngayHienTai, Date ngayKetThuc) {
 		
-		return giamGiaRepository.findByNgayBatDauBeforeAndNgayKetThucAfter(ngayHienTai);
+		return giamGiaRepository.findByNgayBatDauBeforeAndNgayKetThucAfter(ngayHienTai, ngayKetThuc);
 	}
 
 	@Override

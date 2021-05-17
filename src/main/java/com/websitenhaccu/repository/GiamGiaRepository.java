@@ -11,6 +11,6 @@ public interface GiamGiaRepository extends JpaRepository<GiamGia, Integer> {
 
 	public List<GiamGia> findAll();
 	
-	public GiamGia findByNgayBatDauBeforeAndNgayKetThucAfter(Date ngayHienTai);
+	public GiamGia findByNgayBatDauBeforeAndNgayKetThucAfter(Date ngayHienTai, Date ngayKetThuc);
 	
 }

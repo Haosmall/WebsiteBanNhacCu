@@ -31,8 +31,8 @@ import lombok.ToString;
 @NoArgsConstructor
 public class SanPham {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "loaiSanPham_generator")
-	@GenericGenerator(name = "loaiSanPham_generator", strategy = "com.websitenhaccu.util.MyGenerator", parameters = {
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sanPham_generator")
+	@GenericGenerator(name = "sanPham_generator", strategy = "com.websitenhaccu.util.MyGenerator", parameters = {
 			@Parameter(name = MyGenerator.INCREMENT_PARAM, value = "1"),
 			@Parameter(name = MyGenerator.VALUE_PREFIX_PARAMETER, value = "SP"),
 			@Parameter(name = MyGenerator.NUMBER_FORMAT_PARAMETER, value = "%06d") })
@@ -42,7 +42,7 @@ public class SanPham {
 	@Column(name = "ten_san_pham", columnDefinition = "NVARCHAR(MAX)")
 	private String tenSanPham;
 
-	@Column(name = "mo_ta", columnDefinition = "NTEXT(MAX)")
+	@Column(name = "mo_ta", columnDefinition = "NTEXT")
 	private String moTa;
 
 	@Column(name = "gia_nhap")

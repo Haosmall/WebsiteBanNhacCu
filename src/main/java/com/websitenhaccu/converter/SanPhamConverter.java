@@ -1,129 +1,96 @@
 package com.websitenhaccu.converter;
 
-import java.util.Optional;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.websitenhaccu.constant.DiaChiConstant;
-import com.websitenhaccu.dto.LienHeDTO;
-import com.websitenhaccu.entity.LienHe;
+import com.websitenhaccu.dto.MauSanPhamDTO;
+import com.websitenhaccu.dto.SanPhamDTO;
+import com.websitenhaccu.entity.DongSanPham;
+import com.websitenhaccu.entity.MauSanPham;
+import com.websitenhaccu.entity.NhaCungCap;
+import com.websitenhaccu.entity.SanPham;
+import com.websitenhaccu.service.DongSanPhamService;
+import com.websitenhaccu.service.NhaCungCapService;
 
 @Component
 public class SanPhamConverter {
 
-	public LienHe toLienHe(LienHeDTO lienHeDTO) {
+	@Autowired
+	NhaCungCapService nhaCungCapService;
 
-		if (lienHeDTO == null)
+	@Autowired
+	DongSanPhamService dongSanPhamService;
+
+	@Autowired
+	MauSanPhamConverter mauSanPhamConverter;
+
+	public SanPham toSanPham(SanPhamDTO sanPhamDTO)  {
+
+		if (sanPhamDTO == null)
 			return null;
 
-		String id = lienHeDTO.getId();
+		String id = sanPhamDTO.getId();
+		String tenSanPham = sanPhamDTO.getTenSanPham();
+		String moTa = sanPhamDTO.getMoTa();
+		double giaBan = sanPhamDTO.getGiaBan();
+		double giaNhap = sanPhamDTO.getGiaNhap();
+		String xuatXu = sanPhamDTO.getXuatXu();
+		boolean trangThai = sanPhamDTO.isTrangThai();
+		int baoHanh = sanPhamDTO.getBaoHanh();
+		int namSanXuat = sanPhamDTO.getNamSanXuat();
+		NhaCungCap nhaCungCap = nhaCungCapService.getNhaCungCapTheoMaNCC(sanPhamDTO.getMaNhaCungCap());
+		DongSanPham dongSanPham = dongSanPhamService.getDongSanPhamBangMa(sanPhamDTO.getMaDongSanPham());
 
-		String soDienThoai = lienHeDTO.getSoDienThoai();
+		List<MauSanPham> mauSanPhams = new ArrayList<MauSanPham>();
 
-		String email = lienHeDTO.getEmail();
+//		List<MauSanPhamDTO> mauSanPhamDTOs = sanPhamDTO.getMauSanPhamDTOs();
+//		for (MauSanPhamDTO mauSanPhamDTO : mauSanPhamDTOs) {
+//			try {
+//				mauSanPhams.add(mauSanPhamConverter.toMauSanPham(mauSanPhamDTO));
+//			} catch (UnsupportedEncodingException | SQLException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		}
 
-		String diaChiDTO = lienHeDTO.getDiaChi();
-		String phuongXa = lienHeDTO.getPhuongXa();
-		String quanHuyen = lienHeDTO.getQuanHuyen();
-		String tinhThanh = lienHeDTO.getTinhThanhPho();
+		SanPham sanPham = new SanPham(id, tenSanPham, moTa, giaNhap, giaBan, xuatXu, trangThai, baoHanh, namSanXuat,
+				nhaCungCap, null, null, null, mauSanPhams, dongSanPham);
 
-		String diaChi = "";
-
-		StringBuffer buffer = new StringBuffer(diaChiDTO);
-
-//		Kiểm tra và lưu vào biến diaChi theo thứ tự cấp hành chính  <Số nhà, tên đường>, <Phường/ Xã/ Thị trấn>, <Quận/ Thị xã/ Huyện>, <Thành phố/ Tỉnh>
-		if (phuongXa.contains(DiaChiConstant.PHUONG) || phuongXa.contains(DiaChiConstant.XA)
-				|| phuongXa.contains(DiaChiConstant.THITRAN)) {
-			buffer.append(", " + phuongXa);
-		}
-		if (quanHuyen.contains(DiaChiConstant.QUAN) || quanHuyen.contains(DiaChiConstant.HUYEN)
-				|| quanHuyen.contains(DiaChiConstant.THIXA)) {
-			buffer.append(", " + quanHuyen);
-		}
-		if (tinhThanh.contains(DiaChiConstant.TINH) || tinhThanh.contains(DiaChiConstant.THANHPHO)) {
-			buffer.append(", " + tinhThanh);
-		}
-
-		String temp = buffer.toString();
-		Optional<String> tempOptional = Optional.ofNullable(temp);
-
-//		Kiểm tra xem địa chỉ có null không
-		if (tempOptional.isPresent()) {
-//			Xóa các kí tự "," dư ở đầu chuỗi
-			while (temp.startsWith(", ")) {
-				temp = temp.substring(2, temp.length());
-			}
-		}
-
-		diaChi = temp;
-
-		LienHe lienHe = new LienHe(id, diaChi, email, soDienThoai);
-		return lienHe;
+		return sanPham;
 	}
 
-	public LienHeDTO toLienHeDTO(LienHe lienHe) {
+	public SanPhamDTO tosanPhamDTO(SanPham sanPham) {
 
-		if (lienHe == null)
+		if (sanPham == null)
 			return null;
 
-		String id = lienHe.getId();
-		String soDienThoai = lienHe.getSoDienThoai();
-		String email = lienHe.getEmail();
-
-		String tinhThanhPho = "";
-		String quanHuyen = "";
-		String phuongXa = "";
-		String diaChi = "";
-
-//		Kiểm tra xem có địa chỉ nhà cung cấp không
-		if (lienHe.getDiaChi() != null || lienHe.getDiaChi() != "") {
-			String diaChiNCC = lienHe.getDiaChi();
-			String[] temp = diaChiNCC.split(", ");
-			StringBuffer buffer = new StringBuffer();
-
-//			Kiểm tra xem địa chỉ có 1, hay nhiều thông tin
-			if (temp.length > 1) {
-//				Lưu thông tin địa chỉ theo cấp hành chính
-				for (String string : temp) {
-					if (string.contains(DiaChiConstant.TINH) || string.contains(DiaChiConstant.THANHPHO)) {
-						tinhThanhPho = string;
-					} else if (string.contains(DiaChiConstant.QUAN) || string.contains(DiaChiConstant.HUYEN)
-							|| string.contains(DiaChiConstant.THIXA)) {
-						quanHuyen = string;
-					} else if (string.contains(DiaChiConstant.PHUONG) || string.contains(DiaChiConstant.XA)
-							|| string.contains(DiaChiConstant.THITRAN)) {
-						phuongXa = string;
-					} else {
-						buffer.append(string + ", ");
-					}
-				}
-				String tmp = buffer.toString();
-
-//				Kiểm tra xem có thông tin số nhà, tên đường không
-				if (!tmp.equals("")) {
-//					Xóa kí tự "," dư ở cuối chuỗi
-					diaChi = tmp.substring(0, tmp.length() - 2);
-				}
-
-			} else {
-
-				if (diaChiNCC.contains(DiaChiConstant.TINH) || diaChiNCC.contains(DiaChiConstant.THANHPHO)) {
-					tinhThanhPho = diaChiNCC;
-				} else if (diaChiNCC.contains(DiaChiConstant.QUAN) || diaChiNCC.contains(DiaChiConstant.HUYEN)
-						|| diaChiNCC.contains(DiaChiConstant.THIXA)) {
-					quanHuyen = diaChiNCC;
-				} else if (diaChiNCC.contains(DiaChiConstant.PHUONG) || diaChiNCC.contains(DiaChiConstant.XA)
-						|| diaChiNCC.contains(DiaChiConstant.THITRAN)) {
-					phuongXa = diaChiNCC;
-				} else {
-					diaChi = diaChiNCC;
-				}
-
+		String id = sanPham.getId();
+		String moTa = sanPham.getTenSanPham().replace("\"", "\\\"");
+		double giaNhap = sanPham.getGiaNhap();
+		double giaBan = sanPham.getGiaBan();
+		String xuatXu = sanPham.getXuatXu();
+		boolean trangThai = sanPham.isTrangThai();
+		int baoHanh = sanPham.getBaoHanh();
+		int namSanXuat = sanPham.getNamSanXuat();
+		String maNhaCungCap = sanPham.getNhaCungCap().getMaNhaCungCap();
+		String maDongSanPham = sanPham.getDongSanPham().getId();
+		String maLoaiSanPham = sanPham.getDongSanPham().getLoaiSanPham().getId();
+		String maThuongHieu = sanPham.getDongSanPham().getThuongHieu().getId();
+		
+		List<MauSanPhamDTO> mauSanPhamDTOs = new ArrayList<MauSanPhamDTO>();
+		sanPham.getMauSanPhams().forEach(mauSanPham->{
+			try {
+				mauSanPhamDTOs.add(mauSanPhamConverter.toMauSanPhamDTO(mauSanPham));
+			} catch (SQLException e) {
+				e.printStackTrace();
 			}
-		}
+		});
 
-		LienHeDTO lienHeDTO = new LienHeDTO(id, email, soDienThoai, tinhThanhPho, quanHuyen, phuongXa, diaChi);
-
-		return lienHeDTO;
+		return new SanPhamDTO(
+				id, maLoaiSanPham, moTa, giaNhap, giaBan, xuatXu, trangThai, baoHanh, namSanXuat, maNhaCungCap, null, mauSanPhamDTOs, maDongSanPham, maLoaiSanPham, maThuongHieu);
 	}
 }

@@ -1,5 +1,6 @@
 package com.websitenhaccu.entity;
 
+import java.sql.Blob;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -8,11 +9,13 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.websitenhaccu.util.MyGenerator;
 
@@ -39,6 +42,10 @@ public class ThuongHieu {
 
 	@Column(name = "ten_thuong_hieu", columnDefinition = "NVARCHAR(MAX)")
 	private String tenThuongHieu;
+	
+	@Lob
+	@Column(name = "hinh_anh")
+	private Blob hinhAnh;
 
 	@OneToMany(mappedBy = "thuongHieu", fetch = FetchType.LAZY)
 	@ToString.Exclude
@@ -51,6 +58,16 @@ public class ThuongHieu {
 	public ThuongHieu(String id) {
 		super();
 		this.id = id;
+	}
+
+	/**
+	 * @param id
+	 * @param tenThuongHieu
+	 */
+	public ThuongHieu(String id, String tenThuongHieu) {
+		super();
+		this.id = id;
+		this.tenThuongHieu = tenThuongHieu;
 	}
 
 }

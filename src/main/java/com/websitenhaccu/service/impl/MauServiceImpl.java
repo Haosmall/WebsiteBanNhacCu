@@ -40,4 +40,10 @@ public class MauServiceImpl implements MauService{
 		mauRepository.save(mau);
 	}
 
+	@Override
+	public Mau getMauTheoId(int id) {
+		
+		return mauRepository.getOne(id);
+	}
+
 }

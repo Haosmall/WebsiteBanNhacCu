@@ -34,31 +34,18 @@ public class SanPhamDTO {
 
 	private int namSanXuat;
 
-	private NhaCungCap nhaCungCap;
+	private String maNhaCungCap;
 
 	private List<GiamGia> giamGias;
 
-	private List<MauSanPham> mauSanPhams;
+	private List<MauSanPhamDTO> mauSanPhamDTOs;
 
-	private DongSanPham dongSanPham;
-
-	public SanPhamDTO(String tenSanPham, String moTa, double giaNhap, double giaBan, String xuatXu, boolean trangThai,
-			int baoHanh, int namSanXuat, NhaCungCap nhaCungCap, List<GiamGia> giamGias, List<MauSanPham> mauSanPhams,
-			DongSanPham dongSanPham) {
-		super();
-		this.tenSanPham = tenSanPham;
-		this.moTa = moTa;
-		this.giaNhap = giaNhap;
-		this.giaBan = giaBan;
-		this.xuatXu = xuatXu;
-		this.trangThai = trangThai;
-		this.baoHanh = baoHanh;
-		this.namSanXuat = namSanXuat;
-		this.nhaCungCap = nhaCungCap;
-		this.giamGias = giamGias;
-		this.mauSanPhams = mauSanPhams;
-		this.dongSanPham = dongSanPham;
-	}
-
+	private String maDongSanPham;
+	
+	private String maLoaiSanPham;
+	
+	private String maThuongHieu;
+	
+	
 	
 }

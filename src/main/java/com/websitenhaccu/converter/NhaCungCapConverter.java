@@ -61,54 +61,54 @@ public class NhaCungCapConverter {
 		return nhaCungCap;
 	}
 
-	public NhaCungCap toThemNhaCungCap(NhaCungCapDTO nhaCungCapDTO) {
-
-		if (nhaCungCapDTO == null)
-			return null;
-
-		String tenNhaCungCap = nhaCungCapDTO.getTenNhaCungCap();
-
-		String soDienThoai = nhaCungCapDTO.getSoDienThoai();
-
-		String email = nhaCungCapDTO.getEmail();
-		String website = nhaCungCapDTO.getWebsite();
-
-		String diaChiDTO = nhaCungCapDTO.getDiaChi();
-		String phuongXa = nhaCungCapDTO.getPhuongXa();
-		String quanHuyen = nhaCungCapDTO.getQuanHuyen();
-		String tinhThanh = nhaCungCapDTO.getTinhThanhPho();
-
-		String diaChi = "";
-
-		StringBuffer buffer = new StringBuffer(diaChiDTO);
-
-//		Kiểm tra và lưu vào biến diaChi theo thứ tự cấp hành chính  <Số nhà, tên đường>, <Phường/ Xã/ Thị trấn>, <Quận/ Thị xã/ Huyện>, <Thành phố/ Tỉnh>
-		if (phuongXa.contains(DiaChiConstant.PHUONG) || phuongXa.contains(DiaChiConstant.XA) || phuongXa.contains(DiaChiConstant.THITRAN)) {
-			buffer.append(", " + phuongXa);
-		}
-		if (quanHuyen.contains(DiaChiConstant.QUAN) || quanHuyen.contains(DiaChiConstant.HUYEN) || quanHuyen.contains(DiaChiConstant.THIXA)) {
-			buffer.append(", " + quanHuyen);
-		}
-		if (tinhThanh.contains(DiaChiConstant.TINH) || tinhThanh.contains(DiaChiConstant.THANHPHO)) {
-			buffer.append(", " + tinhThanh);
-		}
-
-		String temp = buffer.toString();
-		Optional<String> tempOptional = Optional.ofNullable(temp);
-
-//		Kiểm tra xem địa chỉ có null không
-		if (tempOptional.isPresent()) {
-//			Xóa các kí tự "," dư ở đầu chuỗi
-			while (temp.startsWith(", ")) {
-				temp = temp.substring(2, temp.length());
-			}
-		}
-
-		diaChi = temp;
-
-		NhaCungCap nhaCungCap = new NhaCungCap(tenNhaCungCap, diaChi, soDienThoai, email, website);
-		return nhaCungCap;
-	}
+//	public NhaCungCap toThemNhaCungCap(NhaCungCapDTO nhaCungCapDTO) {
+//
+//		if (nhaCungCapDTO == null)
+//			return null;
+//
+//		String tenNhaCungCap = nhaCungCapDTO.getTenNhaCungCap();
+//
+//		String soDienThoai = nhaCungCapDTO.getSoDienThoai();
+//
+//		String email = nhaCungCapDTO.getEmail();
+//		String website = nhaCungCapDTO.getWebsite();
+//
+//		String diaChiDTO = nhaCungCapDTO.getDiaChi();
+//		String phuongXa = nhaCungCapDTO.getPhuongXa();
+//		String quanHuyen = nhaCungCapDTO.getQuanHuyen();
+//		String tinhThanh = nhaCungCapDTO.getTinhThanhPho();
+//
+//		String diaChi = "";
+//
+//		StringBuffer buffer = new StringBuffer(diaChiDTO);
+//
+////		Kiểm tra và lưu vào biến diaChi theo thứ tự cấp hành chính  <Số nhà, tên đường>, <Phường/ Xã/ Thị trấn>, <Quận/ Thị xã/ Huyện>, <Thành phố/ Tỉnh>
+//		if (phuongXa.contains(DiaChiConstant.PHUONG) || phuongXa.contains(DiaChiConstant.XA) || phuongXa.contains(DiaChiConstant.THITRAN)) {
+//			buffer.append(", " + phuongXa);
+//		}
+//		if (quanHuyen.contains(DiaChiConstant.QUAN) || quanHuyen.contains(DiaChiConstant.HUYEN) || quanHuyen.contains(DiaChiConstant.THIXA)) {
+//			buffer.append(", " + quanHuyen);
+//		}
+//		if (tinhThanh.contains(DiaChiConstant.TINH) || tinhThanh.contains(DiaChiConstant.THANHPHO)) {
+//			buffer.append(", " + tinhThanh);
+//		}
+//
+//		String temp = buffer.toString();
+//		Optional<String> tempOptional = Optional.ofNullable(temp);
+//
+////		Kiểm tra xem địa chỉ có null không
+//		if (tempOptional.isPresent()) {
+////			Xóa các kí tự "," dư ở đầu chuỗi
+//			while (temp.startsWith(", ")) {
+//				temp = temp.substring(2, temp.length());
+//			}
+//		}
+//
+//		diaChi = temp;
+//
+//		NhaCungCap nhaCungCap = new NhaCungCap(tenNhaCungCap, diaChi, soDienThoai, email, website);
+//		return nhaCungCap;
+//	}
 
 	public NhaCungCapDTO toNhaCungCapDTO(NhaCungCap nhaCungCap) {
 

@@ -15,15 +15,22 @@
 		<!-- Row input -->
 		<div class="row">
 			<div class="col-lg-3"></div>
-
+ có
 			<div class="col-lg-6">
 				<h1 style="text-align: center;">${formTitle}</h1>
-				<form:form action="" method="POST" modelAttribute="thuongHieu">
+
+				<form:form action="" method="POST" modelAttribute="thuongHieu"
+					enctype="multipart/form-data">
 
 					<div class="form-group">
 						<label>Tên thương hiệu:</label>
-						<form:input path="tenThuongHieu" class="form-control"/>
-						<form:errors path="tenThuongHieu" cssClass="error" ></form:errors>
+						<form:input  path="tenThuongHieu" class="form-control" />
+						<form:errors path="tenThuongHieu" cssClass="error"></form:errors>
+					</div>
+
+					<div class="form-group">
+						<label>Ảnh thương hiệu:</label> <input type="file" name="hinhAnh"
+							multiple="multiple" />
 					</div>
 
 					<button type="submit" class="btn btn-success">${formButton}</button>
@@ -31,12 +38,14 @@
 
 				</form:form>
 
+
 			</div>
 
 			<div class="col-lg-3"></div>
 		</div>
-		
-		<a href="<c:url value='/admin/thuong-hieu/danh-sach-thuong-hieu' />">Quay lại</a>
+
+		<a href="<c:url value='/admin/thuong-hieu/danh-sach-thuong-hieu' />">Quay
+			lại</a>
 
 
 

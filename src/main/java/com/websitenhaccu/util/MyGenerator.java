@@ -21,10 +21,12 @@ public class MyGenerator extends SequenceStyleGenerator {
     public static final String NUMBER_FORMAT_PARAMETER = "numberFormat";
     public static final String NUMBER_FORMAT_DEFAULT = "%d";
     private String numberFormat;
+    
  
     @Override
     public Serializable generate(SharedSessionContractImplementor session,
             Object object) throws HibernateException {
+    	
         return valuePrefix + String.format(numberFormat, super.generate(session, object));
     }
  

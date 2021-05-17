@@ -6,7 +6,7 @@ import com.websitenhaccu.entity.GiamGia;
 
 public interface GiamGiaService {
 
-	public GiamGia getGiamGiaTheoNgayHienTai(Date ngayHienTai);
+	public GiamGia getGiamGiaTheoNgayHienTai(Date ngayHienTai, Date ngayKetThuc);
 
 	public void themGiamGia(GiamGia giamGia);
 

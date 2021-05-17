@@ -27,7 +27,6 @@ import lombok.ToString;
 
 @Entity
 @Table(name = "DongSanPhams")
-//@IdClass(DongSanPham_PK.class)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

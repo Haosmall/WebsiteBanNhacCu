@@ -1,5 +1,6 @@
 package com.websitenhaccu.entity;
 
+import java.beans.ConstructorProperties;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -35,5 +36,13 @@ public class Mau {
 	@OneToMany(mappedBy = "mau", fetch = FetchType.LAZY)
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
-	private List<MauSanPham> mauSanPhams; 
+	private List<MauSanPham> mauSanPhams;
+
+	public Mau(int id, String tenMau) {
+		super();
+		this.id = id;
+		this.tenMau = tenMau;
+	} 
+	
+	
 }

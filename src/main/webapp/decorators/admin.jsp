@@ -32,6 +32,8 @@
 <link href='<c:url value="/static/assets/css/sb-admin-2.min.css"/>' rel="stylesheet">
 <link rel="stylesheet" href="<c:url value="/static/assets/css/style.css"/>">
 
+<dec:head/>
+
 </head>
 <body id="page-top" >
 

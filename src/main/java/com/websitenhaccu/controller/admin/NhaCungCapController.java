@@ -159,7 +159,7 @@ public class NhaCungCapController {
 	@PostMapping(value = "/them-nha-cung-cap")
 	public String themNhaCungCap(Model model, @ModelAttribute("nhaCungCapDTO") NhaCungCapDTO nhaCungCapDTO, BindingResult bindingResult) {
 		
-		NhaCungCap nhaCungCap = nhaCungCapConverter.toThemNhaCungCap(nhaCungCapDTO);
+		NhaCungCap nhaCungCap = nhaCungCapConverter.toNhaCungCap(nhaCungCapDTO);
 		
 		nhaCungCapValidator.validate(nhaCungCap, bindingResult);
 
