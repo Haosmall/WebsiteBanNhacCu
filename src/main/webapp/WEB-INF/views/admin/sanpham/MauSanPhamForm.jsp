@@ -6,9 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>${formTitle}</title>
+
 </head>
 <body>
-
 
 	<div class="container-fluid">
 
@@ -18,17 +18,24 @@
 			<div class="col-lg-6">
 				<h1 style="text-align: center;">${formTitle}</h1>
 
-				<form:form action="" method="POST" modelAttribute="thuongHieu"
+				<form:form action="" method="POST" modelAttribute="mauSanPhamDTO"
 					enctype="multipart/form-data">
 
 					<div class="form-group">
-						<label>Tên thương hiệu:</label>
-						<form:input  path="tenThuongHieu" class="form-control" />
-						<form:errors path="tenThuongHieu" cssClass="error"></form:errors>
+								<label>Màu:</label>
+								<form:select path="maMau" Class="form-control">
+									<form:options items="${ maus }" itemValue="id"
+										itemLabel="tenMau" />
+								</form:select>
+							</div>
+					<div class="form-group">
+						<label>Số lượng:</label>
+						<form:input  path="soLuong" class="form-control" />
+						<form:errors path="soLuong" cssClass="error"></form:errors>
 					</div>
 
 					<div class="form-group">
-						<label>Ảnh thương hiệu:</label> <input type="file" name="hinhAnh"
+						<label>Chọn ảnh:</label> <input type="file" name="hinhAnh"
 							multiple="multiple" />
 					</div>
 
@@ -43,7 +50,7 @@
 			<div class="col-lg-3"></div>
 		</div>
 
-		<a href="<c:url value='/admin/thuong-hieu/danh-sach-thuong-hieu' />">Quay
+		<a href="<c:url value='/admin/san-pham/xem-chi-tiet?id=${ mauSanPhamDTO.maSanPham }' />">Quay
 			lại</a>
 
 

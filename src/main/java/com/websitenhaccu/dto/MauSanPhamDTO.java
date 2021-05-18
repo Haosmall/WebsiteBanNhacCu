@@ -5,16 +5,21 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor 
+@AllArgsConstructor
 @NoArgsConstructor
 public class MauSanPhamDTO {
 	private int maMau;
+	
+	private String tenMau;
 
 	private String maSanPham;
 
 	private int soLuong;
-	
+
 	private String hinhAnhBase64;
 
-
+	public MauSanPhamDTO(String maSanPham) {
+		super();
+		this.maSanPham = maSanPham;
+	}
 }

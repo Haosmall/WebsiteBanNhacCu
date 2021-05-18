@@ -93,11 +93,25 @@
 				<div id="collapseUtilities" class="collapse"
 					aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<h6 class="collapse-header">Custom Utilities:</h6>
-						<a class="collapse-item" href="utilities-color.html">Colors</a> <a
-							class="collapse-item" href="utilities-border.html">Borders</a> <a
-							class="collapse-item" href="utilities-animation.html">Animations</a>
-						<a class="collapse-item" href="utilities-other.html">Other</a>
+						<h6 class="collapse-header">Sản phẩm:</h6>
+                        <a class="collapse-item" href="<c:url value='/admin/san-pham/danh-sach-san-pham'/>">Danh sách sản phẩm</a>
+                        <a class="collapse-item" href="<c:url value='/admin/san-pham/them-san-pham'/>">Thêm sản phẩm</a>
+                        <div class="collapse-divider"></div>
+                        
+						<h6 class="collapse-header">Loại sản phẩm:</h6>
+                        <a class="collapse-item" href="<c:url value='/admin/loai-san-pham/danh-sach-loai-san-pham'/>">Danh sách loại sản phẩm</a>
+                        <a class="collapse-item" href="<c:url value='/admin/loai-san-pham/them-loai-san-pham'/>">Thêm loại sản phẩm</a>
+                        <div class="collapse-divider"></div>
+                        
+                        <h6 class="collapse-header">Dòng sản phẩm:</h6>
+                        <a class="collapse-item" href="<c:url value='/admin/dong-san-pham/danh-sach-dong-san-pham'/>">Danh sách dòng sản phẩm</a>
+                        <a class="collapse-item" href="<c:url value='/admin/dong-san-pham/them-dong-san-pham'/>">Thêm dòng sản phẩm</a>
+                        <div class="collapse-divider"></div>
+                        
+                        <h6 class="collapse-header">Màu:</h6>
+                        <a class="collapse-item" href="<c:url value='/admin/dong-san-pham/danh-sach-dong-san-pham'/>">Danh sách màu</a>
+                        <a class="collapse-item" href="<c:url value='/admin/dong-san-pham/them-dong-san-pham'/>">Thêm màu</a>
+                        <div class="collapse-divider"></div>
 					</div>
 				</div></li>
 				
@@ -120,15 +134,7 @@
                         <a class="collapse-item" href="<c:url value='/admin/thuong-hieu/them-thuong-hieu'/>">Thêm thương hiệu</a>
                         <div class="collapse-divider"></div>
                         
-                        <h6 class="collapse-header">Loại sản phẩm:</h6>
-                        <a class="collapse-item" href="<c:url value='/admin/loai-san-pham/danh-sach-loai-san-pham'/>">Danh sách loại sản phẩm</a>
-                        <a class="collapse-item" href="<c:url value='/admin/loai-san-pham/them-loai-san-pham'/>">Thêm loại sản phẩm</a>
-                        <div class="collapse-divider"></div>
                         
-                        <h6 class="collapse-header">Dòng sản phẩm:</h6>
-                        <a class="collapse-item" href="<c:url value='/admin/dong-san-pham/danh-sach-dong-san-pham'/>">Danh sách dòng sản phẩm</a>
-                        <a class="collapse-item" href="<c:url value='/admin/dong-san-pham/them-dong-san-pham'/>">Thêm dòng sản phẩm</a>
-                        <div class="collapse-divider"></div>
                         
                         <h6 class="collapse-header">Bình luận:</h6>
                         <a class="collapse-item" href="login.html">Danh sách Bình luận</a>

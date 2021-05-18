@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import com.websitenhaccu.dto.SanPhamDTO;
 import com.websitenhaccu.entity.MauSanPham;
 import com.websitenhaccu.entity.SanPham;
 import com.websitenhaccu.repository.ChiTietHoaDonRepository;
@@ -80,7 +81,16 @@ public class SanPhamServiceImpl implements SanPhamService {
 
 	@Override
 	public SanPham getSanPhamTheoID(String id) {
-		return sanPhamRepository.getOne(id);
+		return sanPhamRepository.findById(id).get();
+	}
+
+	@Override
+	public SanPhamDTO getSanPhamDTOTheoID(String id) {
+
+		SanPhamDTO sanPhamDTO = sanPhamRepository.findById(id)
+				.map(sanPham -> new SanPhamDTO(sanPham.getId(), sanPham.getTenSanPham(), sanPham.getMoTa()))
+				.orElse(null);
+		return sanPhamDTO;
 	}
 
 }

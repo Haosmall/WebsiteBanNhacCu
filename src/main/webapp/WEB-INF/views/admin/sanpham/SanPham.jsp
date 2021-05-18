@@ -29,7 +29,7 @@
 				<div class="form-group">
 					<label for="exampleInputEmail1">&#160;</label> <a type="button"
 						class="form-control btn btn-primary table__btn"
-						href="<c:url value='/admin/san-pham/them-san-pham'/>">Thêm nhà
+						href="<c:url value='/admin/san-pham/them-san-pham'/>">Thêm
 						sản phẩm</a>
 				</div>
 			</div>
@@ -86,17 +86,13 @@
 							<td>${ sanPham.dongSanPham.thuongHieu.tenThuongHieu }</td>
 							<td></td>
 							<td>
-								<%-- <a type="button" class="btn btn-primary table__btn" href="<c:url value='/admin/nha-cung-cap/xem-chi-tiet?id=${ nhaCungCap.maNhaCungCap }' />">Chi tiết</a>
-								<a type="button" class="btn btn-warning table__btn" href="<c:url value='/admin/nha-cung-cap/cap-nhat-thong-tin-nha-cung-cap?id=${ nhaCungCap.maNhaCungCap }' />">Sửa</a>
-								<a type="button" class="btn btn-danger table__btn" href="<c:url value='/admin/nha-cung-cap/xoa-nha-cung-cap?id=${ nhaCungCap.maNhaCungCap }' />">Xóa</a> --%>
-
 								<input type="button" class="btn btn-primary table__btn"
 								value="Chi tiết"
 								onclick="location.href='<c:url value='/admin/san-pham/xem-chi-tiet?id=${ sanPham.id }' />'">
 
 								<input type="button" class="btn btn-warning table__btn"
 								value="Sửa"
-								onclick="location.href='<c:url value='/admin/san-pham/cap-nhat-thong-tin-san-pham?id=${ sanPham.id }' />'">
+								onclick="location.href='<c:url value='/admin/san-pham/cap-nhat-san-pham?id=${ sanPham.id }' />'">
 
 								<input type="button" class="btn btn-danger table__btn"
 								value="Xóa"

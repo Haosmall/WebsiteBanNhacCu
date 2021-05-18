@@ -13,5 +13,7 @@ public interface MauSanPhamRepository extends JpaRepository<MauSanPham, MauSanPh
 	public List<MauSanPham> findBySanPhamId(String id);
 
 	public Mau findByMauTenMau(String tenMau);
-	
+
+	public MauSanPham findBySanPhamIdAndMauId(String maSanPham, int maMau);
+
 }

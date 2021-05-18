@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.websitenhaccu.dto.SanPhamDTO;
 import com.websitenhaccu.entity.MauSanPham;
 import com.websitenhaccu.entity.SanPham;
 
@@ -20,6 +21,8 @@ public interface SanPhamService {
 	public void capNhatSanPham(SanPham sanPham);
 	
 	public SanPham getSanPhamTheoID(String id);
+	
+	public SanPhamDTO getSanPhamDTOTheoID(String id);
 
 	public List<SanPham> timKiemSanPham(String tenSanPham, String tenDongSanPham, String xuatXu, String tenThuongHieu, int page, int size);
 

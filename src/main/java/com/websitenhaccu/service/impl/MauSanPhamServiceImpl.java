@@ -40,8 +40,13 @@ public class MauSanPhamServiceImpl implements MauSanPhamService{
 
 	@Override
 	public void capNhatMauSanPham(MauSanPham mauSanPham) {
+		mauSanPhamRepository.save(mauSanPham);
 		
-		
+	}
+
+	@Override
+	public MauSanPham getMauSanPhamTheoMaSanPhamVaMaMau(String maSanPham, int maMau) {
+		return mauSanPhamRepository.findBySanPhamIdAndMauId(maSanPham, maMau);
 	}
 
 

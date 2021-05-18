@@ -1,6 +1,5 @@
 package com.websitenhaccu.converter;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +27,7 @@ public class SanPhamConverter {
 	@Autowired
 	MauSanPhamConverter mauSanPhamConverter;
 
-	public SanPham toSanPham(SanPhamDTO sanPhamDTO)  {
+	public SanPham toSanPham(SanPhamDTO sanPhamDTO) {
 
 		if (sanPhamDTO == null)
 			return null;
@@ -63,13 +62,15 @@ public class SanPhamConverter {
 		return sanPham;
 	}
 
-	public SanPhamDTO tosanPhamDTO(SanPham sanPham) {
+	public SanPhamDTO toSanPhamDTO(SanPham sanPham) {
 
 		if (sanPham == null)
 			return null;
 
 		String id = sanPham.getId();
-		String moTa = sanPham.getTenSanPham().replace("\"", "\\\"");
+		String tenSanPham = sanPham.getTenSanPham();
+//		String moTa = sanPham.getMoTa().replace("\"", "\\\"");
+		String moTa = sanPham.getMoTa();
 		double giaNhap = sanPham.getGiaNhap();
 		double giaBan = sanPham.getGiaBan();
 		String xuatXu = sanPham.getXuatXu();
@@ -80,17 +81,13 @@ public class SanPhamConverter {
 		String maDongSanPham = sanPham.getDongSanPham().getId();
 		String maLoaiSanPham = sanPham.getDongSanPham().getLoaiSanPham().getId();
 		String maThuongHieu = sanPham.getDongSanPham().getThuongHieu().getId();
-		
-		List<MauSanPhamDTO> mauSanPhamDTOs = new ArrayList<MauSanPhamDTO>();
-		sanPham.getMauSanPhams().forEach(mauSanPham->{
-			try {
-				mauSanPhamDTOs.add(mauSanPhamConverter.toMauSanPhamDTO(mauSanPham));
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		});
 
-		return new SanPhamDTO(
-				id, maLoaiSanPham, moTa, giaNhap, giaBan, xuatXu, trangThai, baoHanh, namSanXuat, maNhaCungCap, null, mauSanPhamDTOs, maDongSanPham, maLoaiSanPham, maThuongHieu);
+		List<MauSanPhamDTO> mauSanPhamDTOs = new ArrayList<MauSanPhamDTO>();
+//		sanPham.getMauSanPhams().forEach(mauSanPham -> {
+//			mauSanPhamDTOs.add(mauSanPhamConverter.toMauSanPhamDTO(mauSanPham));
+//		});
+
+		return new SanPhamDTO(id, tenSanPham, moTa, giaNhap, giaBan, xuatXu, trangThai, baoHanh, namSanXuat,
+				maNhaCungCap, null, mauSanPhamDTOs, maDongSanPham, maLoaiSanPham, maThuongHieu);
 	}
 }

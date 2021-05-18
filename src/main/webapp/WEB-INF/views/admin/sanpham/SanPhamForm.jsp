@@ -51,6 +51,7 @@
 </head>
 <body>
 
+	
 	<div class="container-fluid">
 
 		<!-- Row input -->
@@ -99,11 +100,11 @@
 						<div class="col-lg-6">
 							<div class="form-group">
 								<label>Giá nhập:</label>
-								<form:input path="giaNhap" class="form-control" />
+								<form:input path="giaNhap" class="form-control"/>
 								<form:errors path="giaNhap" cssClass="error"></form:errors>
 							</div>
 						</div>
-
+<%-- <fmt:formatNumber type = "number" groupingUsed = "false" value="${ giaNhap }"/> --%>
 						<div class="col-lg-6">
 							<div class="form-group">
 								<label>Giá bán:</label>
@@ -152,7 +153,8 @@
 						
 					</div>
 					
-					<div class="row">
+					<c:if test="${ formTitle eq 'Thêm sản phẩm' }">
+						<div class="row">
 						<div class="col-lg-3">
 							<div class="form-group">
 								<label>Màu:</label> 
@@ -180,6 +182,8 @@
 						</div>
 								
 					</div>
+						
+					</c:if>
 					
 					
 					<div class="form-group">
@@ -210,26 +214,11 @@
 			<div class="col-lg-3"></div>
 		</div>
 
-		<a href="<c:url value='/admin/nha-cung-cap/danh-sach-nha-cung-cap' />">Quay
+		<a href="<c:url value='/admin/san-pham/danh-sach-san-pham' />">Quay
 			lại</a>
 
 	</div>
 	<!-- /.container-fluid -->
-
-	<script>
-			$("body").on("DOMSubtreeModified", ".fr-element", function () {
-				var all = $(".fr-element")
-					.map(function () {
-						return this.innerHTML;
-					})
-					.get()
-					.join();
-				console.clear();
-				//console.log(all);
-				$("#moTa").val(all);
-				console.log($("#moTa").val());
-			});
-		</script>
 
 	<script type="text/javascript"
 		src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.js"></script>
@@ -299,12 +288,7 @@
 	<script type="text/javascript"
 		src="<c:url value="/static/assets/js/plugins/word_paste.min.js"/>"></script>
 
-	<script>
-			(function () {
-				new FroalaEditor("#edit");
-			})();
-		</script>
 
-	<script src="<c:url value="/static/assets/js/diaChi.js"/>"></script>
+	<script src="<c:url value="/static/assets/js/sanpham.js"/>"></script>
 </body>
 </html>

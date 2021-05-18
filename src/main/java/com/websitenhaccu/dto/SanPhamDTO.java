@@ -45,6 +45,14 @@ public class SanPhamDTO {
 	private String maLoaiSanPham;
 	
 	private String maThuongHieu;
+
+	public SanPhamDTO(String id, String tenSanPham, String moTa) {
+		super();
+		this.id = id;
+		this.tenSanPham = tenSanPham;
+		this.moTa = moTa;
+	}
+	
 	
 	
 	

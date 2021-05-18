@@ -47,4 +47,13 @@ public class MauSanPham implements Serializable {
 	@Column(name = "hinh_anh")
 	private Blob hinhAnh;
 
+	public MauSanPham(Mau mau, SanPham sanPham, int soLuong) {
+		super();
+		this.mau = mau;
+		this.sanPham = sanPham;
+		this.soLuong = soLuong;
+	}
+	
+	
+
 }

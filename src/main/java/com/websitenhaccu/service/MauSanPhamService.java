@@ -11,6 +11,8 @@ public interface MauSanPhamService {
 
 	public Mau getMauSanPhamTheoTenMau(String tenMau);
 	
+	public MauSanPham getMauSanPhamTheoMaSanPhamVaMaMau(String maSanPham, int maMau);
+	
 	public void themMauSanPham(MauSanPham mauSanPham);
 	
 	public void xoaMauSanPham(String id);
