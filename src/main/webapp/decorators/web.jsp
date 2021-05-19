@@ -47,7 +47,7 @@
 
             <div class="col-2 offset-1">
                 <a href="./test.html">
-                	<img alt="logo" src="<c:url value="/static/assets/img/logo.png"/>"  width="80" height="80"></a>
+                	<img alt="logo" src="<c:url value="/static/assets/img/logo.png"/>"  width="60px" height="60px"></a>
             </div>
 
 

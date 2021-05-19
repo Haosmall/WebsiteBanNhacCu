@@ -19,46 +19,78 @@
                 <!-- category -->
                 <div class="col-2 pl-0 pr-0 ">
 
-
-<!-- categories -->
                     <div class="categories">
 
                         <div class="category__adjust">
-                        
-                        	<c:forEach items="${ map }" var="loaiSP">
-                        	
-                        		<div class="category">
-                        			<div class="item">
-	                                    <i class="fas fa-guitar category__icon"></i>
-	                                    <a class="category__name" href="">${ loaiSP.key.tenLoaiSanPham }</a>
-	                                </div>
-	                                
-	                                <div class="sub-category">
-                                    	<div class="category-detail">
-                                    		<c:forEach items="${ loaiSP.value }" var="thuongHieu">
-                                    			<div class="category__line">
-		                                            <a href=""><img src="data:image/jpg;base64,${thuongHieu.hinhAnhBase64}" alt="${ thuongHieu.tenThuongHieu }"></a>
-		                                            <p><b>${ thuongHieu.tenThuongHieu }</b></p>
-		                                            <hr>
-		                                            <c:forEach items="${ dongSanPhams }" var="dongSP">
-		                                            	<c:if test="${ dongSP.thuongHieu.id eq thuongHieu.id }">
-		                                            		<c:if test="${ dongSP.loaiSanPham.id eq loaiSP.key.id }">
-		                                            		
-		                                            			<p>${ dongSP.tenDongSanPham }</p>
-		                                            			
-		                                            		</c:if>
-		                                            	</c:if>
-		                                            </c:forEach>
-		                                        </div>
-                                    		</c:forEach>
-                                    		
-                                    	</div>
+
+                            <div class="category">
+                                <div class="item">
+                                    <i class="fas fa-guitar category__icon"></i>
+                                    <a class="category__name" href="">Guitar</a>
+                                </div>
+                                <div class="sub-category">
+                                    <div class="category-detail">
+
+                                        <div class="category__line">
+                                            <a href=""><img src="<c:url value='/static/assets/img/yamaha_logo.png'/>" alt=""></a>
+                                            <p><b>Đàn Guitar yamaha</b></p>
+                                            <hr>
+                                            <p>Dòng sản phẩm 1 </p>
+                                            <p>Dòng sản phẩm 2 </p>
+                                            <p>Dòng sản phẩm 3 </p>
+                                            <p>Dòng sản phẩm 4 </p>
+                                        </div>
+
+
+
+                                        <div class="category__line">
+                                            <a href=""><img src="<c:url value='/static/assets/img/yamaha_logo.png'/>" alt=""></a>
+                                            <p><b>Đàn Guitar yamaha</b></p>
+                                            <hr>
+                                            <p>Dòng sản phẩm 1 </p>
+                                            <p>Dòng sản phẩm 2 </p>
+                                            <p>Dòng sản phẩm 3 </p>
+                                            <p>Dòng sản phẩm 4 </p>
+                                        </div>
+
+
+                                        <div class="category__line">
+                                            <a href=""><img src="<c:url value='/static/assets/img/yamaha_logo.png'/>" alt=""></a>
+                                            <p><b>Đàn Guitar yamaha</b></p>
+                                            <hr>
+                                            <p>Dòng sản phẩm 1 </p>
+                                            <p>Dòng sản phẩm 2 </p>
+                                            <p>Dòng sản phẩm 3 </p>
+                                            <p>Dòng sản phẩm 4 </p>
+                                        </div>
+
+
+                                        <div class="category__line">
+                                            <a href=""><img src="<c:url value='/static/assets/img/yamaha_logo.png'/>" alt=""></a>
+                                            <p><b>Đàn Guitar yamaha</b></p>
+                                            <hr>
+                                            <p>Dòng sản phẩm 1 </p>
+                                            <p>Dòng sản phẩm 2 </p>
+                                            <p>Dòng sản phẩm 3 </p>
+                                            <p>Dòng sản phẩm 4 </p>
+                                        </div>
+
+
+                                        <div class="category__line">
+                                            <a href=""><img src="<c:url value='/static/assets/img/yamaha_logo.png'/>" alt=""></a>
+                                            <p><b>Đàn Guitar yamaha</b></p>
+                                            <hr>
+                                            <p>Dòng sản phẩm 1 </p>
+                                            <p>Dòng sản phẩm 2 </p>
+                                            <p>Dòng sản phẩm 3 </p>
+                                            <p>Dòng sản phẩm 4 </p>
+                                        </div>
+
+
                                     </div>
-                        		</div>
-                        	</c:forEach>
-
-
-<%-- 
+                                </div>
+                            </div>
+                            <!-- here -->
                             <div class="category">
                                 <div class="item">
                                     <i class="fas fa-guitar category__icon"></i>
@@ -84,7 +116,197 @@
                                     </div>
                                 </div>
                             </div>
- --%>
+
+
+                            <div class="category">
+                                <div class="item">
+                                    <i class="fas fa-guitar category__icon"></i>
+                                    <a class="category__name" href="">Guitar</a>
+                                </div>
+                                <div class="sub-category">
+                                    <div class="category-detail">
+                                        <div class="category__line">
+                                            <a href=""><img src="<c:url value='/static/assets/img/yamaha_logo.png'/>" alt=""></a>
+                                            <p><b>Đàn Guitar yamaha</b></p>
+                                            <hr>
+                                            <p>Dòng sản phẩm 1 </p>
+                                            <p>Dòng sản phẩm 2 </p>
+                                            <p>Dòng sản phẩm 3 </p>
+                                            <p>Dòng sản phẩm 4 </p>
+
+
+                                        </div>
+                                        <div class="category__line">4</div>
+                                        <div class="category__line">4</div>
+                                        <div class="category__line">4</div>
+                                        <div class="category__line">4</div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="category">
+                                <div class="item">
+                                    <i class="fas fa-guitar category__icon"></i>
+                                    <a class="category__name" href="">Guitar</a>
+                                </div>
+                                <div class="sub-category">
+                                    <div class="category-detail">
+                                        <div class="category__line">
+                                            <a href=""><img src="<c:url value='/static/assets/img/yamaha_logo.png'/>" alt=""></a>
+                                            <p><b>Đàn Guitar yamaha</b></p>
+                                            <hr>
+                                            <p>Dòng sản phẩm 1 </p>
+                                            <p>Dòng sản phẩm 2 </p>
+                                            <p>Dòng sản phẩm 3 </p>
+                                            <p>Dòng sản phẩm 4 </p>
+
+
+                                        </div>
+                                        <div class="category__line">4</div>
+                                        <div class="category__line">4</div>
+                                        <div class="category__line">4</div>
+                                        <div class="category__line">4</div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="category">
+                                <div class="item">
+                                    <i class="fas fa-guitar category__icon"></i>
+                                    <a class="category__name" href="">Guitar</a>
+                                </div>
+                                <div class="sub-category">
+                                    <div class="category-detail">
+                                        <div class="category__line">
+                                            <a href=""><img src="<c:url value='/static/assets/img/yamaha_logo.png'/>" alt=""></a>
+                                            <p><b>Đàn Guitar yamaha</b></p>
+                                            <hr>
+                                            <p>Dòng sản phẩm 1 </p>
+                                            <p>Dòng sản phẩm 2 </p>
+                                            <p>Dòng sản phẩm 3 </p>
+                                            <p>Dòng sản phẩm 4 </p>
+
+
+                                        </div>
+                                        <div class="category__line">4</div>
+                                        <div class="category__line">4</div>
+                                        <div class="category__line">4</div>
+                                        <div class="category__line">4</div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="category">
+                                <div class="item">
+                                    <i class="fas fa-guitar category__icon"></i>
+                                    <a class="category__name" href="">Guitar</a>
+                                </div>
+                                <div class="sub-category">
+                                    <div class="category-detail">
+                                        <div class="category__line">
+                                            <a href=""><img src="<c:url value='/static/assets/img/yamaha_logo.png'/>" alt=""></a>
+                                            <p><b>Đàn Guitar yamaha</b></p>
+                                            <hr>
+                                            <p>Dòng sản phẩm 1 </p>
+                                            <p>Dòng sản phẩm 2 </p>
+                                            <p>Dòng sản phẩm 3 </p>
+                                            <p>Dòng sản phẩm 4 </p>
+
+
+                                        </div>
+                                        <div class="category__line">4</div>
+                                        <div class="category__line">4</div>
+                                        <div class="category__line">4</div>
+                                        <div class="category__line">4</div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="category">
+                                <div class="item">
+                                    <i class="fas fa-guitar category__icon"></i>
+                                    <a class="category__name" href="">Guitar</a>
+                                </div>
+                                <div class="sub-category">
+                                    <div class="category-detail">
+                                        <div class="category__line">
+                                            <a href=""><img src="<c:url value='/static/assets/img/yamaha_logo.png'/>" alt=""></a>
+                                            <p><b>Đàn Guitar yamaha</b></p>
+                                            <hr>
+                                            <p>Dòng sản phẩm 1 </p>
+                                            <p>Dòng sản phẩm 2 </p>
+                                            <p>Dòng sản phẩm 3 </p>
+                                            <p>Dòng sản phẩm 4 </p>
+
+
+                                        </div>
+                                        <div class="category__line">4</div>
+                                        <div class="category__line">4</div>
+                                        <div class="category__line">4</div>
+                                        <div class="category__line">4</div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="category">
+                                <div class="item">
+                                    <i class="fas fa-guitar category__icon"></i>
+                                    <a class="category__name" href="">Guitar</a>
+                                </div>
+                                <div class="sub-category">
+                                    <div class="category-detail">
+                                        <div class="category__line">
+                                            <a href="" class="category__line--link"><img
+                                                    src="<c:url value='/static/assets/img/yamaha_logo.png'/>" alt=""></a>
+                                            <p><b>Đàn Guitar yamaha</b></p>
+                                            <hr>
+                                            <p>Dòng sản phẩm 1 </p>
+                                            <p>Dòng sản phẩm 2 </p>
+                                            <p>Dòng sản phẩm 3 </p>
+                                            <p>Dòng sản phẩm 4 </p>
+
+
+                                        </div>
+                                        <div class="category__line">4</div>
+                                        <div class="category__line">4</div>
+                                        <div class="category__line">4</div>
+                                        <div class="category__line">4</div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="category">
+                                <div class="item">
+                                    <i class="fas fa-guitar category__icon"></i>
+                                    <a class="category__name" href="">Guitar</a>
+                                </div>
+                                <div class="sub-category">
+                                    <div class="category-detail">
+                                        <div class="category__line">
+                                            <a href=""><img src="<c:url value='/static/assets/img/yamaha_logo.png'/>" alt=""></a>
+                                            <p><b>Đàn Guitar yamaha</b></p>
+                                            <hr>
+                                            <p>Dòng sản phẩm 1 </p>
+                                            <p>Dòng sản phẩm 2 </p>
+                                            <p>Dòng sản phẩm 3 </p>
+                                            <p>Dòng sản phẩm 4 </p>
+
+
+                                        </div>
+                                        <div class="category__line">4</div>
+                                        <div class="category__line">4</div>
+                                        <div class="category__line">4</div>
+                                        <div class="category__line">4</div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
 
                     </div>
@@ -737,6 +959,8 @@
                     <i class="fas fa-chevron-left move arrow--left"></i>
 
                 </div>
+
+
 
             </div>
 

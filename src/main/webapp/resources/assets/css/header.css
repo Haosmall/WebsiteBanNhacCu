@@ -1,6 +1,8 @@
 .header {
     background-color: #960100;
     padding: 0.7rem 0;
+    position: fixed;
+    z-index: 20;
 }
 .header__item {
     display: flex;
