@@ -10,7 +10,7 @@
        <pattern>/admin/*</pattern>
     </decorator>
     
-    <decorator name="login" page="login.jsp">
+    <!-- <decorator name="login" page="login.jsp">
        <pattern>/login</pattern>
     </decorator>
     
@@ -23,6 +23,6 @@
     </decorator>
     <decorator name="forgotpassword" page="login.jsp">
        <pattern>/forgot-password/enter-password</pattern>
-    </decorator>
+    </decorator> -->
 
 </decorators>

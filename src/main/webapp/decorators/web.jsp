@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title><dec:title /></title>
+<dec:head></dec:head>
 
 <link rel = "icon" href = 
 "<c:url value="/static/assets/img/logo.png"/>" 
