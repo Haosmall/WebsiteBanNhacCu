@@ -33,7 +33,7 @@ public class HomeAdminController {
 //		return new ModelAndView("admin/home");
 //	}
 
-	@RequestMapping("/home")
+	@RequestMapping("/trang-chu")
 	public String getUser(Model model) {
 
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();

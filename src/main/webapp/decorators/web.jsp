@@ -45,7 +45,8 @@
         <div class="row header__item">
 
             <div class="col-2 offset-1">
-                <a href="./test.html">LOGO</a>
+                <a href="./test.html">
+                	<img alt="logo" src="<c:url value="/static/assets/img/logo.png"/>"  width="80" height="80"></a>
             </div>
 
 
@@ -61,9 +62,24 @@
 
 
             <div class="col-2 offset-2">
-                <button type="button" class="btn btn-outline-warning">Đăng ký</button>
-                <button type="button" class="btn btn-outline-warning">Đăng nhập</button>
-                <button type="button" class="btn btn-outline-warning"><a href='<c:url value="/logout"/>'>Đăng xuất</a></button>
+            	
+            	<!-- Đã đăng nhập -->
+            	<sec:authorize access="isAuthenticated()">
+            		<!-- Role user -->
+                	<button type="button" class="btn btn-outline-warning" onclick="location.href='<c:url value="/logout"/>'">Đăng xuất</button>
+            		
+            		<!-- Role admin -->
+            		<sec:authorize access="hasRole('ADMIN')">
+                		<button type="button" class="btn btn-outline-warning" onclick="location.href='<c:url value="/admin/trang-chu"/>'">Quản lý</button>
+            		</sec:authorize>
+            		
+            	</sec:authorize>
+            	
+            	<!-- Chưa đăng nhập -->
+            	<sec:authorize access="!isAuthenticated()">
+                	<button type="button" class="btn btn-outline-warning" onclick="location.href='<c:url value="/register"/>'">Đăng ký</button>
+                	<button type="button" class="btn btn-outline-warning" onclick="location.href='<c:url value="/login"/>'">Đăng nhập</button>
+            	</sec:authorize>
 
             </div>
 

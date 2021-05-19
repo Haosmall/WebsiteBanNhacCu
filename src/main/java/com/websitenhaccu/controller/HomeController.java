@@ -1,4 +1,4 @@
-package com.websitenhaccu.controller.user;
+package com.websitenhaccu.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -11,23 +11,14 @@ import com.websitenhaccu.service.UserService;
 import com.websitenhaccu.util.CustomUserDetails;
 
 @Controller
-@RequestMapping("/user")
-public class HomeUserController {
+public class HomeController {
 	@Autowired
 	UserService userService;
 
 	@RequestMapping("/trang-chu")
-	public ModelAndView getUser() {
-		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		String email;
-		if (principal instanceof CustomUserDetails) {
-			email = ((CustomUserDetails) principal).getUsername();
-		} else {
-			email = principal.toString();
-		}
-		UserDTO user = userService.getByEmail(email);
+	public String hienThiTrangChu() {
 
-		return new ModelAndView("user/home", "user", user);
+		return "user/home";
 	}
 
 }
