@@ -5,25 +5,26 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.websitenhaccu.dto.DongSanPhamDTO;
 import com.websitenhaccu.entity.DongSanPham;
 import com.websitenhaccu.repository.DongSanPhamRepository;
 import com.websitenhaccu.service.DongSanPhamService;
 
 @Service
-public class DongSanPhamServiceImpl implements DongSanPhamService{
+public class DongSanPhamServiceImpl implements DongSanPhamService {
 
 	@Autowired
 	private DongSanPhamRepository dongSanPhamRepository;
-	
+
 	@Override
 	public List<DongSanPham> getTatCaDongSanPham() {
 		return dongSanPhamRepository.findAll();
 	}
 
 	@Override
-	public DongSanPham getDongSanPhamBangTenDongSanPham(String tenDongSanPham) {
-		DongSanPham dongSanPham = dongSanPhamRepository.findByTenDongSanPham(tenDongSanPham);
-		return dongSanPham;		
+	public List<DongSanPham> getDanhSachDongSanPhamBangTenDongSanPham(String tenDongSanPham) {
+		List<DongSanPham> dongSanPhams = dongSanPhamRepository.findByTenDongSanPhamContaining(tenDongSanPham);
+		return dongSanPhams;
 	}
 
 	@Override
@@ -37,8 +38,8 @@ public class DongSanPhamServiceImpl implements DongSanPhamService{
 	}
 
 	@Override
-	public void CapnhatDongSanPham(DongSanPham dongSanPham){
-		if(dongSanPham != null) {
+	public void CapnhatDongSanPham(DongSanPham dongSanPham) {
+		if (dongSanPham != null) {
 			dongSanPhamRepository.save(dongSanPham);
 		}
 	}
@@ -47,6 +48,17 @@ public class DongSanPhamServiceImpl implements DongSanPhamService{
 	public DongSanPham getDongSanPhamBangMa(String maDongSanPham) {
 		DongSanPham dongSanPham = dongSanPhamRepository.findById(maDongSanPham).get();
 		return dongSanPham;
+	}
+
+	@Override
+	public List<DongSanPham> getDanhSachDongSanPhamTheoLoaiSanPhamVaThuongHieu(String maLoaiSanPham, String maThuongHieu) {
+		return dongSanPhamRepository.findByLoaiSanPhamIdAndThuongHieuId(maLoaiSanPham, maThuongHieu);
+	}
+
+	@Override
+	public List<DongSanPham> getDanhSachDongSanPhamTheoTenVaLoaiSanPhamVaThuongHieu(String tenDongSanPham,
+			String maLoaiSanPham, String maThuongHieu) {
+		return dongSanPhamRepository.findByTenDongSanPhamContainingAndLoaiSanPhamIdContainingAndThuongHieuIdContaining(tenDongSanPham, maLoaiSanPham, maThuongHieu);
 	}
 
 }

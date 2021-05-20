@@ -39,7 +39,12 @@ public class DongSanPhamCotroller {
 	@GetMapping("/danh-sach-dong-san-pham")
 	public String getTatcaDongSanPham(Model model) {
 		List<DongSanPham> listDongSanPham = dongSanPhamService.getTatCaDongSanPham();
+		List<LoaiSanPham> listSanPham = loaiSanPhamService.getTatCaLoaiSanPham();
+		List<ThuongHieu> listThuongHieu = thuongHieuService.getTatCaThuongHieu();
+
 		model.addAttribute("listDongSanPham", listDongSanPham);
+		model.addAttribute("listLoaiSanPham", listSanPham);
+		model.addAttribute("listThuongHieu", listThuongHieu);
 		
 		return "admin/dongsanpham/DongSanPham";
 	}

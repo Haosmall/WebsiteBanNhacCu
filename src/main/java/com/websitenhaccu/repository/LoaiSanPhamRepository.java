@@ -11,4 +11,6 @@ public interface LoaiSanPhamRepository extends JpaRepository<LoaiSanPham, String
 	public List<LoaiSanPham> findAll();
 	
 	public LoaiSanPham findByTenLoaiSanPham(String tenLoaiSanPham);
+
+	public List<LoaiSanPham> findByTenLoaiSanPhamContaining(String tenLoaiSanPham);
 }
