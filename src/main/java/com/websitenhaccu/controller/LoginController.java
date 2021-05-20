@@ -85,7 +85,6 @@ public class LoginController {
 	@GetMapping("/forgot-password")
 	public String forgotPassword(Model model) {
 		model.addAttribute("pageTitle", "Quên mật khẩu");
-		model.addAttribute("msg", "Tài khoản email đã tồn tại");
 		return "login/forgotPassword";
 	}
 

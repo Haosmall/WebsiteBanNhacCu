@@ -60,4 +60,9 @@ public class ThuongHieuServiceImpl implements ThuongHieuService{
 		return thuonghieu;
 	}
 
+	@Override
+	public List<ThuongHieu> getDanhSachThuongHieuBangTenThuongHieu(String tenThuongHieu) {
+		return thuonghieuRepository.findByTenThuongHieuContaining(tenThuongHieu);
+	}
+
 }

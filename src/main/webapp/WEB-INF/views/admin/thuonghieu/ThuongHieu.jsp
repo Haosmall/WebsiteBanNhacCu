@@ -16,9 +16,9 @@
 		<div class="row">
 			<div class="col-lg-4">
 				<div class="form-group">
-					<label for="exampleInputEmail1">Tìm kiếm</label> <input type="text"
-						class="form-control" id="exampleInputEmail1"
-						aria-describedby="emailHelp" placeholder="Nhập tên thương hiệu">
+					<label for="txtSearch">Tìm kiếm</label> <input type="text"
+						class="form-control" id="txtSearch"
+						aria-describedby="emailHelp" placeholder="Nhập tên thương hiệu" oninput="typeSearch()">
 				</div>
 			</div>
 
@@ -48,7 +48,7 @@
 					</tr>
 				</thead>
 
-				<tbody>
+				<tbody id="tableThuongHieu">
 
 					<c:forEach items="${ listThuongHieu }" var="thuonghieu"
 						varStatus="counter">
@@ -85,5 +85,6 @@
 
 	</div>
 	<!-- /.container-fluid -->
+	<script src="<c:url value="/static/assets/js/thuonghieu.js"/>"></script>
 </body>
 </html>

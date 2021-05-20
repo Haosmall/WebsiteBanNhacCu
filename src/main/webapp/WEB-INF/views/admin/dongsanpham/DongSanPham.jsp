@@ -17,8 +17,42 @@
 			<div class="col-lg-4">
 				<div class="form-group">
 					<label for="exampleInputEmail1">Tìm kiếm</label> <input type="text"
-						class="form-control" id="exampleInputEmail1"
+						oninput="searchType()" class="form-control" id="txtSearch"
 						aria-describedby="emailHelp" placeholder="Nhập tên dòng sản phẩm">
+				</div>
+
+				<div class="form-group">
+					<select class="form-control" id="cboLoaiSanPham"
+						name="cboLoaiSanPham">
+
+						<option value="">Loại sản phẩm</option>
+
+						<c:forEach items="${ listLoaiSanPham }" var="loaiSanPham1">
+
+							<option value="${loaiSanPham1.id}">${loaiSanPham1.tenLoaiSanPham}</option>
+
+						</c:forEach>
+					</select>
+				</div>
+
+				<div class="form-group">
+					<select class="form-control"
+							id="cboThuongHieu" name="cboThuongHieu">
+
+							<option value="">Thương Hiệu</option>
+
+							<c:forEach items="${ listThuongHieu }" var="thuongHieu">
+
+								<c:if test="${thuongHieu.id == dongSanPham.thuongHieu.id}">
+									<option value="${thuongHieu.id}" selected>${thuongHieu.tenThuongHieu}</option>
+								</c:if>
+
+								<c:if test="${thuongHieu.id != dongSanPham.thuongHieu.id}">
+									<option value="${thuongHieu.id}">${thuongHieu.tenThuongHieu}</option>
+								</c:if>
+
+							</c:forEach>
+						</select>
 				</div>
 			</div>
 
@@ -36,7 +70,7 @@
 
 		<div class="row">
 
-			<table class="table">
+			<table class="table" id="">
 
 				<thead class="thead-light">
 					<tr>
@@ -49,7 +83,7 @@
 					</tr>
 				</thead>
 
-				<tbody>
+				<tbody id="tableDongSanPham">
 
 					<c:forEach items="${ listDongSanPham }" var="dongSanPham"
 						varStatus="counter">
@@ -84,5 +118,7 @@
 
 	</div>
 	<!-- /.container-fluid -->
+
+	<script src="<c:url value="/static/assets/js/dongsanpham.js"/>"></script>
 </body>
 </html>

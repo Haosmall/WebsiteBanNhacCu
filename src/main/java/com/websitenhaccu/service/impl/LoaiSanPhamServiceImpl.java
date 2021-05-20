@@ -49,4 +49,9 @@ public class LoaiSanPhamServiceImpl implements LoaiSanPhamService{
 		return loaiSanPham;
 	}
 
+	@Override
+	public List<LoaiSanPham> getDanhSachLoaiSanPhamBangTenLoaiSanPham(String tenLoaiSanPham) {
+		return loaiSanPhamRepository.findByTenLoaiSanPhamContaining(tenLoaiSanPham);
+	}
+
 }

@@ -16,8 +16,8 @@
 		<div class="row">
 			<div class="col-lg-4">
 				<div class="form-group">
-					<label for="exampleInputEmail1">Tìm kiếm</label> <input type="text"
-						class="form-control" id="exampleInputEmail1"
+					<label for="txtSearch">Tìm kiếm</label> <input type="text"
+						 oninput="typeSearch()" class="form-control" id="txtSearch"
 						aria-describedby="emailHelp" placeholder="Nhập tên loại sản phẩm">
 				</div>
 			</div>
@@ -48,7 +48,7 @@
 					</tr>
 				</thead>
 
-				<tbody>
+				<tbody id="tableLoaiSanPham">
 
 					<c:forEach items="${ listLoaiSanPham }" var="loaiSanPham"
 						varStatus="counter">
@@ -83,5 +83,6 @@
 
 	</div>
 	<!-- /.container-fluid -->
+	<script src='<c:url value = "/static/assets/js/loaisanpham.js"/>'></script>
 </body>
 </html>

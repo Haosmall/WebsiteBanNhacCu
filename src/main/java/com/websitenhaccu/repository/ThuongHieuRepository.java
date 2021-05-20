@@ -11,4 +11,6 @@ public interface ThuongHieuRepository extends JpaRepository<ThuongHieu, String>{
 	public List<ThuongHieu> findAll();
 	
 	public ThuongHieu findByTenThuongHieu(String tenThuongHieu);
+	
+	public List<ThuongHieu> findByTenThuongHieuContaining(String tenThuongHieu);
 }

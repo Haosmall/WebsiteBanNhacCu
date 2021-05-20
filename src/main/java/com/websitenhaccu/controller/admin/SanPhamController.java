@@ -127,7 +127,7 @@ public class SanPhamController {
 		model.addAttribute("dongSanPhams", dongSanPhams);
 		model.addAttribute("maus", maus);
 
-		model.addAttribute("formTitle", "Thêm Sản phẩm");
+		model.addAttribute("formTitle", "Thêm sản phẩm");
 		model.addAttribute("formButton", "Thêm");
 
 		return "admin/sanpham/SanPhamForm";
@@ -202,9 +202,8 @@ public class SanPhamController {
 
 
 		SanPham sanPham = sanPhamConverter.toSanPham(sanPhamDTO);
-		System.out.println("============DTO: "+sanPhamDTO.getId());
-		System.out.println("============SP: "+sanPham.getId());
-		
+		String[] temp = sanPham.getId().split(",");
+		sanPham.setId(temp[0]);
 		sanPhamService.capNhatSanPham(sanPham);
 
 		return "redirect:/admin/san-pham/danh-sach-san-pham";
