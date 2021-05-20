@@ -4,9 +4,9 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Component;
 
-import com.websitenhaccu.constant.DiaChiConstant;
 import com.websitenhaccu.dto.LienHeDTO;
 import com.websitenhaccu.entity.LienHe;
+import com.websitenhaccu.util.DiaChiConstant;
 
 @Component
 public class LienHeConverter {
