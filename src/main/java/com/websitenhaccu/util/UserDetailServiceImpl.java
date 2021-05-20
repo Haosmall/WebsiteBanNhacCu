@@ -21,8 +21,8 @@ public class UserDetailServiceImpl implements UserDetailsService {
 		// lấy người dùng có user là có username
 		NguoiDung nguoiDung = userRepository.findByEmail(username);
 
-		if (nguoiDung == null)
-			throw new UsernameNotFoundException("Tài khoản email không tồn tại");
+		if (nguoiDung == null || !nguoiDung.isTrangThai())
+			throw new UsernameNotFoundException("Tài khoản không tồn tại hoặc chưa kích hoạt");
 
 		CustomUserDetails customUserDetails = new CustomUserDetails(nguoiDung);
 		

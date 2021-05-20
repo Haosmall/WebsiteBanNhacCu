@@ -10,6 +10,7 @@
 <%-- <c:set var="pageTitle" value="<dec:title />" /> --%>
 
 <dec:head></dec:head>
+
 <link rel="icon" href="<c:url value="/static/assets/img/logo.png"/>"
 	type="image/x-icon">
 
@@ -76,22 +77,60 @@
 				</div>
 			</div>
 
+			<div class="col-1">
+				<a href="#" class="cart__link"> <i
+					class="fas fa-shopping-cart cart__logo"></i> <span>Giỏ hàng</span>
+				</a>
+			</div>
 
 			<div class="col-2 offset-2">
 
 				<!-- Đã đăng nhập -->
 				<sec:authorize access="isAuthenticated()">
 					<!-- Role user -->
-					<button type="button" class="btn btn-outline-warning"
+					<%-- <button type="button" class="btn btn-outline-warning"
 						onclick="location.href='<c:url value="/logout"/>'">Đăng
-						xuất</button>
+						xuất</button> --%>
 
-					<!-- Role admin -->
+					<!-- Nav Item - User Information -->
+					<div class="nav-item dropdown no-arrow">
+						<a class="nav-link dropdown-toggle cart__link" href="#"
+							id="userDropdown" role="button" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false"> <span>Hào
+								Small</span> <img class="img-profile rounded-circle"
+							src="<c:url value='/static/assets/img/undraw_profile.svg'/>"
+							width="50px" height="50px">
+						</a>
+						<!-- Dropdown - User Information -->
+						<div
+							class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+							aria-labelledby="userDropdown">
+							<a class="dropdown-item" href="#"> <i
+								class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Thông
+								tin người dùng
+							</a>
+							<!-- Role admin -->
+							<sec:authorize access="hasRole('ADMIN')">
+								<a class="dropdown-item"
+									href="<c:url value="/admin/trang-chu"/>"> <i
+									class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i> Quản lý
+									website
+								</a>
+							</sec:authorize>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href='<c:url value="/logout"/>'> <i
+								class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+								Đăng xuất
+							</a>
+						</div>
+					</div>
+
+					<%-- <!-- Role admin -->
 					<sec:authorize access="hasRole('ADMIN')">
 						<button type="button" class="btn btn-outline-warning"
 							onclick="location.href='<c:url value="/admin/trang-chu"/>'">Quản
 							lý</button>
-					</sec:authorize>
+					</sec:authorize> --%>
 
 				</sec:authorize>
 
@@ -106,13 +145,6 @@
 				</sec:authorize>
 
 			</div>
-
-			<div class="col-1">
-				<a href="#" class="cart__link"> <i
-					class="fas fa-shopping-cart cart__logo"></i> <span>Giỏ hàng</span>
-				</a>
-			</div>
-
 
 		</div>
 	</div>
