@@ -4,26 +4,20 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.websitenhaccu.converter.ThuongHieuConverter;
 import com.websitenhaccu.dto.ThuongHieuDTO;
-import com.websitenhaccu.dto.UserDTO;
 import com.websitenhaccu.entity.DongSanPham;
 import com.websitenhaccu.entity.LoaiSanPham;
 import com.websitenhaccu.entity.ThuongHieu;
 import com.websitenhaccu.service.DongSanPhamService;
 import com.websitenhaccu.service.LoaiSanPhamService;
 import com.websitenhaccu.service.ThuongHieuService;
-import com.websitenhaccu.service.UserService;
-import com.websitenhaccu.util.CustomUserDetails;
 
 @Controller
 public class HomeController {
@@ -34,6 +28,8 @@ public class HomeController {
 	
 	@Autowired
 	private DongSanPhamService dongSanPhamService; 
+
+	
 	@Autowired
 	private ThuongHieuConverter thuongHieuConverter; 
 

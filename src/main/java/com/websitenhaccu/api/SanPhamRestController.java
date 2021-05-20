@@ -40,21 +40,21 @@ public class SanPhamRestController {
 	ThuongHieuService thuongHieuService;
 	
 	@GetMapping(value = "/danh-sach-nha-cung-cap")
-	public @ResponseBody List<NhaCungCap> getDanhSachNhaCungCap() {
+	public List<NhaCungCap> getDanhSachNhaCungCap() {
 		
 		return nhaCungCapService.getTatCaNhaCungCap();
 		
 	}
 	
 	@GetMapping(value = "/danh-sach-dong-san-pham")
-	public @ResponseBody List<DongSanPham> getDanhSachDongSanPham() {
+	public List<DongSanPham> getDanhSachDongSanPham() {
 		
 		return dongSanPhamService.getTatCaDongSanPham();
 		
 	}
 	
 	@GetMapping
-	public @ResponseBody ResponseEntity<SanPhamDTO> getSanPhamTheoMa(@RequestParam("id") String maSanPham) {
+	public ResponseEntity<SanPhamDTO> getSanPhamTheoMa(@RequestParam("id") String maSanPham) {
 		SanPhamDTO sanPhamDTO =  sanPhamService.getSanPhamDTOTheoID(maSanPham);
 		if(sanPhamDTO == null)
 			// status: 404
