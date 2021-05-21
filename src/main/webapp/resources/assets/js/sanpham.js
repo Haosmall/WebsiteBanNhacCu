@@ -103,3 +103,65 @@ $("body").on("DOMSubtreeModified", ".fr-element", function () {
 	//console.log(all);
 	$("#moTa").val(all);
 });
+
+
+const API1 = 'api/san-pham/danh-sach-san-pham/loai/xuat-xu/thuong-hieu'
+
+function typeSearch() {
+	var searchText = document.getElementById("txtSearch").value;
+	const maLoaiSanPham = $('#cboLoaiSanPham').val();
+	const maThuongHieu = $('#cboThuongHieu').val();
+	const xuatXu = $('#cboXuatXu').val();
+
+	const url = `http://${HOST_NAME}:${PORT}/${CONTEXT_PATH}/${API1}?tenSanPham=${searchText}&xuatXu=${xuatXu}&maLoaiSanPham=${maLoaiSanPham}&maThuongHieu=${maThuongHieu}`;
+
+    console.log(url)
+
+	$.get(url, function (data, status) {
+		console.log(data)
+
+		$("#tableSanPham").html("");
+		for (var i = 0; i < data.length; i++) {
+			$("#tableSanPham").append(
+				`<tr>
+                <td>${ i + 1 }</td>
+                <td>${ data[i].tenSanPham }</td>
+                <td>${ data[i].maLoaiSanPham }</td>
+                <td>${ data[i].xuatXu }</td>
+                <td>${ data[i].maThuongHieu }</td>
+                <td>chua cap nhat</td>
+                <td><input type="button" class="btn btn-primary table__btn"
+                    value="Chi tiết"
+                    onclick="location.href='/${ CONTEXT_PATH }/admin/san-pham/xem-chi-tiet?id=${ data[i].id }'">
+
+                    <input type="button" class="btn btn-warning table__btn"
+                    value="Sửa"
+                    onclick="location.href='/${ CONTEXT_PATH }/admin/san-pham/cap-nhat-san-pham?id=${ data[i].id }'">
+
+                    <input type="button" class="btn btn-danger table__btn"
+                    value="Xóa"
+                    onclick="location.href='/${ CONTEXT_PATH }/admin/san-pham/xoa-san-pham?id=${ data[i].id }'">
+
+                </td>
+            </tr>`
+			);
+		}
+	});
+}
+
+$("select").change(function () {
+
+    let id = $(this).attr("id");
+
+    if (id === "cboLoaiSanPham") {
+        typeSearch();
+    }
+
+    else if (id === "cboThuongHieu") {
+        typeSearch();
+    }
+    
+    else if (id === "cboXuatXu") {
+        typeSearch();
+    }
+});

@@ -65,11 +65,10 @@ public class SanPhamServiceImpl implements SanPhamService {
 	}
 
 	@Override
-	public List<SanPham> timKiemSanPham(String tenSanPham, String tenDongSanPham, String xuatXu, String tenThuongHieu,
+	public List<SanPham> timKiemSanPham(String tenSanPham, String maLoaiSanPham, String xuatXu, String maThuongHieu,
 			int page, int size) {
 		List<SanPham> sanPhams = sanPhamRepository
-				.findByTenSanPhamContainingAndDongSanPhamTenDongSanPhamAndXuatXuAndDongSanPhamThuongHieuTenThuongHieu(
-						tenSanPham, tenDongSanPham, xuatXu, tenThuongHieu, PageRequest.of(page, size));
+				.findByTenSanPhamContainingAndXuatXuContainingAndDongSanPhamThuongHieuIdContainingAndDongSanPhamLoaiSanPhamIdContaining(tenSanPham, xuatXu, maThuongHieu, maLoaiSanPham);
 		return sanPhams;
 	}
 

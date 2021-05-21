@@ -52,6 +52,22 @@ public class SanPhamDTO {
 		this.tenSanPham = tenSanPham;
 		this.moTa = moTa;
 	}
+
+	/**
+	 * @param id
+	 * @param tenSanPham
+	 * @param xuatXu
+	 * @param maLoaiSanPham
+	 * @param maThuongHieu
+	 */
+	public SanPhamDTO(String id, String tenSanPham, String xuatXu, String loaiSanPham, String thuongHieu) {
+		super();
+		this.id = id;
+		this.tenSanPham = tenSanPham;
+		this.xuatXu = xuatXu;
+		this.maLoaiSanPham = loaiSanPham;
+		this.maThuongHieu = thuongHieu;
+	}
 	
 	
 	
