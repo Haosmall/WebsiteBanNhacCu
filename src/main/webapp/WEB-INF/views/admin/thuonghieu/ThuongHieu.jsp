@@ -1,35 +1,83 @@
-function typeSearch() {
-	var searchText = document.getElementById("txtSearch").value;
-	const url = `http://localhost:8080/WebsiteBanNhacCu/api/thuong-hieu/danh-sach?tenThuongHieu=${searchText}`;
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ include file="/common/taglib.jsp"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Danh sách thương hiệu</title>
+</head>
+<body>
 
-	$.get(url, function (data, status) {
-		console.log(data)
-		$("#tableThuongHieu").html("");
-		for (var i = 0; i < data.length; i++) {
-			$("#tableThuongHieu").append(
-				`<tr>
-				<td>${ i }</td>
-				<td>${ data[i].id }</td>
-				<td><c:if test="${data[i].hinhAnhBase64 != null}">
-						<img src="data:image/jpg;base64,${data[i].hinhAnhBase64}"
-							width="120" height="80" />
-					</c:if></td>
-				<td>${ data[i].tenThuongHieu }</td>
-				<td><input type="button" class="btn btn-primary table__btn"
-					value="Chi tiết"
-					onclick="location.href='/admin/thuong-hieu/chi-tiet-thuong-hieu?id=${ data[i].id }'">
 
-					<input type="button" class="btn btn-warning table__btn"
-					value="Sửa"
-					onclick="location.href='/admin/thuong-hieu/cap-nhat-thuong-hieu?id=${ data[i].id }'">
+	<div class="container-fluid">
 
-					<input type="button" class="btn btn-danger table__btn"
-					value="Xóa"
-					onclick="location.href='/admin/thuong-hieu/xoa-thuong-hieu?id=${ data[i].id }'">
+		<!-- Row input -->
+		<div class="row">
 
-				</td>
-			</tr>`
-			);
-		}
-	});
-}
+			<div class="col-lg-6"></div>
+
+			<div class="col-lg-2">
+				<div class="form-group">
+					<label for="exampleInputEmail1">&#160;</label> <a type="button"
+						class="form-control btn btn-primary table__btn"
+						href="<c:url value='/admin/thuong-hieu/them-thuong-hieu'/>">Thêm
+						thương hiệu</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+
+			<table class="table">
+
+				<thead class="thead-light">
+					<tr>
+						<th>STT</th>
+						<th>Mã thương hiệu</th>
+						<th>Hình ảnh</th>
+						<th>Tên thương hiệu</th>
+						<th></th>
+					</tr>
+				</thead>
+
+				<tbody id="tableThuongHieu">
+
+					<c:forEach items="${ listThuongHieu }" var="thuonghieu"
+						varStatus="counter">
+						<tr>
+							<td>${ counter.count }</td>
+							<td>${ thuonghieu.id }</td>
+							<td><c:if test="${thuonghieu.hinhAnhBase64 != null}">
+									<img src="data:image/jpg;base64,${thuonghieu.hinhAnhBase64}"
+										width="120" height="80" />
+								</c:if></td>
+							<td>${ thuonghieu.tenThuongHieu }</td>
+							<td><input type="button" class="btn btn-primary table__btn"
+								value="Chi tiết"
+								onclick="location.href='<c:url value='/admin/thuong-hieu/chi-tiet-thuong-hieu?id=${ thuonghieu.id }' />'">
+
+								<input type="button" class="btn btn-warning table__btn"
+								value="Sửa"
+								onclick="location.href='<c:url value='/admin/thuong-hieu/cap-nhat-thuong-hieu?id=${ thuonghieu.id }' />'">
+
+								<input type="button" class="btn btn-danger table__btn"
+								value="Xóa"
+								onclick="location.href='<c:url value='/admin/thuong-hieu/xoa-thuong-hieu?id=${ thuonghieu.id }' />'">
+
+							</td>
+						</tr>
+					</c:forEach>
+
+				</tbody>
+			</table>
+
+		</div>
+
+
+
+	</div>
+	<!-- /.container-fluid -->
+	<script src="<c:url value="/static/assets/js/thuonghieu.js"/>"></script>
+</body>
+</html>

@@ -88,9 +88,6 @@ public class SanPhamController {
 	public String xemChiTietNhaCungCap(Model model, @RequestParam("id") String id) {
 
 		SanPham sanPham = sanPhamService.getSanPhamTheoID(id);
-//		String mota = sanPham.getMoTa();
-//		System.out.println("=============: "+mota);
-//		sanPham.setMoTa(mota.replace("\"", "\\\""));
 
 		List<MauSanPhamDTO> mauSanPhamDTOs = new ArrayList<MauSanPhamDTO>();
 		List<MauSanPham> mauSanPhams = mauSanPhamService.getMauSanPhamTheoMaSanPham(id);
@@ -127,7 +124,7 @@ public class SanPhamController {
 		model.addAttribute("dongSanPhams", dongSanPhams);
 		model.addAttribute("maus", maus);
 
-		model.addAttribute("formTitle", "Thêm Sản phẩm");
+		model.addAttribute("formTitle", "Thêm sản phẩm");
 		model.addAttribute("formButton", "Thêm");
 
 		return "admin/sanpham/SanPhamForm";

@@ -1,16 +1,20 @@
+const HOST_NAME = window.location.hostname
+const PAGE_PATH = window.location.pathname
+const PORT = window.location.port
+const CONTEXT_PATH = PAGE_PATH.split("/")[1]
+const API = 'api/dong-san-pham/danh-sach-maloaisanpham-mathuonghieu'
+
 $(document).ready(function () {
 
     const maLoaiSanPham = $('#maLoaiSanPham').val();
     const maThuongHieu = $('#maThuongHieu').val();
-
-    const url = `http://localhost:8080/WebsiteBanNhacCu/api/dong-san-pham?maLoaiSanPham=${maLoaiSanPham}&maThuongHieu=${maThuongHieu}`;
-    console.log("url: ", url);
-
+	
+    const url = `http://${HOST_NAME}:${PORT}/${CONTEXT_PATH}/${API}?maLoaiSanPham=${maLoaiSanPham}&maThuongHieu=${maThuongHieu}`;
+	
     $.get(url, function (data, status) {
 
 
         if (status === "success") {
-            console.log("province_id: ", data);
             //reset cbb
             $("#maDongSanPham").html("");
             for (var i = 0; i < data.length; i++) {
@@ -31,16 +35,14 @@ $(document).ready(function () {
 $("select").change(function () {
     let optionSelected = $(this).find("option:selected");
     let valueSelected = optionSelected.val();
-    let textSelected = optionSelected.text();
 
     let id = $(this).attr("id");
 
     if (id === "maLoaiSanPham") {
         const maThuongHieu = $('#maThuongHieu').val();
 
-        const url = `http://localhost:8080/WebsiteBanNhacCu/api/dong-san-pham?maLoaiSanPham=${valueSelected}&maThuongHieu=${maThuongHieu}`;
+    const url = `http://${HOST_NAME}:${PORT}/${CONTEXT_PATH}/${API}?maLoaiSanPham=${valueSelected}&maThuongHieu=${maThuongHieu}`;
         ;
-
         $.get(url, function (data, status) {
             const rs = data.results;
 
@@ -60,7 +62,7 @@ $("select").change(function () {
     if (id === "maThuongHieu") {
         const maLoaiSanPham = $('#maLoaiSanPham').val();
 
-        const url = `http://localhost:8080/WebsiteBanNhacCu/api/dong-san-pham?maLoaiSanPham=${maLoaiSanPham}&maThuongHieu=${valueSelected}`;
+    const url = `http://${HOST_NAME}:${PORT}/${CONTEXT_PATH}/${API}?maLoaiSanPham=${maLoaiSanPham}&maThuongHieu=${valueSelected}`;
         ;
 
         $.get(url, function (data, status) {

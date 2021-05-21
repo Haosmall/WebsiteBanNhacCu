@@ -29,8 +29,8 @@
 				<div class="form-group">
 					<label for="exampleInputEmail1">&#160;</label> <a type="button"
 						class="form-control btn btn-primary table__btn"
-						href="<c:url value='/admin/san-pham/them-san-pham'/>">Thêm
-						sản phẩm</a>
+						href="<c:url value='/admin/san-pham/them-san-pham'/>">Thêm sản
+						phẩm</a>
 				</div>
 			</div>
 
@@ -84,9 +84,10 @@
 							<td>${ sanPham.dongSanPham.loaiSanPham.tenLoaiSanPham }</td>
 							<td>${ sanPham.xuatXu }</td>
 							<td>${ sanPham.dongSanPham.thuongHieu.tenThuongHieu }</td>
-							<td></td>
 							<td>
-								<input type="button" class="btn btn-primary table__btn"
+								chua cap nhat
+							</td>
+							<td><input type="button" class="btn btn-primary table__btn"
 								value="Chi tiết"
 								onclick="location.href='<c:url value='/admin/san-pham/xem-chi-tiet?id=${ sanPham.id }' />'">
 

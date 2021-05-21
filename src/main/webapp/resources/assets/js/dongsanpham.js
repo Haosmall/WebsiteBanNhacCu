@@ -1,8 +1,14 @@
+const HOST_NAME = window.location.hostname
+const PAGE_PATH = window.location.pathname
+const PORT = window.location.port
+const CONTEXT_PATH = PAGE_PATH.split("/")[1]
+const API = 'api/dong-san-pham/danh-sach'
+
 function searchType() {
 	var searchText = document.getElementById("txtSearch").value;
 	var cboLoaiSanPham = document.getElementById("cboLoaiSanPham").value;
 	var cboThuongHieu = document.getElementById("cboThuongHieu").value;
-	const url = `http://localhost:8080/WebsiteBanNhacCu/api/dong-san-pham/danh-sach?tenDongSanPham=${searchText}&maLoaiSanPham=${cboLoaiSanPham}&maThuongHieu=${cboThuongHieu}`;
+	const url = `http://${HOST_NAME}:${PORT}/${CONTEXT_PATH}/${API}?tenDongSanPham=${searchText}&maLoaiSanPham=${cboLoaiSanPham}&maThuongHieu=${cboThuongHieu}`;
 
 	$.get(url, function (data, status) {
 		$("#tableDongSanPham").html("");
