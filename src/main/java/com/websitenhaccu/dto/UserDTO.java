@@ -24,13 +24,12 @@ public class UserDTO {
 	private ROLE role;
 	private boolean enabled;
 
-
 	public UserDTO(String userId) {
 		super();
 		this.userId = userId;
+
 	}
 
-	
 	public UserDTO(String userId, String fullName, GioiTinh gender, String phone, String email, ROLE role,
 			boolean enabled) {
 		super();

@@ -127,7 +127,7 @@ public class SanPhamController {
 		model.addAttribute("dongSanPhams", dongSanPhams);
 		model.addAttribute("maus", maus);
 
-		model.addAttribute("formTitle", "Thêm Sản phẩm");
+		model.addAttribute("formTitle", "Thêm sản phẩm");
 		model.addAttribute("formButton", "Thêm");
 
 		return "admin/sanpham/SanPhamForm";

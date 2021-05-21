@@ -1,0 +1,146 @@
+.wrapper_cart {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    background-color: rgb(239, 239, 239);
+
+    .element_cart {
+        width: 720px;
+        display: flex;
+        min-height: 155px;
+        background-color: white;
+
+        padding: 10px 25px;
+        justify-content: flex-start;
+        margin-bottom: 10px;
+
+        > input {
+            margin-top: 60px;
+        }
+
+        .img_element {
+            width: 150px;
+            img {
+                max-width: 130px;
+                min-height: 130px;
+
+                object-fit: cover;
+                background-position: center center;
+            }
+        }
+
+        .name_a_delete {
+            display: flex;
+            flex-direction: column;
+            width: 280px;
+            span {
+                margin-bottom: 10px;
+            }
+
+            > button {
+                font-size: 13px;
+                width: 100px;
+                padding: 0 0;
+            }
+        }
+
+        .interact {
+            width: 130px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            input {
+                width: 30px;
+                border: none;
+                outline: none;
+                width: 32px;
+
+                height: 28px;
+                text-align: center;
+                border-top: 0.5px solid #c4c4c4;
+                border-bottom: 0.5px solid #c4c4c4;
+            }
+
+            > button {
+                height: 28px;
+                width: 32px;
+                border: 0.5px solid #c4c4c4;
+                background-color: #fff;
+                outline: none;
+            }
+        }
+
+        .price {
+            text-align: center;
+            width: 120px;
+            margin: auto auto;
+        }
+        .price::after {
+            content: " đ";
+        }
+    }
+
+    .personel_info {
+        width: 380px;
+        position: absolute;
+        right: 0;
+        background-color: white;
+
+        top: 0;
+        padding: 10px 10px;
+
+        .address_getProduct {
+            display: flex;
+            justify-content: space-between;
+        }
+        p {
+            margin: 0;
+        }
+
+        .inf_per {
+            font-weight: 700;
+            padding-top: 8px;
+        }
+
+        .inf_ad {
+            color: rgb(120, 120, 120);
+            font-size: 14px;
+        }
+
+        .calculate {
+            display: flex;
+            justify-content: space-between;
+            span:first-child {
+                color: rgb(120, 120, 120);
+                font-size: 1.5rem;
+            }
+            span:last-child {
+                color: rgb(254, 56, 52);
+                font-size: 1.5rem;
+                font-weight: 500;
+            }
+            span:last-child::after {
+                content: " đ";
+            }
+        }
+
+        > button {
+            margin-top: 10px;
+            width: 100%;
+        }
+    }
+}
+
+.alert--block {
+    display: none;
+    position: sticky;
+    z-index: 10;
+}
+
+.modal-body {
+    > form > button {
+      margin-left: 663px;
+      padding: 5px 20px;
+    }
+}

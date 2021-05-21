@@ -16,6 +16,8 @@
 	integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
 	crossorigin="anonymous">
 <link rel="stylesheet" href="static/style.css">
+<link rel="stylesheet"
+	href="<c:url value="/static/assets/css/ValidateStyle.css"/>" />
 
 </head>
 <body>
@@ -25,8 +27,9 @@
 	</form> -->
 	<div id="logreg-forms">
 
-		<form:form action="register" method="post" modelAttribute="user">
-		<h1 class="h3 mb-3 font-weight-normal" style="text-align: center">
+		<form:form action="register" method="post" modelAttribute="user"
+			id="formRegister">
+			<h1 class="h3 mb-3 font-weight-normal" style="text-align: center">
 				Đăng kí tài khoản</h1>
 			<!-- <div class="social-login">
 				<button class="btn facebook-btn social-btn" type="button">
@@ -42,27 +45,47 @@
 			</div>
 
 			<p style="text-align: center">OR</p> -->
-			
-			<form:hidden path="userId"/>
-			<form:input path="fullName" type="text" class="form-control" placeholder="Họ tên"
-				required="" autofocus=""/>
-			<form:errors cssStyle="color:red" path="fullName"/>
 
-			<form:input path="email" type="email" class="form-control" placeholder="Email" required="" autofocus=""/>
-			<form:errors cssStyle="color:red"  path="email"/>
-			
-			<form:input path="phone" type="text" class="form-control" placeholder="Số điện thoại" required="" autofocus=""/>
-			<form:errors cssStyle="color:red"  path="phone"/>
-			
-			<form:input path="password" type="password" class="form-control" placeholder="Mật khẩu" required="" autofocus=""/> 
-			<form:errors cssStyle="color:red"  path="password"/>
-			
-			<form:input path="passwordConf"
-				type="password" class="form-control" placeholder="Nhập lại mật khẩu"
-				required="" autofocus=""/>
-			<form:errors cssStyle="color:red"  path="passwordConf"/>
+			<form:hidden path="userId" />
+			<form:input path="fullName" typed="text" class="form-control"
+				placeholder="Họ tên" required="" autofocus=""
+				onblur="validateFullname()" />
 
-			<button class="btn btn-primary btn-block" type="submit">
+			<span id="checkFullName"></span>
+			<form:errors cssStyle="color:red" path="fullName" />
+
+			<form:input path="email" type="email" class="form-control"
+				placeholder="Email" required="" autofocus="" onblur="validateEmail()" />
+			<form:errors cssStyle="color:red" path="email" />
+
+			<span id="checkEmail"></span>
+
+
+
+			<form:input path="phone" type="text" class="form-control"
+				placeholder="Số điện thoại" required="" autofocus=""
+				onblur="validateSdt()" />
+			<span id="checkPhone"></span>
+			<form:errors cssStyle="color:red" path="phone" />
+
+
+
+			<form:input path="password" type="password" class="form-control"
+				placeholder="Mật khẩu" required="" autofocus=""
+				onblur="validatePassword()" />
+			<form:errors cssStyle="color:red" path="password" />
+			<span id="checkPassword"></span>
+
+
+			<form:input path="passwordConf" type="password" class="form-control"
+				placeholder="Nhập lại mật khẩu" required="" autofocus=""
+				onblur="validatePasswordCf()" />
+			<form:errors cssStyle="color:red" path="passwordConf" />
+			<span id="checkPasswordCf"></span>
+
+
+
+			<button class="btn btn-primary btn-block" id="btnSubmit" type="submit">
 				<i class="fas fa-user-plus"></i> Đăng kí
 			</button>
 			<!-- <a href="login" id="cancel_signup"><i class="fas fa-angle-left"></i>
@@ -71,7 +94,7 @@
 		<br>
 
 	</div>
-	
+
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script
@@ -79,5 +102,8 @@
 		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 		crossorigin="anonymous"></script>
 	<script src="/script.js"></script>
+
+	<script
+		src="<c:url value="/static/assets/js/validate/ValidateRegister.js"/>"></script>
 </body>
 </html>

@@ -9,4 +9,9 @@ public interface UserRepository extends JpaRepository<NguoiDung, String> {
 
 	public NguoiDung findByEmailAndTrangThai(String email, boolean trangThai);
 	
+	
+	
+	
+
+	
 }

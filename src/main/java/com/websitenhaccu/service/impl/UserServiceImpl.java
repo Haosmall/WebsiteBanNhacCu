@@ -32,12 +32,17 @@ public class UserServiceImpl implements UserService {
 	public UserDTO getByEmail(String email) {
 		NguoiDung user = userRepo.findByEmail(email);
 		System.out.println(user);
-		UserDTO dto = new UserDTO();
-		dto.setUserId(user.getId());
-		dto.setEmail(user.getEmail());
-		dto.setRole(user.getRole());
-		dto.setFullName(user.getHoTen());
-		return dto;
+		if (user != null) {
+			UserDTO dto = new UserDTO();
+			dto.setUserId(user.getId());
+			dto.setEmail(user.getEmail());
+			dto.setRole(user.getRole());
+			dto.setFullName(user.getHoTen());
+			return dto;
+		} else {
+			return null;
+		}
+
 	}
 
 	@Override
