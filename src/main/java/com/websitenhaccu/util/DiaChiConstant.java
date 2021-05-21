@@ -1,4 +1,4 @@
-package com.websitenhaccu.constant;
+package com.websitenhaccu.util;
 
 public class DiaChiConstant {
 	public static final String PHUONG = "Phường";

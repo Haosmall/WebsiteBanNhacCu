@@ -9,20 +9,5 @@
     <decorator name="admin" page="admin.jsp">
        <pattern>/admin/*</pattern>
     </decorator>
-    
-    <!-- <decorator name="login" page="login.jsp">
-       <pattern>/login</pattern>
-    </decorator>
-    
-    <decorator name="register" page="login.jsp">
-       <pattern>/register</pattern>
-    </decorator>
-    
-    <decorator name="forgotpassword" page="login.jsp">
-       <pattern>/forgot-password</pattern>
-    </decorator>
-    <decorator name="forgotpassword" page="login.jsp">
-       <pattern>/forgot-password/enter-password</pattern>
-    </decorator> -->
 
 </decorators>

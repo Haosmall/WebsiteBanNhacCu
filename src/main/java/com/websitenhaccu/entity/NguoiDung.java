@@ -10,6 +10,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -49,6 +50,7 @@ public class NguoiDung {
 	@Column(name = "gioi_tinh")
 	private GioiTinh gioiTinh;
 
+	@Lob
 	@Column(name = "hinh_anh")
 	private Blob hinhAnh;
 

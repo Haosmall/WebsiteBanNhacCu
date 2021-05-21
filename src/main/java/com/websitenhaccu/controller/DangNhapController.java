@@ -16,14 +16,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.websitenhaccu.dto.UserDTO;
 import com.websitenhaccu.service.UserService;
 import com.websitenhaccu.validator.UserValidator;
 
 @Controller
-public class LoginController {
+public class DangNhapController {
 
 	@Autowired
 	private UserService userService;
@@ -32,30 +31,40 @@ public class LoginController {
 	private UserValidator userValidator;
 
 	@RequestMapping("/login")
-	public ModelAndView login() {
-		return new ModelAndView("login/login");
+	public String login(Model model) {
+		model.addAttribute("pageTitle", "Đăng nhập");
+		return "login/login";
 	}
 
 	@GetMapping("/register")
 	public String register(Model model) {
 		String userId = RandomStringUtils.randomNumeric(8);
 		UserDTO userDTO = new UserDTO(userId);
+		model.addAttribute("pageTitle", "Đăng kí tài khoản");
 		model.addAttribute("user", userDTO);
 		return "login/register";
 	}
 
 	@PostMapping(value = "/register")
-	public String register(HttpServletRequest request, @ModelAttribute("user") UserDTO userDTO,
+	public String register(Model model, HttpServletRequest request, @ModelAttribute("user") UserDTO userDTO,
 			BindingResult bindingResult) {
 		System.out.println("UserDTO" + userDTO);
 
 		userValidator.validate(userDTO, bindingResult);
 
 		if (bindingResult.hasErrors()) {
+			model.addAttribute("pageTitle", "Đăng kí tài khoản");
 			return "login/register";
 		}
 
 		String baseUrl = "http://" + request.getHeader("host");
+
+		UserDTO dto = userService.getByEmail(userDTO.getEmail());
+
+		if (dto != null) {
+			model.addAttribute("pageTitle", "Đăng kí tài khoản");
+			return "login/register";
+		}
 		userService.registrationVerifyUserByEmail(userDTO, baseUrl);
 
 		return "redirect:/login";
@@ -74,26 +83,27 @@ public class LoginController {
 	}
 
 	@GetMapping("/forgot-password")
-	public String forgotPassword() {
+	public String forgotPassword(Model model) {
+		model.addAttribute("pageTitle", "Quên mật khẩu");
 		return "login/forgotPassword";
 	}
 
 	@PostMapping("/forgot-password")
 	public String forgotPassword(HttpServletRequest request,
 			@RequestParam(value = "email", required = true) String email) {
-		
+
 		String baseUrl = "http://" + request.getHeader("host");
 		userService.sendEmailForgotPassword(email, baseUrl);
 		return "redirect:/login";
 	}
-	
+
 	@GetMapping(value = "/forgot-password/enter-password")
 	public String verifyPassword(Model model, @RequestParam(name = "email", required = true) String email,
 			@RequestParam(name = "token", required = true) String token) {
 
 		model.addAttribute("email", email);
 		model.addAttribute("token", token);
-
+		model.addAttribute("pageTitle", "Đổi mật khẩu");
 		return "login/verifyPassword";
 	}
 
@@ -101,7 +111,7 @@ public class LoginController {
 	public String verifyPassword(Model model, @RequestParam(name = "email", required = true) String email,
 			@RequestParam(name = "token", required = true) String token,
 			@RequestParam(name = "password", required = true) String password) {
-		
+
 		boolean result = userService.verifyPassword(email, token, password);
 
 		if (result)

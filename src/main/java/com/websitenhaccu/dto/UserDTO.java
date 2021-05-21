@@ -23,7 +23,7 @@ public class UserDTO {
 	private String address;
 	private ROLE role;
 	private boolean enabled;
-
+	private String hinhAnhBase64;
 
 	public UserDTO(String userId) {
 		super();

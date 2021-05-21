@@ -4,9 +4,9 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Component;
 
-import com.websitenhaccu.constant.DiaChiConstant;
 import com.websitenhaccu.dto.NhaCungCapDTO;
 import com.websitenhaccu.entity.NhaCungCap;
+import com.websitenhaccu.util.DiaChiConstant;
 
 @Component
 public class NhaCungCapConverter {

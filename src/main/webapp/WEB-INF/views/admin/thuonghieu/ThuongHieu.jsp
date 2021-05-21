@@ -14,6 +14,13 @@
 
 		<!-- Row input -->
 		<div class="row">
+			<div class="col-lg-4">
+				<div class="form-group">
+					<label for="txtSearch">Tìm kiếm</label> <input type="text"
+						class="form-control" id="txtSearch"
+						aria-describedby="emailHelp" placeholder="Nhập tên thương hiệu" oninput="typeSearch()">
+				</div>
+			</div>
 
 			<div class="col-lg-6"></div>
 

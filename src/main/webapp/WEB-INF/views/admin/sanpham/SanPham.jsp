@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Trang chủ</title>
+<title>Quản lý sản phẩm</title>
 </head>
 <body>
 

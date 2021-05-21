@@ -199,9 +199,8 @@ public class SanPhamController {
 
 
 		SanPham sanPham = sanPhamConverter.toSanPham(sanPhamDTO);
-		System.out.println("============DTO: "+sanPhamDTO.getId());
-		System.out.println("============SP: "+sanPham.getId());
-		
+		String[] temp = sanPham.getId().split(",");
+		sanPham.setId(temp[0]);
 		sanPhamService.capNhatSanPham(sanPham);
 
 		return "redirect:/admin/san-pham/danh-sach-san-pham";

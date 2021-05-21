@@ -43,6 +43,8 @@
 				<input
 				type="password" id="inputPassword" class="form-control"
 				placeholder="Mật khẩu" required="" name="password">
+				<label class="form-group">Duy trì đăng nhập</label>
+				<input type="checkbox" name="remember-me">
 
 			<button class="btn btn-success btn-block" type="submit">
 				<i class="fas fa-sign-in-alt"></i> Đăng nhập
