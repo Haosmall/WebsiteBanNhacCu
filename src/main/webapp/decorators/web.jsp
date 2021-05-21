@@ -96,10 +96,21 @@
 					<div class="nav-item dropdown no-arrow">
 						<a class="nav-link dropdown-toggle cart__link" href="#"
 							id="userDropdown" role="button" data-toggle="dropdown"
-							aria-haspopup="true" aria-expanded="false"> <span>Hào
-								Small</span> <img class="img-profile rounded-circle"
-							src="<c:url value='/static/assets/img/undraw_profile.svg'/>"
-							width="50px" height="50px">
+							aria-haspopup="true" aria-expanded="false"> <span>${ user.fullName }</span> 
+							
+							
+							<img class="img-profile rounded-circle"
+									src="
+										<c:choose> 
+											<c:when test="${ empty user.hinhAnhBase64}">
+												<c:url value='/static/assets/img/undraw_profile.svg'/>
+											</c:when>
+										  	<c:otherwise>
+										  		data:image/jpg;base64,${ user.hinhAnhBase64 }
+										  	</c:otherwise>
+										</c:choose>
+									"
+									width="50px" height="50px">
 						</a>
 						<!-- Dropdown - User Information -->
 						<div
@@ -112,7 +123,7 @@
 							<!-- Role admin -->
 							<sec:authorize access="hasRole('ADMIN')">
 								<a class="dropdown-item"
-									href="<c:url value="/admin/trang-chu"/>"> <i
+									href="<c:url value="/admin/quan-ly"/>"> <i
 									class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i> Quản lý
 									website
 								</a>

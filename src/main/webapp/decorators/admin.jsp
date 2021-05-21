@@ -48,7 +48,7 @@
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				href="<c:url value='/admin/trang-chu'/>">
+				href="<c:url value='/admin/quan-ly'/>">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-laugh-wink"></i>
 				</div>

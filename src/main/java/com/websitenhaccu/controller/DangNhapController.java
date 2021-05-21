@@ -22,7 +22,7 @@ import com.websitenhaccu.service.UserService;
 import com.websitenhaccu.validator.UserValidator;
 
 @Controller
-public class LoginController {
+public class DangNhapController {
 
 	@Autowired
 	private UserService userService;

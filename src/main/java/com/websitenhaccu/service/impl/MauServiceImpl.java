@@ -43,7 +43,7 @@ public class MauServiceImpl implements MauService{
 	@Override
 	public Mau getMauTheoId(int id) {
 		
-		return mauRepository.getOne(id);
+		return mauRepository.findById(id).get();
 	}
 
 }
