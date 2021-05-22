@@ -92,6 +92,18 @@
 						</c:forEach>
                     </div>
                 </div>
+                
+                <div class="boxSearch">
+                    <div class="item__title">Xuất xứ</div>
+
+                    <div class="itemSearch">
+						<c:forEach items="${ xuatXus }" var="xuatXu">
+							<input type="checkbox" value="${ xuatXu }" onchange="console.log(1233123)" />
+                        	<span>${ xuatXu }</span>
+                        	<br>
+						</c:forEach>
+                    </div>
+                </div>
 
 
 

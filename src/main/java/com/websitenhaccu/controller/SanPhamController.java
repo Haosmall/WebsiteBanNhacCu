@@ -66,7 +66,7 @@ public class SanPhamController {
 		List<ThuongHieu> thuongHieus = thuongHieuService.getTatCaThuongHieu();
 		List<DongSanPham> dongSanPhams = dongSanPhamService.getTatCaDongSanPham();
 		List<SanPhamDTO> sanPhamDTOs;
-		Set<String> xuatXus = new HashSet<String>();
+		Set<String> xuatXus = sanPhamService.getDanhSachXuatXu();
 		if(!id.equals("tat-ca")) {
 			sanPhamDTOs = sanPhamService.getDanhSachSanPhamTheoLoaiThuongHieuDong(id, page-1, size);
 			sanPhamDTOs.forEach(dto->{
@@ -108,6 +108,7 @@ public class SanPhamController {
 		model.addAttribute("dongSanPhams", dongSanPhams);
 		model.addAttribute("xuatXus", xuatXus);
 		model.addAttribute("sanPhamDTOs", sanPhamDTOs);
+		model.addAttribute("xuatXus", xuatXus);
 		
 		return "user/DanhSachSanPham";
 	}

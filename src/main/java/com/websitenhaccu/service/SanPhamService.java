@@ -1,6 +1,7 @@
 package com.websitenhaccu.service;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.stereotype.Service;
 
@@ -30,5 +31,7 @@ public interface SanPhamService {
 	public List<SanPhamDTO> getDanhSachSanPhamTheoLoaiThuongHieuDong(String id, int page, int size);
 	
 	public List<SanPhamDTO> getTatCaSanPham(int page, int size);
+	
+	public Set<String> getDanhSachXuatXu();
 
 }
