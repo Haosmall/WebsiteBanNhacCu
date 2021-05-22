@@ -2,6 +2,8 @@ package com.websitenhaccu.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Pageable;
+
 import com.websitenhaccu.entity.DongSanPham;
 
 public interface DongSanPhamService {
@@ -12,6 +14,6 @@ public interface DongSanPhamService {
 	public void XoaDongSanPham (String maDongSanPham);
 	public void CapnhatDongSanPham (DongSanPham dongSanPham);
 	public List<DongSanPham> getDanhSachDongSanPhamTheoLoaiSanPhamVaThuongHieu (String maLoaiSanPham, String maThuongHieu);
-	public List<DongSanPham> getDanhSachDongSanPhamTheoTenVaLoaiSanPhamVaThuongHieu (String tenDongSanPham, String maLoaiSanPham, String maThuongHieu);
+	public List<DongSanPham> getDanhSachDongSanPhamTheoTenVaLoaiSanPhamVaThuongHieu (String tenDongSanPham, String maLoaiSanPham, String maThuongHieu, int page, int size);
 	
 }

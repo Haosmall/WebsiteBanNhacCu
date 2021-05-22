@@ -87,8 +87,11 @@ public class SanPhamAdminController {
 			if(!listXuatXu.contains(xx))
 				listXuatXu.add(xx);
 		}
+		
 		List<LoaiSanPham> loaiSanPhams = loaiSanPhamService.getTatCaLoaiSanPham();
 		List<ThuongHieu> thuongHieus = thuongHieuService.getTatCaThuongHieu();
+		
+		model.addAttribute("page", 0);
 		
 		model.addAttribute("listSanPham", sanPhams);
 		model.addAttribute("listXuatXu", listXuatXu);

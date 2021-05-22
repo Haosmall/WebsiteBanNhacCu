@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -60,9 +61,11 @@ public class DongSanPhamRestController {
 	
 	@GetMapping("/danh-sach") //ko có bị lỗi do tìm ra 2 mapping có tham số string
 	public List<DongSanPhamDTO> getDanhSachDongSanPhamTheoLoaiSanPhamVaThuongHieu
-	(@RequestParam("tenDongSanPham") String tenDongSanPham, @RequestParam("maLoaiSanPham") String maLoaiSanPham, @RequestParam("maThuongHieu") String maThuongHieu) {
+	(@RequestParam("tenDongSanPham") String tenDongSanPham, @RequestParam("maLoaiSanPham") String maLoaiSanPham, @RequestParam("maThuongHieu") String maThuongHieu,
+			@RequestParam(value = "page", defaultValue = "0") int page,
+			@RequestParam(value = "size", defaultValue = "20") int size) { //doi size thanh 20
 		List<DongSanPhamDTO> listDongSanPhamDTOs = new ArrayList<DongSanPhamDTO>();
-		List<DongSanPham> listDongSanPhams = dongSanPhamService.getDanhSachDongSanPhamTheoTenVaLoaiSanPhamVaThuongHieu(tenDongSanPham, maLoaiSanPham, maThuongHieu);
+		List<DongSanPham> listDongSanPhams = dongSanPhamService.getDanhSachDongSanPhamTheoTenVaLoaiSanPhamVaThuongHieu(tenDongSanPham, maLoaiSanPham, maThuongHieu, page, size);
 		for(DongSanPham d : listDongSanPhams) {
 			DongSanPhamDTO d1 = new DongSanPhamDTO(d.getId(), d.getThuongHieu().getTenThuongHieu(), d.getLoaiSanPham().getTenLoaiSanPham(), d.getTenDongSanPham(), d.getThue());
 			listDongSanPhamDTOs.add(d1);

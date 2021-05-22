@@ -16,9 +16,10 @@ public interface SanPhamRepository extends JpaRepository<SanPham, String> {
 	public SanPham findByTenSanPhamAndDongSanPhamTenDongSanPhamAndXuatXuAndDongSanPhamThuongHieuTenThuongHieu(
 			String tenSanPham, String tenDongSanPham, String xuatXu, String tenThuongHieu);
 
-	public List<SanPham> findByTenSanPhamContainingAndXuatXuContainingAndDongSanPhamThuongHieuIdContainingAndDongSanPhamLoaiSanPhamIdContaining(
-			String tenSanPham, String xuatXu, String idThuongHieu, String idLoaiSanPham);
+	public List<SanPham> findByTenSanPhamContainingAndXuatXuContainingAndDongSanPhamThuongHieuIdContainingAndDongSanPhamLoaiSanPhamIdContaining(String tenSanPham, String xuatXu, String idThuongHieu, String idLoaiSanPham, Pageable pageable);
+//			String tenSanPham, String xuatXu, String idThuongHieu, String idLoaiSanPham);
 	
 	public List<SanPham> findByDongSanPhamLoaiSanPhamIdOrDongSanPhamIdOrDongSanPhamThuongHieuId(String maLoai, String maDong, String maThuongHieu, Pageable pageable);
+			
 	
 }

@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.websitenhaccu.converter.SanPhamConverter;
@@ -71,15 +74,14 @@ public class SanPhamServiceImpl implements SanPhamService {
 	@Override
 	public List<SanPham> timKiemSanPham(String tenSanPham, String maLoaiSanPham, String xuatXu, String maThuongHieu,
 			int page, int size) {
-		List<SanPham> sanPhams = sanPhamRepository
-				.findByTenSanPhamContainingAndXuatXuContainingAndDongSanPhamThuongHieuIdContainingAndDongSanPhamLoaiSanPhamIdContaining(
-						tenSanPham, xuatXu, maThuongHieu, maLoaiSanPham);
+		Pageable firstPageWithTwoElements = PageRequest.of(page, size);
+		List<SanPham> sanPhams = sanPhamRepository.findByTenSanPhamContainingAndXuatXuContainingAndDongSanPhamThuongHieuIdContainingAndDongSanPhamLoaiSanPhamIdContaining(tenSanPham, xuatXu, maThuongHieu, maLoaiSanPham, firstPageWithTwoElements);
 		return sanPhams;
 	}
 
 	@Override
 	public List<SanPham> getTatCaSanPham() {
-
+		
 		return sanPhamRepository.findAll();
 	}
 

@@ -8,7 +8,7 @@ function searchType() {
 	var searchText = document.getElementById("txtSearch").value;
 	var cboLoaiSanPham = document.getElementById("cboLoaiSanPham").value;
 	var cboThuongHieu = document.getElementById("cboThuongHieu").value;
-	const url = `http://${HOST_NAME}:${PORT}/${CONTEXT_PATH}/${API}?tenDongSanPham=${searchText}&maLoaiSanPham=${cboLoaiSanPham}&maThuongHieu=${cboThuongHieu}`;
+	const url = `http://${HOST_NAME}:${PORT}/${CONTEXT_PATH}/${API}?tenDongSanPham=${searchText}&maLoaiSanPham=${cboLoaiSanPham}&maThuongHieu=${cboThuongHieu}&page=0`;
 
 	$.get(url, function (data, status) {
 		$("#tableDongSanPham").html("");
@@ -53,3 +53,119 @@ $("select").change(function () {
         searchType();
     }
 });
+
+document.getElementById("btnNext").onclick = function () {
+
+	var searchText = document.getElementById("txtSearch").value;
+	var cboLoaiSanPham = document.getElementById("cboLoaiSanPham").value;
+	var cboThuongHieu = document.getElementById("cboThuongHieu").value;
+
+	var pageHidden = document.getElementById("pageValue");//gia tri hiden
+	var viewPage = document.getElementById("viewPage");//gia tri hien thi trang hien tai
+
+	var page = Number.parseInt(pageHidden.value);//tang gia tri
+	if (Number.parseInt(pageHidden.value) == 0) {
+		page = page + 2;
+	}
+	else {
+		page = page + 1;
+	}
+
+
+	const url = `http://${HOST_NAME}:${PORT}/${CONTEXT_PATH}/${API}?tenDongSanPham=${searchText}&maLoaiSanPham=${cboLoaiSanPham}&maThuongHieu=${cboThuongHieu}&page=${ page - 1 }`;
+
+	console.log(url)
+
+	$.get(url, function (data, status) {
+
+		if (data[0] != null) {
+			console.log("data khac null")
+			$("#tableDongSanPham").html("");
+		for (var i = 0; i < data.length; i++) {
+			$("#tableDongSanPham").append(
+				`<tr>
+							<td>${i+1}</td>
+							<td>${data[i].id}</td>
+							<td>${data[i].tenDongSanPham}</td>
+							<td>${data[i].loaiSanPham}</td>
+							<td>${data[i].thuongHieu}</td>
+							<td><input type="button" class="btn btn-primary table__btn"
+								value="Chi tiết"
+								onclick="location.href='/WebsiteBanNhacCu/admin/dong-san-pham/chi-tiet-dong-san-pham?id=${data[i].id}'">
+
+								<input type="button" class="btn btn-warning table__btn"
+								value="Sửa"
+								onclick="location.href='/WebsiteBanNhacCu/admin/dong-san-pham/cap-nhat-dong-san-pham?id=${data[i].id}'">
+
+								<input type="button" class="btn btn-danger table__btn"
+								value="Xóa"
+								onclick="location.href='/WebsiteBanNhacCu/admin/dong-san-pham/xoa-dong-san-pham?id=${data[i].id}'">
+
+							</td>
+						</tr>`
+			);
+		}
+
+			viewPage.value = page; //gan lai  hien thi trang hien tai
+			pageHidden.value = page; //gan lai gia tri bien hidden
+		}
+
+	});
+
+};
+
+document.getElementById("btnPreviusPage").onclick = function () {
+
+
+
+	var searchText = document.getElementById("txtSearch").value;
+	var cboLoaiSanPham = document.getElementById("cboLoaiSanPham").value;
+	var cboThuongHieu = document.getElementById("cboThuongHieu").value;
+
+	var pageHidden = document.getElementById("pageValue");//gia tri hiden
+	var viewPage = document.getElementById("viewPage");//gia tri hien thi trang hien tai
+
+	var page = Number.parseInt(pageHidden.value);//tang gia tri
+	if (Number.parseInt(pageHidden.value) > 1) {
+		page = page - 1;
+	}
+
+	const url = `http://${HOST_NAME}:${PORT}/${CONTEXT_PATH}/${API}?tenDongSanPham=${searchText}&maLoaiSanPham=${cboLoaiSanPham}&maThuongHieu=${cboThuongHieu}&page=${ page - 1 }`;
+	console.log(url);
+
+	$.get(url, function (data, status) {
+
+		if (data[0] != null) {
+			$("#tableDongSanPham").html("");
+		for (var i = 0; i < data.length; i++) {
+			$("#tableDongSanPham").append(
+				`<tr>
+							<td>${i+1}</td>
+							<td>${data[i].id}</td>
+							<td>${data[i].tenDongSanPham}</td>
+							<td>${data[i].loaiSanPham}</td>
+							<td>${data[i].thuongHieu}</td>
+							<td><input type="button" class="btn btn-primary table__btn"
+								value="Chi tiết"
+								onclick="location.href='/WebsiteBanNhacCu/admin/dong-san-pham/chi-tiet-dong-san-pham?id=${data[i].id}'">
+
+								<input type="button" class="btn btn-warning table__btn"
+								value="Sửa"
+								onclick="location.href='/WebsiteBanNhacCu/admin/dong-san-pham/cap-nhat-dong-san-pham?id=${data[i].id}'">
+
+								<input type="button" class="btn btn-danger table__btn"
+								value="Xóa"
+								onclick="location.href='/WebsiteBanNhacCu/admin/dong-san-pham/xoa-dong-san-pham?id=${data[i].id}'">
+
+							</td>
+						</tr>`
+			);
+		}
+
+			viewPage.value = page; //gan lai  hien thi trang hien tai
+			pageHidden.value = page;//gan lai gia tri bien hidden
+		}
+
+	});
+
+};
