@@ -17,8 +17,8 @@
 			<div class="col-lg-4">
 				<div class="form-group">
 					<label for="exampleInputEmail1">Tìm kiếm</label> <input type="text"
-						oninput="typeSearch()" class="form-control" id="txtSearch" aria-describedby="emailHelp"
-						placeholder="Nhập tên sản phẩm">
+						oninput="typeSearch()" class="form-control" id="txtSearch"
+						aria-describedby="emailHelp" placeholder="Nhập tên sản phẩm">
 
 				</div>
 			</div>
@@ -99,16 +99,26 @@
 			</table>
 
 		</div>
-
-
-
-	</div>
-	<!-- /.container-fluid -->
-	Admin page
-	<br>
-	<p>${ user.userId }</p>
-	<p>${ user.email }</p>
-	<p>${ user.role }</p>
-	<script src='<c:url value="/static/assets/js/sanpham.js"/>'></script>
+		<input type="hidden" id="pageValue" value="${ page + 1}" />
+		
+		<div class="form-group row">
+		
+			<input class="col-3" type="button" onclick="typeSearch()" class="form-control"
+					id="btnPreviusPage" value="-"/>
+		
+		
+			<input class="col-4" type="text" readonly="true" class="form-control"
+				id="viewPage"
+				value="${page = page + 1}">
+		
+			<input class="col-3" type="button" onclick="typeSearch()" class="form-control"
+				id="btnNext" value="+"/>
+		</div>
+		<!-- /.container-fluid -->
+		Admin page <br>
+		<p>${ user.userId }</p>
+		<p>${ user.email }</p>
+		<p>${ user.role }</p>
+		<script src='<c:url value="/static/assets/js/sanpham.js"/>'></script>
 </body>
 </html>

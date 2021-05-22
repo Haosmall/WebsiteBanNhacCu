@@ -3,6 +3,7 @@ package com.websitenhaccu.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.websitenhaccu.entity.LoaiSanPham;
@@ -50,8 +51,8 @@ public class LoaiSanPhamServiceImpl implements LoaiSanPhamService{
 	}
 
 	@Override
-	public List<LoaiSanPham> getDanhSachLoaiSanPhamBangTenLoaiSanPham(String tenLoaiSanPham) {
-		return loaiSanPhamRepository.findByTenLoaiSanPhamContaining(tenLoaiSanPham);
+	public List<LoaiSanPham> getDanhSachLoaiSanPhamBangTenLoaiSanPham(String tenLoaiSanPham, int page, int size) {
+		return loaiSanPhamRepository.findByTenLoaiSanPhamContaining(tenLoaiSanPham, PageRequest.of(page, size));
 	}
 
 }

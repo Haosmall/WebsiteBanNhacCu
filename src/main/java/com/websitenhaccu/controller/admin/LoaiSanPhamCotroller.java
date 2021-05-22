@@ -27,9 +27,13 @@ public class LoaiSanPhamCotroller {
 	private LoaiSanPhamValidator loaiSanPhamValidator;
 
 	@GetMapping("/danh-sach-loai-san-pham")
-	public ModelAndView getTatcaLoaiSanPham() {
+	public String getTatcaLoaiSanPham(Model model) {
 		List<LoaiSanPham> danhsachLoaiSanPham = loaiSanPhamService.getTatCaLoaiSanPham();
-		return new ModelAndView("admin/loaisanpham/LoaiSanPham", "listLoaiSanPham", danhsachLoaiSanPham);
+		
+		model.addAttribute("page", 0);
+		model.addAttribute("listLoaiSanPham", danhsachLoaiSanPham);
+		
+		return "admin/loaisanpham/LoaiSanPham";
 	}
 
 	@GetMapping("/chi-tiet-loai-san-pham")

@@ -118,7 +118,21 @@
 
 	</div>
 	<!-- /.container-fluid -->
-
+	<input type="hidden" id="pageValue" value="${ page + 1}" />
+	
+	<div class="form-group row">
+	
+		<input class="col-3" type="button" class="form-control"
+				id="btnPreviusPage" value="-"/>
+	
+	
+		<input class="col-4" type="text" readonly class="form-control"
+			id="viewPage"
+			value="${page = page + 1}"/>
+	
+		<input class="col-3" type="button" class="form-control"
+			id="btnNext" value="+"/>
+	</div>
 	<script src="<c:url value="/static/assets/js/dongsanpham.js"/>"></script>
 </body>
 </html>
