@@ -21,8 +21,10 @@ public class LoaiSanPhamRestController {
 	private LoaiSanPhamService loaiSanPhamService;
 	
 	@GetMapping("/danh-sach")
-	public List<LoaiSanPhamDTO> getDanhSachLoaiSanPhamBangTenLoaiSanPham(@RequestParam("tenLoaiSanPham") String tenLoaiSanPham){
-		List<LoaiSanPham> loaiSanPhams = loaiSanPhamService.getDanhSachLoaiSanPhamBangTenLoaiSanPham(tenLoaiSanPham);
+	public List<LoaiSanPhamDTO> getDanhSachLoaiSanPhamBangTenLoaiSanPham(@RequestParam("tenLoaiSanPham") String tenLoaiSanPham,
+			@RequestParam(value = "page", defaultValue = "0") int page,
+			@RequestParam(value = "size", defaultValue = "20") int size){
+		List<LoaiSanPham> loaiSanPhams = loaiSanPhamService.getDanhSachLoaiSanPhamBangTenLoaiSanPham(tenLoaiSanPham, page, size);
 		List<LoaiSanPhamDTO> loaiSanPhamDTOs = new ArrayList<LoaiSanPhamDTO>();
 		for(LoaiSanPham lsp : loaiSanPhams) {
 			LoaiSanPhamDTO loaiSanPhamDTO = new LoaiSanPhamDTO(lsp.getId(), lsp.getTenLoaiSanPham());
@@ -30,4 +32,5 @@ public class LoaiSanPhamRestController {
 		}
 		return loaiSanPhamDTOs;
 	}
+	
 }

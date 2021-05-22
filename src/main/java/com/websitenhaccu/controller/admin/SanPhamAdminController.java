@@ -44,7 +44,7 @@ import com.websitenhaccu.validator.SanPhamValidator;
  */
 @Controller
 @RequestMapping("/admin/san-pham")
-public class SanPhamController {
+public class SanPhamAdminController {
 
 	@Autowired
 	private SanPhamService sanPhamService;
@@ -77,11 +77,28 @@ public class SanPhamController {
 	private MauSanPhamConverter mauSanPhamConverter;
 
 	@RequestMapping("/danh-sach-san-pham")
-	public ModelAndView danhSachSanPham() throws IOException, SQLException {
+	public String danhSachSanPham(Model model) throws IOException, SQLException {
 
 		List<SanPham> sanPhams = sanPhamService.getTatCaSanPham();
-
-		return new ModelAndView("admin/sanpham/SanPham", "listSanPham", sanPhams);
+		List<String> listXuatXu = new ArrayList<String>();
+		for(SanPham sp : sanPhams) {
+			String xx = sp.getXuatXu().toLowerCase();
+			xx = xx.substring(0, 1).toUpperCase() + xx.substring(1);
+			if(!listXuatXu.contains(xx))
+				listXuatXu.add(xx);
+		}
+		
+		List<LoaiSanPham> loaiSanPhams = loaiSanPhamService.getTatCaLoaiSanPham();
+		List<ThuongHieu> thuongHieus = thuongHieuService.getTatCaThuongHieu();
+		
+		model.addAttribute("page", 0);
+		
+		model.addAttribute("listSanPham", sanPhams);
+		model.addAttribute("listXuatXu", listXuatXu);
+		model.addAttribute("listThuongHieu", thuongHieus);
+		model.addAttribute("listLoaiSanPham", loaiSanPhams);
+		
+		return "admin/sanpham/SanPham";
 	}
 
 	@RequestMapping(value = "/xem-chi-tiet")
@@ -110,12 +127,12 @@ public class SanPhamController {
 		List<DongSanPham> dongSanPhams = dongSanPhamService.getTatCaDongSanPham();
 		List<Mau> maus = mauService.getTatCamau();
 
-		if (maus.size() <= 0) {
-			List<String> list = new ArrayList<String>(Arrays.asList("Đen", "Vân gỗ", "Trắng", "Nâu"));
-			for (String string : list) {
-				mauService.themMau(new Mau(0, string));
-			}
-		}
+//		if (maus.size() <= 0) {
+//			List<String> list = new ArrayList<String>(Arrays.asList("Đen", "Vân gỗ", "Trắng", "Nâu"));
+//			for (String string : list) {
+//				mauService.themMau(new Mau(0, string));
+//			}
+//		}
 
 		model.addAttribute("sanPhamDTO", new SanPhamDTO());
 		model.addAttribute("nhaCungCaps", nhaCungCaps);

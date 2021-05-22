@@ -19,13 +19,13 @@
 
             <div class="row pl-0 pr-0 list__product--sell">
                 <div class="product">
-                    <div class="product__img"><c:url value='/static/assets/img/product_banchay.jpg'/>
-                        <img src="<c:url value='/static/assets/img/product_banchay.jpg'/>" alt="">
+                    <div class="product__img">
+                        <img src="<c:url value='/static/assets/img/slider_2.jpg'/>" alt="">
                     </div>
                     <p class="product__name"><b>Đàn guitar rexona yamaha</b></p>
 
                     <div class="additional">
-                        <p>Thương hiệu: <b>Durex cực mạnh</b></p>
+                        <p>Thương hiệu: <b>Small</b></p>
                         <p>Xuất xứ: <b>Ý</b></p>
                     </div>
 
@@ -41,12 +41,12 @@
 
                 <div class="product">
                     <div class="product__img">
-                        <img src="<c:url value='/static/assets/img/product_banchay.jpg'/>" alt="">
+                        <img src="<c:url value='/static/assets/img/slider_2.jpg'/>" alt="">
                     </div>
                     <p class="product__name"><b>Đàn guitar rexona yamaha</b></p>
 
                     <div class="additional">
-                        <p>Thương hiệu: <b>Durex cực mạnh</b></p>
+                        <p>Thương hiệu: <b>Small</b></p>
                         <p>Xuất xứ: <b>Ý</b></p>
                     </div>
 
@@ -62,12 +62,12 @@
 
                 <div class="product">
                     <div class="product__img">
-                        <img src="<c:url value='/static/assets/img/product_banchay.jpg'/>" alt="">
+                        <img src="<c:url value='/static/assets/img/slider_2.jpg'/>" alt="">
                     </div>
                     <p class="product__name"><b>Đàn guitar rexona yamaha</b></p>
 
                     <div class="additional">
-                        <p>Thương hiệu: <b>Durex cực mạnh</b></p>
+                        <p>Thương hiệu: <b>Small</b></p>
                         <p>Xuất xứ: <b>Ý</b></p>
                     </div>
 
@@ -83,12 +83,12 @@
 
                 <div class="product">
                     <div class="product__img">
-                        <img src="<c:url value='/static/assets/img/product_banchay.jpg'/>" alt="">
+                        <img src="<c:url value='/static/assets/img/slider_2.jpg'/>" alt="">
                     </div>
                     <p class="product__name"><b>Đàn guitar rexona yamaha</b></p>
 
                     <div class="additional">
-                        <p>Thương hiệu: <b>Durex cực mạnh</b></p>
+                        <p>Thương hiệu: <b>Small</b></p>
                         <p>Xuất xứ: <b>Ý</b></p>
                     </div>
 
@@ -104,12 +104,12 @@
 
                 <div class="product">
                     <div class="product__img">
-                        <img src="<c:url value='/static/assets/img/product_banchay.jpg'/>" alt="">
+                        <img src="<c:url value='/static/assets/img/slider_2.jpg'/>" alt="">
                     </div>
                     <p class="product__name"><b>Đàn guitar rexona yamaha</b></p>
 
                     <div class="additional">
-                        <p>Thương hiệu: <b>Durex cực mạnh</b></p>
+                        <p>Thương hiệu: <b>Small</b></p>
                         <p>Xuất xứ: <b>Ý</b></p>
                     </div>
 
@@ -156,12 +156,12 @@
             <div class="row pl-0 pr-0 list__product--sell">
                 <div class="product">
                     <div class="product__img">
-                        <img src="<c:url value='/static/assets/img/product_banchay.jpg'/>" alt="">
+                        <img src="<c:url value='/static/assets/img/slider_2.jpg'/>" alt="">
                     </div>
                     <p class="product__name"><b>Đàn guitar rexona yamaha</b></p>
 
                     <div class="additional">
-                        <p>Thương hiệu: <b>Durex cực mạnh</b></p>
+                        <p>Thương hiệu: <b>Small</b></p>
                         <p>Xuất xứ: <b>Ý</b></p>
                     </div>
 
@@ -177,12 +177,12 @@
 
                 <div class="product">
                     <div class="product__img">
-                        <img src="<c:url value='/static/assets/img/product_banchay.jpg'/>" alt="">
+                        <img src="<c:url value='/static/assets/img/slider_2.jpg'/>" alt="">
                     </div>
                     <p class="product__name"><b>Đàn guitar rexona yamaha</b></p>
 
                     <div class="additional">
-                        <p>Thương hiệu: <b>Durex cực mạnh</b></p>
+                        <p>Thương hiệu: <b>Small</b></p>
                         <p>Xuất xứ: <b>Ý</b></p>
                     </div>
 
@@ -198,12 +198,12 @@
 
                 <div class="product">
                     <div class="product__img">
-                        <img src="<c:url value='/static/assets/img/product_banchay.jpg'/>" alt="">
+                        <img src="<c:url value='/static/assets/img/slider_2.jpg'/>" alt="">
                     </div>
                     <p class="product__name"><b>Đàn guitar rexona yamaha</b></p>
 
                     <div class="additional">
-                        <p>Thương hiệu: <b>Durex cực mạnh</b></p>
+                        <p>Thương hiệu: <b>Small</b></p>
                         <p>Xuất xứ: <b>Ý</b></p>
                     </div>
 
@@ -219,12 +219,12 @@
 
                 <div class="product">
                     <div class="product__img">
-                        <img src="<c:url value='/static/assets/img/product_banchay.jpg'/>" alt="">
+                        <img src="<c:url value='/static/assets/img/slider_2.jpg'/>" alt="">
                     </div>
                     <p class="product__name"><b>Đàn guitar rexona yamaha</b></p>
 
                     <div class="additional">
-                        <p>Thương hiệu: <b>Durex cực mạnh</b></p>
+                        <p>Thương hiệu: <b>Small</b></p>
                         <p>Xuất xứ: <b>Ý</b></p>
                     </div>
 
@@ -240,12 +240,12 @@
 
                 <div class="product">
                     <div class="product__img">
-                        <img src="<c:url value='/static/assets/img/product_banchay.jpg'/>" alt="">
+                        <img src="<c:url value='/static/assets/img/slider_2.jpg'/>" alt="">
                     </div>
                     <p class="product__name"><b>Đàn guitar rexona yamaha</b></p>
 
                     <div class="additional">
-                        <p>Thương hiệu: <b>Durex cực mạnh</b></p>
+                        <p>Thương hiệu: <b>Small</b></p>
                         <p>Xuất xứ: <b>Ý</b></p>
                     </div>
 
@@ -261,12 +261,12 @@
 
                 <div class="product">
                     <div class="product__img">
-                        <img src="<c:url value='/static/assets/img/product_banchay.jpg'/>" alt="">
+                        <img src="<c:url value='/static/assets/img/slider_2.jpg'/>" alt="">
                     </div>
                     <p class="product__name"><b>Đàn guitar rexona yamaha</b></p>
 
                     <div class="additional">
-                        <p>Thương hiệu: <b>Durex cực mạnh</b></p>
+                        <p>Thương hiệu: <b>Small</b></p>
                         <p>Xuất xứ: <b>Ý</b></p>
                     </div>
 
@@ -282,12 +282,12 @@
 
                 <div class="product">
                     <div class="product__img">
-                        <img src="<c:url value='/static/assets/img/product_banchay.jpg'/>" alt="">
+                        <img src="<c:url value='/static/assets/img/slider_2.jpg'/>" alt="">
                     </div>
                     <p class="product__name"><b>Đàn guitar rexona yamaha</b></p>
 
                     <div class="additional">
-                        <p>Thương hiệu: <b>Durex cực mạnh</b></p>
+                        <p>Thương hiệu: <b>Small</b></p>
                         <p>Xuất xứ: <b>Ý</b></p>
                     </div>
 
@@ -303,12 +303,12 @@
 
                 <div class="product">
                     <div class="product__img">
-                        <img src="<c:url value='/static/assets/img/product_banchay.jpg'/>" alt="">
+                        <img src="<c:url value='/static/assets/img/slider_2.jpg'/>" alt="">
                     </div>
                     <p class="product__name"><b>Đàn guitar rexona yamaha</b></p>
 
                     <div class="additional">
-                        <p>Thương hiệu: <b>Durex cực mạnh</b></p>
+                        <p>Thương hiệu: <b>Small</b></p>
                         <p>Xuất xứ: <b>Ý</b></p>
                     </div>
 
@@ -324,12 +324,12 @@
 
                 <div class="product">
                     <div class="product__img">
-                        <img src="<c:url value='/static/assets/img/product_banchay.jpg'/>" alt="">
+                        <img src="<c:url value='/static/assets/img/slider_2.jpg'/>" alt="">
                     </div>
                     <p class="product__name"><b>Đàn guitar rexona yamaha</b></p>
 
                     <div class="additional">
-                        <p>Thương hiệu: <b>Durex cực mạnh</b></p>
+                        <p>Thương hiệu: <b>Small</b></p>
                         <p>Xuất xứ: <b>Ý</b></p>
                     </div>
 
@@ -345,12 +345,12 @@
 
                 <div class="product">
                     <div class="product__img">
-                        <img src="<c:url value='/static/assets/img/product_banchay.jpg'/>" alt="">
+                        <img src="<c:url value='/static/assets/img/slider_2.jpg'/>" alt="">
                     </div>
                     <p class="product__name"><b>Đàn guitar rexona yamaha</b></p>
 
                     <div class="additional">
-                        <p>Thương hiệu: <b>Durex cực mạnh</b></p>
+                        <p>Thương hiệu: <b>Small</b></p>
                         <p>Xuất xứ: <b>Ý</b></p>
                     </div>
 
@@ -383,7 +383,7 @@
                             <p class="option__item__name"><b>Đàn guitar rexona yamaha</b></p>
 
                             <div class="option__item__additional">
-                                <p>Thương hiệu: <b>Durex cực mạnh</b></p>
+                                <p>Thương hiệu: <b>Small</b></p>
                                 <p>Xuất xứ: <b>Ý</b></p>
                             </div>
                             <p class="option__item__money">123000000 VND</p>
@@ -396,7 +396,7 @@
                             <p class="option__item__name"><b>Đàn guitar rexona yamaha</b></p>
 
                             <div class="option__item__additional">
-                                <p>Thương hiệu: <b>Durex cực mạnh</b></p>
+                                <p>Thương hiệu: <b>Small</b></p>
                                 <p>Xuất xứ: <b>Ý</b></p>
                             </div>
                             <p class="option__item__money">123000000 VND</p>
@@ -409,7 +409,7 @@
                             <p class="option__item__name"><b>Đàn guitar rexona yamaha</b></p>
 
                             <div class="option__item__additional">
-                                <p>Thương hiệu: <b>Durex cực mạnh</b></p>
+                                <p>Thương hiệu: <b>Small</b></p>
                                 <p>Xuất xứ: <b>Ý</b></p>
                             </div>
                             <p class="option__item__money">123000000 VND</p>
@@ -422,7 +422,7 @@
                             <p class="option__item__name"><b>Đàn guitar rexona yamaha</b></p>
 
                             <div class="option__item__additional">
-                                <p>Thương hiệu: <b>Durex cực mạnh</b></p>
+                                <p>Thương hiệu: <b>Small</b></p>
                                 <p>Xuất xứ: <b>Ý</b></p>
                             </div>
                             <p class="option__item__money">123000000 VND</p>
@@ -435,7 +435,7 @@
                             <p class="option__item__name"><b>Đàn guitar rexona yamaha</b></p>
 
                             <div class="option__item__additional">
-                                <p>Thương hiệu: <b>Durex cực mạnh</b></p>
+                                <p>Thương hiệu: <b>Small</b></p>
                                 <p>Xuất xứ: <b>Ý</b></p>
                             </div>
                             <p class="option__item__money">123000000 VND</p>
@@ -448,7 +448,7 @@
                             <p class="option__item__name"><b>Đàn guitar rexona yamaha</b></p>
 
                             <div class="option__item__additional">
-                                <p>Thương hiệu: <b>Durex cực mạnh</b></p>
+                                <p>Thương hiệu: <b>Small</b></p>
                                 <p>Xuất xứ: <b>Ý</b></p>
                             </div>
                             <p class="option__item__money">123000000 VND</p>
@@ -461,7 +461,7 @@
                             <p class="option__item__name"><b>Đàn guitar rexona yamaha</b></p>
 
                             <div class="option__item__additional">
-                                <p>Thương hiệu: <b>Durex cực mạnh</b></p>
+                                <p>Thương hiệu: <b>Small</b></p>
                                 <p>Xuất xứ: <b>Ý</b></p>
                             </div>
                             <p class="option__item__money">123000000 VND</p>
@@ -496,7 +496,7 @@
                             <p class="option__item__name"><b>Đàn guitar rexona yamaha</b></p>
 
                             <div class="option__item__additional">
-                                <p>Thương hiệu: <b>Durex cực mạnh</b></p>
+                                <p>Thương hiệu: <b>Small</b></p>
                                 <p>Xuất xứ: <b>Ý</b></p>
                             </div>
                             <p class="option__item__money">123000000 VND</p>
@@ -509,7 +509,7 @@
                             <p class="option__item__name"><b>Đàn guitar rexona yamaha</b></p>
 
                             <div class="option__item__additional">
-                                <p>Thương hiệu: <b>Durex cực mạnh</b></p>
+                                <p>Thương hiệu: <b>Small</b></p>
                                 <p>Xuất xứ: <b>Ý</b></p>
                             </div>
                             <p class="option__item__money">123000000 VND</p>
@@ -522,7 +522,7 @@
                             <p class="option__item__name"><b>Đàn guitar rexona yamaha</b></p>
 
                             <div class="option__item__additional">
-                                <p>Thương hiệu: <b>Durex cực mạnh</b></p>
+                                <p>Thương hiệu: <b>Small</b></p>
                                 <p>Xuất xứ: <b>Ý</b></p>
                             </div>
                             <p class="option__item__money">123000000 VND</p>
@@ -535,7 +535,7 @@
                             <p class="option__item__name"><b>Đàn guitar rexona yamaha</b></p>
 
                             <div class="option__item__additional">
-                                <p>Thương hiệu: <b>Durex cực mạnh</b></p>
+                                <p>Thương hiệu: <b>Small</b></p>
                                 <p>Xuất xứ: <b>Ý</b></p>
                             </div>
                             <p class="option__item__money">123000000 VND</p>
@@ -548,7 +548,7 @@
                             <p class="option__item__name"><b>Đàn guitar rexona yamaha</b></p>
 
                             <div class="option__item__additional">
-                                <p>Thương hiệu: <b>Durex cực mạnh</b></p>
+                                <p>Thương hiệu: <b>Small</b></p>
                                 <p>Xuất xứ: <b>Ý</b></p>
                             </div>
                             <p class="option__item__money">123000000 VND</p>
@@ -561,7 +561,7 @@
                             <p class="option__item__name"><b>Đàn guitar rexona yamaha</b></p>
 
                             <div class="option__item__additional">
-                                <p>Thương hiệu: <b>Durex cực mạnh</b></p>
+                                <p>Thương hiệu: <b>Small</b></p>
                                 <p>Xuất xứ: <b>Ý</b></p>
                             </div>
                             <p class="option__item__money">123000000 VND</p>
@@ -574,7 +574,7 @@
                             <p class="option__item__name"><b>Đàn guitar rexona yamaha</b></p>
 
                             <div class="option__item__additional">
-                                <p>Thương hiệu: <b>Durex cực mạnh</b></p>
+                                <p>Thương hiệu: <b>Small</b></p>
                                 <p>Xuất xứ: <b>Ý</b></p>
                             </div>
                             <p class="option__item__money">123000000 VND</p>

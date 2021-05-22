@@ -24,6 +24,11 @@ public interface SanPhamService {
 	
 	public SanPhamDTO getSanPhamDTOTheoID(String id);
 
-	public List<SanPham> timKiemSanPham(String tenSanPham, String tenDongSanPham, String xuatXu, String tenThuongHieu, int page, int size);
+	public List<SanPham> timKiemSanPham(String tenSanPham, String maLoaiSanPham, String xuatXu, String maThuongHieu,
+			int page, int size);
+	
+	public List<SanPhamDTO> getDanhSachSanPhamTheoLoaiThuongHieuDong(String id, int page, int size);
+	
+	public List<SanPhamDTO> getTatCaSanPham(int page, int size);
 
 }

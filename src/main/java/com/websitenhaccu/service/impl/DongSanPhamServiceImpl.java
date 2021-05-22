@@ -3,6 +3,8 @@ package com.websitenhaccu.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.websitenhaccu.dto.DongSanPhamDTO;
@@ -57,8 +59,10 @@ public class DongSanPhamServiceImpl implements DongSanPhamService {
 
 	@Override
 	public List<DongSanPham> getDanhSachDongSanPhamTheoTenVaLoaiSanPhamVaThuongHieu(String tenDongSanPham,
-			String maLoaiSanPham, String maThuongHieu) {
-		return dongSanPhamRepository.findByTenDongSanPhamContainingAndLoaiSanPhamIdContainingAndThuongHieuIdContaining(tenDongSanPham, maLoaiSanPham, maThuongHieu);
+			String maLoaiSanPham, String maThuongHieu, int page, int size) {
+
+		Pageable firstPageWithTwoElements = PageRequest.of(page, size);
+		return dongSanPhamRepository.findByTenDongSanPhamContainingAndLoaiSanPhamIdContainingAndThuongHieuIdContaining(tenDongSanPham, maLoaiSanPham, maThuongHieu, firstPageWithTwoElements);
 	}
 
 }

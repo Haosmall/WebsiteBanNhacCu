@@ -1,10 +1,13 @@
 package com.websitenhaccu.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.websitenhaccu.converter.MauSanPhamConverter;
+import com.websitenhaccu.dto.MauSanPhamDTO;
 import com.websitenhaccu.entity.Mau;
 import com.websitenhaccu.entity.MauSanPham;
 import com.websitenhaccu.repository.MauSanPhamRepository;
@@ -15,6 +18,8 @@ public class MauSanPhamServiceImpl implements MauSanPhamService{
 
 	@Autowired
 	private MauSanPhamRepository mauSanPhamRepository;
+	@Autowired
+	private MauSanPhamConverter mauSanPhamConverter;
 
 	@Override
 	public List<MauSanPham> getMauSanPhamTheoMaSanPham(String id) {
@@ -47,6 +52,16 @@ public class MauSanPhamServiceImpl implements MauSanPhamService{
 	@Override
 	public MauSanPham getMauSanPhamTheoMaSanPhamVaMaMau(String maSanPham, int maMau) {
 		return mauSanPhamRepository.findBySanPhamIdAndMauId(maSanPham, maMau);
+	}
+
+	@Override
+	public List<MauSanPhamDTO> getMauSanPhamDTOTheoMaSanPham(String id) {
+		List<MauSanPhamDTO> mauSanPhamDTOs = new ArrayList<MauSanPhamDTO>();
+		mauSanPhamRepository.findBySanPhamId(id).forEach(mauSanPham ->{
+			MauSanPhamDTO mauSanPhamDTO = mauSanPhamConverter.toMauSanPhamDTO(mauSanPham);
+			mauSanPhamDTOs.add(mauSanPhamDTO);
+		});
+		return mauSanPhamDTOs;
 	}
 
 

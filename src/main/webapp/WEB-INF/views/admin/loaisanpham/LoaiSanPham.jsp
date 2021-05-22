@@ -79,6 +79,21 @@
 
 		</div>
 
+		<input type="hidden" id="pageValue" value="${ page + 1}" />
+		
+		<div class="form-group row">
+		
+			<input class="col-3" type="button" onclick="typeSearch()" class="form-control"
+					id="btnPreviusPage" value="-"/>
+		
+		
+			<input class="col-4" type="text" readonly="true" class="form-control"
+				id="viewPage"
+				value="${page = page + 1}">
+		
+			<input class="col-3" type="button" onclick="typeSearch()" class="form-control"
+				id="btnNext" value="+"/>
+		</div>
 
 
 	</div>
