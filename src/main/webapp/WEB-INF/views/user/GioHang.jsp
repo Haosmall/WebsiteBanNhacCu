@@ -5,14 +5,11 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Giỏ Hàng</title>
+<link rel="stylesheet"
+	href='<c:url value = "/static/assets/css/Cart/Cart.css"/>'>
+
 </head>
-
-
-
-
-<link rel="stylesheet" href='<c:url value = "/static/assets/css/Cart/Cart.scss"/>'>
-
 
 <body>
 
@@ -118,8 +115,10 @@
 						<b>Địa chỉ nhận hàng</b> <a href="#" data-toggle="modal"
 							data-target="#myModal">Thay đổi</a>
 					</div>
-					<p class="inf_per">Trần Hoàng Phúc | 0984107753</p>
-					<p class="inf_ad">110 Lý Thường Kiệt, Phường 7, Gò Vấp, TP.HCM</p>
+					<p class="inf_per">${user.fullName }|${user.phone}</p>
+					<p class="inf_ad">${user.address }</p>
+					<input id = "idUser" type="hidden" value="${user.userId }"></input>
+
 				</div>
 				<hr>
 
@@ -143,7 +142,8 @@
 
 
 	<!-- The Modal -->
-	<div class="modal fade" id="myModal">
+	<div class="modal fade" id="myModal" data-backdrop="static"
+		data-keyboard="false">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 
@@ -156,38 +156,51 @@
 				<!-- Modal body -->
 				<div class="modal-body">
 
-					<form action="">
+
+
+
+					<form action='' id="formSbm" method="post">
 						<div class="form-group">
-							<label for="tinh_thanhpho">Tỉnh/Thành Phố</label> <select
-								class="form-control" id="tinh_thanhpho">
+							<label for="tinh">Tỉnh/Thành Phố</label> <select
+								onblur="ktraTinh()" class="form-control" id="tinh">
 								<option value=-1>Tỉnh/Thành Phố</option>
-							</select>
+
+							</select> <span id="checkTinh" class="validate" value=""></span>
 						</div>
-					<%-- 	<form:hidden path="tinhThanhPho" /> --%>
+						<input type="hidden" id="tinhThanhPho" value="${address[3]}" />
 
 						<div class="form-group">
-							<label for="huyen_quan">Huyện/Quận</label> <select
-								class="form-control" id="huyen_quan">
+							<label for="huyen">Huyện/Quận</label> <select
+								onblur="ktraHuyen()" class="form-control" id="huyen">
 								<option value=-1>Huyện/Quận</option>
-							</select>
+							</select> <span id="checkQuan" class="validate"></span>
+
 						</div>
-					<%-- 	<form:hidden path="quanHuyen" />< --%>
+						<input type="hidden" id="quanHuyen" value="${address[2]}" />
 
 						<div class="form-group">
-							<label for="xa_phuong">Xã/Phường</label> <select
-								class="form-control" id="xa_phuong">
+							<label for="xa">Xã/Phường</label> <select class="form-control"
+								onblur="ktraXa()" id="xa">
 								<option value=-1>Xã/Phường</option>
-							</select>
+							</select> <span id="checkXa" class="validate"></span>
 						</div>
-					<%-- 	<form:hidden path="phuongXa" /> --%>
+						<input type="hidden" id="phuongXa" value="${address[1]}" />
+
 
 						<div class="form-group">
 							<label for="sonha_tentruong">Số nhà/tên đường</label> <input
-								type="text" class="form-control" id="sonha_tentruong"
-								placeholder="Số nhà tên đường">
+								onblur="ktraSoNha()" type="text" class="form-control"
+								id="sonha_tentruong" placeholder="Số nhà tên đường"
+								value="${address[0]}" /> <span id="checkStreet"
+								class="validate"></span>
+
 						</div>
 
-						<button class="btn btn-primary">Thay đổi</button>
+
+
+
+						<button type="submit" class="btn btn-primary btnSubmit">Thay
+							đổi</button>
 					</form>
 
 				</div>
@@ -197,12 +210,26 @@
 
 			</div>
 		</div>
+
+
+	</div>
+
+	<div class="box_confirm">
+		<div>Xác nhận thay thay đổi</div>
+		<div>
+			<button id="no">Hủy</button>
+			<button id="yes">Đồng ý</button>
+		</div>
 	</div>
 
 
 
-	<script src="../asset/js/Address.js"></script>
-	<script src="../asset/js/Cart/Cart.js"></script>
+
+	<script src='<c:url value = "/static/assets/js/cart/Cart.js"/>'></script>
+	<script
+		src='<c:url value = "/static/assets/js/cart/CapNhatDiaChiMuaHang.js"/>'></script>
+
+
 
 
 </body>

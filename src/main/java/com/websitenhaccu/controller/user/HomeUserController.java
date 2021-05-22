@@ -25,8 +25,8 @@ public class HomeUserController {
 		} else {
 			email = principal.toString();
 		}
+		
 		UserDTO user = userService.getByEmail(email);
-
 		return new ModelAndView("user/home", "user", user);
 	}
 

@@ -1,5 +1,6 @@
 package com.websitenhaccu.service;
 
+
 import com.websitenhaccu.dto.UserDTO;
 
 public interface UserService {
@@ -15,4 +16,7 @@ public interface UserService {
 	
 	public boolean verifyPassword(String email, String token, String password);
 
+	public String[] handleAddress(String diaChi);
+	
+	public boolean updateAddress(String userId);
 }

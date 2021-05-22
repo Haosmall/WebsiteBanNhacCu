@@ -1,6 +1,5 @@
 package com.websitenhaccu.entity;
 
-import java.beans.ConstructorProperties;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -33,7 +32,7 @@ public class Mau {
 	@Column(name = "ten_mau", columnDefinition = "NVARCHAR(MAX)")
 	private String tenMau;
 	
-	@OneToMany(mappedBy = "mau", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "mau", fetch = FetchType.EAGER) /// đã doi tu lazy qua eager
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
 	private List<MauSanPham> mauSanPhams;

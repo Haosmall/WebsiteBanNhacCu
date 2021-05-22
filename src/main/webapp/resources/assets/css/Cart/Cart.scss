@@ -140,7 +140,72 @@
 
 .modal-body {
     > form > button {
-      margin-left: 663px;
-      padding: 5px 20px;
+        margin-left: 663px;
+        padding: 5px 20px;
     }
 }
+
+.validate {
+    color: red;
+    font-style: italic;
+}
+
+.box_confirm {
+    width: 200px;
+    height: 100px;
+    background-color: white;
+    display: flex;
+
+    flex-direction: column;
+    padding-top: 20px;
+    border-radius: 5px;
+    border: 0.5px solid #c4c4c4;
+    position: absolute;
+
+    transform: translateY(-30px);
+    opacity: 0;
+    top: 30%;
+    left: 0;
+
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 1500;
+    
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+
+    > div {
+        margin-top: 5px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        > button {
+            width: 80px;
+            padding: 2px 0;
+            border-radius: 5px;
+            color: #fff;
+            outline: none;
+            transition: all 0.3s ease-in-out;
+        }
+
+        button:first-child {
+            background-color: #e11b1e;
+            border-color: #e11b1e;
+        }
+
+        button:last-child {
+            background-color: #277cea;
+            border-color: #277cea;
+        }
+        button:last-child:hover {
+            color: #277cea;
+            background-color: #fff;
+        }
+        button:first-child:hover {
+            color: #e11b1e;
+            background-color: #fff;
+        }
+    }
+}
+// box confirm

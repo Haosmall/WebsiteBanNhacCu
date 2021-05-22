@@ -1,5 +1,8 @@
 package com.websitenhaccu.service.impl;
 
+import java.util.Iterator;
+import java.util.List;
+
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -32,12 +35,15 @@ public class UserServiceImpl implements UserService {
 	public UserDTO getByEmail(String email) {
 		NguoiDung user = userRepo.findByEmail(email);
 		System.out.println(user);
+
 		if (user != null) {
 			UserDTO dto = new UserDTO();
 			dto.setUserId(user.getId());
 			dto.setEmail(user.getEmail());
 			dto.setRole(user.getRole());
 			dto.setFullName(user.getHoTen());
+			dto.setAddress(user.getDiaChi());
+			dto.setPhone(user.getSoDienThoai());
 			return dto;
 		} else {
 			return null;
@@ -140,6 +146,18 @@ public class UserServiceImpl implements UserService {
 		}
 
 		return false;
+	}
+
+	@Override
+	public String[] handleAddress(String diaChi) {
+		String[] temp = diaChi.split(", ");
+		return temp;
+	}
+
+	@Override
+	public boolean updateAddress(String userId) {
+		NguoiDung nguoiDung = userRepo.findById(userId).get();
+		return nguoiDung == null ? false : true;
 	}
 
 }

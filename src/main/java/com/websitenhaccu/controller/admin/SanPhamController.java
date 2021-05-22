@@ -88,9 +88,6 @@ public class SanPhamController {
 	public String xemChiTietNhaCungCap(Model model, @RequestParam("id") String id) {
 
 		SanPham sanPham = sanPhamService.getSanPhamTheoID(id);
-//		String mota = sanPham.getMoTa();
-//		System.out.println("=============: "+mota);
-//		sanPham.setMoTa(mota.replace("\"", "\\\""));
 
 		List<MauSanPhamDTO> mauSanPhamDTOs = new ArrayList<MauSanPhamDTO>();
 		List<MauSanPham> mauSanPhams = mauSanPhamService.getMauSanPhamTheoMaSanPham(id);
@@ -202,9 +199,8 @@ public class SanPhamController {
 
 
 		SanPham sanPham = sanPhamConverter.toSanPham(sanPhamDTO);
-		System.out.println("============DTO: "+sanPhamDTO.getId());
-		System.out.println("============SP: "+sanPham.getId());
-		
+		String[] temp = sanPham.getId().split(",");
+		sanPham.setId(temp[0]);
 		sanPhamService.capNhatSanPham(sanPham);
 
 		return "redirect:/admin/san-pham/danh-sach-san-pham";

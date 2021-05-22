@@ -18,7 +18,7 @@ import com.websitenhaccu.util.CustomUserDetails;
 
 @Controller
 @RequestMapping("/admin")
-public class HomeAdminController {
+public class QuanLyController {
 	@Autowired
 	UserService userService;
 	
@@ -33,7 +33,7 @@ public class HomeAdminController {
 //		return new ModelAndView("admin/home");
 //	}
 
-	@RequestMapping("/trang-chu")
+	@RequestMapping("/quan-ly")
 	public String getUser(Model model) {
 
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();

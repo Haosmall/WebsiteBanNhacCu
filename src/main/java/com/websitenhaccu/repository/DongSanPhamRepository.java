@@ -10,5 +10,9 @@ public interface DongSanPhamRepository extends JpaRepository<DongSanPham, String
 	
 	public List<DongSanPham> findAll();
 	
-	public DongSanPham findByTenDongSanPham(String tenDongSanPham);
+	public List<DongSanPham> findByTenDongSanPhamContaining(String tenDongSanPham);
+	
+	public List<DongSanPham> findByLoaiSanPhamIdAndThuongHieuId(String maLoaiSanPham, String maThuongHieu);
+
+	public List<DongSanPham> findByTenDongSanPhamContainingAndLoaiSanPhamIdContainingAndThuongHieuIdContaining(String tenDongSanPham, String maLoaiSanPham, String maThuongHieu);
 }

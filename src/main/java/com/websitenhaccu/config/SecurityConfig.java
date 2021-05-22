@@ -8,7 +8,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -48,7 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //				.antMatchers("/forgot-password").permitAll()
 //				.antMatchers("forgot-password/enter-password").permitAll()
 //				.antMatchers("/user/**, /gio-hang/dat-hang" ).hasRole("USER")
-				.antMatchers("/user/**" ).hasRole("USER")
+				.antMatchers("/gio-hang/dat-hang" ).hasRole("USER")
 				.antMatchers("/admin/**").hasRole("ADMIN")
 				.anyRequest()
 	            
@@ -67,6 +66,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 						.logoutSuccessUrl("/trang-chu")
 						.permitAll()
 				.and()
+				.rememberMe().key("uniqueAndSecret").tokenValiditySeconds(1296000)// Cấu hình remember me, thời gian là 1296000 giây
+				.and()
 					.exceptionHandling()
 					.accessDeniedPage("/403");
 	}
@@ -74,4 +75,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	public void configure(WebSecurity web) {
 		web.ignoring().antMatchers("/static/**");
 	}
+	
 }

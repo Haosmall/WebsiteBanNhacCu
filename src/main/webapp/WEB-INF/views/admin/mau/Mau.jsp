@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Danh sách loại sản phẩm</title>
+<title>Danh sách màu</title>
 </head>
 <body>
 
@@ -18,7 +18,7 @@
 				<div class="form-group">
 					<label for="txtSearch">Tìm kiếm</label> <input type="text"
 						 oninput="typeSearch()" class="form-control" id="txtSearch"
-						aria-describedby="emailHelp" placeholder="Nhập tên loại sản phẩm">
+						aria-describedby="emailHelp" placeholder="Nhập tên màu">
 				</div>
 			</div>
 
@@ -29,8 +29,8 @@
 					<label for="exampleInputEmail1">&#160;</label> 
 					<a type="button"
 						class="form-control btn btn-primary table__btn"
-						href="<c:url value='/admin/loai-san-pham/them-loai-san-pham'/>">Thêm
-						loại sản phẩm</a>
+						href="<c:url value='/admin/mau/them-mau'/>">Thêm
+						màu</a>
 				</div>
 			</div>
 		</div>
@@ -42,33 +42,33 @@
 				<thead class="thead-light">
 					<tr>
 						<th>STT</th>
-						<th>Mã loại sản phẩm</th>
-						<th>Tên loại sản phẩm</th>
+						<th>Mã màu</th>
+						<th>Tên màu</th>
 						<th></th>
 					</tr>
 				</thead>
 
 				<tbody id="tableLoaiSanPham">
 
-					<c:forEach items="${ listLoaiSanPham }" var="loaiSanPham"
+					<c:forEach items="${ listMau }" var="mau"
 						varStatus="counter">
 						<tr>
 							<td>${ counter.count }</td>
-							<td>${ loaiSanPham.id }</td>
-							<td>${ loaiSanPham.tenLoaiSanPham }</td>
+							<td>${ mau.id }</td>
+							<td>${ mau.tenMau }</td>
 							<td>
 
 								<input type="button" class="btn btn-primary table__btn"
 								value="Chi tiết"
-								onclick="location.href='<c:url value='/admin/loai-san-pham/chi-tiet-loai-san-pham?id=${ loaiSanPham.id }' />'">
+								onclick="location.href='<c:url value='/admin/mau/chi-tiet-mau?id=${ mau.id }' />'">
 
 								<input type="button" class="btn btn-warning table__btn"
 								value="Sửa"
-								onclick="location.href='<c:url value='/admin/loai-san-pham/cap-nhat-loai-san-pham?id=${ loaiSanPham.id }' />'">
+								onclick="location.href='<c:url value='/admin/mau/cap-nhat-mau?id=${ mau.id }' />'">
 
 								<input type="button" class="btn btn-danger table__btn"
 								value="Xóa"
-								onclick="location.href='<c:url value='/admin/loai-san-pham/xoa-loai-san-pham?id=${ loaiSanPham.id }' />'">
+								onclick="location.href='<c:url value='/admin/mau/xoa-mau?id=${ mau.id }' />'">
 
 							</td>
 						</tr>
@@ -83,6 +83,6 @@
 
 	</div>
 	<!-- /.container-fluid -->
-	<script src='<c:url value = "/static/assets/js/loaisanpham.js"/>'></script>
+	<script src='<c:url value = "/static/assets/js/mau.js"/>'></script>
 </body>
 </html>

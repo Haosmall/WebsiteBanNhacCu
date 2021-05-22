@@ -17,9 +17,9 @@ public class DongSanPhamDTO {
 	
 	private String id;
 
-	String maThuongHieu;
+	String thuongHieu;
 
-	String maLoaiSanPham;
+	String loaiSanPham;
 
 	private String tenDongSanPham;
 
@@ -28,6 +28,22 @@ public class DongSanPhamDTO {
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude
 	private List<SanPham> sanPhams;
+
+	/**
+	 * @param id
+	 * @param thuongHieu
+	 * @param loaiSanPham
+	 * @param tenDongSanPham
+	 * @param thue
+	 */
+	public DongSanPhamDTO(String id, String thuongHieu, String loaiSanPham, String tenDongSanPham, float thue) {
+		super();
+		this.id = id;
+		this.thuongHieu = thuongHieu;
+		this.loaiSanPham = loaiSanPham;
+		this.tenDongSanPham = tenDongSanPham;
+		this.thue = thue;
+	}
 	
 	
 }

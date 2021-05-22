@@ -44,13 +44,15 @@
 			<p style="text-align: center">OR</p>-->
 			<input type="text" id="inputEmail" class="form-control"
 				placeholder="Email" required="" autofocus="" name="email"
-				onblur="validateEmail()">
-			 <span id="checkEmail"></span> 
-			 <input
+				onblur="validateEmail()"> <span id="checkEmail"></span> <input
 				type="password" id="inputPassword" class="form-control"
-				placeholder="Mật khẩu" required="" name="password"
-				onblur="validatePassword()">
-			 <span id="checkPassword"></span>
+				onblur="validatePassword()" placeholder="Mật khẩu" required=""
+				name="password"> <span id="checkPassword"></span> <label
+				class="form-group">Duy trì đăng nhập</label> <input type="checkbox"
+				name="remember-me"> 
+				
+				
+
 
 			<button class="btn btn-success btn-block" type="submit">
 				<i class="fas fa-sign-in-alt"></i> Đăng nhập

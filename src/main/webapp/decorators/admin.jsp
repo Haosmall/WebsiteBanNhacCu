@@ -48,7 +48,7 @@
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				href="<c:url value='/admin/trang-chu'/>">
+				href="<c:url value='/admin/quan-ly'/>">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-laugh-wink"></i>
 				</div>
@@ -109,8 +109,8 @@
                         <div class="collapse-divider"></div>
                         
                         <h6 class="collapse-header">Màu:</h6>
-                        <a class="collapse-item" href="<c:url value='/admin/dong-san-pham/danh-sach-dong-san-pham'/>">Danh sách màu</a>
-                        <a class="collapse-item" href="<c:url value='/admin/dong-san-pham/them-dong-san-pham'/>">Thêm màu</a>
+                        <a class="collapse-item" href="<c:url value='/admin/mau/danh-sach-mau'/>">Danh sách màu</a>
+                        <a class="collapse-item" href="<c:url value='/admin/mau/them-mau'/>">Thêm màu</a>
                         <div class="collapse-divider"></div>
 					</div>
 				</div></li>
