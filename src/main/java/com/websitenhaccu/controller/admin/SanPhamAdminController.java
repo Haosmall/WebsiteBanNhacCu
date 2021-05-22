@@ -44,7 +44,7 @@ import com.websitenhaccu.validator.SanPhamValidator;
  */
 @Controller
 @RequestMapping("/admin/san-pham")
-public class SanPhamController {
+public class SanPhamAdminController {
 
 	@Autowired
 	private SanPhamService sanPhamService;

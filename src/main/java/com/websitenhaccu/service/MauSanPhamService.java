@@ -2,12 +2,15 @@ package com.websitenhaccu.service;
 
 import java.util.List;
 
+import com.websitenhaccu.dto.MauSanPhamDTO;
 import com.websitenhaccu.entity.Mau;
 import com.websitenhaccu.entity.MauSanPham;
 
 public interface MauSanPhamService {
 	
 	public List<MauSanPham> getMauSanPhamTheoMaSanPham(String id);
+	
+	public List<MauSanPhamDTO> getMauSanPhamDTOTheoMaSanPham(String id);
 
 	public Mau getMauSanPhamTheoTenMau(String tenMau);
 	

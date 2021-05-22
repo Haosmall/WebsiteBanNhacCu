@@ -26,5 +26,9 @@ public interface SanPhamService {
 
 	public List<SanPham> timKiemSanPham(String tenSanPham, String maLoaiSanPham, String xuatXu, String maThuongHieu,
 			int page, int size);
+	
+	public List<SanPhamDTO> getDanhSachSanPhamTheoLoaiThuongHieuDong(String id, int page, int size);
+	
+	public List<SanPhamDTO> getTatCaSanPham(int page, int size);
 
 }

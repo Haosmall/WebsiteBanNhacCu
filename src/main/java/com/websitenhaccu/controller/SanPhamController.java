@@ -10,9 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.websitenhaccu.converter.ThuongHieuConverter;
+import com.websitenhaccu.dto.SanPhamDTO;
 import com.websitenhaccu.dto.ThuongHieuDTO;
 import com.websitenhaccu.dto.UserDTO;
 import com.websitenhaccu.entity.DongSanPham;
@@ -20,12 +23,13 @@ import com.websitenhaccu.entity.LoaiSanPham;
 import com.websitenhaccu.entity.ThuongHieu;
 import com.websitenhaccu.service.DongSanPhamService;
 import com.websitenhaccu.service.LoaiSanPhamService;
+import com.websitenhaccu.service.SanPhamService;
 import com.websitenhaccu.service.ThuongHieuService;
 import com.websitenhaccu.service.UserService;
 import com.websitenhaccu.util.CustomUserDetails;
 
 @Controller
-public class TrangChuController {
+public class SanPhamController {
 	@Autowired
 	private UserService userService; 
 	
@@ -36,13 +40,19 @@ public class TrangChuController {
 	private ThuongHieuService thuongHieuService; 
 	
 	@Autowired
-	private DongSanPhamService dongSanPhamService; 
+	private DongSanPhamService dongSanPhamService;
+	
+	@Autowired
+	private SanPhamService sanPhamService;
 
 	@Autowired
 	private ThuongHieuConverter thuongHieuConverter; 
 
-	@RequestMapping("/trang-chu")
-	public String hienThiTrangChu(Model model) {
+	@GetMapping("/danh-sach-san-pham/{id}")
+	public String hienThiTrangChu(Model model, @PathVariable("id") String id, 
+			@RequestParam(name = "page", defaultValue = "1") int page,
+			@RequestParam(name = "size", defaultValue = "15") int size) {
+		
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String email;
 		if (principal instanceof CustomUserDetails) {
@@ -55,6 +65,19 @@ public class TrangChuController {
 		List<LoaiSanPham> loaiSanPhams = LoaiSanPhamService.getTatCaLoaiSanPham();
 		List<ThuongHieu> thuongHieus = thuongHieuService.getTatCaThuongHieu();
 		List<DongSanPham> dongSanPhams = dongSanPhamService.getTatCaDongSanPham();
+		List<SanPhamDTO> sanPhamDTOs;
+		Set<String> xuatXus = new HashSet<String>();
+		if(!id.equals("tat-ca")) {
+			sanPhamDTOs = sanPhamService.getDanhSachSanPhamTheoLoaiThuongHieuDong(id, page-1, size);
+			sanPhamDTOs.forEach(dto->{
+				xuatXus.add(dto.getXuatXu());
+			});
+		}else {
+			sanPhamDTOs = sanPhamService.getTatCaSanPham(page-1, size);
+			sanPhamDTOs.forEach(dto->{
+				xuatXus.add(dto.getXuatXu());
+			});
+		}
 		
 		Map<LoaiSanPham, Set<ThuongHieuDTO>> map = new HashMap<LoaiSanPham, Set<ThuongHieuDTO>>();
 		
@@ -83,8 +106,10 @@ public class TrangChuController {
 		model.addAttribute("loaiSanPhams", loaiSanPhams);
 		model.addAttribute("thuongHieus", thuongHieus);
 		model.addAttribute("dongSanPhams", dongSanPhams);
+		model.addAttribute("xuatXus", xuatXus);
+		model.addAttribute("sanPhamDTOs", sanPhamDTOs);
 		
-		return "user/home";
+		return "user/DanhSachSanPham";
 	}
 
 }

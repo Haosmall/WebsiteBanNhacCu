@@ -59,7 +59,7 @@
 		<div class="row header__item">
 
 			<div class="col-2 offset-1">
-				<a href="./test.html"> <img alt="logo"
+				<a href="<c:url value="/"/>"> <img alt="logo"
 					src="<c:url value="/static/assets/img/logo.png"/>" width="60px"
 					height="60px"></a>
 			</div>
@@ -182,14 +182,18 @@
 						<div class="categories">
 
 							<div class="category__adjust">
-
+								<div class="item">
+									<i class="fas fa-guitar category__icon"></i> 
+									<a class="category__name">Danh mục sản phẩm</a>
+								</div>
+								
 								<c:forEach items="${ map }" var="loaiSP">
 
 									<div class="category">
 										<div class="item">
 											<i class="fas fa-guitar category__icon"></i> <a
 												class="category__name"
-												href="<c:url value="/danh-sach-san-pham/${ loaiSP.key.id }"/>">${ loaiSP.key.tenLoaiSanPham }</a>
+												href="<c:url value="/danh-sach-san-pham/${ loaiSP.key.id }?page=1"/>">${ loaiSP.key.tenLoaiSanPham }</a>
 										</div>
 
 										<div class="sub-category">
@@ -202,7 +206,7 @@
 															alt="${ thuongHieu.tenThuongHieu }"></a>
 
 														<p
-															onclick="location.href='<c:url value="/danh-sach-san-pham/${ thuongHieu.id }"/>'">
+															onclick="location.href='<c:url value="/danh-sach-san-pham/${ thuongHieu.id }?page=1"/>'">
 															<b>${ thuongHieu.tenThuongHieu }</b>
 														</p>
 														<hr>
@@ -211,7 +215,7 @@
 																<c:if test="${ dongSP.loaiSanPham.id eq loaiSP.key.id }">
 
 																	<p
-																		onclick="location.href='<c:url value="/danh-sach-san-pham/${ dongSP.id }"/>'">${ dongSP.tenDongSanPham }</p>
+																		onclick="location.href='<c:url value="/danh-sach-san-pham/${ dongSP.id }?page=1"/>'">${ dongSP.tenDongSanPham }</p>
 
 																</c:if>
 															</c:if>
@@ -223,6 +227,14 @@
 										</div>
 									</div>
 								</c:forEach>
+								
+								<div class="category">
+										<div class="item">
+											<i class="fas fa-guitar category__icon"></i> <a
+												class="category__name"
+												href="<c:url value="/danh-sach-san-pham/tat-ca?page=1"/>">Tất cả sản phẩm</a>
+										</div>
+									</div>
 							</div>
 
 						</div>
@@ -253,7 +265,6 @@
 										</div>
 									</div>
 									<div class="carousel-item">
-										<c:url value='/static/assets/img/slider_1.jpg' />
 										<img src="<c:url value='/static/assets/img/slider_2.jpg'/>"
 											alt="Chicago" width="100%" height="400">
 										<div class="carousel-caption">

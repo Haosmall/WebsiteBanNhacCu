@@ -2,6 +2,7 @@ package com.websitenhaccu.repository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -17,4 +18,7 @@ public interface SanPhamRepository extends JpaRepository<SanPham, String> {
 
 	public List<SanPham> findByTenSanPhamContainingAndXuatXuContainingAndDongSanPhamThuongHieuIdContainingAndDongSanPhamLoaiSanPhamIdContaining(
 			String tenSanPham, String xuatXu, String idThuongHieu, String idLoaiSanPham);
+	
+	public List<SanPham> findByDongSanPhamLoaiSanPhamIdOrDongSanPhamIdOrDongSanPhamThuongHieuId(String maLoai, String maDong, String maThuongHieu, Pageable pageable);
+	
 }

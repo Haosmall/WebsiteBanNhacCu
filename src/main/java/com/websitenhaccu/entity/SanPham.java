@@ -77,10 +77,10 @@ public class SanPham {
 	@EqualsAndHashCode.Exclude
 	private List<ChiTietHoaDon> chiTietHoaDons;
 
-	@OneToMany(mappedBy = "sanPham", fetch = FetchType.LAZY)
-	@ToString.Exclude
-	@EqualsAndHashCode.Exclude
-	private List<GiamGia> giamGias;
+//	@OneToMany(mappedBy = "sanPham", fetch = FetchType.LAZY)
+//	@ToString.Exclude
+//	@EqualsAndHashCode.Exclude
+//	private List<GiamGia> giamGias;
 
 	@OneToMany(mappedBy = "sanPham")
 	@ToString.Exclude
@@ -90,5 +90,23 @@ public class SanPham {
 	@ManyToOne
 	@JoinColumn(name = "dong_san_pham_id")
 	private DongSanPham dongSanPham;
+
+	public SanPham(String id, String tenSanPham, String moTa, double giaNhap, double giaBan, String xuatXu,
+			boolean trangThai, int baoHanh, int namSanXuat, NhaCungCap nhaCungCap, DongSanPham dongSanPham) {
+		super();
+		this.id = id;
+		this.tenSanPham = tenSanPham;
+		this.moTa = moTa;
+		this.giaNhap = giaNhap;
+		this.giaBan = giaBan;
+		this.xuatXu = xuatXu;
+		this.trangThai = trangThai;
+		this.baoHanh = baoHanh;
+		this.namSanXuat = namSanXuat;
+		this.nhaCungCap = nhaCungCap;
+		this.dongSanPham = dongSanPham;
+	}
+	
+	
 
 }

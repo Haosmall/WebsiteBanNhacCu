@@ -1,11 +1,13 @@
 package com.websitenhaccu.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import com.websitenhaccu.converter.SanPhamConverter;
 import com.websitenhaccu.dto.SanPhamDTO;
 import com.websitenhaccu.entity.MauSanPham;
 import com.websitenhaccu.entity.SanPham;
@@ -25,6 +27,8 @@ public class SanPhamServiceImpl implements SanPhamService {
 
 	@Autowired
 	ChiTietHoaDonRepository chiTietHoaDonRepository;
+	@Autowired
+	SanPhamConverter sanPhamConverter;
 
 	@Override
 	public void themSanPham(SanPham sanPham, MauSanPham mauSanPham) {
@@ -68,7 +72,8 @@ public class SanPhamServiceImpl implements SanPhamService {
 	public List<SanPham> timKiemSanPham(String tenSanPham, String maLoaiSanPham, String xuatXu, String maThuongHieu,
 			int page, int size) {
 		List<SanPham> sanPhams = sanPhamRepository
-				.findByTenSanPhamContainingAndXuatXuContainingAndDongSanPhamThuongHieuIdContainingAndDongSanPhamLoaiSanPhamIdContaining(tenSanPham, xuatXu, maThuongHieu, maLoaiSanPham);
+				.findByTenSanPhamContainingAndXuatXuContainingAndDongSanPhamThuongHieuIdContainingAndDongSanPhamLoaiSanPhamIdContaining(
+						tenSanPham, xuatXu, maThuongHieu, maLoaiSanPham);
 		return sanPhams;
 	}
 
@@ -90,6 +95,31 @@ public class SanPhamServiceImpl implements SanPhamService {
 				.map(sanPham -> new SanPhamDTO(sanPham.getId(), sanPham.getTenSanPham(), sanPham.getMoTa()))
 				.orElse(null);
 		return sanPhamDTO;
+	}
+
+	@Override
+	public List<SanPhamDTO> getDanhSachSanPhamTheoLoaiThuongHieuDong(String id, int page, int size) {
+		List<SanPhamDTO> sanPhamDTOs = new ArrayList<SanPhamDTO>();
+		List<SanPham> sanPhams = sanPhamRepository.findByDongSanPhamLoaiSanPhamIdOrDongSanPhamIdOrDongSanPhamThuongHieuId(id,id,id,
+				PageRequest.of(page, size));
+		
+		sanPhams.forEach(sp -> {
+			SanPhamDTO sanPhamDTO = sanPhamConverter.toSanPhamDTO(sp);
+			sanPhamDTOs.add(sanPhamDTO);
+		});
+		
+		return sanPhamDTOs;
+	}
+
+	@Override
+	public List<SanPhamDTO> getTatCaSanPham(int page, int size) {
+		List<SanPhamDTO> sanPhamDTOs = new ArrayList<SanPhamDTO>();
+		List<SanPham> sanPhams = sanPhamRepository.findAll(PageRequest.of(page, size)).getContent();
+		sanPhams.forEach(sp->{
+			SanPhamDTO sanPhamDTO = sanPhamConverter.toSanPhamDTO(sp);
+			sanPhamDTOs.add(sanPhamDTO);
+		});
+		return sanPhamDTOs;
 	}
 
 }
