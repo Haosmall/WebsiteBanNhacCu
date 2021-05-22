@@ -100,17 +100,15 @@
 						<div class="col-lg-6">
 							<div class="form-group">
 								<label>Giá nhập:</label>
-								<fmt:formatNumber type="number" pattern="0.00" value="${sanPhamDTO.giaNhap}" var="giaNhap"/>
-								<form:input path="giaNhap" class="form-control" value='${ giaNhap }'/>
+								<form:input path="giaNhap" class="form-control"/>
 								<form:errors path="giaNhap" cssClass="error"></form:errors>
 							</div>
 						</div>
-						
+<%-- <fmt:formatNumber type = "number" groupingUsed = "false" value="${ giaNhap }"/> --%>
 						<div class="col-lg-6">
 							<div class="form-group">
 								<label>Giá bán:</label>
-								<fmt:formatNumber type="number" pattern="0.00" value="${sanPhamDTO.giaBan}" var="giaBan"/>
-								<form:input path="giaBan" class="form-control" value='${ giaBan }'/>
+								<form:input path="giaBan" class="form-control" />
 								<form:errors path="giaBan" cssClass="error"></form:errors>
 							</div>
 						</div>

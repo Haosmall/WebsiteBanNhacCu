@@ -16,9 +16,9 @@
 		<div class="row">
 			<div class="col-lg-4">
 				<div class="form-group">
-					<label for="exampleInputEmail1">Tìm kiếm</label> <input
-						type="email" class="form-control" id="exampleInputEmail1"
-						aria-describedby="emailHelp" placeholder="Nhập tên sản phẩm">
+					<label for="exampleInputEmail1">Tìm kiếm</label> <input type="text"
+						oninput="typeSearch()" class="form-control" id="txtSearch" aria-describedby="emailHelp"
+						placeholder="Nhập tên sản phẩm">
 
 				</div>
 			</div>
@@ -29,8 +29,8 @@
 				<div class="form-group">
 					<label for="exampleInputEmail1">&#160;</label> <a type="button"
 						class="form-control btn btn-primary table__btn"
-						href="<c:url value='/admin/san-pham/them-san-pham'/>">Thêm
-						sản phẩm</a>
+						href="<c:url value='/admin/san-pham/them-san-pham'/>">Thêm sản
+						phẩm</a>
 				</div>
 			</div>
 
@@ -45,36 +45,30 @@
 					<tr>
 						<th>STT</th>
 						<th>Tên sản phẩm</th>
-						<th><select class="form-control"
-							id="exampleFormControlSelect1">
-								<option>Loại sản phẩm</option>
-								<option>2</option>
-								<option>3</option>
-								<option>4</option>
-								<option>5</option>
+						<th><select class="form-control" id="cboLoaiSanPham">
+								<option value="">Loại sản phẩm</option>
+								<c:forEach items="${listLoaiSanPham}" var="loaiSanPham">
+									<option value="${loaiSanPham.id}">${loaiSanPham.tenLoaiSanPham}</option>
+								</c:forEach>
 						</select></th>
-						<th><select class="form-control"
-							id="exampleFormControlSelect1">
-								<option>Xuất Xứ</option>
-								<option>2</option>
-								<option>3</option>
-								<option>4</option>
-								<option>5</option>
+						<th><select class="form-control" id="cboXuatXu">
+								<option value="">Xuất Xứ</option>
+								<c:forEach items="${listXuatXu}" var="xuatXu">
+									<option value="${xuatXu}">${xuatXu}</option>
+								</c:forEach>
 						</select></th>
-						<th><select class="form-control"
-							id="exampleFormControlSelect1">
-								<option>Thương Hiệu</option>
-								<option>2</option>
-								<option>3</option>
-								<option>4</option>
-								<option>5</option>
+						<th><select class="form-control" id="cboThuongHieu">
+								<option value="">Thương Hiệu</option>
+								<c:forEach items="${listThuongHieu}" var="thuongHieu">
+									<option value="${thuongHieu.id}">${thuongHieu.tenThuongHieu}</option>
+								</c:forEach>
 						</select></th>
 						<th>Số lượng</th>
 						<th></th>
 					</tr>
 				</thead>
 
-				<tbody>
+				<tbody id="tableSanPham">
 
 					<c:forEach items="${ listSanPham }" var="sanPham"
 						varStatus="counter">
@@ -84,9 +78,8 @@
 							<td>${ sanPham.dongSanPham.loaiSanPham.tenLoaiSanPham }</td>
 							<td>${ sanPham.xuatXu }</td>
 							<td>${ sanPham.dongSanPham.thuongHieu.tenThuongHieu }</td>
-							<td></td>
-							<td>
-								<input type="button" class="btn btn-primary table__btn"
+							<td>chua cap nhat</td>
+							<td><input type="button" class="btn btn-primary table__btn"
 								value="Chi tiết"
 								onclick="location.href='<c:url value='/admin/san-pham/xem-chi-tiet?id=${ sanPham.id }' />'">
 
@@ -99,6 +92,7 @@
 								onclick="location.href='<c:url value='/admin/san-pham/xoa-san-pham?id=${ sanPham.id }' />'">
 
 							</td>
+						</tr>
 					</c:forEach>
 
 				</tbody>
@@ -115,5 +109,6 @@
 	<p>${ user.userId }</p>
 	<p>${ user.email }</p>
 	<p>${ user.role }</p>
+	<script src='<c:url value="/static/assets/js/sanpham.js"/>'></script>
 </body>
 </html>

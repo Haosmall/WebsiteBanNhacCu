@@ -1,5 +1,6 @@
 package com.websitenhaccu.api;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +12,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.websitenhaccu.converter.SanPhamConverter;
 import com.websitenhaccu.dto.SanPhamDTO;
 import com.websitenhaccu.entity.DongSanPham;
 import com.websitenhaccu.entity.NhaCungCap;
+import com.websitenhaccu.entity.SanPham;
 import com.websitenhaccu.service.DongSanPhamService;
 import com.websitenhaccu.service.LoaiSanPhamService;
 import com.websitenhaccu.service.NhaCungCapService;
@@ -39,6 +42,9 @@ public class SanPhamRestController {
 	@Autowired
 	ThuongHieuService thuongHieuService;
 	
+	@Autowired
+	private SanPhamConverter sanPhamConverter;
+	
 	@GetMapping(value = "/danh-sach-nha-cung-cap")
 	public List<NhaCungCap> getDanhSachNhaCungCap() {
 		
@@ -61,6 +67,21 @@ public class SanPhamRestController {
 			return new ResponseEntity<SanPhamDTO>(HttpStatus.NOT_FOUND);
 		// status: 200 success
 		return ResponseEntity.ok(sanPhamDTO);
+	}
+	
+	@GetMapping("/danh-sach-san-pham/loai/xuat-xu/thuong-hieu")
+	public List<SanPhamDTO> getDanhSachDongSanPhamByLoaiXuatXUThuongHieu(@RequestParam("tenSanPham") String tenSanPham,
+			@RequestParam("xuatXu") String xuatXu, @RequestParam("maLoaiSanPham") String maLoaiSanPham, 
+			@RequestParam("maThuongHieu") String maThuongHieu) {
+		List<SanPhamDTO> sanPhamDTOs = new ArrayList<SanPhamDTO>();
+		List<SanPham> sanPhams = sanPhamService.timKiemSanPham(tenSanPham, maLoaiSanPham, xuatXu, maThuongHieu, 0, 0);
+		for(SanPham sp : sanPhams) {
+			SanPhamDTO sanPhamDTO = new SanPhamDTO(sp.getId(), sp.getTenSanPham(), sp.getXuatXu(), sp.getDongSanPham().getLoaiSanPham().getTenLoaiSanPham(), sp.getDongSanPham().getThuongHieu().getTenThuongHieu());
+			sanPhamDTOs.add(sanPhamDTO);
+		}
+		
+		return sanPhamDTOs;
+		
 	}
 
 }

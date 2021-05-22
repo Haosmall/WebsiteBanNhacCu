@@ -46,17 +46,17 @@ public class DongSanPhamRestController {
 /**
  * chi tim bang ten
  */
-//	@GetMapping("/danh-sach") //ko có bị lỗi do tìm ra 2 mapping có tham số string
-//	public List<DongSanPhamDTO> getDanhSachDongSanPhamTheoLoaiSanPhamVaThuongHieu
-//	(@RequestParam("maLoaiSanPham") String maLoaiSanPham, @RequestParam("maThuongHieu") String maThuongHieu) {
-//		List<DongSanPhamDTO> listDongSanPhamDTOs = new ArrayList<DongSanPhamDTO>();
-//		List<DongSanPham> listDongSanPhams = dongSanPhamService.getDanhSachDongSanPhamTheoLoaiSanPhamVaThuongHieu(maLoaiSanPham, maThuongHieu);
-//		for(DongSanPham d : listDongSanPhams) {
-//			DongSanPhamDTO d1 = new DongSanPhamDTO(d.getId(), d.getThuongHieu().getId(), d.getLoaiSanPham().getId(), d.getTenDongSanPham(), d.getThue());
-//			listDongSanPhamDTOs.add(d1);
-//		}
-//		return listDongSanPhamDTOs;
-//	}
+	@GetMapping("/danh-sach-maloaisanpham-mathuonghieu") //ko có bị lỗi do tìm ra 2 mapping có tham số string
+	public List<DongSanPhamDTO> getDanhSachDongSanPhamTheoLoaiSanPhamVaThuongHieu
+	(@RequestParam("maLoaiSanPham") String maLoaiSanPham, @RequestParam("maThuongHieu") String maThuongHieu) {
+		List<DongSanPhamDTO> listDongSanPhamDTOs = new ArrayList<DongSanPhamDTO>();
+		List<DongSanPham> listDongSanPhams = dongSanPhamService.getDanhSachDongSanPhamTheoLoaiSanPhamVaThuongHieu(maLoaiSanPham, maThuongHieu);
+		for(DongSanPham d : listDongSanPhams) {
+			DongSanPhamDTO d1 = new DongSanPhamDTO(d.getId(), d.getThuongHieu().getId(), d.getLoaiSanPham().getId(), d.getTenDongSanPham(), d.getThue());
+			listDongSanPhamDTOs.add(d1);
+		}
+		return listDongSanPhamDTOs;
+	}
 	
 	@GetMapping("/danh-sach") //ko có bị lỗi do tìm ra 2 mapping có tham số string
 	public List<DongSanPhamDTO> getDanhSachDongSanPhamTheoLoaiSanPhamVaThuongHieu

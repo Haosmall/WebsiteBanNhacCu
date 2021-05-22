@@ -109,8 +109,8 @@
                         <div class="collapse-divider"></div>
                         
                         <h6 class="collapse-header">Màu:</h6>
-                        <a class="collapse-item" href="<c:url value='/admin/dong-san-pham/danh-sach-dong-san-pham'/>">Danh sách màu</a>
-                        <a class="collapse-item" href="<c:url value='/admin/dong-san-pham/them-dong-san-pham'/>">Thêm màu</a>
+                        <a class="collapse-item" href="<c:url value='/admin/mau/danh-sach-mau'/>">Danh sách màu</a>
+                        <a class="collapse-item" href="<c:url value='/admin/mau/them-mau'/>">Thêm màu</a>
                         <div class="collapse-divider"></div>
 					</div>
 				</div></li>
