@@ -25,12 +25,13 @@ public class UserDTO {
 	private boolean enabled;
 	private String hinhAnhBase64;
 
+
 	public UserDTO(String userId) {
 		super();
 		this.userId = userId;
+
 	}
 
-	
 	public UserDTO(String userId, String fullName, GioiTinh gender, String phone, String email, ROLE role,
 			boolean enabled) {
 		super();

@@ -78,7 +78,7 @@
 			</div>
 
 			<div class="col-1">
-				<a href="#" class="cart__link"> <i
+				<a href='<c:url value = "/gio-hang"/>' class="cart__link"> <i
 					class="fas fa-shopping-cart cart__logo"></i> <span>Giỏ hàng</span>
 				</a>
 			</div>
@@ -167,7 +167,7 @@
 
 
 		<c:if
-			test="${ pageTitle != 'Đăng nhập' and pageTitle != 'Đăng kí tài khoản' and pageTitle !=  'Quên mật khẩu' and pageTitle !=  'Đổi mật khẩu'}">
+			test="${ pageTitle != 'Đăng nhập'and pageTitle != 'Giỏ hàng'  and pageTitle != 'Đăng kí tài khoản' and pageTitle !=  'Quên mật khẩu' and pageTitle !=  'Đổi mật khẩu' and pageTitle != 'Chi tiết sản phẩm'}">
 
 			<!-- Slider and  category -->
 			<div class="container slider_caterogies">

@@ -51,7 +51,7 @@
 </head>
 <body>
 
-	
+
 	<div class="container-fluid">
 
 		<!-- Row input -->
@@ -60,7 +60,8 @@
 
 			<div class="col-lg-6">
 				<h1 style="text-align: center;" id='formTitle'>${ formTitle }</h1>
-				<form:form action="" method="POST" modelAttribute="sanPhamDTO" enctype="multipart/form-data">
+				<form:form action="" method="POST" modelAttribute="sanPhamDTO"
+					enctype="multipart/form-data">
 
 					<form:hidden path="id" />
 
@@ -100,11 +101,11 @@
 						<div class="col-lg-6">
 							<div class="form-group">
 								<label>Giá nhập:</label>
-								<form:input path="giaNhap" class="form-control"/>
+								<form:input path="giaNhap" class="form-control" />
 								<form:errors path="giaNhap" cssClass="error"></form:errors>
 							</div>
 						</div>
-<%-- <fmt:formatNumber type = "number" groupingUsed = "false" value="${ giaNhap }"/> --%>
+						<%-- <fmt:formatNumber type = "number" groupingUsed = "false" value="${ giaNhap }"/> --%>
 						<div class="col-lg-6">
 							<div class="form-group">
 								<label>Giá bán:</label>
@@ -116,7 +117,7 @@
 
 
 					<div class="row">
-					
+
 						<div class="col-lg-3">
 							<div class="form-group">
 								<label>Loại sản phẩm:</label> <select id="maLoaiSanPham"
@@ -124,23 +125,22 @@
 									<c:forEach items="${ loaiSanPhams }" var="loaiSanPham">
 										<option value="${loaiSanPham.id}">${loaiSanPham.tenLoaiSanPham}</option>
 									</c:forEach>
-		
+
 								</select>
 							</div>
 						</div>
-					
+
 						<div class="col-lg-3">
 							<div class="form-group">
-								<label>Thương hiệu:</label> 
-								<select id="maThuongHieu"
+								<label>Thương hiệu:</label> <select id="maThuongHieu"
 									Class="form-control">
 									<c:forEach items="${ thuongHieus }" var="thuongHieu">
-										<option value="${thuongHieu.id}" >${thuongHieu.tenThuongHieu}</option>
+										<option value="${thuongHieu.id}">${thuongHieu.tenThuongHieu}</option>
 									</c:forEach>
 								</select>
 							</div>
 						</div>
-		
+
 						<div class="col-lg-6">
 							<div class="form-group">
 								<label>Dòng sản phẩm:</label>
@@ -150,47 +150,48 @@
 								</form:select>
 							</div>
 						</div>
-						
+
 					</div>
-					
-					<c:if test="${ formTitle eq 'Thêm sản phẩm' }">
+
+					<c:if test="${ formTitle == 'Thêm sản phẩm' }">
 						<div class="row">
-						<div class="col-lg-3">
-							<div class="form-group">
-								<label>Màu:</label> 
-								<select id="maMau" name="maMau" Class="form-control">
-									<c:forEach items="${ maus }" var="mau">
-										<option value="${mau.id}" >${mau.tenMau}</option>
-									</c:forEach>
-								</select>
+							<div class="col-lg-3">
+								<div class="form-group">
+									<label>Màu:</label> <select id="maMau" name="maMau"
+										Class="form-control">
+										<c:forEach items="${ maus }" var="mau">
+											<option value="${mau.id}">${mau.tenMau}</option>
+										</c:forEach>
+									</select>
+								</div>
 							</div>
-						</div>
-						
-						<div class="col-lg-3">
-							<div class="form-group">
-								<label>Số lượng:</label> 
-								<input name="soLuong" class="form-control"/>
+
+							<div class="col-lg-3">
+								<div class="form-group">
+									<label>Số lượng:</label> <input name="soLuong"
+										class="form-control" />
+								</div>
 							</div>
-						</div>
-			
-						<div class="col-lg-6">
-							<div class="form-group">
-								<label>Chọn ảnh:</label>
-								<label for="imageUpload" class="form-control btn btn-primary">Chọn ảnh</label>
-								<input type="file" name="hinhAnh" multiple="multiple" id="imageUpload" accept="image/*" style="display: none"/>
+
+							<div class="col-lg-6">
+								<div class="form-group">
+									<label>Chọn ảnh:</label> <label for="imageUpload"
+										class="form-control btn btn-primary">Chọn ảnh</label> <input
+										type="file" name="hinhAnh" multiple="multiple"
+										id="imageUpload" accept="image/*" style="display: none" />
+								</div>
 							</div>
+
 						</div>
-								
-					</div>
-						
+
 					</c:if>
-					
-					
+
+
 					<div class="form-group">
 						<label>Nhà cung cấp:</label>
 						<form:select path="maNhaCungCap" Class="form-control">
 							<form:options items="${ nhaCungCaps }" itemValue="maNhaCungCap"
-										itemLabel="tenNhaCungCap" />
+								itemLabel="tenNhaCungCap" />
 						</form:select>
 					</div>
 

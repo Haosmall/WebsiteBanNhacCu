@@ -17,6 +17,10 @@
 	crossorigin="anonymous">
 <link rel="stylesheet" href="static/style.css">
 
+
+<link rel="stylesheet"
+	href="<c:url value="/static/assets/css/ValidateStyle.css"/>" />
+
 </head>
 <body>
 	<!-- <form action="" method="Post">
@@ -39,12 +43,16 @@
 			</div> 
 			<p style="text-align: center">OR</p>-->
 			<input type="text" id="inputEmail" class="form-control"
-				placeholder="Email" required="" autofocus="" name="email"> 
-				<input
+				placeholder="Email" required="" autofocus="" name="email"
+				onblur="validateEmail()"> <span id="checkEmail"></span> <input
 				type="password" id="inputPassword" class="form-control"
-				placeholder="Mật khẩu" required="" name="password">
-				<label class="form-group">Duy trì đăng nhập</label>
-				<input type="checkbox" name="remember-me">
+				onblur="validatePassword()" placeholder="Mật khẩu" required=""
+				name="password"> <span id="checkPassword"></span> <label
+				class="form-group">Duy trì đăng nhập</label> <input type="checkbox"
+				name="remember-me"> 
+				
+				
+
 
 			<button class="btn btn-success btn-block" type="submit">
 				<i class="fas fa-sign-in-alt"></i> Đăng nhập
@@ -52,7 +60,7 @@
 			<a href='forgot-password' id="forgot_pswd">Quên mật khẩu?</a>
 			<hr>
 			<!-- <p>Don't have an account!</p>  -->
-			
+
 		</form>
 		<form class="form-signin" action="register">
 			<button class="btn btn-primary btn-block" type="submit"
@@ -62,7 +70,7 @@
 		</form>
 
 	</div>
-	
+
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script
@@ -70,5 +78,9 @@
 		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 		crossorigin="anonymous"></script>
 	<script src="/script.js"></script>
+
+	<script
+		src="<c:url value="/static/assets/js/validate/ValidateLogin.js"/>"></script>
+
 </body>
 </html>

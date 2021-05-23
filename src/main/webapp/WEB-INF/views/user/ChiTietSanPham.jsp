@@ -5,968 +5,555 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Trang chủ</title>
+<title>Chi tiết sản phẩm</title>
+<link rel="stylesheet" href="<c:url value="/static/assets/css/ProductDetail/ProductDetail.css"/>"/>
+<link rel="stylesheet" href="<c:url value="/static/assets/css/main.css"/>"/>
 </head>
 <body>
 
+	<div class="container mt-3 wrapper--top">
+			<div class="container body">
+				<div class="row main_info">
+					<!--slider and image  -->
+					<div class="col-4 slider">
+						<div class="image">
+						
+							<c:choose>
+	                           <c:when test="${ !empty sanPhamDTO.hinhAnhBase64 }">
+	                            	<img src="data:image/jpg;base64,${ sanPhamDTO.hinhAnhBase64 }" alt="">
+	                            </c:when>
+	                            <c:otherwise>
+	                                <img src="<c:url value='/static/assets/img/slider_2.jpg'/>" alt="">
+	                            </c:otherwise>
+	                        </c:choose>
+						</div>
 
+						<div class="container__slider">
+							<div class="slider__image">
+								<c:forEach items="${ mauSanPhamDTOs }" var="mauSanPhamDTO">
+									<div class="slider__image__frame">
+										<img
+											src="data:image/jpg;base64,${ mauSanPhamDTO.hinhAnhBase64 }"
+											class="slider__image__frame--detail"
+											alt=""
+										/>
+									</div>
+								</c:forEach>
+
+							</div>
+						</div>
+
+						<i class="fas fa-chevron-right move arrow--right"></i>
+						<i class="fas fa-chevron-left move arrow--left"></i>
+					</div>
+
+					<div class="col-8 title__product">
+						<div class="title">
+							<span class="name__product"
+								>${ sanPhamDTO.tenSanPham }</span
+							>
+							<span class="id--sanpham">Mã sản phẩm: ${ sanPhamDTO.id }</span>
+							<span>Thương hiệu: <b class="brand">${ sanPhamDTO.tenThuongHieu }</b></span>
+							<div class="start-ratting">
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star"></span>
+								<a href="">8 đánh giá</a>
+							</div>
+
+							<span
+								>Giá bán:
+								<b class="price__product"
+									><fmt:formatNumber type = "currency" value = "${ sanPhamDTO.giaBan }" currencySymbol=""/> VNĐ</b
+								></span
+							>
+							<div class="select_color">
+									<div class="color selected__color">
+										<span>${ mauSanPhamDTOs.get(0).tenMau }</span>
+									</div>
+								<c:forEach items="${ mauSanPhamDTOs }" var="mauSanPhamDTO">
+									<c:if test="${ mauSanPhamDTOs.get(0).tenMau !=  mauSanPhamDTO.tenMau }">
+										<div class="color">
+											<span>${ mauSanPhamDTO.tenMau }</span>
+										</div>
+									</c:if>
+								</c:forEach>
+							</div>
+						</div>
+
+						<div class="interactive__general--info">
+							<div class="interactive">
+								<a href="">
+									<button class="button--inter mua--ngay">
+										Mua ngay
+									</button>
+								</a>
+
+								<a href="">
+									<button
+										class="button--inter themvao--giohang"
+									>
+										Thêm vào giỏ hàng
+									</button>
+								</a>
+							</div>
+
+							<div class="general--info">
+								<table class="table table-striped">
+									<tbody>
+										<tr>
+											<td>Loại nhạc cụ</td>
+											<td>${ sanPhamDTO.tenLoaiSanPham }</td>
+										</tr>
+										<tr>
+											<td>Dòng nhạc cụ</td>
+											<td>${ sanPhamDTO.tenDongSanPham }</td>
+										</tr>
+										<tr>
+											<td>Năm sản xuất</td>
+											<td>${ sanPhamDTO.namSanXuat }</td>
+										</tr>
+										<tr>
+											<td>Xuất xứ</td>
+											<td>${ sanPhamDTO.xuatXu }</td>
+										</tr>
+										<tr>
+											<td>Bảo hành</td>
+											<td>${ sanPhamDTO.baoHanh } năm</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="container info__specific">
+			<div class="info">
+				${ sanPhamDTO.moTa }
+				<div id="gradientback"></div>
+				<button
+					class="btn btn-outline-danger"
+					id="readmore"
+					onclick="moreInfo()"
+				>
+					Xem thêm thông tin <i class="fas fa-caret-down"></i>
+				</button>
+			</div>
+		</div>
+
+		<!-- phần đánh giá -->
+
+		<h5 class="container title_product_evaluate">
+			11 Đánh giá ${ sanPhamDTO.tenSanPham }
+		</h5>
+		<div class="container evaluate__sendratting">
+			<div class="evaluate">
+				<div class="block__star">
+					<div class="average__star">
+						<h4>Sao trung bình</h4>
+						<p class="figure__average">
+							4.8<span class="fa fa-star checked"></span>
+						</p>
+					</div>
+
+					<div class="stick"></div>
+
+					<div class="user__ratting">
+						<div class="user__ratting--sub">
+							<span
+								>5<span class="fa fa-star checked"></span
+							></span>
+							<div class="ratting rat"></div>
+							<div class="ratting"></div>
+							<div class="evaluate--adjust">
+								<span class="amount_of_ratting_star">300</span>
+
+								<span class="amount_evaluate"> đánh giá</span>
+							</div>
+						</div>
+
+						<div class="user__ratting--sub">
+							<span
+								>4<span class="fa fa-star checked"></span
+							></span>
+							<div class="ratting rat"></div>
+							<div class="ratting"></div>
+							<div class="evaluate--adjust">
+								<span class="amount_of_ratting_star">50</span>
+
+								<span class="amount_evaluate"> đánh giá</span>
+							</div>
+						</div>
+
+						<div class="user__ratting--sub">
+							<span
+								>4<span class="fa fa-star checked"></span
+							></span>
+							<div class="ratting rat"></div>
+							<div class="ratting"></div>
+							<div class="evaluate--adjust">
+								<span class="amount_of_ratting_star">20</span>
+
+								<span class="amount_evaluate"> đánh giá</span>
+							</div>
+						</div>
+
+						<div class="user__ratting--sub">
+							<span
+								>2<span class="fa fa-star checked"></span
+							></span>
+							<div class="ratting rat"></div>
+							<div class="ratting"></div>
+							<div class="evaluate--adjust">
+								<span class="amount_of_ratting_star">70</span>
+
+								<span class="amount_evaluate"> đánh giá</span>
+							</div>
+						</div>
+
+						<div class="user__ratting--sub">
+							<span
+								>1<span class="fa fa-star checked"></span
+							></span>
+							<div class="ratting rat"></div>
+							<div class="ratting"></div>
+							<div class="evaluate--adjust">
+								<span class="amount_of_ratting_star">30</span>
+
+								<span class="amount_evaluate"> đánh giá</span>
+							</div>
+						</div>
+					</div>
+
+					<!-- <div class="stick"></div> -->
+
+					<div class="button_evaluate" hidden>
+						<button class="btn btn-danger sendEvaluate">
+							Gửi đánh giá của bạn
+						</button>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<!-- comment đánh giá -->
+		<div class="cmt__evaluate container">
+			<div class="user__cmt">
+				<p>
+					<b>Hoàng Phúc</b><span> || Ngày 05-07-2021 00:00:11</span>
+				</p>
+				<p>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					&nbsp;
+					<span>Loa kêu như con cat ho</span>
+				</p>
+				<hr />
+				<div class="user__cmt--img">
+					<img src="../asset/image/slider_1.jpg" alt="" />
+					<img src="../asset/image/slider_2.jpg" alt="" />
+
+					<img src="../asset/image/slider_3.jpg" alt="" />
+
+					<img src="../asset/image/slider_1.jpg" alt="" />
+					<img src="../asset/image/slider_2.jpg" alt="" />
+					<img src="../asset/image/slider_3.jpg" alt="" />
+					<img src="../asset/image/logo_vinfast.png" alt="" />
+				</div>
+			</div>
+
+			<div class="user__cmt">
+				<p>
+					<b>Hoàng Phúc</b><span> || Ngày 05-07-2021 00:00:11</span>
+				</p>
+				<p>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					&nbsp;
+					<span>Loa kêu như con cat ho</span>
+				</p>
+				<hr />
+			</div>
+
+			<div class="user__cmt">
+				<p>
+					<b>Hoàng Phúc</b><span> || Ngày 05-07-2021 00:00:11</span>
+				</p>
+				<p>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					&nbsp;
+					<span>Loa kêu như con cat ho</span>
+				</p>
+				<hr />
+			</div>
+
+			<div class="user__cmt">
+				<p>
+					<b>Hoàng Phúc</b><span> || Ngày 05-07-2021 00:00:11</span>
+				</p>
+				<p>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					&nbsp;
+					<span>Loa kêu như con cat ho</span>
+				</p>
+				<hr />
+			</div>
+
+			<div class="user__cmt">
+				<p>
+					<b>Hoàng Phúc</b><span> || Ngày 05-07-2021 00:00:11</span>
+				</p>
+				<p>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					&nbsp;
+					<span>Loa kêu như con cat ho</span>
+				</p>
+				<hr />
+			</div>
+
+			<div class="user__cmt">
+				<p>
+					<b>Hoàng Phúc</b><span> || Ngày 05-07-2021 00:00:11</span>
+				</p>
+				<p>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					&nbsp;
+					<span>Loa kêu như con cat ho</span>
+				</p>
+				<hr />
+			</div>
+
+			<div class="user__cmt">
+				<p>
+					<b>Hoàng Phúc</b><span> || Ngày 05-07-2021 00:00:11</span>
+				</p>
+				<p>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					&nbsp;
+					<span>Loa kêu như con cat ho</span>
+				</p>
+				<hr />
+			</div>
+
+			<div class="user__cmt">
+				<p>
+					<b>Hoàng Phúc</b><span> || Ngày 05-07-2021 00:00:11</span>
+				</p>
+				<p>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					&nbsp;
+					<span>Loa kêu như con cat ho</span>
+				</p>
+				<hr />
+			</div>
+
+			<div class="user__cmt">
+				<p>
+					<b>Hoàng Phúc</b><span> || Ngày 05-07-2021 00:00:11</span>
+				</p>
+				<p>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					&nbsp;
+					<span>Loa kêu như con cat ho</span>
+				</p>
+				<hr />
+			</div>
+
+			<div class="user__cmt">
+				<p>
+					<b>Hoàng Phúc</b><span> || Ngày 05-07-2021 00:00:11</span>
+				</p>
+				<p>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					&nbsp;
+					<span>Loa kêu như con cat ho</span>
+				</p>
+				<hr />
+			</div>
+
+			<div class="user__cmt">
+				<p>
+					<b>Hoàng Phúc</b><span> || Ngày 05-07-2021 00:00:11</span>
+				</p>
+				<p>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					&nbsp;
+					<span>Loa kêu như con cat ho</span>
+				</p>
+				<hr />
+			</div>
+
+			<div class="user__cmt">
+				<p>
+					<b>Hoàng Phúc</b><span> || Ngày 05-07-2021 00:00:11</span>
+				</p>
+				<p>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					&nbsp;
+					<span>Loa kêu như con cat ho</span>
+				</p>
+				<hr />
+			</div>
+
+			<div class="user__cmt">
+				<p>
+					<b>Hoàng Phúc</b><span> || Ngày 05-07-2021 00:00:11</span>
+				</p>
+				<p>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					&nbsp;
+					<span>Loa kêu như con cat ho</span>
+				</p>
+				<hr />
+			</div>
+
+			<div class="user__cmt">
+				<p>
+					<b>Hoàng Phúc</b><span> || Ngày 05-07-2021 00:00:11</span>
+				</p>
+				<p>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					&nbsp;
+					<span>Loa kêu như con cat ho</span>
+				</p>
+				<hr />
+			</div>
+
+			<div class="user__cmt">
+				<p>
+					<b>Hoàng Phúc</b><span> || Ngày 05-07-2021 00:00:11</span>
+				</p>
+				<p>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					&nbsp;
+					<span>Loa kêu như con cat ho</span>
+				</p>
+				<hr />
+			</div>
+
+			<div class="user__cmt">
+				<p>
+					<b>Hoàng Phúc</b><span> || Ngày 05-07-2021 00:00:11</span>
+				</p>
+				<p>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					&nbsp;
+					<span>Loa kêu như con cat ho</span>
+				</p>
+				<hr />
+			</div>
+
+			<div class="user__cmt">
+				<p>
+					<b>Hoàng Phúc</b><span> || Ngày 05-07-2021 00:00:11</span>
+				</p>
+				<p>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					&nbsp;
+					<span>Loa kêu như con cat ho</span>
+				</p>
+				<hr />
+			</div>
+
+			<div class="user__cmt">
+				<p>
+					<b>Hoàng Phúc</b><span> || Ngày 05-07-2021 00:00:11</span>
+				</p>
+				<p>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					&nbsp;
+					<span>Loa kêu như con cat ho</span>
+				</p>
+				<hr />
+			</div>
+		</div>
+
+		<button
+			class="btn btn-outline-danger btn-morecmt"
+			onclick="getMoreComment()"
+		>
+			Xem thêm đánh giá&nbsp;<i class="fas fa-arrow-right"></i>
+		</button>
+
+		<script src="<c:url value="/static/assets/js/ProductDetail_page/UserRatting.js"/>"></script>
+		<script src="<c:url value="/static/assets/js/ProductDetail_page/ProductDetail.js"/>"></script>
+		<script src="<c:url value="/static/assets/js/ProductDetail_page/Comment.js"/>"></script>
 	
-        <!-- Slider and  category -->
-        <div class="container slider_caterogies">
-
-            <div class="row">
-
-                <!-- category -->
-                <div class="col-2 pl-0 pr-0 ">
-
-                    <div class="categories">
-
-                        <div class="category__adjust">
-
-                            <div class="category">
-                                <div class="item">
-                                    <i class="fas fa-guitar category__icon"></i>
-                                    <a class="category__name" href="">Guitar</a>
-                                </div>
-                                <div class="sub-category">
-                                    <div class="category-detail">
-
-                                        <div class="category__line">
-                                            <a href=""><img src="<c:url value='/static/assets/img/yamaha_logo.png'/>" alt=""></a>
-                                            <p><b>Đàn Guitar yamaha</b></p>
-                                            <hr>
-                                            <p>Dòng sản phẩm 1 </p>
-                                            <p>Dòng sản phẩm 2 </p>
-                                            <p>Dòng sản phẩm 3 </p>
-                                            <p>Dòng sản phẩm 4 </p>
-                                        </div>
-
-
-
-                                        <div class="category__line">
-                                            <a href=""><img src="<c:url value='/static/assets/img/yamaha_logo.png'/>" alt=""></a>
-                                            <p><b>Đàn Guitar yamaha</b></p>
-                                            <hr>
-                                            <p>Dòng sản phẩm 1 </p>
-                                            <p>Dòng sản phẩm 2 </p>
-                                            <p>Dòng sản phẩm 3 </p>
-                                            <p>Dòng sản phẩm 4 </p>
-                                        </div>
-
-
-                                        <div class="category__line">
-                                            <a href=""><img src="<c:url value='/static/assets/img/yamaha_logo.png'/>" alt=""></a>
-                                            <p><b>Đàn Guitar yamaha</b></p>
-                                            <hr>
-                                            <p>Dòng sản phẩm 1 </p>
-                                            <p>Dòng sản phẩm 2 </p>
-                                            <p>Dòng sản phẩm 3 </p>
-                                            <p>Dòng sản phẩm 4 </p>
-                                        </div>
-
-
-                                        <div class="category__line">
-                                            <a href=""><img src="<c:url value='/static/assets/img/yamaha_logo.png'/>" alt=""></a>
-                                            <p><b>Đàn Guitar yamaha</b></p>
-                                            <hr>
-                                            <p>Dòng sản phẩm 1 </p>
-                                            <p>Dòng sản phẩm 2 </p>
-                                            <p>Dòng sản phẩm 3 </p>
-                                            <p>Dòng sản phẩm 4 </p>
-                                        </div>
-
-
-                                        <div class="category__line">
-                                            <a href=""><img src="<c:url value='/static/assets/img/yamaha_logo.png'/>" alt=""></a>
-                                            <p><b>Đàn Guitar yamaha</b></p>
-                                            <hr>
-                                            <p>Dòng sản phẩm 1 </p>
-                                            <p>Dòng sản phẩm 2 </p>
-                                            <p>Dòng sản phẩm 3 </p>
-                                            <p>Dòng sản phẩm 4 </p>
-                                        </div>
-
-
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- here -->
-                            <div class="category">
-                                <div class="item">
-                                    <i class="fas fa-guitar category__icon"></i>
-                                    <a class="category__name" href="">Guitar</a>
-                                </div>
-                                <div class="sub-category">
-                                    <div class="category-detail">
-                                        <div class="category__line">
-                                            <a href=""><img src="<c:url value='/static/assets/img/yamaha_logo.png'/>" alt=""></a>
-                                            <p><b>Đàn Guitar yamaha</b></p>
-                                            <hr>
-                                            <p>Dòng sản phẩm 1 </p>
-                                            <p>Dòng sản phẩm 2 </p>
-                                            <p>Dòng sản phẩm 3 </p>
-                                            <p>Dòng sản phẩm 4 </p>
-
-
-                                        </div>
-                                        <div class="category__line">4</div>
-                                        <div class="category__line">4</div>
-                                        <div class="category__line">4</div>
-                                        <div class="category__line">4</div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="category">
-                                <div class="item">
-                                    <i class="fas fa-guitar category__icon"></i>
-                                    <a class="category__name" href="">Guitar</a>
-                                </div>
-                                <div class="sub-category">
-                                    <div class="category-detail">
-                                        <div class="category__line">
-                                            <a href=""><img src="<c:url value='/static/assets/img/yamaha_logo.png'/>" alt=""></a>
-                                            <p><b>Đàn Guitar yamaha</b></p>
-                                            <hr>
-                                            <p>Dòng sản phẩm 1 </p>
-                                            <p>Dòng sản phẩm 2 </p>
-                                            <p>Dòng sản phẩm 3 </p>
-                                            <p>Dòng sản phẩm 4 </p>
-
-
-                                        </div>
-                                        <div class="category__line">4</div>
-                                        <div class="category__line">4</div>
-                                        <div class="category__line">4</div>
-                                        <div class="category__line">4</div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="category">
-                                <div class="item">
-                                    <i class="fas fa-guitar category__icon"></i>
-                                    <a class="category__name" href="">Guitar</a>
-                                </div>
-                                <div class="sub-category">
-                                    <div class="category-detail">
-                                        <div class="category__line">
-                                            <a href=""><img src="<c:url value='/static/assets/img/yamaha_logo.png'/>" alt=""></a>
-                                            <p><b>Đàn Guitar yamaha</b></p>
-                                            <hr>
-                                            <p>Dòng sản phẩm 1 </p>
-                                            <p>Dòng sản phẩm 2 </p>
-                                            <p>Dòng sản phẩm 3 </p>
-                                            <p>Dòng sản phẩm 4 </p>
-
-
-                                        </div>
-                                        <div class="category__line">4</div>
-                                        <div class="category__line">4</div>
-                                        <div class="category__line">4</div>
-                                        <div class="category__line">4</div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="category">
-                                <div class="item">
-                                    <i class="fas fa-guitar category__icon"></i>
-                                    <a class="category__name" href="">Guitar</a>
-                                </div>
-                                <div class="sub-category">
-                                    <div class="category-detail">
-                                        <div class="category__line">
-                                            <a href=""><img src="<c:url value='/static/assets/img/yamaha_logo.png'/>" alt=""></a>
-                                            <p><b>Đàn Guitar yamaha</b></p>
-                                            <hr>
-                                            <p>Dòng sản phẩm 1 </p>
-                                            <p>Dòng sản phẩm 2 </p>
-                                            <p>Dòng sản phẩm 3 </p>
-                                            <p>Dòng sản phẩm 4 </p>
-
-
-                                        </div>
-                                        <div class="category__line">4</div>
-                                        <div class="category__line">4</div>
-                                        <div class="category__line">4</div>
-                                        <div class="category__line">4</div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="category">
-                                <div class="item">
-                                    <i class="fas fa-guitar category__icon"></i>
-                                    <a class="category__name" href="">Guitar</a>
-                                </div>
-                                <div class="sub-category">
-                                    <div class="category-detail">
-                                        <div class="category__line">
-                                            <a href=""><img src="<c:url value='/static/assets/img/yamaha_logo.png'/>" alt=""></a>
-                                            <p><b>Đàn Guitar yamaha</b></p>
-                                            <hr>
-                                            <p>Dòng sản phẩm 1 </p>
-                                            <p>Dòng sản phẩm 2 </p>
-                                            <p>Dòng sản phẩm 3 </p>
-                                            <p>Dòng sản phẩm 4 </p>
-
-
-                                        </div>
-                                        <div class="category__line">4</div>
-                                        <div class="category__line">4</div>
-                                        <div class="category__line">4</div>
-                                        <div class="category__line">4</div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="category">
-                                <div class="item">
-                                    <i class="fas fa-guitar category__icon"></i>
-                                    <a class="category__name" href="">Guitar</a>
-                                </div>
-                                <div class="sub-category">
-                                    <div class="category-detail">
-                                        <div class="category__line">
-                                            <a href=""><img src="<c:url value='/static/assets/img/yamaha_logo.png'/>" alt=""></a>
-                                            <p><b>Đàn Guitar yamaha</b></p>
-                                            <hr>
-                                            <p>Dòng sản phẩm 1 </p>
-                                            <p>Dòng sản phẩm 2 </p>
-                                            <p>Dòng sản phẩm 3 </p>
-                                            <p>Dòng sản phẩm 4 </p>
-
-
-                                        </div>
-                                        <div class="category__line">4</div>
-                                        <div class="category__line">4</div>
-                                        <div class="category__line">4</div>
-                                        <div class="category__line">4</div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="category">
-                                <div class="item">
-                                    <i class="fas fa-guitar category__icon"></i>
-                                    <a class="category__name" href="">Guitar</a>
-                                </div>
-                                <div class="sub-category">
-                                    <div class="category-detail">
-                                        <div class="category__line">
-                                            <a href="" class="category__line--link"><img
-                                                    src="<c:url value='/static/assets/img/yamaha_logo.png'/>" alt=""></a>
-                                            <p><b>Đàn Guitar yamaha</b></p>
-                                            <hr>
-                                            <p>Dòng sản phẩm 1 </p>
-                                            <p>Dòng sản phẩm 2 </p>
-                                            <p>Dòng sản phẩm 3 </p>
-                                            <p>Dòng sản phẩm 4 </p>
-
-
-                                        </div>
-                                        <div class="category__line">4</div>
-                                        <div class="category__line">4</div>
-                                        <div class="category__line">4</div>
-                                        <div class="category__line">4</div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="category">
-                                <div class="item">
-                                    <i class="fas fa-guitar category__icon"></i>
-                                    <a class="category__name" href="">Guitar</a>
-                                </div>
-                                <div class="sub-category">
-                                    <div class="category-detail">
-                                        <div class="category__line">
-                                            <a href=""><img src="<c:url value='/static/assets/img/yamaha_logo.png'/>" alt=""></a>
-                                            <p><b>Đàn Guitar yamaha</b></p>
-                                            <hr>
-                                            <p>Dòng sản phẩm 1 </p>
-                                            <p>Dòng sản phẩm 2 </p>
-                                            <p>Dòng sản phẩm 3 </p>
-                                            <p>Dòng sản phẩm 4 </p>
-
-
-                                        </div>
-                                        <div class="category__line">4</div>
-                                        <div class="category__line">4</div>
-                                        <div class="category__line">4</div>
-                                        <div class="category__line">4</div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
-
-
-
-                <!-- slider -->
-                <div class="col-7 slider ml-2">
-                    <div class="row">
-                        <div id="demo" class="carousel slide" data-ride="carousel">
-
-                            <!-- Indicators -->
-                            <ul class="carousel-indicators">
-                                <li data-target="#demo" data-slide-to="0" class="active"></li>
-                                <li data-target="#demo" data-slide-to="1"></li>
-                                <li data-target="#demo" data-slide-to="2"></li>
-                            </ul>
-
-                            <!-- The slideshow -->
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img src="<c:url value='/static/assets/img/slider_1.jpg'/>" alt="Los Angeles" width="100%" height="400">
-                                    <div class="carousel-caption">
-                                        <h3>Los Angeles</h3>
-                                        <p>We had such a great time in LA!</p>
-                                    </div>
-                                </div>
-                                <div class="carousel-item"><c:url value='/static/assets/img/slider_1.jpg'/>
-                                    <img src="<c:url value='/static/assets/img/slider_2.jpg'/>" alt="Chicago" width="100%" height="400">
-                                    <div class="carousel-caption">
-                                        <h3>Los Angeles</h3>
-                                        <p>We had such a great time in LA!</p>
-                                    </div>
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="<c:url value='/static/assets/img/slider_3.jpg'/>" alt="New York" width="100%" height="400">
-                                    <div class="carousel-caption">
-                                        <h3>Los Angeles</h3>
-                                        <p>We had such a great time in LA!</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Left and right controls -->
-                            <a class="carousel-control-prev" href="#demo" data-slide="prev">
-                                <span class="carousel-control-prev-icon"></span>
-                            </a>
-                            <a class="carousel-control-next" href="#demo" data-slide="next">
-                                <span class="carousel-control-next-icon"></span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- side -->
-                <div class="col ml-2 sider">
-                    <div class="row">
-                        <img src="<c:url value='/static/assets/img/slider_1.jpg'/>" alt="">
-                    </div>
-
-                    <div class="row">
-                        <img src="<c:url value='/static/assets/img/slider_2.jpg'/>" alt="">
-                    </div>
-
-                    <div class="row">
-                        <img src="<c:url value='/static/assets/img/slider_3.jpg'/>" alt="">
-                    </div>
-                </div>
-
-
-
-            </div>
-        </div>
-
-        <!-- Sản phẩm nổi bật -->
-        <div class="container  mt-3 best_sell_product">
-
-            <!-- Chổ này load lên 5 10 hoặc 15 sản phẩm cho nó full dòng -->
-            <h2 class="product__title ">SẢN PHẨM NỔI BẬT</h2>
-
-
-
-            <div class="row pl-0 pr-0 list__product--sell">
-                <div class="product">
-                    <div class="product__img"><c:url value='/static/assets/img/product_banchay.jpg'/>
-                        <img src="<c:url value='/static/assets/img/product_banchay.jpg'/>" alt="">
-                    </div>
-                    <p class="product__name"><b>Đàn guitar rexona yamaha</b></p>
-
-                    <div class="additional">
-                        <p>Thương hiệu: <b>Durex cực mạnh</b></p>
-                        <p>Xuất xứ: <b>Ý</b></p>
-                    </div>
-
-                    <p class="money">123000000 VND</p>
-                    <div class="start-ratting">
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star"></span>
-                    </div>
-                </div>
-
-                <div class="product">
-                    <div class="product__img">
-                        <img src="<c:url value='/static/assets/img/product_banchay.jpg'/>" alt="">
-                    </div>
-                    <p class="product__name"><b>Đàn guitar rexona yamaha</b></p>
-
-                    <div class="additional">
-                        <p>Thương hiệu: <b>Durex cực mạnh</b></p>
-                        <p>Xuất xứ: <b>Ý</b></p>
-                    </div>
-
-                    <p class="money">123000000 VND</p>
-                    <div class="start-ratting">
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star"></span>
-                    </div>
-                </div>
-
-                <div class="product">
-                    <div class="product__img">
-                        <img src="<c:url value='/static/assets/img/product_banchay.jpg'/>" alt="">
-                    </div>
-                    <p class="product__name"><b>Đàn guitar rexona yamaha</b></p>
-
-                    <div class="additional">
-                        <p>Thương hiệu: <b>Durex cực mạnh</b></p>
-                        <p>Xuất xứ: <b>Ý</b></p>
-                    </div>
-
-                    <p class="money">123000000 VND</p>
-                    <div class="start-ratting">
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star"></span>
-                    </div>
-                </div>
-
-                <div class="product">
-                    <div class="product__img">
-                        <img src="<c:url value='/static/assets/img/product_banchay.jpg'/>" alt="">
-                    </div>
-                    <p class="product__name"><b>Đàn guitar rexona yamaha</b></p>
-
-                    <div class="additional">
-                        <p>Thương hiệu: <b>Durex cực mạnh</b></p>
-                        <p>Xuất xứ: <b>Ý</b></p>
-                    </div>
-
-                    <p class="money">123000000 VND</p>
-                    <div class="start-ratting">
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star"></span>
-                    </div>
-                </div>
-
-                <div class="product">
-                    <div class="product__img">
-                        <img src="<c:url value='/static/assets/img/product_banchay.jpg'/>" alt="">
-                    </div>
-                    <p class="product__name"><b>Đàn guitar rexona yamaha</b></p>
-
-                    <div class="additional">
-                        <p>Thương hiệu: <b>Durex cực mạnh</b></p>
-                        <p>Xuất xứ: <b>Ý</b></p>
-                    </div>
-
-                    <p class="money">123000000 VND</p>
-                    <div class="start-ratting">
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star"></span>
-                    </div>
-                </div>
-
-
-            </div>
-
-
-
-
-
-        </div>
-
-        <!-- Row logo -->
-        <div class="container mt-3 mb-3 container__brand">
-            <div class="row list__brand">
-                <a href=""><img class="brand--img" src="<c:url value='/static/assets/img/yamaha_logo.png'/>" alt=""></a>
-                <a href=""><img class="brand--img" src="<c:url value='/static/assets/img/yamaha_logo.png'/>" alt=""></a>
-                <a href=""><img class="brand--img" src="<c:url value='/static/assets/img/yamaha_logo.png'/>" alt=""></a>
-                <a href=""><img class="brand--img" src="<c:url value='/static/assets/img/yamaha_logo.png'/>" alt=""></a>
-
-            </div>
-        </div>
-
-
-        <!-- Sản phẩm bán chạy -->
-
-        <div class="container mt-2 best_sell_product">
-
-            <!-- Chổ này load lên 5 10 hoặc 15 sản phẩm cho nó full dòng -->
-            <h2 class="product__title">SẢN PHẨM BÁN CHẠY</h2>
-
-
-
-            <div class="row pl-0 pr-0 list__product--sell">
-                <div class="product">
-                    <div class="product__img">
-                        <img src="<c:url value='/static/assets/img/product_banchay.jpg'/>" alt="">
-                    </div>
-                    <p class="product__name"><b>Đàn guitar rexona yamaha</b></p>
-
-                    <div class="additional">
-                        <p>Thương hiệu: <b>Durex cực mạnh</b></p>
-                        <p>Xuất xứ: <b>Ý</b></p>
-                    </div>
-
-                    <p class="money">123000000 VND</p>
-                    <div class="start-ratting">
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star"></span>
-                    </div>
-                </div>
-
-                <div class="product">
-                    <div class="product__img">
-                        <img src="<c:url value='/static/assets/img/product_banchay.jpg'/>" alt="">
-                    </div>
-                    <p class="product__name"><b>Đàn guitar rexona yamaha</b></p>
-
-                    <div class="additional">
-                        <p>Thương hiệu: <b>Durex cực mạnh</b></p>
-                        <p>Xuất xứ: <b>Ý</b></p>
-                    </div>
-
-                    <p class="money">123000000 VND</p>
-                    <div class="start-ratting">
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star"></span>
-                    </div>
-                </div>
-
-                <div class="product">
-                    <div class="product__img">
-                        <img src="<c:url value='/static/assets/img/product_banchay.jpg'/>" alt="">
-                    </div>
-                    <p class="product__name"><b>Đàn guitar rexona yamaha</b></p>
-
-                    <div class="additional">
-                        <p>Thương hiệu: <b>Durex cực mạnh</b></p>
-                        <p>Xuất xứ: <b>Ý</b></p>
-                    </div>
-
-                    <p class="money">123000000 VND</p>
-                    <div class="start-ratting">
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star"></span>
-                    </div>
-                </div>
-
-                <div class="product">
-                    <div class="product__img">
-                        <img src="<c:url value='/static/assets/img/product_banchay.jpg'/>" alt="">
-                    </div>
-                    <p class="product__name"><b>Đàn guitar rexona yamaha</b></p>
-
-                    <div class="additional">
-                        <p>Thương hiệu: <b>Durex cực mạnh</b></p>
-                        <p>Xuất xứ: <b>Ý</b></p>
-                    </div>
-
-                    <p class="money">123000000 VND</p>
-                    <div class="start-ratting">
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star"></span>
-                    </div>
-                </div>
-
-                <div class="product">
-                    <div class="product__img">
-                        <img src="<c:url value='/static/assets/img/product_banchay.jpg'/>" alt="">
-                    </div>
-                    <p class="product__name"><b>Đàn guitar rexona yamaha</b></p>
-
-                    <div class="additional">
-                        <p>Thương hiệu: <b>Durex cực mạnh</b></p>
-                        <p>Xuất xứ: <b>Ý</b></p>
-                    </div>
-
-                    <p class="money">123000000 VND</p>
-                    <div class="start-ratting">
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star"></span>
-                    </div>
-                </div>
-
-                <div class="product">
-                    <div class="product__img">
-                        <img src="<c:url value='/static/assets/img/product_banchay.jpg'/>" alt="">
-                    </div>
-                    <p class="product__name"><b>Đàn guitar rexona yamaha</b></p>
-
-                    <div class="additional">
-                        <p>Thương hiệu: <b>Durex cực mạnh</b></p>
-                        <p>Xuất xứ: <b>Ý</b></p>
-                    </div>
-
-                    <p class="money">123000000 VND</p>
-                    <div class="start-ratting">
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star"></span>
-                    </div>
-                </div>
-
-                <div class="product">
-                    <div class="product__img">
-                        <img src="<c:url value='/static/assets/img/product_banchay.jpg'/>" alt="">
-                    </div>
-                    <p class="product__name"><b>Đàn guitar rexona yamaha</b></p>
-
-                    <div class="additional">
-                        <p>Thương hiệu: <b>Durex cực mạnh</b></p>
-                        <p>Xuất xứ: <b>Ý</b></p>
-                    </div>
-
-                    <p class="money">123000000 VND</p>
-                    <div class="start-ratting">
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star"></span>
-                    </div>
-                </div>
-
-                <div class="product">
-                    <div class="product__img">
-                        <img src="<c:url value='/static/assets/img/product_banchay.jpg'/>" alt="">
-                    </div>
-                    <p class="product__name"><b>Đàn guitar rexona yamaha</b></p>
-
-                    <div class="additional">
-                        <p>Thương hiệu: <b>Durex cực mạnh</b></p>
-                        <p>Xuất xứ: <b>Ý</b></p>
-                    </div>
-
-                    <p class="money">123000000 VND</p>
-                    <div class="start-ratting">
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star"></span>
-                    </div>
-                </div>
-
-                <div class="product">
-                    <div class="product__img">
-                        <img src="<c:url value='/static/assets/img/product_banchay.jpg'/>" alt="">
-                    </div>
-                    <p class="product__name"><b>Đàn guitar rexona yamaha</b></p>
-
-                    <div class="additional">
-                        <p>Thương hiệu: <b>Durex cực mạnh</b></p>
-                        <p>Xuất xứ: <b>Ý</b></p>
-                    </div>
-
-                    <p class="money">123000000 VND</p>
-                    <div class="start-ratting">
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star"></span>
-                    </div>
-                </div>
-
-                <div class="product">
-                    <div class="product__img">
-                        <img src="<c:url value='/static/assets/img/product_banchay.jpg'/>" alt="">
-                    </div>
-                    <p class="product__name"><b>Đàn guitar rexona yamaha</b></p>
-
-                    <div class="additional">
-                        <p>Thương hiệu: <b>Durex cực mạnh</b></p>
-                        <p>Xuất xứ: <b>Ý</b></p>
-                    </div>
-
-                    <p class="money">123000000 VND</p>
-                    <div class="start-ratting">
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star"></span>
-                    </div>
-                </div>
-
-
-
-            </div>
-		
-		<!-- Slider đàn sản phẩm tùy chọn(Đàn trống) -->
-		<div class="container mt-3 product__options highlight">
-
-            <div class="row">
-                <h2 class="product__title__slider">Trống</h2>
-                <div class="product__list--wrapper">
-                    <div class="product__option__list" style="transform: translateX(-1140px);">
-
-                        <div class="option__item">
-                            <div class="option__item__img">
-                                <img src="<c:url value='/static/assets/img/yamaha_logo.png'/>" alt="">
-                            </div>
-                            <p class="option__item__name"><b>Đàn guitar rexona yamaha</b></p>
-
-                            <div class="option__item__additional">
-                                <p>Thương hiệu: <b>Durex cực mạnh</b></p>
-                                <p>Xuất xứ: <b>Ý</b></p>
-                            </div>
-                            <p class="option__item__money">123000000 VND</p>
-                        </div>
-
-                        <div class="option__item">
-                            <div class="option__item__img">
-                                <img src="<c:url value='/static/assets/img/yamaha_logo.png'/>" alt="">
-                            </div>
-                            <p class="option__item__name"><b>Đàn guitar rexona yamaha</b></p>
-
-                            <div class="option__item__additional">
-                                <p>Thương hiệu: <b>Durex cực mạnh</b></p>
-                                <p>Xuất xứ: <b>Ý</b></p>
-                            </div>
-                            <p class="option__item__money">123000000 VND</p>
-                        </div>
-
-                        <div class="option__item">
-                            <div class="option__item__img">
-                                <img src="<c:url value='/static/assets/img/yamaha_logo.png'/>" alt="">
-                            </div>
-                            <p class="option__item__name"><b>Đàn guitar rexona yamaha</b></p>
-
-                            <div class="option__item__additional">
-                                <p>Thương hiệu: <b>Durex cực mạnh</b></p>
-                                <p>Xuất xứ: <b>Ý</b></p>
-                            </div>
-                            <p class="option__item__money">123000000 VND</p>
-                        </div>
-
-                        <div class="option__item">
-                            <div class="option__item__img">
-                                <img src="<c:url value='/static/assets/img/yamaha_logo.png'/>" alt="">
-                            </div>
-                            <p class="option__item__name"><b>Đàn guitar rexona yamaha</b></p>
-
-                            <div class="option__item__additional">
-                                <p>Thương hiệu: <b>Durex cực mạnh</b></p>
-                                <p>Xuất xứ: <b>Ý</b></p>
-                            </div>
-                            <p class="option__item__money">123000000 VND</p>
-                        </div>
-
-                        <div class="option__item">
-                            <div class="option__item__img">
-                                <img src="<c:url value='/static/assets/img/yamaha_logo.png'/>" alt="">
-                            </div>
-                            <p class="option__item__name"><b>Đàn guitar rexona yamaha</b></p>
-
-                            <div class="option__item__additional">
-                                <p>Thương hiệu: <b>Durex cực mạnh</b></p>
-                                <p>Xuất xứ: <b>Ý</b></p>
-                            </div>
-                            <p class="option__item__money">123000000 VND</p>
-                        </div>
-
-                        <div class="option__item">
-                            <div class="option__item__img">
-                                <img src="<c:url value='/static/assets/img/yamaha_logo.png'/>" alt="">
-                            </div>
-                            <p class="option__item__name"><b>Đàn guitar rexona yamaha</b></p>
-
-                            <div class="option__item__additional">
-                                <p>Thương hiệu: <b>Durex cực mạnh</b></p>
-                                <p>Xuất xứ: <b>Ý</b></p>
-                            </div>
-                            <p class="option__item__money">123000000 VND</p>
-                        </div>
-
-                        <div class="option__item">
-                            <div class="option__item__img">
-                                <img src="<c:url value='/static/assets/img/yamaha_logo.png'/>" alt="">
-                            </div>
-                            <p class="option__item__name"><b>Đàn guitar rexona yamaha</b></p>
-
-                            <div class="option__item__additional">
-                                <p>Thương hiệu: <b>Durex cực mạnh</b></p>
-                                <p>Xuất xứ: <b>Ý</b></p>
-                            </div>
-                            <p class="option__item__money">123000000 VND</p>
-                        </div>
-
-
-                    </div>
-                    <i class="fas fa-chevron-right move arrow"></i>
-                    <i class="fas fa-chevron-left move arrow--left" style="opacity: 0.5;"></i>
-
-                </div>
-
-
-
-            </div>
-
-        </div>
-        
-        <!-- ------------------------ -->
-		
-		<div class="container mt-3 mb-2 product__options highlight">
-
-            <div class="row">
-                <h2 class="product__title__slider">KÈN</h2>
-                <div class="product__list--wrapper">
-                    <div class="product__option__list">
-
-                        <div class="option__item">
-                            <div class="option__item__img">
-                                <img src="<c:url value='/static/assets/img/yamaha_logo.png'/>" alt="">
-                            </div>
-                            <p class="option__item__name"><b>Đàn guitar rexona yamaha</b></p>
-
-                            <div class="option__item__additional">
-                                <p>Thương hiệu: <b>Durex cực mạnh</b></p>
-                                <p>Xuất xứ: <b>Ý</b></p>
-                            </div>
-                            <p class="option__item__money">123000000 VND</p>
-                        </div>
-
-                        <div class="option__item">
-                            <div class="option__item__img">
-                                <img src="<c:url value='/static/assets/img/yamaha_logo.png'/>" alt="">
-                            </div>
-                            <p class="option__item__name"><b>Đàn guitar rexona yamaha</b></p>
-
-                            <div class="option__item__additional">
-                                <p>Thương hiệu: <b>Durex cực mạnh</b></p>
-                                <p>Xuất xứ: <b>Ý</b></p>
-                            </div>
-                            <p class="option__item__money">123000000 VND</p>
-                        </div>
-
-                        <div class="option__item">
-                            <div class="option__item__img">
-                                <img src="<c:url value='/static/assets/img/yamaha_logo.png'/>" alt="">
-                            </div>
-                            <p class="option__item__name"><b>Đàn guitar rexona yamaha</b></p>
-
-                            <div class="option__item__additional">
-                                <p>Thương hiệu: <b>Durex cực mạnh</b></p>
-                                <p>Xuất xứ: <b>Ý</b></p>
-                            </div>
-                            <p class="option__item__money">123000000 VND</p>
-                        </div>
-
-                        <div class="option__item">
-                            <div class="option__item__img">
-                                <img src="<c:url value='/static/assets/img/yamaha_logo.png'/>" alt="">
-                            </div>
-                            <p class="option__item__name"><b>Đàn guitar rexona yamaha</b></p>
-
-                            <div class="option__item__additional">
-                                <p>Thương hiệu: <b>Durex cực mạnh</b></p>
-                                <p>Xuất xứ: <b>Ý</b></p>
-                            </div>
-                            <p class="option__item__money">123000000 VND</p>
-                        </div>
-
-                        <div class="option__item">
-                            <div class="option__item__img">
-                                <img src="<c:url value='/static/assets/img/yamaha_logo.png'/>" alt="">
-                            </div>
-                            <p class="option__item__name"><b>Đàn guitar rexona yamaha</b></p>
-
-                            <div class="option__item__additional">
-                                <p>Thương hiệu: <b>Durex cực mạnh</b></p>
-                                <p>Xuất xứ: <b>Ý</b></p>
-                            </div>
-                            <p class="option__item__money">123000000 VND</p>
-                        </div>
-
-                        <div class="option__item">
-                            <div class="option__item__img">
-                                <img src="<c:url value='/static/assets/img/yamaha_logo.png'/>" alt="">
-                            </div>
-                            <p class="option__item__name"><b>Đàn guitar rexona yamaha</b></p>
-
-                            <div class="option__item__additional">
-                                <p>Thương hiệu: <b>Durex cực mạnh</b></p>
-                                <p>Xuất xứ: <b>Ý</b></p>
-                            </div>
-                            <p class="option__item__money">123000000 VND</p>
-                        </div>
-
-                        <div class="option__item">
-                            <div class="option__item__img">
-                                <img src="<c:url value='/static/assets/img/yamaha_logo.png'/>" alt="">
-                            </div>
-                            <p class="option__item__name"><b>Đàn guitar rexona yamaha</b></p>
-
-                            <div class="option__item__additional">
-                                <p>Thương hiệu: <b>Durex cực mạnh</b></p>
-                                <p>Xuất xứ: <b>Ý</b></p>
-                            </div>
-                            <p class="option__item__money">123000000 VND</p>
-                        </div>
-
-
-                    </div>
-                    <i class="fas fa-chevron-right move arrow"></i>
-                    <i class="fas fa-chevron-left move arrow--left"></i>
-
-                </div>
-
-
-
-            </div>
-
-        </div>
-
-
-        </div>
 </body>
 </html>
