@@ -10,29 +10,46 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDTO {
+public class NguoiDungDTO {
 
 	private String userId;
 
 	private String fullName;
+	
 	private String email;
+	
 	private String phone;
+	
 	private String password;
+	
 	private String passwordConf;
+	
 	private GioiTinh gender;
+	
 	private String address;
+	
 	private ROLE role;
+	
 	private boolean enabled;
+	
 	private String hinhAnhBase64;
+	
+	private String tinhThanhPho;
+
+	private String quanHuyen;
+
+	private String phuongXa;
+
+	private String diaChi;
 
 
-	public UserDTO(String userId) {
+	public NguoiDungDTO(String userId) {
 		super();
 		this.userId = userId;
 
 	}
 
-	public UserDTO(String userId, String fullName, GioiTinh gender, String phone, String email, ROLE role,
+	public NguoiDungDTO(String userId, String fullName, GioiTinh gender, String phone, String email, ROLE role,
 			boolean enabled) {
 		super();
 		this.userId = userId;

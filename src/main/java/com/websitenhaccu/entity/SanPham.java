@@ -72,10 +72,10 @@ public class SanPham {
 	@EqualsAndHashCode.Exclude
 	private List<BinhLuan> binhLuans;
 
-	@OneToMany(mappedBy = "sanPham")
-	@ToString.Exclude
-	@EqualsAndHashCode.Exclude
-	private List<ChiTietHoaDon> chiTietHoaDons;
+//	@OneToMany(mappedBy = "sanPham")
+//	@ToString.Exclude
+//	@EqualsAndHashCode.Exclude
+//	private List<ChiTietHoaDon> chiTietHoaDons;
 
 //	@OneToMany(mappedBy = "sanPham", fetch = FetchType.LAZY)
 //	@ToString.Exclude

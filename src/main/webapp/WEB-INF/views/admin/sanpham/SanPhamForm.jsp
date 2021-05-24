@@ -98,18 +98,19 @@
 					</div>
 
 					<div class="row">
+					<fmt:formatNumber type = "number" groupingUsed = "false" value="${ sanPhamDTO.giaNhap }" var="giaNhap"/>
 						<div class="col-lg-6">
 							<div class="form-group">
 								<label>Giá nhập:</label>
-								<form:input path="giaNhap" class="form-control" />
+								<form:input path="giaNhap" value="${giaNhap}" class="form-control" />
 								<form:errors path="giaNhap" cssClass="error"></form:errors>
 							</div>
 						</div>
-						<%-- <fmt:formatNumber type = "number" groupingUsed = "false" value="${ giaNhap }"/> --%>
+						<fmt:formatNumber type = "number" groupingUsed = "false" value="${ sanPhamDTO.giaBan }" var="giaBan"/>
 						<div class="col-lg-6">
 							<div class="form-group">
 								<label>Giá bán:</label>
-								<form:input path="giaBan" class="form-control" />
+								<form:input path="giaBan" value="${giaBan}" class="form-control" />
 								<form:errors path="giaBan" cssClass="error"></form:errors>
 							</div>
 						</div>

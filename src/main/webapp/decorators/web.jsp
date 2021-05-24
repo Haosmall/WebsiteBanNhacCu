@@ -10,6 +10,7 @@
 <%-- <c:set var="pageTitle" value="<dec:title />" /> --%>
 
 <dec:head></dec:head>
+<link rel="stylesheet" href="<c:url value="/static/style.css"/>">
 
 <link rel="icon" href="<c:url value="/static/assets/img/logo.png"/>"
 	type="image/x-icon">
@@ -201,12 +202,12 @@
 												<c:forEach items="${ loaiSP.value }" var="thuongHieu">
 													<div class="category__line">
 														<a
-															href="<c:url value="/danh-sach-san-pham/${ thuongHieu.id }"/>"><img
+															href="<c:url value="/danh-sach-san-pham/${ loaiSP.key.id }/${ thuongHieu.id }?page=1"/>"><img
 															src="data:image/jpg;base64,${thuongHieu.hinhAnhBase64}"
 															alt="${ thuongHieu.tenThuongHieu }"></a>
 
 														<p
-															onclick="location.href='<c:url value="/danh-sach-san-pham/${ thuongHieu.id }?page=1"/>'">
+															onclick="location.href='<c:url value="/danh-sach-san-pham/${ loaiSP.key.id }/${ thuongHieu.id }?page=1"/>'">
 															<b>${ thuongHieu.tenThuongHieu }</b>
 														</p>
 														<hr>

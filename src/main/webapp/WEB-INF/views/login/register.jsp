@@ -47,41 +47,73 @@
 			<p style="text-align: center">OR</p> -->
 
 			<form:hidden path="userId" />
-			<form:input path="fullName" typed="text" class="form-control"
-				placeholder="Họ tên" required="" autofocus=""
-				onblur="validateFullname()" />
+			<div class="form-group">
+				<form:input path="fullName" typed="text" class="form-control"
+					placeholder="Họ tên" required="" autofocus=""
+					onblur="validateFullname()" />
+	
+				<span id="checkFullName"></span>
+				<form:errors cssStyle="color:red" path="fullName" />
+			</div>
+			
+			<div class="form-group">
+				<form:input path="email" type="email" class="form-control"
+					placeholder="Email" required="" autofocus="" onblur="validateEmail()" />
+				<form:errors cssStyle="color:red" path="email" />
+				<span id="checkEmail"></span>
+			</div>
 
-			<span id="checkFullName"></span>
-			<form:errors cssStyle="color:red" path="fullName" />
+			<div class="form-group">
+				<form:input path="phone" type="text" class="form-control"
+					placeholder="Số điện thoại" required="" autofocus=""
+					onblur="validateSdt()" />
+				<span id="checkPhone"></span>
+				<form:errors cssStyle="color:red" path="phone" />
+			</div>
+			<div class="form-group">
+						<select id="tinh" Class="form-control">
+							<option value="-1" selected>Chọn Tỉnh/ Thành phố</option>
+						</select>
+					</div>
+					
+					<form:hidden path="tinhThanhPho"/>
+					
+					<div class="form-group">
+						<select id="huyen" Class="form-control">
+							<option value="-1" selected>Chọn Huyện/ Quận</option>
+						</select>
+					</div>
+					
+					<form:hidden path="quanHuyen"/>
 
-			<form:input path="email" type="email" class="form-control"
-				placeholder="Email" required="" autofocus="" onblur="validateEmail()" />
-			<form:errors cssStyle="color:red" path="email" />
+					<div class="form-group">
+						<select id="xa" Class="form-control">
+							<option value="-1" selected>Chọn Xã/ Phường</option>
+						</select>
+					</div>
+					
+					<form:hidden path="phuongXa"/>
 
-			<span id="checkEmail"></span>
-
-
-
-			<form:input path="phone" type="text" class="form-control"
-				placeholder="Số điện thoại" required="" autofocus=""
-				onblur="validateSdt()" />
-			<span id="checkPhone"></span>
-			<form:errors cssStyle="color:red" path="phone" />
-
-
-
-			<form:input path="password" type="password" class="form-control"
-				placeholder="Mật khẩu" required="" autofocus=""
-				onblur="validatePassword()" />
-			<form:errors cssStyle="color:red" path="password" />
-			<span id="checkPassword"></span>
-
-
-			<form:input path="passwordConf" type="password" class="form-control"
-				placeholder="Nhập lại mật khẩu" required="" autofocus=""
-				onblur="validatePasswordCf()" />
-			<form:errors cssStyle="color:red" path="passwordConf" />
-			<span id="checkPasswordCf"></span>
+					<div class="form-group">
+						<form:input path="diaChi" class="form-control" placeholder="Số nhà, tên đường"/>
+						<form:errors path="diaChi" Class="error"></form:errors>
+					</div>
+			
+			<div class="form-group">
+				<form:input path="password" type="password" class="form-control"
+					placeholder="Mật khẩu" required="" autofocus=""
+					onblur="validatePassword()" />
+				<form:errors cssStyle="color:red" path="password" />
+				<span id="checkPassword"></span>
+			</div>
+			
+			<div class="form-group">
+				<form:input path="passwordConf" type="password" class="form-control"
+					placeholder="Nhập lại mật khẩu" required="" autofocus=""
+					onblur="validatePasswordCf()" />
+				<form:errors cssStyle="color:red" path="passwordConf" />
+				<span id="checkPasswordCf"></span>
+			</div>
 
 
 
@@ -105,5 +137,6 @@
 
 	<script
 		src="<c:url value="/static/assets/js/validate/ValidateRegister.js"/>"></script>
+	<script src="<c:url value="/static/assets/js/diaChi.js"/>"></script>
 </body>
 </html>

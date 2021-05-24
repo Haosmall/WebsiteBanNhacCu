@@ -22,7 +22,7 @@ import com.websitenhaccu.converter.ThuongHieuConverter;
 import com.websitenhaccu.dto.MauSanPhamDTO;
 import com.websitenhaccu.dto.SanPhamDTO;
 import com.websitenhaccu.dto.ThuongHieuDTO;
-import com.websitenhaccu.dto.UserDTO;
+import com.websitenhaccu.dto.NguoiDungDTO;
 import com.websitenhaccu.entity.DongSanPham;
 import com.websitenhaccu.entity.LoaiSanPham;
 import com.websitenhaccu.entity.SanPham;
@@ -32,13 +32,13 @@ import com.websitenhaccu.service.LoaiSanPhamService;
 import com.websitenhaccu.service.MauSanPhamService;
 import com.websitenhaccu.service.SanPhamService;
 import com.websitenhaccu.service.ThuongHieuService;
-import com.websitenhaccu.service.UserService;
+import com.websitenhaccu.service.NguoiDungService;
 import com.websitenhaccu.util.CustomUserDetails;
 
 @Controller
 public class SanPhamController {
 	@Autowired
-	private UserService userService; 
+	private NguoiDungService userService; 
 	
 	@Autowired
 	private LoaiSanPhamService LoaiSanPhamService; 
@@ -74,7 +74,7 @@ public class SanPhamController {
 			email = principal.toString();
 		}
 		
-		UserDTO user = userService.getByEmail(email);
+		NguoiDungDTO user = userService.getByEmail(email);
 		List<LoaiSanPham> loaiSanPhams = LoaiSanPhamService.getTatCaLoaiSanPham();
 		List<ThuongHieu> thuongHieus = thuongHieuService.getTatCaThuongHieu();
 		List<DongSanPham> dongSanPhams = dongSanPhamService.getTatCaDongSanPham();
@@ -125,6 +125,65 @@ public class SanPhamController {
 		
 		return "user/DanhSachSanPham";
 	}
+	@GetMapping("/danh-sach-san-pham/{maLoaisanPham}/{maThuongHieu}")
+	public String hienThiDanhSachSanPhamTheoThuongHieu(Model model, 
+			@PathVariable("maLoaisanPham") String maLoaisanPham, 
+			@PathVariable("maThuongHieu") String maThuongHieu, 
+			@RequestParam(name = "page", defaultValue = "1") int page,
+			@RequestParam(name = "size", defaultValue = "15") int size) {
+		
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String email;
+		if (principal instanceof CustomUserDetails) {
+			email = ((CustomUserDetails) principal).getUsername();
+		} else {
+			email = principal.toString();
+		}
+		
+		NguoiDungDTO user = userService.getByEmail(email);
+		List<LoaiSanPham> loaiSanPhams = LoaiSanPhamService.getTatCaLoaiSanPham();
+		List<ThuongHieu> thuongHieus = thuongHieuService.getTatCaThuongHieu();
+		List<DongSanPham> dongSanPhams = dongSanPhamService.getTatCaDongSanPham();
+		List<SanPhamDTO> sanPhamDTOs;
+		Set<String> xuatXus = sanPhamService.getDanhSachXuatXu();
+		Map<LoaiSanPham, Set<ThuongHieuDTO>> map = new HashMap<LoaiSanPham, Set<ThuongHieuDTO>>();
+		
+		loaiSanPhams.forEach(loaiSanPham -> {
+			String maLoai = loaiSanPham.getId();
+			Set<ThuongHieuDTO> temp = new HashSet<ThuongHieuDTO>();
+			
+			dongSanPhams.forEach(dongSanPham -> {
+				if(dongSanPham.getLoaiSanPham().getId().equals(maLoai)) {
+					String maTH = dongSanPham.getThuongHieu().getId();
+					
+					thuongHieus.forEach(thuongHieu -> {
+						if(thuongHieu.getId().equals(maTH)) {
+							temp.add(thuongHieuConverter.toThuongHieuDTO(thuongHieu));
+						}
+					});
+					
+				}
+			});
+			
+			map.put(loaiSanPham, temp);
+		});
+		
+			sanPhamDTOs = sanPhamService.getDanhSachSanPhamTheoLoaiThuongHieu(maLoaisanPham, maThuongHieu, page-1, size);
+			sanPhamDTOs.forEach(dto->{
+				xuatXus.add(dto.getXuatXu());
+			});
+		
+		model.addAttribute("user", user);
+		model.addAttribute("map", map);
+		model.addAttribute("loaiSanPhams", loaiSanPhams);
+		model.addAttribute("thuongHieus", thuongHieus);
+		model.addAttribute("dongSanPhams", dongSanPhams);
+		model.addAttribute("xuatXus", xuatXus);
+		model.addAttribute("sanPhamDTOs", sanPhamDTOs);
+		model.addAttribute("xuatXus", xuatXus);
+		
+		return "user/DanhSachSanPham";
+	}
 	@GetMapping("/san-pham")
 	public String chiTietSanPham(Model model, @RequestParam("id") String id) {
 		
@@ -136,7 +195,7 @@ public class SanPhamController {
 			email = principal.toString();
 		}
 		
-		UserDTO user = userService.getByEmail(email);
+		NguoiDungDTO user = userService.getByEmail(email);
 		
 		model.addAttribute("user", user);
 		

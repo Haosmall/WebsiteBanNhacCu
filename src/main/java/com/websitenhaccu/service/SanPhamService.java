@@ -30,6 +30,8 @@ public interface SanPhamService {
 	
 	public List<SanPhamDTO> getDanhSachSanPhamTheoLoaiThuongHieuDong(String id, int page, int size);
 	
+	public List<SanPhamDTO> getDanhSachSanPhamTheoLoaiThuongHieu(String maLoaiSanPham, String maThuongHieu, int page, int size);
+	
 	public List<SanPhamDTO> getTatCaSanPham(int page, int size);
 	
 	public Set<String> getDanhSachXuatXu();

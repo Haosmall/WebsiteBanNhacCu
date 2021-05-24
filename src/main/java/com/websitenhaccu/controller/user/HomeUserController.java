@@ -6,15 +6,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.websitenhaccu.dto.UserDTO;
-import com.websitenhaccu.service.UserService;
+import com.websitenhaccu.dto.NguoiDungDTO;
+import com.websitenhaccu.service.NguoiDungService;
 import com.websitenhaccu.util.CustomUserDetails;
 
 @Controller
 @RequestMapping("/user")
 public class HomeUserController {
 	@Autowired
-	UserService userService;
+	NguoiDungService userService;
 
 	@RequestMapping("/trang-chu")
 	public ModelAndView getUser() {
@@ -26,7 +26,7 @@ public class HomeUserController {
 			email = principal.toString();
 		}
 		
-		UserDTO user = userService.getByEmail(email);
+		NguoiDungDTO user = userService.getByEmail(email);
 		return new ModelAndView("user/home", "user", user);
 	}
 

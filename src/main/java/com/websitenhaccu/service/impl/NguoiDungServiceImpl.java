@@ -1,29 +1,26 @@
 package com.websitenhaccu.service.impl;
 
-import java.util.Iterator;
-import java.util.List;
-
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.websitenhaccu.converter.UserConverter;
-import com.websitenhaccu.dto.UserDTO;
-import com.websitenhaccu.entity.ROLE;
+import com.websitenhaccu.converter.NguoiDungConverter;
+import com.websitenhaccu.dto.NguoiDungDTO;
 import com.websitenhaccu.entity.NguoiDung;
-import com.websitenhaccu.repository.UserRepository;
-import com.websitenhaccu.service.UserService;
+import com.websitenhaccu.entity.ROLE;
+import com.websitenhaccu.repository.NguoiDungRepository;
+import com.websitenhaccu.service.NguoiDungService;
 import com.websitenhaccu.util.EmailSender;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class NguoiDungServiceImpl implements NguoiDungService {
 
 	@Autowired
-	UserRepository userRepo;
+	NguoiDungRepository nguoiDungRepository;
 
 	@Autowired
-	UserConverter userConverter;
+	NguoiDungConverter nguoiDungConverter;
 
 	@Autowired
 	private EmailSender emailSender;
@@ -32,12 +29,12 @@ public class UserServiceImpl implements UserService {
 	private PasswordEncoder passwordEncoder;
 
 	@Override
-	public UserDTO getByEmail(String email) {
-		NguoiDung user = userRepo.findByEmail(email);
+	public NguoiDungDTO getByEmail(String email) {
+		NguoiDung user = nguoiDungRepository.findByEmail(email);
 		System.out.println(user);
 
 		if (user != null) {
-			UserDTO dto = new UserDTO();
+			NguoiDungDTO dto = new NguoiDungDTO();
 			dto.setUserId(user.getId());
 			dto.setEmail(user.getEmail());
 			dto.setRole(user.getRole());
@@ -52,7 +49,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public boolean registrationVerifyUserByEmail(UserDTO userDTO, String host) {
+	public boolean registrationVerifyUserByEmail(NguoiDungDTO userDTO, String host) {
 		boolean result = false;
 
 		try {
@@ -61,11 +58,11 @@ public class UserServiceImpl implements UserService {
 
 			String id = save(userDTO).getUserId();
 
-			NguoiDung user = userRepo.findById(id).get();
+			NguoiDung user = nguoiDungRepository.findById(id).get();
 
 			user.setMaXacNhan(verifyCode);
 
-			userRepo.save(user);
+			nguoiDungRepository.save(user);
 
 			String verificationLink = host + "/WebsiteBanNhacCu/verify-email?email=" + userDTO.getEmail() + "&token="
 					+ verifyCode;
@@ -82,7 +79,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public boolean verifyEmail(String email, String token) {
-		NguoiDung user = userRepo.findByEmail(email);
+		NguoiDung user = nguoiDungRepository.findByEmail(email);
 		System.out.println("Verify email: " + user);
 
 		if (user == null) {
@@ -90,7 +87,7 @@ public class UserServiceImpl implements UserService {
 		}
 		if (user.getMaXacNhan().equals(token)) {
 			user.setTrangThai(true);
-			userRepo.save(user);
+			nguoiDungRepository.save(user);
 			return true;
 		}
 
@@ -98,22 +95,22 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserDTO save(UserDTO userDTO) {
+	public NguoiDungDTO save(NguoiDungDTO userDTO) {
 		if (userDTO == null)
 			return null;
-//		User userOld = userRepo.findById(userDTO.getUserId()).get();
+//		NguoiDung userOld = nguoiDungRepository.findById(userDTO.getUserId()).get();
 		NguoiDung userOld = new NguoiDung();
 
-		NguoiDung user = userRepo.save(userConverter.toUser(userDTO, userOld));
+		NguoiDung user = nguoiDungRepository.save(nguoiDungConverter.toNguoiDung(userDTO, userOld));
 
-		UserDTO userDTO2 = userConverter.toUserDTO(user);
+		NguoiDungDTO userDTO2 = nguoiDungConverter.toNguoiDungDTO(user);
 		return userDTO2;
 
 	}
 
 	@Override
 	public boolean sendEmailForgotPassword(String email, String host) {
-		NguoiDung user = userRepo.findByEmailAndTrangThai(email, true);
+		NguoiDung user = nguoiDungRepository.findByEmailAndTrangThai(email, true);
 
 		if (user == null)
 			return false;
@@ -121,7 +118,7 @@ public class UserServiceImpl implements UserService {
 		String randomVerifyCode = RandomStringUtils.randomAlphanumeric(20);
 		user.setMaXacNhan(randomVerifyCode);
 
-		userRepo.save(user);
+		nguoiDungRepository.save(user);
 
 		String content = host + "/WebsiteBanNhacCu/forgot-password/enter-password?email=" + email + "&token="
 				+ randomVerifyCode;
@@ -132,7 +129,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public boolean verifyPassword(String email, String token, String password) {
-		NguoiDung user = userRepo.findByEmailAndTrangThai(email, true);
+		NguoiDung user = nguoiDungRepository.findByEmailAndTrangThai(email, true);
 
 		if (user == null)
 			return false;
@@ -140,7 +137,7 @@ public class UserServiceImpl implements UserService {
 		if (user.getMaXacNhan().equals(token)) {
 			user.setPassword(passwordEncoder.encode(password));
 
-			userRepo.save(user);
+			nguoiDungRepository.save(user);
 
 			return true;
 		}
@@ -156,7 +153,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public boolean updateAddress(String userId) {
-		NguoiDung nguoiDung = userRepo.findById(userId).get();
+		NguoiDung nguoiDung = nguoiDungRepository.findById(userId).get();
 		return nguoiDung == null ? false : true;
 	}
 

@@ -66,7 +66,7 @@
 							<span
 								>Giá bán:
 								<b class="price__product"
-									><fmt:formatNumber type = "currency" value = "${ sanPhamDTO.giaBan }" currencySymbol=""/> VNĐ</b
+									><fmt:formatNumber type = "number" value = "${ sanPhamDTO.giaBan }" /> VNĐ</b
 								></span
 							>
 							<div class="select_color">

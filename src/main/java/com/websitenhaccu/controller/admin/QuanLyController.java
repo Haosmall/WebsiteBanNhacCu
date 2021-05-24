@@ -9,18 +9,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.websitenhaccu.dto.UserDTO;
+import com.websitenhaccu.dto.NguoiDungDTO;
 import com.websitenhaccu.entity.SanPham;
 import com.websitenhaccu.service.SanPhamService;
 import com.websitenhaccu.service.ThuongHieuService;
-import com.websitenhaccu.service.UserService;
+import com.websitenhaccu.service.NguoiDungService;
 import com.websitenhaccu.util.CustomUserDetails;
 
 @Controller
 @RequestMapping("/admin")
 public class QuanLyController {
 	@Autowired
-	UserService userService;
+	NguoiDungService userService;
 	
 	@Autowired
 	private SanPhamService sanPhamService;
@@ -44,7 +44,7 @@ public class QuanLyController {
 			email = principal.toString();
 		}
 		
-		UserDTO user = userService.getByEmail(email);
+		NguoiDungDTO user = userService.getByEmail(email);
 		
 		List<SanPham> sanPhams = sanPhamService.getTatCaSanPham();
 

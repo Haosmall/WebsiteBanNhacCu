@@ -58,7 +58,7 @@ public class SanPhamServiceImpl implements SanPhamService {
 	@Override
 	public boolean xoaSanPham(String id) {
 
-		if (chiTietHoaDonRepository.findBySanPhamId(id).size() > 0)
+		if (chiTietHoaDonRepository.findByMauSanPhamSanPhamId(id).size() > 0)
 			return false;
 
 		sanPhamRepository.deleteById(id);
@@ -74,13 +74,15 @@ public class SanPhamServiceImpl implements SanPhamService {
 	public List<SanPham> timKiemSanPham(String tenSanPham, String maLoaiSanPham, String xuatXu, String maThuongHieu,
 			int page, int size) {
 		Pageable firstPageWithTwoElements = PageRequest.of(page, size);
-		List<SanPham> sanPhams = sanPhamRepository.findByTenSanPhamContainingAndXuatXuContainingAndDongSanPhamThuongHieuIdContainingAndDongSanPhamLoaiSanPhamIdContaining(tenSanPham, xuatXu, maThuongHieu, maLoaiSanPham, firstPageWithTwoElements);
+		List<SanPham> sanPhams = sanPhamRepository
+				.findByTenSanPhamContainingAndXuatXuContainingAndDongSanPhamThuongHieuIdContainingAndDongSanPhamLoaiSanPhamIdContaining(
+						tenSanPham, xuatXu, maThuongHieu, maLoaiSanPham, firstPageWithTwoElements);
 		return sanPhams;
 	}
 
 	@Override
 	public List<SanPham> getTatCaSanPham() {
-		
+
 		return sanPhamRepository.findAll();
 	}
 
@@ -101,14 +103,15 @@ public class SanPhamServiceImpl implements SanPhamService {
 	@Override
 	public List<SanPhamDTO> getDanhSachSanPhamTheoLoaiThuongHieuDong(String id, int page, int size) {
 		List<SanPhamDTO> sanPhamDTOs = new ArrayList<SanPhamDTO>();
-		List<SanPham> sanPhams = sanPhamRepository.findByDongSanPhamLoaiSanPhamIdOrDongSanPhamIdOrDongSanPhamThuongHieuId(id,id,id,
-				PageRequest.of(page, size));
-		
+		List<SanPham> sanPhams = sanPhamRepository
+				.findByDongSanPhamLoaiSanPhamIdOrDongSanPhamIdOrDongSanPhamThuongHieuId(id, id, id,
+						PageRequest.of(page, size));
+
 		sanPhams.forEach(sp -> {
 			SanPhamDTO sanPhamDTO = sanPhamConverter.toSanPhamDTO(sp);
 			sanPhamDTOs.add(sanPhamDTO);
 		});
-		
+
 		return sanPhamDTOs;
 	}
 
@@ -116,7 +119,7 @@ public class SanPhamServiceImpl implements SanPhamService {
 	public List<SanPhamDTO> getTatCaSanPham(int page, int size) {
 		List<SanPhamDTO> sanPhamDTOs = new ArrayList<SanPhamDTO>();
 		List<SanPham> sanPhams = sanPhamRepository.findAll(PageRequest.of(page, size)).getContent();
-		sanPhams.forEach(sp->{
+		sanPhams.forEach(sp -> {
 			SanPhamDTO sanPhamDTO = sanPhamConverter.toSanPhamDTO(sp);
 			sanPhamDTOs.add(sanPhamDTO);
 		});
@@ -126,6 +129,21 @@ public class SanPhamServiceImpl implements SanPhamService {
 	@Override
 	public Set<String> getDanhSachXuatXu() {
 		return sanPhamRepository.getDanhSachXuatXu();
+	}
+
+	@Override
+	public List<SanPhamDTO> getDanhSachSanPhamTheoLoaiThuongHieu(String maLoaiSanPham, String maThuongHieu, int page,
+			int size) {
+		List<SanPhamDTO> sanPhamDTOs = new ArrayList<SanPhamDTO>();
+		List<SanPham> sanPhams = sanPhamRepository.findByDongSanPhamLoaiSanPhamIdAndDongSanPhamThuongHieuId(
+				maLoaiSanPham, maThuongHieu, PageRequest.of(page, size));
+
+		sanPhams.forEach(sp -> {
+			SanPhamDTO sanPhamDTO = sanPhamConverter.toSanPhamDTO(sp);
+			sanPhamDTOs.add(sanPhamDTO);
+		});
+
+		return sanPhamDTOs;
 	}
 
 }

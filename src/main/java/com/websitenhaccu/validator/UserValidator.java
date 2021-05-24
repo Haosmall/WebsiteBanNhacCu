@@ -4,14 +4,14 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-import com.websitenhaccu.dto.UserDTO;
+import com.websitenhaccu.dto.NguoiDungDTO;
 
 @Component
 public class UserValidator implements Validator {
 
 	@Override
 	public boolean supports(Class<?> clazz) {
-		return UserDTO.class.isAssignableFrom(clazz);
+		return NguoiDungDTO.class.isAssignableFrom(clazz);
 	}
 
 	@Override
@@ -29,7 +29,7 @@ public class UserValidator implements Validator {
 			return;
 		}
 
-		UserDTO userDTO = (UserDTO) target;
+		NguoiDungDTO userDTO = (NguoiDungDTO) target;
 
 		if (userDTO.getFullName() == null || userDTO.getFullName().trim().length() == 0) {
 			errors.rejectValue("fullName", null, "Tên không được bỏ trống");

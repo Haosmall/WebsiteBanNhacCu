@@ -22,6 +22,8 @@ public interface SanPhamRepository extends JpaRepository<SanPham, String> {
 	
 	public List<SanPham> findByDongSanPhamLoaiSanPhamIdOrDongSanPhamIdOrDongSanPhamThuongHieuId(String maLoai, String maDong, String maThuongHieu, Pageable pageable);
 	
+	public List<SanPham> findByDongSanPhamLoaiSanPhamIdAndDongSanPhamThuongHieuId(String maLoai, String maThuongHieu, Pageable pageable);
+	
 	@Query(value = "SELECT DISTINCT xuat_xu FROM SanPhams", nativeQuery = true)
 	public Set<String> getDanhSachXuatXu();
 }
