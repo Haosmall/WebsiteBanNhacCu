@@ -26,8 +26,6 @@ public class NguoiDungDTO {
 	
 	private GioiTinh gender;
 	
-	private String address;
-	
 	private ROLE role;
 	
 	private boolean enabled;

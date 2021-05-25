@@ -95,7 +95,7 @@ public class SanPhamServiceImpl implements SanPhamService {
 	public SanPhamDTO getSanPhamDTOTheoID(String id) {
 
 		SanPhamDTO sanPhamDTO = sanPhamRepository.findById(id)
-				.map(sanPham -> new SanPhamDTO(sanPham.getId(), sanPham.getTenSanPham(), sanPham.getMoTa()))
+				.map(sanPham -> sanPhamConverter.toSanPhamDTO(sanPham))
 				.orElse(null);
 		return sanPhamDTO;
 	}

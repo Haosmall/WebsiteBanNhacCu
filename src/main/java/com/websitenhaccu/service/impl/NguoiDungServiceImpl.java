@@ -34,13 +34,14 @@ public class NguoiDungServiceImpl implements NguoiDungService {
 		System.out.println(user);
 
 		if (user != null) {
-			NguoiDungDTO dto = new NguoiDungDTO();
-			dto.setUserId(user.getId());
-			dto.setEmail(user.getEmail());
-			dto.setRole(user.getRole());
-			dto.setFullName(user.getHoTen());
-			dto.setAddress(user.getDiaChi());
-			dto.setPhone(user.getSoDienThoai());
+			NguoiDungDTO dto = nguoiDungConverter.toNguoiDungDTO(user);
+//			NguoiDungDTO dto = new NguoiDungDTO();
+//			dto.setUserId(user.getId());
+//			dto.setEmail(user.getEmail());
+//			dto.setRole(user.getRole());
+//			dto.setFullName(user.getHoTen());
+//			dto.setAddress(user.getDiaChi());
+//			dto.setPhone(user.getSoDienThoai());
 			return dto;
 		} else {
 			return null;

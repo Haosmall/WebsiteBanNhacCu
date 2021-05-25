@@ -16,6 +16,8 @@
 	type="image/x-icon">
 
 <link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+<link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
 <!-- jQuery library -->
@@ -374,5 +376,6 @@
 	</div>
 	<script src="<c:url value="/static/assets/js/test.js"/>"></script>
 	<script src="<c:url value="/static/assets/js/index_page/Slider.js"/>"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 </body>
 </html>

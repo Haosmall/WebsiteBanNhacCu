@@ -17,13 +17,13 @@ console.log(checkBox)
 calculateTotalPrice = () => {
     var price = 0;
     count.each(function (index) {
-        if (checkBox.get(index).checked === true) {
+//        if (checkBox.get(index).checked === true) {
             // console.log($(this).val());
             let amountTemp = Number.parseInt($(this).val());
             let priceTemp = Number.parseInt(priceProduct.get(index).textContent);
             let totalPriceTemp = amountTemp * priceTemp;
             price += totalPriceTemp;
-        }
+//        }
     })
 
     totalPrice.html(price);
@@ -57,10 +57,10 @@ add.each(function (index) {
             clearAlert();
         }
 
-        if (checkBox.get(index).checked === true) {
+//        if (checkBox.get(index).checked === true) {
 
             calculateTotalPrice();
-        }
+//        }
     });
 });
 
@@ -68,16 +68,16 @@ minus.each(function (index) {
 
     $(this).click(function () {
         let currentVal = Number.parseInt(count.get(index).value);
-        const min = 0;
+        const min = 1;
         if (currentVal > min) {
             count.get(index).value = currentVal - 1;
             alert_block.css({ "display": "none" });
 
         }
-        if (checkBox.get(index).checked === true) {
+//        if (checkBox.get(index).checked === true) {
 
             calculateTotalPrice();
-        }
+//        }
 
     });
 });
@@ -122,9 +122,33 @@ function clearAlert() {
     }, 3000)
 
 }
-
-
-
+xoaChiTietHoaDon = (maSanPham, maMau) =>{
+	
+	var apiFetch = "http://localhost:8080/WebsiteBanNhacCu/api/gio-hang/xoa-gio-hang?maSanPham=" + maSanPham + "&maMau=" + maMau;
+	console.log(apiFetch);
+	
+	$.ajax({
+	    url: apiFetch,
+	    type: 'DELETE',
+	    success: function(result) {
+	    	
+	    	window.location.href = "http://localhost:8080/WebsiteBanNhacCu/gio-hang";
+	    	toastr.success("Đã xóa khỏi giỏ hàng");
+	    },
+	    error: function() {
+			toastr.error('Không xóa được')
+		},
+	});
+//	$.delete(apiFetch, function (data, status) {
+//		setTimeout(function () {
+//			if (status === 'success') {
+//				if (data === 1) {
+//					console.log(data + "đã thêm vào giỏ hàng");
+//				}
+//			}
+//		}, 500);
+//	});
+}
 
 
 

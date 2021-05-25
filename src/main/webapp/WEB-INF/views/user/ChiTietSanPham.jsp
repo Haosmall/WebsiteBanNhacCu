@@ -52,7 +52,7 @@
 							<span class="name__product"
 								>${ sanPhamDTO.tenSanPham }</span
 							>
-							<span class="id--sanpham">Mã sản phẩm: ${ sanPhamDTO.id }</span>
+							<span class="id--sanpham">Mã sản phẩm: </span><span class="id--sanpham" id='maSP'>${ sanPhamDTO.id }</span>
 							<span>Thương hiệu: <b class="brand">${ sanPhamDTO.tenThuongHieu }</b></span>
 							<div class="start-ratting">
 								<span class="fa fa-star checked"></span>
@@ -71,11 +71,13 @@
 							>
 							<div class="select_color">
 									<div class="color selected__color">
+										<input type="hidden" value="${ mauSanPhamDTOs.get(0).maMau }">
 										<span>${ mauSanPhamDTOs.get(0).tenMau }</span>
 									</div>
 								<c:forEach items="${ mauSanPhamDTOs }" var="mauSanPhamDTO">
 									<c:if test="${ mauSanPhamDTOs.get(0).tenMau !=  mauSanPhamDTO.tenMau }">
 										<div class="color">
+											<input type="hidden" value="${ mauSanPhamDTO.maMau }">
 											<span>${ mauSanPhamDTO.tenMau }</span>
 										</div>
 									</c:if>
@@ -86,14 +88,14 @@
 						<div class="interactive__general--info">
 							<div class="interactive">
 								<a href="">
-									<button class="button--inter mua--ngay">
+									<button class="button--inter mua--ngay" id="btnMuaNgay">
 										Mua ngay
 									</button>
 								</a>
 
 								<a href="">
 									<button
-										class="button--inter themvao--giohang"
+										class="button--inter themvao--giohang" id="btnThemVaoGioHang"
 									>
 										Thêm vào giỏ hàng
 									</button>
@@ -554,6 +556,7 @@
 		<script src="<c:url value="/static/assets/js/ProductDetail_page/UserRatting.js"/>"></script>
 		<script src="<c:url value="/static/assets/js/ProductDetail_page/ProductDetail.js"/>"></script>
 		<script src="<c:url value="/static/assets/js/ProductDetail_page/Comment.js"/>"></script>
+		<script src="<c:url value="/static/assets/js/chi-tiet-san-pham.js"/>"></script>
 	
 </body>
 </html>

@@ -1,4 +1,4 @@
-package com.websitenhaccu.api.user;
+package com.websitenhaccu.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +11,7 @@ import com.websitenhaccu.service.NguoiDungService;
 
 @RestController
 @RequestMapping("/register/api/email")
-public class UserRestController {
+public class NguoiDungRestController {
 
 	@Autowired
 	private NguoiDungService userService;
