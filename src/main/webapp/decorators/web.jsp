@@ -96,11 +96,11 @@
 					<div class="nav-item dropdown no-arrow">
 						<a class="nav-link dropdown-toggle cart__link" href="#"
 							id="userDropdown" role="button" data-toggle="dropdown"
-							aria-haspopup="true" aria-expanded="false"> <span>${ user.fullName }</span> 
-							
-							
+							aria-haspopup="true" aria-expanded="false"> <span>${ user.fullName }</span>
+
+
 							<img class="img-profile rounded-circle"
-									src="
+							src="
 										<c:choose> 
 											<c:when test="${ empty user.hinhAnhBase64}">
 												<c:url value='/static/assets/img/undraw_profile.svg'/>
@@ -110,7 +110,7 @@
 										  	</c:otherwise>
 										</c:choose>
 									"
-									width="50px" height="50px">
+							width="50px" height="50px">
 						</a>
 						<!-- Dropdown - User Information -->
 						<div
@@ -122,10 +122,9 @@
 							</a>
 							<!-- Role admin -->
 							<sec:authorize access="hasRole('ADMIN')">
-								<a class="dropdown-item"
-									href="<c:url value="/admin/quan-ly"/>"> <i
-									class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i> Quản lý
-									website
+								<a class="dropdown-item" href="<c:url value="/admin/quan-ly"/>">
+									<i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i> Quản
+									lý website
 								</a>
 							</sec:authorize>
 							<div class="dropdown-divider"></div>
@@ -183,10 +182,11 @@
 
 							<div class="category__adjust">
 								<div class="item">
-									<i class="fas fa-guitar category__icon"></i> 
-									<a class="category__name">Danh mục sản phẩm</a>
+
+									<i class="fas fa-bars category__icon"></i> <a
+										class="category__name">Danh mục sản phẩm</a>
 								</div>
-								
+
 								<c:forEach items="${ map }" var="loaiSP">
 
 									<div class="category">
@@ -227,14 +227,15 @@
 										</div>
 									</div>
 								</c:forEach>
-								
+
 								<div class="category">
-										<div class="item">
-											<i class="fas fa-guitar category__icon"></i> <a
-												class="category__name"
-												href="<c:url value="/danh-sach-san-pham/tat-ca?page=1"/>">Tất cả sản phẩm</a>
-										</div>
+									<div class="item">
+										<i class="fas fa-guitar category__icon"></i> <a
+											class="category__name"
+											href="<c:url value="/danh-sach-san-pham/tat-ca?page=1"/>">Tất
+											cả sản phẩm</a>
 									</div>
+								</div>
 							</div>
 
 						</div>

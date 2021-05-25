@@ -117,7 +117,7 @@
 					</div>
 					<p class="inf_per">${user.fullName }|${user.phone}</p>
 					<p class="inf_ad">${user.address }</p>
-					<input id = "idUser" type="hidden" value="${user.userId }"></input>
+					<input id="idUser" type="hidden" value="${user.userId }"></input>
 
 				</div>
 				<hr>
