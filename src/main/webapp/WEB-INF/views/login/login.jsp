@@ -42,12 +42,22 @@
 				</button>
 			</div> 
 			<p style="text-align: center">OR</p>-->
-			<input type="text" id="inputEmail" class="form-control"
-				placeholder="Email" required="" autofocus="" name="email"
-				onblur="validateEmail()"> <span id="checkEmail"></span> <input
-				type="password" id="inputPassword" class="form-control"
-				onblur="validatePassword()" placeholder="Mật khẩu" required=""
-				name="password"> <span id="checkPassword"></span> <label
+			<div class="form-group">
+				<input type="text" id="inputEmail" class="form-control"
+					placeholder="Email" required autofocus name="email"
+					onblur="validateEmail()"> 
+				<span id="checkEmail"></span> 
+			</div>	
+			
+			<div class="form-group">
+				<input
+					type="password" id="inputPassword" class="form-control"
+					onblur="validatePassword()" placeholder="Mật khẩu" required
+					name="password"> 
+				<span id="checkPassword"></span> 
+			</div>
+				
+				<label
 				class="form-group">Duy trì đăng nhập</label> <input type="checkbox"
 				name="remember-me"> 
 				

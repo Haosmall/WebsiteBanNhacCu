@@ -9,10 +9,17 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
+
+import com.websitenhaccu.util.MyGenerator;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,6 +35,11 @@ import lombok.ToString;
 public class NguoiDung {
 
 	@Id
+//	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "nguoiDung_generator")
+//	@GenericGenerator(name = "nhaCungCap_generator", strategy = "com.websitenhaccu.util.MyGenerator", parameters = {
+//			@Parameter(name = MyGenerator.INCREMENT_PARAM, value = "1"),
+//			@Parameter(name = MyGenerator.VALUE_PREFIX_PARAMETER, value = "ND"),
+//			@Parameter(name = MyGenerator.NUMBER_FORMAT_PARAMETER, value = "%06d") })
 	@Column(name = "nguoi_dung_id")
 	private String id;
 

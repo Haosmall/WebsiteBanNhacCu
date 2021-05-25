@@ -5,8 +5,11 @@ var idHuyen = "";
 
 // get và load dữ liệu tỉnh
 $(document).ready(function() {
+	loadDuLieuDiaChi();
 
+});
 
+loadDuLieuDiaChi = () => {
 	const url = "https://vapi.vnappmob.com/api/province/";
 
 
@@ -109,19 +112,19 @@ $(document).ready(function() {
 					// Get id xã
 					var idXa = $("#xa").val();
 
-				}, 200);
-			}, 200);
-		}, 200);
+				}, 500);
+			}, 500);
+		}, 500);
 
 		// ================================
 	});
 
 	// $("#huyen").html("<option selected >Chọn Huyện/ Quận</option>");
 	// $("#xa").html("<option selected >Chọn Xã/ Phường</option>");
-	//		
+	//	
+}
 
 
-});
 
 
 // get và load dữ liệu huyện/ quận theo tỉnh/ thành phố
@@ -191,11 +194,11 @@ $("select").change(function() {
 
 
 
-const sonha_tentruong = document.getElementById("sonha_tentruong");
+const diaChi = document.getElementById("diaChi");
 const checkStreet = document.getElementById('checkStreet');
 
 ktraSoNha = () => {
-	if (sonha_tentruong.value == -1) {
+	if (diaChi.value == -1) {
 		checkStreet.innerHTML = "(*) Số nhà/tên đường trống";
 		return false;
 	} else {
@@ -280,10 +283,10 @@ document.querySelector(".btnSubmit").addEventListener("click", function(event) {
 			let thanhPho = $("#tinh option:selected").text();
 			let huyen = $("#huyen option:selected").text();
 			let xa = $("#xa option:selected").text();
-			let sonha_tentruong = $("#sonha_tentruong").val();
+			let diaChi = $("#diaChi").val();
 			
 
-			let apiCall = `http://${HOST_NAME}:${PORT}${PAGE_PATH}${api}id=${idUser}thanhPho=${thanhPho}&huyen=${huyen}&xa=${xa}&soNha=${sonha_tentruong}`;
+			let apiCall = `http://${HOST_NAME}:${PORT}${PAGE_PATH}${api}id=${idUser}thanhPho=${thanhPho}&huyen=${huyen}&xa=${xa}&soNha=${diaChi}`;
 
 			console.log(apiCall);
 
@@ -321,6 +324,7 @@ document.querySelector(".btnSubmit").addEventListener("click", function(event) {
 
 $(".close").click(function() {
 	box_confirm.css({ "visibility": "hidden", "opacity": "0", "transform": "translateY(-30px)" });
+	loadDuLieuDiaChi();
 })
 
 

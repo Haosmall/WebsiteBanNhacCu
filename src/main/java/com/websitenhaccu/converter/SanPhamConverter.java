@@ -98,5 +98,6 @@ public class SanPhamConverter {
 		
 		return new SanPhamDTO(id, tenSanPham, moTa, giaNhap, giaBan, xuatXu, trangThai, baoHanh, namSanXuat,
 				maNhaCungCap, tenNhaCungCap, maDongSanPham, tenDongSanPham, maLoaiSanPham, tenLoaiSanPham, maThuongHieu, tenThuongHieu, hinhAnhBase64);
+		
 	}
 }

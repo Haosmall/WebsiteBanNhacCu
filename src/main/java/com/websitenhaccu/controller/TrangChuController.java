@@ -14,20 +14,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.websitenhaccu.converter.ThuongHieuConverter;
 import com.websitenhaccu.dto.ThuongHieuDTO;
-import com.websitenhaccu.dto.UserDTO;
+import com.websitenhaccu.dto.NguoiDungDTO;
 import com.websitenhaccu.entity.DongSanPham;
 import com.websitenhaccu.entity.LoaiSanPham;
 import com.websitenhaccu.entity.ThuongHieu;
 import com.websitenhaccu.service.DongSanPhamService;
 import com.websitenhaccu.service.LoaiSanPhamService;
 import com.websitenhaccu.service.ThuongHieuService;
-import com.websitenhaccu.service.UserService;
+import com.websitenhaccu.service.NguoiDungService;
 import com.websitenhaccu.util.CustomUserDetails;
 
 @Controller
 public class TrangChuController {
 	@Autowired
-	private UserService userService; 
+	private NguoiDungService userService; 
 	
 	@Autowired
 	private LoaiSanPhamService LoaiSanPhamService; 
@@ -51,7 +51,7 @@ public class TrangChuController {
 			email = principal.toString();
 		}
 		
-		UserDTO user = userService.getByEmail(email);
+		NguoiDungDTO user = userService.getByEmail(email);
 		List<LoaiSanPham> loaiSanPhams = LoaiSanPhamService.getTatCaLoaiSanPham();
 		List<ThuongHieu> thuongHieus = thuongHieuService.getTatCaThuongHieu();
 		List<DongSanPham> dongSanPhams = dongSanPhamService.getTatCaDongSanPham();

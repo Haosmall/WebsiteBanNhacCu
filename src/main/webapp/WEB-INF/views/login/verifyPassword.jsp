@@ -28,12 +28,16 @@
 		<form action="${url}" method="post">
 			<h1 class="h3 mb-3 font-weight-normal" style="text-align: center">Đổi
 				mật khẩu</h1>
-
+			<div class="form-group">
 			<input name="password" type="password" class="form-control"
-				placeholder="Nhập mật khẩu mới" required="" autofocus="" /> <input
+				placeholder="Nhập mật khẩu mới" required autofocus /> 
+			</div>
+			
+			<div class="form-group">
+			<input
 				type="password" class="form-control"
-				placeholder="Nhập lại mật khẩu mới" required="" autofocus="" />
-
+				placeholder="Nhập lại mật khẩu mới" required autofocus/>
+			</div>
 			<button class="btn btn-primary btn-block" type="submit">
 				<i class="fas fa-user-plus"></i>Đổi mật khẩu
 			</button>

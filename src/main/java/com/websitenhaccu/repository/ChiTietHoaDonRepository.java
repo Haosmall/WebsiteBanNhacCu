@@ -9,6 +9,6 @@ import com.websitenhaccu.entity.ChiTietHoaDon_PK;
 
 public interface ChiTietHoaDonRepository extends JpaRepository<ChiTietHoaDon, ChiTietHoaDon_PK> {
 
-	public List<ChiTietHoaDon> findBySanPhamId(String id);
+	public List<ChiTietHoaDon> findByMauSanPhamSanPhamId(String id);
 	
 }

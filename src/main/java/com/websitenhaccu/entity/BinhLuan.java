@@ -44,5 +44,8 @@ public class BinhLuan implements Serializable {
 
 	@Column(name = "ngay_binh_luan")
 	private Date ngayBinhLuan;
+	
+	@Column(name = "danh_gia")
+	private int danhGia;
 
 }

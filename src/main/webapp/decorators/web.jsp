@@ -10,10 +10,13 @@
 <%-- <c:set var="pageTitle" value="<dec:title />" /> --%>
 
 <dec:head></dec:head>
+<link rel="stylesheet" href="<c:url value="/static/style.css"/>">
 
 <link rel="icon" href="<c:url value="/static/assets/img/logo.png"/>"
 	type="image/x-icon">
 
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
@@ -120,11 +123,17 @@
 								class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Thông
 								tin người dùng
 							</a>
+							<a class="dropdown-item" href="#"> <i
+								class="fas fa-receipt fa-sm fa-fw mr-2 text-gray-400"></i> Đơn hàng của tôi
+							</a>
 							<!-- Role admin -->
 							<sec:authorize access="hasRole('ADMIN')">
-								<a class="dropdown-item" href="<c:url value="/admin/quan-ly"/>">
-									<i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i> Quản
-									lý website
+
+								<a class="dropdown-item"
+									href="<c:url value="/admin/quan-ly"/>"> <i
+									class="fas fa-tools fa-sm fa-fw mr-2 text-gray-400"></i> Quản lý
+									website
+
 								</a>
 							</sec:authorize>
 							<div class="dropdown-divider"></div>
@@ -166,7 +175,7 @@
 
 
 		<c:if
-			test="${ pageTitle != 'Đăng nhập'and pageTitle != 'Giỏ hàng'  and pageTitle != 'Đăng kí tài khoản' and pageTitle !=  'Quên mật khẩu' and pageTitle !=  'Đổi mật khẩu'}">
+			test="${ pageTitle != 'Đăng nhập'and pageTitle != 'Giỏ hàng'  and pageTitle != 'Đăng kí tài khoản' and pageTitle !=  'Quên mật khẩu' and pageTitle !=  'Đổi mật khẩu' and pageTitle != 'Chi tiết sản phẩm'}">
 
 			<!-- Slider and  category -->
 			<div class="container slider_caterogies">
@@ -201,12 +210,12 @@
 												<c:forEach items="${ loaiSP.value }" var="thuongHieu">
 													<div class="category__line">
 														<a
-															href="<c:url value="/danh-sach-san-pham/${ thuongHieu.id }"/>"><img
+															href="<c:url value="/danh-sach-san-pham/${ loaiSP.key.id }/${ thuongHieu.id }?page=1"/>"><img
 															src="data:image/jpg;base64,${thuongHieu.hinhAnhBase64}"
 															alt="${ thuongHieu.tenThuongHieu }"></a>
 
 														<p
-															onclick="location.href='<c:url value="/danh-sach-san-pham/${ thuongHieu.id }?page=1"/>'">
+															onclick="location.href='<c:url value="/danh-sach-san-pham/${ loaiSP.key.id }/${ thuongHieu.id }?page=1"/>'">
 															<b>${ thuongHieu.tenThuongHieu }</b>
 														</p>
 														<hr>
@@ -374,5 +383,6 @@
 	</div>
 	<script src="<c:url value="/static/assets/js/test.js"/>"></script>
 	<script src="<c:url value="/static/assets/js/index_page/Slider.js"/>"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 </body>
 </html>

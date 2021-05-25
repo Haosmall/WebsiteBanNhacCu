@@ -2,6 +2,7 @@ package com.websitenhaccu.entity;
 
 import java.io.Serializable;
 import java.sql.Blob;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +12,7 @@ import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -46,12 +48,23 @@ public class MauSanPham implements Serializable {
 	@Lob
 	@Column(name = "hinh_anh")
 	private Blob hinhAnh;
+	
+	@OneToMany(mappedBy = "mauSanPham")
+	private List<ChiTietHoaDon> chiTietHoaDons;
 
 	public MauSanPham(Mau mau, SanPham sanPham, int soLuong) {
 		super();
 		this.mau = mau;
 		this.sanPham = sanPham;
 		this.soLuong = soLuong;
+	}
+
+	public MauSanPham(Mau mau, SanPham sanPham, int soLuong, Blob hinhAnh) {
+		super();
+		this.mau = mau;
+		this.sanPham = sanPham;
+		this.soLuong = soLuong;
+		this.hinhAnh = hinhAnh;
 	}
 	
 	

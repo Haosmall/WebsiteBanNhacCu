@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -22,16 +23,19 @@ public class ChiTietHoaDon {
 	
 	@Id
     @ManyToOne
-    @JoinColumn(name = "san_pham_id")
-	private SanPham sanPham;
+    @JoinColumns({
+    	@JoinColumn(name = "san_pham_id", referencedColumnName = "san_pham_id"),
+    	@JoinColumn(name = "mau_id", referencedColumnName = "mau_id")
+    })
+	private MauSanPham mauSanPham;
 	
 	@Id
     @ManyToOne
     @JoinColumn(name = "hoa_don_id")
 	private HoaDon hoaDon;
 	
-	@Column(name = "gia")
-	private double gia;
+	@Column(name = "mau", columnDefinition = "NVARCHAR(MAX)")
+	private String mau;
 
 	@Column(name = "so_luong")
 	private int soLuong;

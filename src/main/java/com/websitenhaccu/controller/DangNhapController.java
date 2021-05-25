@@ -17,15 +17,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.websitenhaccu.dto.UserDTO;
-import com.websitenhaccu.service.UserService;
+import com.websitenhaccu.dto.NguoiDungDTO;
+import com.websitenhaccu.service.NguoiDungService;
 import com.websitenhaccu.validator.UserValidator;
 
 @Controller
 public class DangNhapController {
 
 	@Autowired
-	private UserService userService;
+	private NguoiDungService userService;
 
 	@Autowired
 	private UserValidator userValidator;
@@ -39,14 +39,14 @@ public class DangNhapController {
 	@GetMapping("/register")
 	public String register(Model model) {
 		String userId = RandomStringUtils.randomNumeric(8);
-		UserDTO userDTO = new UserDTO(userId);
+		NguoiDungDTO userDTO = new NguoiDungDTO(userId);
 		model.addAttribute("pageTitle", "Đăng kí tài khoản");
 		model.addAttribute("user", userDTO);
 		return "login/register";
 	}
 
 	@PostMapping(value = "/register")
-	public String register(Model model, HttpServletRequest request, @ModelAttribute("user") UserDTO userDTO,
+	public String register(Model model, HttpServletRequest request, @ModelAttribute("user") NguoiDungDTO userDTO,
 			BindingResult bindingResult) {
 		System.out.println("UserDTO" + userDTO);
 
@@ -59,7 +59,7 @@ public class DangNhapController {
 
 		String baseUrl = "http://" + request.getHeader("host");
 
-		UserDTO dto = userService.getByEmail(userDTO.getEmail());
+		NguoiDungDTO dto = userService.getByEmail(userDTO.getEmail());
 
 		if (dto != null) {
 			model.addAttribute("pageTitle", "Đăng kí tài khoản");

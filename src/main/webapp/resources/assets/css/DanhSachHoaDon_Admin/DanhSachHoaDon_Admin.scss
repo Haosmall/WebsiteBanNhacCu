@@ -1,6 +1,4 @@
 table {
-    margin-top: 50px;
-
     .test {
         display: flex;
         justify-content: space-bet;
@@ -18,6 +16,18 @@ table {
 .management {
     font-size: 14px !important;
     background-color: #fff;
+    margin-top: 10px;
+}
+
+.timkiem {
+    padding-top: 10px;
+    label {
+        font-size: 1rem;
+    }
+}
+
+.custom-select {
+    font-size: 14px;
 }
 
 .wrapper {

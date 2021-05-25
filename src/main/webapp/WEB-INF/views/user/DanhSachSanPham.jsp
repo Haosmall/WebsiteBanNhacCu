@@ -92,6 +92,18 @@
 						</c:forEach>
                     </div>
                 </div>
+                
+                <div class="boxSearch">
+                    <div class="item__title">Xuất xứ</div>
+
+                    <div class="itemSearch">
+						<c:forEach items="${ xuatXus }" var="xuatXu">
+							<input type="checkbox" value="${ xuatXu }" onchange="console.log(1233123)" />
+                        	<span>${ xuatXu }</span>
+                        	<br>
+						</c:forEach>
+                    </div>
+                </div>
 
 
 
@@ -146,7 +158,7 @@
                     <div class="product__list">
                     
                     	<c:forEach items="${ sanPhamDTOs }" var="sanPhamDTO">
-                    		<div class="product">
+                    		<div class="product" onclick="location.href = '/WebsiteBanNhacCu/san-pham?id=${ sanPhamDTO.id }'">
 	                            <div class="product__img">
 	                            	<c:choose>
 	                            		<c:when test="${ !empty sanPhamDTO.hinhAnhBase64 }">
@@ -188,27 +200,15 @@
                     </div>
 
 
-
-
                 </div>
 
 
             </div>
 
-
-
-
-
-
-
         </div>
 
-
-
     </div>
-
 	
-	
-       
+       <%-- <script src="<c:url value="/static/assets/js/sanpham.js"/>"></script> --%>
 </body>
 </html>

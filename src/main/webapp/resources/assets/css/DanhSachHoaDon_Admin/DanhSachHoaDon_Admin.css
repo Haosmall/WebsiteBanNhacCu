@@ -1,8 +1,4 @@
 @charset "UTF-8";
-table {
-  margin-top: 50px;
-}
-
 table .test {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -28,10 +24,23 @@ table .test span {
 .management {
   font-size: 14px !important;
   background-color: #fff;
+  margin-top: 10px;
+}
+
+.timkiem {
+  padding-top: 10px;
+}
+
+.timkiem label {
+  font-size: 1rem;
 }
 
 .wrapper {
   margin: 10px auto;
+}
+
+.custom-select {
+    font-size: 14px;
 }
 
 .wrapper .side_right {
