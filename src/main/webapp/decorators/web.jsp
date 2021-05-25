@@ -123,11 +123,14 @@
 								class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Thông
 								tin người dùng
 							</a>
+							<a class="dropdown-item" href="#"> <i
+								class="fas fa-receipt fa-sm fa-fw mr-2 text-gray-400"></i> Đơn hàng của tôi
+							</a>
 							<!-- Role admin -->
 							<sec:authorize access="hasRole('ADMIN')">
 								<a class="dropdown-item"
 									href="<c:url value="/admin/quan-ly"/>"> <i
-									class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i> Quản lý
+									class="fas fa-tools fa-sm fa-fw mr-2 text-gray-400"></i> Quản lý
 									website
 								</a>
 							</sec:authorize>

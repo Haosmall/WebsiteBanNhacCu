@@ -27,6 +27,7 @@
 			<div class="cart">
 				<c:forEach items="${ map }" var="chiTietHoaDon">
 					<div class="element_cart">
+						
 						<!-- <input type="checkbox" class="form-check-input" value="check"> -->
 						<div class="img_element">
 							<img src="data:image/jpg;base64,${ chiTietHoaDon.key.mauSanPhamDTO.hinhAnhBase64 }" alt="">
@@ -35,7 +36,7 @@
 						<div class="name_a_delete">
 							<span>${ chiTietHoaDon.value.tenSanPham }</span>
 							<span>Màu: ${ chiTietHoaDon.key.mauSanPhamDTO.tenMau }</span>
-							<button class="btn btn-danger delete--sp" onclick="xoaChiTietHoaDon('${chiTietHoaDon.key.mauSanPhamDTO.maSanPham}', ${chiTietHoaDon.key.mauSanPhamDTO.maMau})">Xóa sản phẩm</button>
+							<button class="btn btn-danger delete--sp" >Xóa sản phẩm</button>
 						</div>
 	
 						<span class="price"><fmt:formatNumber type = "number" value = "${ chiTietHoaDon.value.giaBan }" /></span>
@@ -43,7 +44,9 @@
 						<div class="interact">
 							<button class="minus">-</button>
 							<input type="text" value="${ chiTietHoaDon.key.soLuong }" class="count"> <input
-								type="hidden" value="10" class="maxCount">
+								type="hidden" value="${ chiTietHoaDon.key.mauSanPhamDTO.soLuong }" class="maxCount">
+							<input type="hidden" value="${chiTietHoaDon.key.mauSanPhamDTO.maSanPham}" class="maSanPham">
+							<input type="hidden" value="${chiTietHoaDon.key.mauSanPhamDTO.maMau}" class="maMau">
 							<button class="plus" data-dismiss="alert">+</button>
 						</div>
 	
@@ -56,17 +59,28 @@
 
 			<div class="personel_info">
 
-
-				<div class="address">
-					<div class="address_getProduct">
-						<b>Địa chỉ nhận hàng</b> <a href="#" data-toggle="modal"
-							data-target="#myModal">Thay đổi</a>
+				<!-- Đã đăng nhập -->
+				<sec:authorize access="isAuthenticated()">
+					<div class="address">
+						<div class="address_getProduct">
+							<b>Địa chỉ nhận hàng</b> <a href="#" data-toggle="modal"
+								data-target="#myModal">Thay đổi</a>
+						</div>
+						<p class="inf_per">${user.fullName }|${user.phone}</p>
+						<p class="inf_ad">${user.diaChi }, ${user.phuongXa }, ${user.quanHuyen }, ${user.tinhThanhPho }</p>
+						<input id = "idUser" type="hidden" value="${user.userId }"/>
+						<input id = "diaChiGiaoHang" type="hidden" value="${user.diaChi }, ${user.phuongXa }, ${user.quanHuyen }, ${user.tinhThanhPho }"/>
+	
 					</div>
-					<p class="inf_per">${user.fullName }|${user.phone}</p>
-					<p class="inf_ad">${user.diaChi }, ${user.phuongXa }, ${user.quanHuyen }, ${user.tinhThanhPho }</p>
-					<input id = "idUser" type="hidden" value="${user.userId }"></input>
+				</sec:authorize>
 
-				</div>
+				<sec:authorize access="!isAuthenticated()">
+					<div class="address">
+						<div class="address_getProduct">
+							<b>Đăng nhập tài khoản để đặt hàng</b>
+						</div>
+					</div>
+				</sec:authorize>
 				<hr>
 
 				<div class="calculate">
@@ -79,15 +93,11 @@
 
 		</div>
 
-
-
-
-
-
 	</div>
 
 
-
+<!-- Đã đăng nhập -->
+	<sec:authorize access="isAuthenticated()">
 	<!-- The Modal -->
 	<div class="modal fade" id="myModal" data-backdrop="static"
 		data-keyboard="false">
@@ -162,6 +172,7 @@
 
 	</div>
 
+	</sec:authorize>
 	<div class="box_confirm">
 		<div>Xác nhận thay thay đổi</div>
 		<div>

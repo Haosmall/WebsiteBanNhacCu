@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -76,6 +77,31 @@ public class GioHangRestController {
 		
 		return hoaDonDTO.themChiTietHoaDonDTO(mauSanPhamDTO) ? 1 : -1;
 	}
+	
+	@GetMapping("/cap-nhat-so-luong")
+	public HttpStatus capNhatSoLuong(HttpSession httpSession,
+			@RequestParam("maSanPham") String maSanPham,
+			@RequestParam("maMau") int maMau,
+			@RequestParam("soLuong") int soLuong) {
+		
+		HoaDonDTO hoaDonDTO = (HoaDonDTO) httpSession.getAttribute("hoaDonDTO");
+		if (hoaDonDTO == null) {
+			hoaDonDTO = new HoaDonDTO();
+			httpSession.setAttribute("hoaDonDTO", hoaDonDTO);
+		}
+		MauSanPham mauSanPham = mauSanPhamService.getMauSanPhamTheoMaSanPhamVaMaMau(maSanPham, maMau);
+		MauSanPhamDTO mauSanPhamDTO = mauSanPhamConverter.toMauSanPhamDTO(mauSanPham);
+		
+		hoaDonDTO.getChiTietHoaDonDTOs().forEach(cthd -> {
+			if(cthd.getMauSanPhamDTO().equals(mauSanPhamDTO)) {
+				cthd.setSoLuong(soLuong);
+			}
+			
+		});
+		
+		return HttpStatus.OK;
+	}
+	
 	@DeleteMapping("/xoa-gio-hang")
 	public HttpStatus xoaSanPhamKhoiGioHang(HttpSession httpSession, @RequestParam("maSanPham") String maSanPham,
 			@RequestParam("maMau") int maMau) {
@@ -91,21 +117,14 @@ public class GioHangRestController {
 		return hoaDonDTO.xoaChiTietHoaDon(mauSanPhamDTO) ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
 	}
 	
-//	@GetMapping("/them-vao-gio-hang")
-//	public HttpStatus themVaoGioHang(HttpSession httpSession, @RequestParam("maSanPham") String maSanPham,
-//			@RequestParam("maMau") int maMau) {
-//
-//		HoaDonDTO hoaDonDTO = (HoaDonDTO) httpSession.getAttribute("hoaDonDTO");
-//		if (hoaDonDTO == null) {
-//			hoaDonDTO = new HoaDonDTO();
-//			httpSession.setAttribute("hoaDonDTO", hoaDonDTO);
-//		}
-//		MauSanPham mauSanPham = mauSanPhamService.getMauSanPhamTheoMaSanPhamVaMaMau(maSanPham, maMau);
-//		MauSanPhamDTO mauSanPhamDTO = mauSanPhamConverter.toMauSanPhamDTO(mauSanPham);
-//
-//		
-//		return hoaDonDTO.themChiTietHoaDonDTO(mauSanPhamDTO) ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
-//	}
+	@GetMapping("/kiem-tra-so-luong-ton")
+	public int getSoLuongTon(@RequestParam("maSanPham") String maSanPham,
+			@RequestParam("maMau") int maMau) {
+
+		MauSanPham mauSanPham = mauSanPhamService.getMauSanPhamTheoMaSanPhamVaMaMau(maSanPham, maMau);
+
+		return mauSanPham.getSoLuong();
+	}
 	
 	
 	@GetMapping("/xem-gio-hang")
