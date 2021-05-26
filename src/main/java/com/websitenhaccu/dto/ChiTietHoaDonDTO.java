@@ -12,8 +12,6 @@ public class ChiTietHoaDonDTO {
 	private String maHoaDon;
 	
 	private MauSanPhamDTO mauSanPhamDTO;
-//	private String maSanPham;
-//	private String maSanPham;
 
 	private int soLuong;
 }

@@ -158,4 +158,10 @@ public class NguoiDungServiceImpl implements NguoiDungService {
 		return nguoiDung == null ? false : true;
 	}
 
+	@Override
+	public NguoiDung getNguoiDungTheoEmail(String email) {
+		
+		return nguoiDungRepository.findByEmail(email);
+	}
+
 }

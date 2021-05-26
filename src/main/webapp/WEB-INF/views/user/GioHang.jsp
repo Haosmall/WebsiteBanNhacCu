@@ -66,10 +66,20 @@
 							<b>Địa chỉ nhận hàng</b> <a href="#" data-toggle="modal"
 								data-target="#myModal">Thay đổi</a>
 						</div>
+						
+						<c:if test="${ not empty user.diaChi }"><c:set value="${user.diaChi }, " var="diaChiTemp"></c:set></c:if>
+						<c:if test="${ not empty user.phuongXa }"><c:set value="${user.phuongXa }, " var="phuongXaTemp"></c:set></c:if>
+						<c:if test="${ not empty user.quanHuyen }"><c:set value="${user.quanHuyen }, " var="quanHuyenTemp"></c:set></c:if>
+						<c:if test="${ not empty user.tinhThanhPho }"><c:set value="${user.tinhThanhPho }" var="tinhThanhPhoTemp"></c:set></c:if>
+						
+						<c:set value="${ diaChiTemp }${ phuongXaTemp }${ quanHuyenTemp }${ tinhThanhPhoTemp }" var="temp"></c:set>
+						
 						<p class="inf_per">${user.fullName }|${user.phone}</p>
-						<p class="inf_ad">${user.diaChi }, ${user.phuongXa }, ${user.quanHuyen }, ${user.tinhThanhPho }</p>
+						<%-- <p class="inf_ad">${ hoaDonDTO.diaChiGiaoHang }</p> --%>
+						<p class="inf_ad">${ temp }</p>
 						<input id = "idUser" type="hidden" value="${user.userId }"/>
-						<input id = "diaChiGiaoHang" type="hidden" value="${user.diaChi }, ${user.phuongXa }, ${user.quanHuyen }, ${user.tinhThanhPho }"/>
+						<input id = "diaChiGiaoHang" name="diaChiGiaoHang" type="hidden" value="${ temp }"/>
+						<%-- <input id = "diaChiGiaoHang" name="diaChiGiaoHang" type="hidden" value="${ hoaDonDTO.diaChiGiaoHang }"/> --%>
 	
 					</div>
 				</sec:authorize>
@@ -87,8 +97,10 @@
 					<span>Thành Tiền</span> <span id="totalPrice">8000000</span>
 
 				</div>
-
-				<button class="btn btn-danger">Tiến hàng đặt hàng</button>
+				
+				<form method="get" action="<c:url value="/dat-hang"/>">
+					<button type="submit" class="btn btn-danger" id="btnDatHang">Tiến hàng đặt hàng</button>
+				</form>
 			</div>
 
 		</div>
@@ -113,7 +125,7 @@
 				<!-- Modal body -->
 				<div class="modal-body">
 
-					<form action='' id="formSbm" method="post">
+					<form action='' id="formSbm">
 						<div class="form-group">
 							<label for="tinh">Tỉnh/Thành Phố</label> 
 							<select onblur="ktraTinh()" class="form-control" id="tinh">
@@ -154,9 +166,6 @@
 
 						</div>
 
-
-
-
 						<button type="submit" class="btn btn-primary btnSubmit">Thay
 							đổi</button>
 					</form>
@@ -176,8 +185,8 @@
 	<div class="box_confirm">
 		<div>Xác nhận thay thay đổi</div>
 		<div>
-			<button id="no">Hủy</button>
-			<button id="yes">Đồng ý</button>
+			<button id="no" data-dismiss="modal">Hủy</button>
+			<button id="yes" data-dismiss="modal">Đồng ý</button>
 		</div>
 	</div>
 

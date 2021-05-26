@@ -2,9 +2,12 @@ package com.websitenhaccu.service;
 
 
 import com.websitenhaccu.dto.NguoiDungDTO;
+import com.websitenhaccu.entity.NguoiDung;
 
 public interface NguoiDungService {
 	public NguoiDungDTO getByEmail(String email);
+	
+	public NguoiDung getNguoiDungTheoEmail(String email);
 
 	public boolean registrationVerifyUserByEmail(NguoiDungDTO userDTO, String host);
 	

@@ -17,8 +17,6 @@ public class HoaDonDTO {
 
 	private String diaChiGiaoHang;
 
-	private String soDienThoai;
-
 	private String trangThai;
 
 	private NguoiDungDTO nguoiDung;

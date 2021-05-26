@@ -7,11 +7,18 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
+
+import com.websitenhaccu.util.MyGenerator;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,6 +34,11 @@ import lombok.ToString;
 public class HoaDon {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "hoaDon_generator")
+	@GenericGenerator(name = "hoaDon_generator", strategy = "com.websitenhaccu.util.MyGenerator", parameters = {
+			@Parameter(name = MyGenerator.INCREMENT_PARAM, value = "1"),
+			@Parameter(name = MyGenerator.VALUE_PREFIX_PARAMETER, value = "HD"),
+			@Parameter(name = MyGenerator.NUMBER_FORMAT_PARAMETER, value = "%06d") })
 	@Column(name = "hoa_don_id")
 	private String id;
 
@@ -36,10 +48,7 @@ public class HoaDon {
 	@Column(name = "dia_chi_giao_hang", columnDefinition = "NVARCHAR(MAX)")
 	private String diaChiGiaoHang;
 
-	@Column(name = "so_dien_thoai")
-	private String soDienThoai;
-
-	@Column(name = "trang_thai")
+	@Column(name = "trang_thai", columnDefinition = "NVARCHAR(MAX)")
 	private String trangThai;
 
 	@ManyToOne(fetch = FetchType.EAGER)

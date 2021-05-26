@@ -9,7 +9,6 @@
 
 <%-- <c:set var="pageTitle" value="<dec:title />" /> --%>
 
-<dec:head></dec:head>
 <link rel="stylesheet" href="<c:url value="/static/style.css"/>">
 
 <link rel="icon" href="<c:url value="/static/assets/img/logo.png"/>"
@@ -54,6 +53,7 @@
 <link rel="stylesheet"
 	href="<c:url value="/static/assets/css/index_page/Slider.css"/>">
 
+<dec:head></dec:head>
 
 </head>
 <body>

@@ -34,9 +34,6 @@ public class ChiTietHoaDon {
     @JoinColumn(name = "hoa_don_id")
 	private HoaDon hoaDon;
 	
-	@Column(name = "mau", columnDefinition = "NVARCHAR(MAX)")
-	private String mau;
-
 	@Column(name = "so_luong")
 	private int soLuong;
 }

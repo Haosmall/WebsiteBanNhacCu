@@ -26,7 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Bean
 	public PasswordEncoder passwordEncoder() {
-
+		// Password encoder, để Spring Security sử dụng mã hóa mật khẩu người dùng
 		return new BCryptPasswordEncoder();
 	}
 
@@ -47,7 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //				.antMatchers("/forgot-password").permitAll()
 //				.antMatchers("forgot-password/enter-password").permitAll()
 //				.antMatchers("/user/**, /gio-hang/dat-hang" ).hasRole("USER")
-				.antMatchers("/gio-hang/dat-hang" ).hasRole("USER")
+				.antMatchers("/dat-hang" ).hasAnyRole("USER", "ADMIN")
 				.antMatchers("/admin/**").hasRole("ADMIN")
 				.anyRequest()
 	            
@@ -63,10 +63,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.permitAll()
 				.and()
 					.logout()
-						.logoutSuccessUrl("/trang-chu")
-						.permitAll()
+					.logoutSuccessUrl("/trang-chu")
+					.permitAll()
 				.and()
-				.rememberMe().key("uniqueAndSecret").tokenValiditySeconds(1296000)// Cấu hình remember me, thời gian là 1296000 giây
+					.rememberMe().key("uniqueAndSecret").tokenValiditySeconds(1296000)// Cấu hình remember me, thời gian là 1296000 giây
 				.and()
 					.exceptionHandling()
 					.accessDeniedPage("/403");

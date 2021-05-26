@@ -2,23 +2,20 @@ package com.websitenhaccu.controller;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.TreeMap;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.websitenhaccu.dto.ChiTietHoaDonDTO;
 import com.websitenhaccu.dto.HoaDonDTO;
 import com.websitenhaccu.dto.NguoiDungDTO;
 import com.websitenhaccu.dto.SanPhamDTO;
+import com.websitenhaccu.entity.NguoiDung;
 import com.websitenhaccu.service.NguoiDungService;
 import com.websitenhaccu.service.SanPhamService;
 import com.websitenhaccu.util.CustomUserDetails;
@@ -43,10 +40,15 @@ public class GioHangController {
 		}
 
 		NguoiDungDTO user = UserService.getByEmail(email);
+		NguoiDung nguoiDung = UserService.getNguoiDungTheoEmail(email);
 
 		HoaDonDTO hoaDonDTO = (HoaDonDTO) httpSession.getAttribute("hoaDonDTO");
 		if(hoaDonDTO == null) {
 			hoaDonDTO = new HoaDonDTO();
+			if(nguoiDung != null) {
+				
+				hoaDonDTO.setDiaChiGiaoHang(nguoiDung.getDiaChi());
+			}
 			httpSession.setAttribute("hoaDonDTO", hoaDonDTO);
 		}
 		Map<ChiTietHoaDonDTO, SanPhamDTO> map = new HashMap<ChiTietHoaDonDTO, SanPhamDTO>();
