@@ -5,12 +5,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<dec:head />
 <title><dec:title /></title>
 
-<link rel = "icon" href = 
-"<c:url value="/static/assets/img/logo.png"/>" 
-        type = "image/x-icon">
+<link rel="icon" href="<c:url value="/static/assets/img/logo.png"/>"
+	type="image/x-icon">
 
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
@@ -20,29 +18,35 @@
 
 
 <!-- Custom fonts for this template-->
-<link href="<c:url value="/static/assets/vendor/fontawesome-free/css/all.min.css"/>"
+<link
+	href="<c:url value="/static/assets/vendor/fontawesome-free/css/all.min.css"/>"
 	rel="stylesheet" type="text/css">
 <link
 	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
 	rel="stylesheet">
-	<!-- jquery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- jquery -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <!-- Custom styles for this template-->
-<link href='<c:url value="/static/assets/css/sb-admin-2.min.css"/>' rel="stylesheet">
-<link rel="stylesheet" href="<c:url value="/static/assets/css/style.css"/>">
+<link href='<c:url value="/static/assets/css/sb-admin-2.min.css"/>'
+	rel="stylesheet">
 
-<dec:head/>
+<link rel="stylesheet"
+	href="<c:url value="/static/assets/css/style.css"/>">
+
+
+<dec:head></dec:head>
 
 </head>
-<body id="page-top" >
+<body id="page-top">
 
 	<!-- Page Wrapper -->
-	<div id="wrapper">
+	<div id="wrapper" class="sidebar-toggled">
 
 		<!-- Sidebar -->
 		<ul
-			class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+			class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled"
 			id="accordionSidebar">
 
 			<!-- Sidebar - Brand -->
@@ -74,13 +78,16 @@
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapseTwo"
 				aria-expanded="true" aria-controls="collapseTwo"> <i
-					class="fas fa-receipt fa-fw fa-cog"></i> <span>Quản lý đơn hàng</span>
+					class="fas fa-receipt fa-fw fa-cog"></i> <span>Quản lý đơn
+						hàng</span>
 			</a>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" href="buttons.html">Buttons</a> <a
-							class="collapse-item" href="cards.html">Cards</a>
+						<a class="collapse-item"
+							href='<c:url value ="/admin/quan-li-don-hang/danh-sach-don-hang"/>'>Danh
+							sách đơn hàng</a> <a class="collapse-item"
+							href='<c:url value ="/admin/quan-li-don-hang/danh-sach-don-hang"/>'>Cards</a>
 					</div>
 				</div></li>
 
@@ -94,67 +101,85 @@
 					aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Sản phẩm:</h6>
-                        <a class="collapse-item" href="<c:url value='/admin/san-pham/danh-sach-san-pham'/>">Danh sách sản phẩm</a>
-                        <a class="collapse-item" href="<c:url value='/admin/san-pham/them-san-pham'/>">Thêm sản phẩm</a>
-                        <div class="collapse-divider"></div>
-                        
+						<a class="collapse-item"
+							href="<c:url value='/admin/san-pham/danh-sach-san-pham'/>">Danh
+							sách sản phẩm</a> <a class="collapse-item"
+							href="<c:url value='/admin/san-pham/them-san-pham'/>">Thêm
+							sản phẩm</a>
+						<div class="collapse-divider"></div>
+
 						<h6 class="collapse-header">Loại sản phẩm:</h6>
-                        <a class="collapse-item" href="<c:url value='/admin/loai-san-pham/danh-sach-loai-san-pham'/>">Danh sách loại sản phẩm</a>
-                        <a class="collapse-item" href="<c:url value='/admin/loai-san-pham/them-loai-san-pham'/>">Thêm loại sản phẩm</a>
-                        <div class="collapse-divider"></div>
-                        
-                        <h6 class="collapse-header">Dòng sản phẩm:</h6>
-                        <a class="collapse-item" href="<c:url value='/admin/dong-san-pham/danh-sach-dong-san-pham'/>">Danh sách dòng sản phẩm</a>
-                        <a class="collapse-item" href="<c:url value='/admin/dong-san-pham/them-dong-san-pham'/>">Thêm dòng sản phẩm</a>
-                        <div class="collapse-divider"></div>
-                        
-                        <h6 class="collapse-header">Màu:</h6>
-                        <a class="collapse-item" href="<c:url value='/admin/mau/danh-sach-mau'/>">Danh sách màu</a>
-                        <a class="collapse-item" href="<c:url value='/admin/mau/them-mau'/>">Thêm màu</a>
-                        <div class="collapse-divider"></div>
+						<a class="collapse-item"
+							href="<c:url value='/admin/loai-san-pham/danh-sach-loai-san-pham'/>">Danh
+							sách loại sản phẩm</a> <a class="collapse-item"
+							href="<c:url value='/admin/loai-san-pham/them-loai-san-pham'/>">Thêm
+							loại sản phẩm</a>
+						<div class="collapse-divider"></div>
+
+						<h6 class="collapse-header">Dòng sản phẩm:</h6>
+						<a class="collapse-item"
+							href="<c:url value='/admin/dong-san-pham/danh-sach-dong-san-pham'/>">Danh
+							sách dòng sản phẩm</a> <a class="collapse-item"
+							href="<c:url value='/admin/dong-san-pham/them-dong-san-pham'/>">Thêm
+							dòng sản phẩm</a>
+						<div class="collapse-divider"></div>
+
+						<h6 class="collapse-header">Màu:</h6>
+						<a class="collapse-item"
+							href="<c:url value='/admin/mau/danh-sach-mau'/>">Danh sách
+							màu</a> <a class="collapse-item"
+							href="<c:url value='/admin/mau/them-mau'/>">Thêm màu</a>
+						<div class="collapse-divider"></div>
 					</div>
 				</div></li>
-				
+
 			<!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Khác</span>
-                </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Nhà cung cấp:</h6>
-                        <a class="collapse-item" href="<c:url value='/admin/nha-cung-cap/danh-sach-nha-cung-cap'/>">Danh sách nhà cung cấp</a>
-                        <a class="collapse-item" href="<c:url value='/admin/nha-cung-cap/them-nha-cung-cap'/>">Thêm nhà cung cấp</a>
-                        <div class="collapse-divider"></div>
-                        
-                        <h6 class="collapse-header">Thương hiệu:</h6>
-                        <a class="collapse-item" href="<c:url value='/admin/thuong-hieu/danh-sach-thuong-hieu'/>">Danh sách thương hiệu</a>
-                        <a class="collapse-item" href="<c:url value='/admin/thuong-hieu/them-thuong-hieu'/>">Thêm thương hiệu</a>
-                        <div class="collapse-divider"></div>
-                        
-                        
-                        
-                        <h6 class="collapse-header">Bình luận:</h6>
-                        <a class="collapse-item" href="login.html">Danh sách Bình luận</a>
-                        <div class="collapse-divider"></div>
-                        
-                        <h6 class="collapse-header">Cửa hàng:</h6>
-                        <a class="collapse-item" href="<c:url value='/admin/thong-tin-cua-hang'/>">Thông tin cửa hàng</a>
-                        <div class="collapse-divider"></div>
-                    </div>
-                </div>
-            </li>
+			<li class="nav-item"><a class="nav-link collapsed" href="#"
+				data-toggle="collapse" data-target="#collapsePages"
+				aria-expanded="true" aria-controls="collapsePages"> <i
+					class="fas fa-fw fa-folder"></i> <span>Khác</span>
+			</a>
+				<div id="collapsePages" class="collapse"
+					aria-labelledby="headingPages" data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<h6 class="collapse-header">Nhà cung cấp:</h6>
+						<a class="collapse-item"
+							href="<c:url value='/admin/nha-cung-cap/danh-sach-nha-cung-cap'/>">Danh
+							sách nhà cung cấp</a> <a class="collapse-item"
+							href="<c:url value='/admin/nha-cung-cap/them-nha-cung-cap'/>">Thêm
+							nhà cung cấp</a>
+						<div class="collapse-divider"></div>
+
+						<h6 class="collapse-header">Thương hiệu:</h6>
+						<a class="collapse-item"
+							href="<c:url value='/admin/thuong-hieu/danh-sach-thuong-hieu'/>">Danh
+							sách thương hiệu</a> <a class="collapse-item"
+							href="<c:url value='/admin/thuong-hieu/them-thuong-hieu'/>">Thêm
+							thương hiệu</a>
+						<div class="collapse-divider"></div>
+
+
+
+						<h6 class="collapse-header">Bình luận:</h6>
+						<a class="collapse-item" href="login.html">Danh sách Bình luận</a>
+						<div class="collapse-divider"></div>
+
+						<h6 class="collapse-header">Cửa hàng:</h6>
+						<a class="collapse-item"
+							href="<c:url value='/admin/thong-tin-cua-hang'/>">Thông tin
+							cửa hàng</a>
+						<div class="collapse-divider"></div>
+					</div>
+				</div></li>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider d-none d-md-block">
 
 			<!-- Sidebar Toggler (Sidebar) -->
-			<div class="text-center d-none d-md-inline">
+			<!-- 			<div class="text-center d-none d-md-inline">
 				<button class="rounded-circle border-0" id="sidebarToggle"></button>
 			</div>
-
+ -->
 
 		</ul>
 		<!-- End of Sidebar -->
@@ -179,7 +204,7 @@
 								placeholder="Search for..." aria-label="Search"
 								aria-describedby="basic-addon2">
 							<div class="input-group-append">
-								<button class="btn btn-primary" type="button">
+								<button class="btn btn-danger" type="button">
 									<i class="fas fa-search fa-sm"></i>
 								</button>
 							</div>
@@ -274,7 +299,8 @@
 								<h6 class="dropdown-header">Message Center</h6>
 								<a class="dropdown-item d-flex align-items-center" href="#">
 									<div class="dropdown-list-image mr-3">
-										<img class="rounded-circle" src='<c:url value="/static/assets/img/undraw_profile_1.svg"/>'
+										<img class="rounded-circle"
+											src='<c:url value="/static/assets/img/undraw_profile_1.svg"/>'
 											alt="...">
 										<div class="status-indicator bg-success"></div>
 									</div>
@@ -285,7 +311,8 @@
 									</div>
 								</a> <a class="dropdown-item d-flex align-items-center" href="#">
 									<div class="dropdown-list-image mr-3">
-										<img class="rounded-circle" src="<c:url value="/static/assets/img/undraw_profile_2.svg"/>"
+										<img class="rounded-circle"
+											src="<c:url value="/static/assets/img/undraw_profile_2.svg"/>"
 											alt="...">
 										<div class="status-indicator"></div>
 									</div>
@@ -296,7 +323,8 @@
 									</div>
 								</a> <a class="dropdown-item d-flex align-items-center" href="#">
 									<div class="dropdown-list-image mr-3">
-										<img class="rounded-circle" src="<c:url value='/static/assets/img/undraw_profile_3.svg'/>"
+										<img class="rounded-circle"
+											src="<c:url value='/static/assets/img/undraw_profile_3.svg'/>"
 											alt="...">
 										<div class="status-indicator bg-warning"></div>
 									</div>
@@ -329,28 +357,30 @@
 							class="nav-link dropdown-toggle" href="#" id="userDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> <span
-								class="mr-2 d-none d-lg-inline text-gray-600 small">Hào Small</span> <img class="img-profile rounded-circle"
+								class="mr-2 d-none d-lg-inline text-gray-600 small">Hào
+									Small</span> <img class="img-profile rounded-circle"
 								src="<c:url value='/static/assets/img/undraw_profile.svg'/>">
 						</a> <!-- Dropdown - User Information -->
 							<div
 								class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 								aria-labelledby="userDropdown">
 								<a class="dropdown-item" href="#"> <i
-									class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Thông tin người dùng
+									class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Thông
+									tin người dùng
 								</a>
 								<!--  <a class="dropdown-item" href="#"> <i
 									class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
 									Settings
-								</a> --> 
-								
+								</a> -->
+
 								<a class="dropdown-item" href="<c:url value="/"/>"> <i
 									class="fab fa-internet-explorer fa-sm fa-fw mr-2 text-gray-400"></i>
 									<!-- class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i> -->
 									Website
 								</a>
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href='<c:url value="/logout"/>' data-toggle="modal"
-									data-target="#logoutModal"> <i
+								<a class="dropdown-item" href='<c:url value="/logout"/>'
+									data-toggle="modal" data-target="#logoutModal"> <i
 									class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
 									Đăng xuất
 								</a>
@@ -403,20 +433,25 @@
 	</div>
 
 	<!-- Bootstrap core JavaScript-->
-	<script src='<c:url value="/static/assets/vendor/jquery/jquery.min.js"/>'></script>
-	<script src='<c:url value="/static/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"/>'></script>
+	<script
+		src='<c:url value="/static/assets/vendor/jquery/jquery.min.js"/>'></script>
+	<script
+		src='<c:url value="/static/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"/>'></script>
 
 	<!-- Core plugin JavaScript-->
-	<script src='<c:url value="/static/assets/vendor/jquery-easing/jquery.easing.min.js"/>'></script>
+	<script
+		src='<c:url value="/static/assets/vendor/jquery-easing/jquery.easing.min.js"/>'></script>
 
 	<!-- Custom scripts for all pages-->
 	<script src='<c:url value="/static/assets/js/sb-admin-2.min.js"/>'></script>
 
 	<!-- Page level plugins -->
-	<script src='<c:url value="/static/assets/vendor/chart.js/Chart.min.js"/>'></script>
+	<script
+		src='<c:url value="/static/assets/vendor/chart.js/Chart.min.js"/>'></script>
 
 	<!-- Page level custom scripts -->
-	<script src='<c:url value="/static/assets/js/demo/chart-area-demo.js"/>'></script>
+	<script
+		src='<c:url value="/static/assets/js/demo/chart-area-demo.js"/>'></script>
 	<script src='<c:url value="/static/assets/js/demo/chart-pie-demo.js"/>'></script>
 
 </body>

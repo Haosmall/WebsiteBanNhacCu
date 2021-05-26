@@ -82,7 +82,9 @@
 						<%-- <input id = "diaChiGiaoHang" name="diaChiGiaoHang" type="hidden" value="${ hoaDonDTO.diaChiGiaoHang }"/> --%>
 	
 					</div>
+
 				</sec:authorize>
+
 
 				<sec:authorize access="!isAuthenticated()">
 					<div class="address">
