@@ -35,7 +35,7 @@ public class HoaDonServiceImpl implements HoaDonService {
 	@Override
 	public void xoaHoaDon(String id) {
 		hoaDonRepository.deleteById(id);
-		
+
 	}
 
 	@Override
@@ -67,10 +67,12 @@ public class HoaDonServiceImpl implements HoaDonService {
 			break;
 		}
 		hoaDon.setTrangThai(trangThaiStr);
-		
+
 		hoaDonRepository.save(hoaDon);
-		
 	}
 
+	public HoaDon getHoaDonByNguoiDungId(String idNguoiDung) {
+		return hoaDonRepository.getHoaDonByNguoiDungId(idNguoiDung);
+	}
 
 }

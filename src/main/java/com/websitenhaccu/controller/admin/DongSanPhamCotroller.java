@@ -38,7 +38,7 @@ public class DongSanPhamCotroller {
 
 	@GetMapping("/danh-sach-dong-san-pham")
 	public String getTatcaDongSanPham(Model model) {
-		List<DongSanPham> listDongSanPham = dongSanPhamService.getTatCaDongSanPham();
+		List<DongSanPham> listDongSanPham = dongSanPhamService.getDanhSachDongSanPhamTheoTenVaLoaiSanPhamVaThuongHieu("", "", "", 0, 10);
 		List<LoaiSanPham> listSanPham = loaiSanPhamService.getTatCaLoaiSanPham();
 		List<ThuongHieu> listThuongHieu = thuongHieuService.getTatCaThuongHieu();
 

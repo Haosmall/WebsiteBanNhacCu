@@ -79,7 +79,8 @@ public class SanPhamAdminController {
 	@RequestMapping("/danh-sach-san-pham")
 	public String danhSachSanPham(Model model) throws IOException, SQLException {
 
-		List<SanPham> sanPhams = sanPhamService.getTatCaSanPham();
+		List<SanPham> sanPhams = sanPhamService.timKiemSanPham("", "", "", "", 0, 10);
+		
 		List<String> listXuatXu = new ArrayList<String>();
 		for(SanPham sp : sanPhams) {
 			String xx = sp.getXuatXu().toLowerCase();

@@ -15,4 +15,5 @@ public interface HoaDonService {
 	
 	public void capNhatHoaDon(String maHoaDon, int trangThai);
 
+	public HoaDon getHoaDonByNguoiDungId(String idNguoiDung);
 }

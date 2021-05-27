@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,7 +27,7 @@ public class ThuongHieuRestController {
 	
 	@GetMapping("/danh-sach")
 	public List<ThuongHieuDTO> getDanhSachThuongHieuBangTenThuongHieu(@RequestParam("tenThuongHieu") String tenThuongHieu){
-		List<ThuongHieu> thuongHieus = thuongHieuService.getDanhSachThuongHieuBangTenThuongHieu(tenThuongHieu);
+		List<ThuongHieu> thuongHieus = thuongHieuService.getDanhSachThuongHieuBangTenThuongHieu(tenThuongHieu, 0, 10);
 		List<ThuongHieuDTO> thuongHieuDTOs = new ArrayList<ThuongHieuDTO>();
 		for(ThuongHieu th : thuongHieus) {
 			ThuongHieuDTO thuongHieuDTO = thuongHieuConverter.toThuongHieuDTO(th);
