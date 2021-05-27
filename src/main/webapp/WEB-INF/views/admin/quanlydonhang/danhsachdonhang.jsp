@@ -48,45 +48,37 @@
 					</th>
 					<th style="width: 13%"></th>
 				</tr>
-
-				<tr>
-					<td>1</td>
-					<td>123456ABC</td>
-					<td>11-03-2021</td>
-					<td>
-						<p>7 Thói Quen Của Bạn Trẻ Thành Đạt (Khổ Lớn) (Tái Bản 2020)
-							89.900 ₫ Giao hàng thành công7 Thói Quen Của Bạn Trẻ Thành Đạt
-							(Khổ Lớn) (Tái Bản 2020) 89.900 ₫ Giao hàng thành công7 Thói Quen
-							Của Bạn Trẻ Thành Đạt (Khổ Lớn) (Tái Bản 2020) 89.900 ₫ Giao hàng
-							thành công7 Thói Quen Của Bạn Trẻ Thành Đạt (Khổ Lớn) (Tái Bản
-							2020) 89.900 ₫ Giao hàng thành công</p>
-					</td>
-					<td>12000000</td>
-					<td>Thành công</td>
-					<td><button class="btn btn-danger"
-							onclick="window.location.href ='http://localhost:8080/WebsiteBanNhacCu/admin/quan-li-don-hang/donhang'">Xem
-							chi tiết</button></td>
-				</tr>
-
-				<tr>
-					<td>1</td>
-					<td>123456ABC</td>
-					<td>11-03-2021</td>
-					<td>
-						<p>7 Thói Quen Của Bạn Trẻ Thành Đạt (Khổ Lớn) (Tái Bản 2020)
-							89.900 ₫ Giao hàng thành công</p>
-					</td>
-					<td>12000000</td>
-					<td>Thành công</td>
-					<td><button class="btn btn-danger btn-">Xem chi tiết</button></td>
-				</tr>
+				
+				<c:forEach items="${ hoaDonDTOs }" var="hoaDonDTO" varStatus="counter">
+					<tr>
+						<td>${ counter.count }</td>
+						<td>${ hoaDonDTO.id }</td>
+						<td>
+							<fmt:formatDate pattern = "dd-MM-yyyy"  value = "${ hoaDonDTO.ngayLapHD }" />
+						</td>
+						<td>
+							<c:set var="tongTien" value="0"/>
+							<c:forEach items="${ hoaDonDTO.chiTietHoaDonDTOs }" var="chiTietHoaDonDTO">
+								<p> Sản phẩm: ${ chiTietHoaDonDTO.mauSanPhamDTO.tenSanPham } - Màu: ${ chiTietHoaDonDTO.mauSanPhamDTO.tenMau } - Số lượng: ${ chiTietHoaDonDTO.soLuong }</p>
+							</c:forEach>
+						</td>
+						<td><fmt:formatNumber type = "number" value = "${ hoaDonDTO.tongTien }" /> VNĐ</td>
+						<td>${ hoaDonDTO.trangThai }</td>
+						<td><button class="btn btn-danger" onclick="chiTietDonHang('${ hoaDonDTO.id }')">Xem chi tiết</button></td>
+					</tr>
+				
+				</c:forEach>
 
 			</tbody>
 		</table>
 
 	</div>
-	</div>
 
+<script type="text/javascript">
+	function chiTietDonHang(id){
+		window.location.href ="http://localhost:8080/WebsiteBanNhacCu/admin/quan-li-don-hang/chi-tiet-don-hang?maDonHang=" + id;
+	}
+</script>
 
 </body>
 </html>

@@ -20,20 +20,22 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ChiTietHoaDon {
-	
+
 	@Id
-    @ManyToOne
-    @JoinColumns({
-    	@JoinColumn(name = "san_pham_id", referencedColumnName = "san_pham_id"),
-    	@JoinColumn(name = "mau_id", referencedColumnName = "mau_id")
-    })
+	@ManyToOne
+	@JoinColumns({ @JoinColumn(name = "san_pham_id", referencedColumnName = "san_pham_id"),
+			@JoinColumn(name = "mau_id", referencedColumnName = "mau_id") })
 	private MauSanPham mauSanPham;
-	
+
 	@Id
-    @ManyToOne
-    @JoinColumn(name = "hoa_don_id")
+	@ManyToOne
+	@JoinColumn(name = "hoa_don_id")
 	private HoaDon hoaDon;
-	
+
 	@Column(name = "so_luong")
 	private int soLuong;
+
+	public double tinhTien() {
+		return getSoLuong() * mauSanPham.getSanPham().getGiaBan();
+	}
 }

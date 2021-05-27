@@ -68,20 +68,6 @@ public class GioHangController {
 		return "user/GioHang";
 	}
 	
-//	Thay đổi địa chỉ người dùng 
-
-//	@PostMapping("/api/diachi")
-//	public @ResponseBody ResponseEntity<UserDTO> saveDiaChiNguioDung(@RequestParam("id") String id,
-//			@RequestParam("thanhPho") String thanhPho, @RequestParam("huyen") String huyen,
-//			@RequestParam("xa") String xa, @RequestParam("soNha") String soNha) {
-//
-//		String diaChi = "";
-//		diaChi.concat(soNha + ", ");
-//		diaChi.concat(xa + ", ");
-//		diaChi.concat(huyen + ", ");
-//		diaChi.concat(thanhPho);
-//		
-//
-////		return "redirect:/gio-hang";
-//	}
+	
+	
 }

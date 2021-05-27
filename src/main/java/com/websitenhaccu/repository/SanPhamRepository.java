@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.websitenhaccu.entity.SanPham;
+import com.websitenhaccu.util.Constant;
 
 public interface SanPhamRepository extends JpaRepository<SanPham, String> {
 
@@ -24,6 +25,9 @@ public interface SanPhamRepository extends JpaRepository<SanPham, String> {
 	
 	public List<SanPham> findByDongSanPhamLoaiSanPhamIdAndDongSanPhamThuongHieuId(String maLoai, String maThuongHieu, Pageable pageable);
 	
-	@Query(value = "SELECT DISTINCT xuat_xu FROM SanPhams", nativeQuery = true)
+	@Query(value = Constant.QUERY_DANH_SACH_XUAT_XU, nativeQuery = true)
 	public Set<String> getDanhSachXuatXu();
+	
+	@Query(value = Constant.QUERY_DANH_SACH_SAN_PHAM_BAN_CHAY, nativeQuery = true)
+	public void getDanhSachSanPhamBanChay();
 }

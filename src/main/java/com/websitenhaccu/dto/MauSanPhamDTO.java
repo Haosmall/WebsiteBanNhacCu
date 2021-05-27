@@ -13,6 +13,8 @@ public class MauSanPhamDTO {
 	private String tenMau;
 
 	private String maSanPham;
+	
+	private String tenSanPham;
 
 	private int soLuong;
 

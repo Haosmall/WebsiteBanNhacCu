@@ -9,7 +9,7 @@
 
 <link rel="icon" href="<c:url value="/static/assets/img/logo.png"/>"
 	type="image/x-icon">
-
+	
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -453,6 +453,7 @@
 	<script
 		src='<c:url value="/static/assets/js/demo/chart-area-demo.js"/>'></script>
 	<script src='<c:url value="/static/assets/js/demo/chart-pie-demo.js"/>'></script>
+	
 
 </body>
 </html>

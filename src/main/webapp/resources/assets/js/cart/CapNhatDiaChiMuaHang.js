@@ -301,6 +301,7 @@ document.querySelector(".btnSubmit").addEventListener("click", function(event) {
 			      url: "http://localhost:8080/WebsiteBanNhacCu/api/gio-hang/cap-nhat-dia-chi",
 			      data: {diaChiMoi},
 			      dataType: "json",
+			      contentType:"application/json;charset=utf-8",
 			      encode: true,
 			    })
 
@@ -327,10 +328,10 @@ $(document).ready(function () {
 	$.ajax({
 	      type: "PUT",
 	      url: "http://localhost:8080/WebsiteBanNhacCu/api/gio-hang/cap-nhat-dia-chi",
-	      data: {diaChi},
+	      data:{diaChi},
 	      dataType: "json",
-	      encode: true,
 	    })
+	    
 	
 });
 

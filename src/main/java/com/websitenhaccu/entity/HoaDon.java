@@ -43,7 +43,7 @@ public class HoaDon {
 	private String id;
 
 	@Column(name = "ngay_lap_hd")
-	private Date ngayLapHD;
+	private Date ngayLapHoaDon;
 
 	@Column(name = "dia_chi_giao_hang", columnDefinition = "NVARCHAR(MAX)")
 	private String diaChiGiaoHang;
@@ -60,4 +60,13 @@ public class HoaDon {
 	@ToString.Exclude
 	private List<ChiTietHoaDon> chiTietHoaDons = new ArrayList<ChiTietHoaDon>();
 
+	
+	public double tinhTongTien() {
+		double tongTien = 0;
+		for (ChiTietHoaDon chiTietHoaDon : chiTietHoaDons) {
+			tongTien += chiTietHoaDon.tinhTien();
+		}
+		
+		return tongTien;
+	}
 }

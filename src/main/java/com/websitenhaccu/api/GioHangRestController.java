@@ -1,5 +1,9 @@
 package com.websitenhaccu.api;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +20,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -105,14 +110,21 @@ public class GioHangRestController {
 	
 	@PutMapping("/cap-nhat-dia-chi")
 	public HttpStatus capNhatDiaChi(HttpSession httpSession,
-			@RequestBody String diChiMoi) {
+			@RequestBody String data) {
+		String diaChiMoi = "";
+		try {
+			diaChiMoi = URLDecoder.decode(data.split("=")[1], StandardCharsets.UTF_8.name());
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		System.out.println(diaChiMoi);
 		
 		HoaDonDTO hoaDonDTO = (HoaDonDTO) httpSession.getAttribute("hoaDonDTO");
 		if (hoaDonDTO == null) {
 			hoaDonDTO = new HoaDonDTO();
 			httpSession.setAttribute("hoaDonDTO", hoaDonDTO);
 		}
-		hoaDonDTO.setDiaChiGiaoHang(diChiMoi.split("=")[1]);
+		hoaDonDTO.setDiaChiGiaoHang(diaChiMoi);
 		
 		return HttpStatus.OK;
 	}
