@@ -15,6 +15,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.websitenhaccu.converter.ChiTietHoaDonConverter;
@@ -37,7 +38,8 @@ import com.websitenhaccu.util.Constant;
 import com.websitenhaccu.util.CustomUserDetails;
 
 @Controller
-public class DonDatHangController {
+@RequestMapping("quan-ly-don-hang")
+public class HoaDonController {
 
 	@Autowired
 	private NguoiDungService UserService;

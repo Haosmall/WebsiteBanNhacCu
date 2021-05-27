@@ -87,7 +87,8 @@ public class MauSanPhamConverter {
 			e.printStackTrace();
 		}
 
-		MauSanPhamDTO mauSanPhamDTO = new MauSanPhamDTO(maMau, tenMau, maSanPham, soLuong, hinhAnhBase64);
+		String tenSanPham = mauSanPham.getSanPham().getTenSanPham();
+		MauSanPhamDTO mauSanPhamDTO = new MauSanPhamDTO(maMau, tenMau, maSanPham, tenSanPham, soLuong, hinhAnhBase64);
 		return mauSanPhamDTO;
 	}
 }

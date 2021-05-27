@@ -49,9 +49,12 @@ public class ChiTietHoaDonConverter {
 		MauSanPhamDTO mauSanPhamDTO = mauSanPhamConverter.toMauSanPhamDTO(chiTietHoaDon.getMauSanPham());
 
 		int soLuong = chiTietHoaDon.getSoLuong();
+		double giaBan = chiTietHoaDon.getMauSanPham().getSanPham().getGiaBan();
 		
-		ChiTietHoaDonDTO chiTietHoaDonDTO = new ChiTietHoaDonDTO(maHoaDon, mauSanPhamDTO, soLuong);
+//		ChiTietHoaDonDTO chiTietHoaDonDTO = new ChiTietHoaDonDTO(maHoaDon, mauSanPhamDTO, soLuong);
+		ChiTietHoaDonDTO chiTietHoaDonDTO = new ChiTietHoaDonDTO(maHoaDon, mauSanPhamDTO, soLuong, giaBan);
 
 		return chiTietHoaDonDTO;
 	}
+	
 }

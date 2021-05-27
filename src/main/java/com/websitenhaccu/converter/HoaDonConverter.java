@@ -58,18 +58,23 @@ public class HoaDonConverter {
 			return null;
 
 		String id = hoaDon.getId();
-		Date ngayLapHD = hoaDon.getNgayLapHD();
+		Date ngayLapHD = hoaDon.getNgayLapHoaDon();
 		String diaChiGiaoHang = hoaDon.getDiaChiGiaoHang();
 		String trangThai = hoaDon.getTrangThai();
 		NguoiDungDTO nguoiDungDTO = nguoiDungConverter.toNguoiDungDTO(hoaDon.getNguoiDung());
 
 		List<ChiTietHoaDonDTO> chiTietHoaDonDTOs = new ArrayList<ChiTietHoaDonDTO>();
 
-		chiTietHoaDonService.getChiTietHoaDonTheoMaHoaDon(id).forEach(cthd -> {
+		List<ChiTietHoaDon> chiTietHoaDons = chiTietHoaDonService.getChiTietHoaDonTheoMaHoaDon(id);
+		
+		chiTietHoaDons.forEach(cthd -> {
 			chiTietHoaDonDTOs.add(chiTietHoaDonConverter.toChiTietHoaDonDTO(cthd));
 		});
+		
+		hoaDon.setChiTietHoaDons(chiTietHoaDons);
+		double tongTien = hoaDon.tinhTongTien();
 
-		HoaDonDTO hoaDonDTO = new HoaDonDTO(id, ngayLapHD, diaChiGiaoHang, trangThai, nguoiDungDTO, chiTietHoaDonDTOs);
+		HoaDonDTO hoaDonDTO = new HoaDonDTO(id, ngayLapHD, diaChiGiaoHang, trangThai, nguoiDungDTO, chiTietHoaDonDTOs, tongTien);
 
 		return hoaDonDTO;
 	}

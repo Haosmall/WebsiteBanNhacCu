@@ -160,7 +160,7 @@ public class SanPhamAdminController {
 			bytes = multipartFile.getBytes();
 
 //			String hinhAnh = new String(bytes);
-			MauSanPhamDTO mauSanPhamDTO = new MauSanPhamDTO(maMau, null, null, soLuong, null);
+			MauSanPhamDTO mauSanPhamDTO = new MauSanPhamDTO(maMau, null, null, sanPhamDTO.getTenSanPham(),soLuong, null);
 //		List<MauSanPhamDTO> mauSanPhamDTOs = new ArrayList<MauSanPhamDTO>(Arrays.asList(mauSanPhamDTO));
 //		sanPhamDTO.setMauSanPhamDTOs(mauSanPhamDTOs);
 			mauSanPham = mauSanPhamConverter.toMauSanPham(mauSanPhamDTO, bytes);

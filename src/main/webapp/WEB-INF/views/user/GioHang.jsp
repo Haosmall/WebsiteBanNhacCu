@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Giỏ Hàng</title>
 <link rel="stylesheet"
 	href='<c:url value = "/static/assets/css/Cart/Cart.css"/>'>
@@ -79,6 +79,9 @@
 						<p class="inf_ad">${ temp }</p>
 						<input id = "idUser" type="hidden" value="${user.userId }"/>
 						<input id = "diaChiGiaoHang" name="diaChiGiaoHang" type="hidden" value="${ temp }"/>
+						<%-- <form:form modelAttribute="hoaDonDTO">
+							<form:hidden path="diaChiGiaoHang" value="${ temp }"/>
+						</form:form> --%>
 						<%-- <input id = "diaChiGiaoHang" name="diaChiGiaoHang" type="hidden" value="${ hoaDonDTO.diaChiGiaoHang }"/> --%>
 	
 					</div>
@@ -100,7 +103,7 @@
 
 				</div>
 				
-				<form method="get" action="<c:url value="/dat-hang"/>">
+				<form method="get" action="<c:url value="/quan-ly-don-hang/dat-hang"/>">
 					<button type="submit" class="btn btn-danger" id="btnDatHang">Tiến hàng đặt hàng</button>
 				</form>
 			</div>
