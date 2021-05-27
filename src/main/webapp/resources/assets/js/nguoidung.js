@@ -4,6 +4,12 @@ const PORT = window.location.port
 const CONTEXT_PATH = PAGE_PATH.split("/")[1]
 const API = 'register/api/email/tim-kiem'
 
+
+var trangThai = document.getElementById("trangThai").value;
+if(trangThai != ""){
+    alert(trangThai);
+}
+
 function searchType() {
     var searchText = document.getElementById("txtSearch").value;
     var txtSearchSdt = document.getElementById("txtSearchSdt").value;

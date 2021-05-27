@@ -73,7 +73,7 @@
 								value="Chi tiết"
 								onclick="location.href='<c:url value='/admin/nguoi-dung/chi-tiet-nguoi-dung?id=${ nguoiDung.userId }' />'">
 
-								<input type="button" class="btn btn-danger table__btn"
+								<input type="button" class="btn btn-danger table__btn" id="btnXoa"
 								value="Xóa"
 								onclick="location.href='<c:url value='/admin/nguoi-dung/xoa-nguoi-dung?id=${ nguoiDung.userId }' />'">
 
@@ -91,6 +91,7 @@
 	</div>
 	<!-- /.container-fluid -->
 	<input type="hidden" id="pageValue" value="${ page + 1}" />
+	<input type="hidden" id="trangThai" value="${trangThaiXoa}" />
 
 	<div class="form-group row">
 
