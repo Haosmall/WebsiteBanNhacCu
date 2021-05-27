@@ -63,7 +63,7 @@ public class DongSanPhamRestController {
 	public List<DongSanPhamDTO> getDanhSachDongSanPhamTheoLoaiSanPhamVaThuongHieu
 	(@RequestParam("tenDongSanPham") String tenDongSanPham, @RequestParam("maLoaiSanPham") String maLoaiSanPham, @RequestParam("maThuongHieu") String maThuongHieu,
 			@RequestParam(value = "page", defaultValue = "0") int page,
-			@RequestParam(value = "size", defaultValue = "20") int size) { //doi size thanh 20
+			@RequestParam(value = "size", defaultValue = "10") int size) { //doi size thanh 20
 		List<DongSanPhamDTO> listDongSanPhamDTOs = new ArrayList<DongSanPhamDTO>();
 		List<DongSanPham> listDongSanPhams = dongSanPhamService.getDanhSachDongSanPhamTheoTenVaLoaiSanPhamVaThuongHieu(tenDongSanPham, maLoaiSanPham, maThuongHieu, page, size);
 		for(DongSanPham d : listDongSanPhams) {

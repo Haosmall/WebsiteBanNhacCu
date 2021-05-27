@@ -11,5 +11,5 @@ public interface ThuongHieuService {
 	public void ThemThuonghieu (ThuongHieu thuongHieu);
 	public void XoaThuonghieu (String maThuongHieu);
 	public void CapnhatThuonghieu (ThuongHieu thuongieu);
-	public List<ThuongHieu> getDanhSachThuongHieuBangTenThuongHieu(String tenThuongHieu);
+	public List<ThuongHieu> getDanhSachThuongHieuBangTenThuongHieu(String tenThuongHieu, int page, int size);
 }

@@ -36,5 +36,10 @@ public class HoaDonServiceImpl implements HoaDonService {
 		
 	}
 
+	@Override
+	public HoaDon getHoaDonByNguoiDungId(String idNguoiDung) {
+		return hoaDonRepository.getHoaDonByNguoiDungId(idNguoiDung);
+	}
+
 
 }

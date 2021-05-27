@@ -149,6 +149,12 @@
 							href="<c:url value='/admin/nha-cung-cap/them-nha-cung-cap'/>">Thêm
 							nhà cung cấp</a>
 						<div class="collapse-divider"></div>
+						
+						<h6 class="collapse-header">Người dùng:</h6>
+						<a class="collapse-item"
+							href="<c:url value='/admin/nguoi-dung/danh-sach-nguoi-dung'/>">Danh
+							sách người dùng</a>
+						<div class="collapse-divider"></div>
 
 						<h6 class="collapse-header">Thương hiệu:</h6>
 						<a class="collapse-item"

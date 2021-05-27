@@ -28,7 +28,7 @@ public class LoaiSanPhamCotroller {
 
 	@GetMapping("/danh-sach-loai-san-pham")
 	public String getTatcaLoaiSanPham(Model model) {
-		List<LoaiSanPham> danhsachLoaiSanPham = loaiSanPhamService.getTatCaLoaiSanPham();
+		List<LoaiSanPham> danhsachLoaiSanPham = loaiSanPhamService.getDanhSachLoaiSanPhamBangTenLoaiSanPham("", 0 , 10);
 		
 		model.addAttribute("page", 0);
 		model.addAttribute("listLoaiSanPham", danhsachLoaiSanPham);

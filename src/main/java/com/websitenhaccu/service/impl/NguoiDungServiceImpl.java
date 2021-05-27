@@ -1,7 +1,10 @@
 package com.websitenhaccu.service.impl;
 
+import java.util.List;
+
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +12,7 @@ import com.websitenhaccu.converter.NguoiDungConverter;
 import com.websitenhaccu.dto.NguoiDungDTO;
 import com.websitenhaccu.entity.NguoiDung;
 import com.websitenhaccu.entity.ROLE;
+import com.websitenhaccu.repository.HoaDonRepository;
 import com.websitenhaccu.repository.NguoiDungRepository;
 import com.websitenhaccu.service.NguoiDungService;
 import com.websitenhaccu.util.EmailSender;
@@ -17,10 +21,13 @@ import com.websitenhaccu.util.EmailSender;
 public class NguoiDungServiceImpl implements NguoiDungService {
 
 	@Autowired
-	NguoiDungRepository nguoiDungRepository;
+	private NguoiDungRepository nguoiDungRepository;
+	
+	@Autowired
+	private HoaDonRepository hoaDonRepository;
 
 	@Autowired
-	NguoiDungConverter nguoiDungConverter;
+	private NguoiDungConverter nguoiDungConverter;
 
 	@Autowired
 	private EmailSender emailSender;
@@ -163,5 +170,30 @@ public class NguoiDungServiceImpl implements NguoiDungService {
 		
 		return nguoiDungRepository.findByEmail(email);
 	}
+
+	@Override
+	public List<NguoiDung> timKiemNguoiDung(String hoTen, String soDienThoai, String email, int page, int size) {
+		return nguoiDungRepository.findByHoTenContainingAndSoDienThoaiContainingAndEmailContaining(hoTen, soDienThoai, email, PageRequest.of(page, size));
+	}
+
+	@Override
+	public boolean XoaNguoiDung(String id) {
+		NguoiDung nguoiDung = nguoiDungRepository.findById(id).get();
+		if(nguoiDung == null) {
+			return false;
+		}
+		else if(hoaDonRepository.getHoaDonByNguoiDungId(nguoiDung.getId()) != null) {
+			return false;
+		}
+		nguoiDungRepository.delete(nguoiDung);
+		return true;
+	}
+
+	@Override
+	public NguoiDung getNguoiDungById(String id) {
+		return nguoiDungRepository.findById(id).get();
+	}
+	
+	
 
 }

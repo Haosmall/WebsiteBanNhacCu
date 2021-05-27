@@ -3,6 +3,7 @@ package com.websitenhaccu.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.websitenhaccu.entity.NhaCungCap;
@@ -42,6 +43,14 @@ public class NhaCungCapServiceImpl implements NhaCungCapService {
 
 		nhaCungCapRepository.save(nhaCungCap);
 
+	}
+
+	@Override
+	public List<NhaCungCap> timKiemNhaCungCap(String tenNhaCungCap, int page, int size) {
+		
+		List<NhaCungCap> nhaCungCaps = nhaCungCapRepository.findByTenNhaCungCapContaining(tenNhaCungCap, PageRequest.of(page, size));
+		
+		return nhaCungCaps;
 	}
 
 }
