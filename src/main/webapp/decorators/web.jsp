@@ -123,7 +123,7 @@
 								class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Thông
 								tin người dùng
 							</a>
-							<a class="dropdown-item" href="#"> <i
+							<a class="dropdown-item" href="<c:url value="/quan-ly-don-hang"/>"> <i
 								class="fas fa-receipt fa-sm fa-fw mr-2 text-gray-400"></i> Đơn hàng của tôi
 							</a>
 							<!-- Role admin -->

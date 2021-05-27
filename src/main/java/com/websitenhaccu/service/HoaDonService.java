@@ -6,6 +6,8 @@ import com.websitenhaccu.entity.HoaDon;
 
 public interface HoaDonService {
 	public List<HoaDon> getTatCaHoaDons();
+	
+	public List<HoaDon> getHoaDonTheoNguoiDung(String id);
 
 	public HoaDon getHoaDonTheoId(String id);
 

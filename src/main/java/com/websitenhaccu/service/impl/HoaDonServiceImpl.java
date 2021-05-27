@@ -75,4 +75,9 @@ public class HoaDonServiceImpl implements HoaDonService {
 		return hoaDonRepository.getHoaDonByNguoiDungId(idNguoiDung);
 	}
 
+	@Override
+	public List<HoaDon> getHoaDonTheoNguoiDung(String id) {
+		return hoaDonRepository.findByNguoiDungId(id, Sort.by(Sort.Direction.DESC, "ngayLapHoaDon"));
+	}
+
 }
