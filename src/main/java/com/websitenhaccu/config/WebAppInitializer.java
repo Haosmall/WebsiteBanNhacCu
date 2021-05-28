@@ -20,10 +20,16 @@ public class WebAppInitializer implements WebApplicationInitializer {
 	@Override
 	public void onStartup(ServletContext servletContext) throws ServletException {
 		AnnotationConfigWebApplicationContext appContext = new AnnotationConfigWebApplicationContext();
+		
 		appContext.register(WebMvcConfig.class);
+		appContext.setServletContext(servletContext);
+		
+//		Throw exeptiop
+		DispatcherServlet dispatcherServlet = new DispatcherServlet(appContext);
+        dispatcherServlet.setThrowExceptionIfNoHandlerFound(true);
+        dispatcherServlet.setDetectAllHandlerExceptionResolvers(true);
 
-		ServletRegistration.Dynamic dispatcher = servletContext.addServlet("SpringDispatcher",
-				new DispatcherServlet(appContext));
+		ServletRegistration.Dynamic dispatcher = servletContext.addServlet("SpringDispatcher", dispatcherServlet);
 
 		dispatcher.setLoadOnStartup(1);
 		dispatcher.addMapping("/");

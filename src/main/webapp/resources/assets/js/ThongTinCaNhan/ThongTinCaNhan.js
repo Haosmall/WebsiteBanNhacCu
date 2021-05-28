@@ -14,18 +14,14 @@ document.addEventListener("DOMContentLoaded", function () {
 })
 
 
-$("#doiMatKhau").change(function () {
-
-
-    if ($(this).prop("checked")) {
-        $(".form_doiMatKhau").css({ "display": "block" });
-        $(".addAtribute").prop('required', true);
-    } else {
-
-        $(".form_doiMatKhau").css({ "display": "none" });
-        $(".addAtribute").prop('required', false);
-    }
-})
+function doiMatKhau() {
+	alert("Đã gửi email xác nhận đổi mật khẩu ");
+	let email = $("#email").val();
+	$.ajax({
+	    url: apiFetch = "http://localhost:8080/WebsiteBanNhacCu/register/api/email/doi-mat-khau?email=" + email,
+	    type: 'GET',
+	});
+}
 
 
 const btnSubmit = $(".btnSubmit");

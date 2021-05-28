@@ -103,25 +103,15 @@
 
 
 							<img class="img-profile rounded-circle"
-							src="
-										<c:choose> 
-											<c:when test="${ empty user.hinhAnhBase64}">
-												<c:url value='/static/assets/img/undraw_profile.svg'/>
-											</c:when>
-										  	<c:otherwise>
-										  		data:image/jpg;base64,${ user.hinhAnhBase64 }
-										  	</c:otherwise>
-										</c:choose>
-									"
+							src="<c:url value='/static/assets/img/undraw_profile.svg'/>"
 							width="50px" height="50px">
 						</a>
 						<!-- Dropdown - User Information -->
 						<div
 							class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 							aria-labelledby="userDropdown">
-							<a class="dropdown-item" href="#"> <i
-								class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Thông
-								tin người dùng
+							<a class="dropdown-item" href="<c:url value="/tai-khoan/thong-tin-tai-khoan"/>"> <i
+								class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Tài khoản của tôi
 							</a>
 							<a class="dropdown-item" href="<c:url value="/quan-ly-don-hang"/>"> <i
 								class="fas fa-receipt fa-sm fa-fw mr-2 text-gray-400"></i> Đơn hàng của tôi

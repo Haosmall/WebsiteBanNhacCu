@@ -23,7 +23,7 @@ import com.websitenhaccu.service.NguoiDungService;
 
 @Controller
 @RequestMapping("/admin/nguoi-dung")
-public class NguoiDungCotroller {
+public class NguoiDungAdminCotroller {
 	
 	@Autowired
 	private NguoiDungService nguoiDungService;

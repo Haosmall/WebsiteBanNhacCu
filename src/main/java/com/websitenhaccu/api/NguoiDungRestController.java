@@ -3,7 +3,10 @@ package com.websitenhaccu.api;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -41,5 +44,15 @@ public class NguoiDungRestController {
 			nguoiDungDTOs.add(nguoiDungDTO);
 		});
 		return nguoiDungDTOs;
+	}
+	
+	@GetMapping("/doi-mat-khau")
+	public HttpStatus doiMatKhau(HttpServletRequest request,
+			@RequestParam(value = "email", required = true) String email) {
+
+		String baseUrl = "http://" + request.getHeader("host");
+		nguoiDungService.sendEmailForgotPassword(email, baseUrl);
+		
+		return HttpStatus.OK;
 	}
 }

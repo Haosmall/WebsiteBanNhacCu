@@ -8,7 +8,7 @@
 </head>
 <body>
 
-	<h2>Không tìm thấy trang</h2>
+	<h2>Bạn không thể truy cập trang này</h2>
 
 </body>
 </html>
