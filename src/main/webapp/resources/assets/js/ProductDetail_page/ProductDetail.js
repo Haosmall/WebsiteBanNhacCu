@@ -71,17 +71,17 @@ arrows__left.forEach((arrow, index) => {
 const color = $(".color");
 
 color.each(function (index) {
-    
 
-    $(this).click(function(){
 
-      
+    $(this).click(function () {
+
+
         color.removeClass("selected__color");
         $(this).addClass("selected__color");
 
     })
 
-    
+
 
 })
 
@@ -92,24 +92,25 @@ const btn_more = document.getElementById("readmore");
 const info = document.querySelector(".info__specific .info");
 const fade = document.querySelector("#gradientback");
 
-const heightDefault = "500px";
+const heightDefaultCss = "500px";
+const heightDefault = 500;
 
 const height = info.clientHeight;
 const actualHeight = height;
 
+console.log(height)
 
-
-if (height >= 0 && height < heightDefault) {
+if (height < heightDefault) {
     btn_more.style.display = "none";
     fade.style.display = "none";
 } else {
-    info.style.height = heightDefault;
+    info.style.height = heightDefaultCss;
     btn_more.style.bottom = 0;
-   
+
 }
 
 
-moreInfo = () =>{
+moreInfo = () => {
     info.style.height = null;
     btn_more.style.display = "none";
     fade.style.display = "none";

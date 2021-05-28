@@ -2,6 +2,11 @@ $whiteColor: #fff;
 $documentColor: #444;
 $titleColor: #393d3f;
 
+.wrapper {
+    background-color: #fff;
+    padding: 0 20px !important;
+}
+
 .wrapper__listProduct__rightSide {
     .top--bar {
         display: flex;
@@ -75,7 +80,7 @@ p {
     flex-wrap: wrap;
 
     .product {
-        width: 190px;
+        width: 188px;
         padding: 10px 4px;
         transition: all 0.5s ease-in-out;
 
@@ -199,4 +204,3 @@ p {
 }
 
 // thông tin và thông số kỹ thuật
-

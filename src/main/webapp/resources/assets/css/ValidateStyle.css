@@ -1,5 +1,21 @@
-span{
-    color: red;
-    font-style: italic;
-    font-size:14px;
+.check {
+	color: red;
+	font-style: italic;
+	font-size: 14px;
 }
+
+.duytridangnhap{
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+.duytridangnhap label{
+	margin: 0;
+	padding: 0;
+}
+
+#logreg-forms{
+	margin: 5vh auto !important;
+	background: #fff !important;
+} 
