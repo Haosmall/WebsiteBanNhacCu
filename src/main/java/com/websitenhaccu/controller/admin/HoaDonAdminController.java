@@ -37,7 +37,23 @@ public class HoaDonAdminController {
 	@GetMapping("/danh-sach-don-hang")
 	public String DanhSachHoaDon(Model model) {
 
-		List<HoaDon> hoaDons = hoaDonService.getTatCaHoaDons();
+//		List<HoaDon> hoaDons = hoaDonService.getTatCaHoaDons();
+//		List<HoaDonDTO> hoaDonDTOs = new ArrayList<HoaDonDTO>();
+//		hoaDons.forEach(hd -> {
+//			HoaDonDTO hoaDonDTO = hoaDonConverter.toHoaDonDTO(hd);
+//			List<ChiTietHoaDonDTO> chiTietHoaDonDTOs = new ArrayList<ChiTietHoaDonDTO>();
+//			List<ChiTietHoaDon> chiTietHoaDons = chiTietHoaDonService.getChiTietHoaDonTheoMaHoaDon(hoaDonDTO.getId());
+//
+//			chiTietHoaDons.forEach(cthd -> {
+//				ChiTietHoaDonDTO chiTietHoaDonDTO = chiTietHoaDonConverter.toChiTietHoaDonDTO(cthd);
+//				chiTietHoaDonDTOs.add(chiTietHoaDonDTO);
+//			});
+//			hoaDonDTO.setChiTietHoaDonDTOs(chiTietHoaDonDTOs);
+//
+//			hoaDonDTOs.add(hoaDonDTO);
+//		});
+		List<HoaDon> hoaDons = hoaDonService.getDanhSachTheoTrangThai("", 0, 10);
+		
 		List<HoaDonDTO> hoaDonDTOs = new ArrayList<HoaDonDTO>();
 		hoaDons.forEach(hd -> {
 			HoaDonDTO hoaDonDTO = hoaDonConverter.toHoaDonDTO(hd);
@@ -53,7 +69,12 @@ public class HoaDonAdminController {
 			hoaDonDTOs.add(hoaDonDTO);
 		});
 
+		List<String> trangThais = new ArrayList<String>(Arrays.asList(Constant.DANG_CHO_XU_LY, Constant.DA_TIEP_NHAN,
+				Constant.DANG_DONG_GOI, Constant.BAN_GIAO_VAN_CHUYEN, Constant.GIAO_THANH_CONG, Constant.DA_HUY));
+		model.addAttribute("trangThais", trangThais);
 		model.addAttribute("hoaDonDTOs", hoaDonDTOs);
+		model.addAttribute("page", 0);
+
 
 		return "admin/quanlydonhang/danhsachdonhang";
 

@@ -6,13 +6,14 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.websitenhaccu.entity.NguoiDung;
+import com.websitenhaccu.entity.ROLE;
 
 public interface NguoiDungRepository extends JpaRepository<NguoiDung, String> {
 	public NguoiDung findByEmail(String email);
 
 	public NguoiDung findByEmailAndTrangThai(String email, boolean trangThai);
 	
-	public List<NguoiDung> findByHoTenContainingAndSoDienThoaiContainingAndEmailContaining(String hoTen, String soDienThoai, String email, Pageable pageable);
+	public List<NguoiDung> findByHoTenContainingAndSoDienThoaiContainingAndEmailContainingAndRole(String hoTen, String soDienThoai, String email, ROLE role, Pageable pageable);
 	
 	boolean existsByEmail(String email);
 }

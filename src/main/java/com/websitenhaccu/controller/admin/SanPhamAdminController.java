@@ -5,6 +5,7 @@ import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -74,13 +75,20 @@ public class SanPhamAdminController {
 	public String danhSachSanPham(Model model) throws IOException, SQLException {
 
 		List<SanPham> sanPhams = sanPhamService.timKiemSanPham("", "", "", "", 0, 10);
+		
+		Set<String> listXuatXu = sanPhamService.getDanhSachXuatXu();
 
-		List<String> listXuatXu = new ArrayList<String>();
-		for (SanPham sp : sanPhams) {
-			String xx = sp.getXuatXu().toLowerCase();
-			xx = xx.substring(0, 1).toUpperCase() + xx.substring(1);
-			if (!listXuatXu.contains(xx))
-				listXuatXu.add(xx);
+		List<SanPhamDTO> listSanPhamDTO = new ArrayList<>();
+		
+		for(SanPham sp : sanPhams) {
+			List<MauSanPham> mauSanPhams = mauSanPhamService.getMauSanPhamTheoMaSanPham(sp.getId());
+			int soLuong = 0;
+			for(MauSanPham msp : mauSanPhams) {
+				soLuong += msp.getSoLuong();
+			}
+			SanPhamDTO sanPhamDTO = sanPhamConverter.toSanPhamDTO_TrangSanPham(sp);
+			sanPhamDTO.setTongSoLuong(soLuong);
+			listSanPhamDTO.add(sanPhamDTO);
 		}
 
 		List<LoaiSanPham> loaiSanPhams = loaiSanPhamService.getTatCaLoaiSanPham();
@@ -88,7 +96,7 @@ public class SanPhamAdminController {
 
 		model.addAttribute("page", 0);
 
-		model.addAttribute("listSanPham", sanPhams);
+		model.addAttribute("listSanPham", listSanPhamDTO);
 		model.addAttribute("listXuatXu", listXuatXu);
 		model.addAttribute("listThuongHieu", thuongHieus);
 		model.addAttribute("listLoaiSanPham", loaiSanPhams);
@@ -122,13 +130,6 @@ public class SanPhamAdminController {
 		List<DongSanPham> dongSanPhams = dongSanPhamService.getTatCaDongSanPham();
 		List<Mau> maus = mauService.getTatCamau();
 
-//		if (maus.size() <= 0) {
-//			List<String> list = new ArrayList<String>(Arrays.asList("Đen", "Vân gỗ", "Trắng", "Nâu"));
-//			for (String string : list) {
-//				mauService.themMau(new Mau(0, string));
-//			}
-//		}
-
 		model.addAttribute("sanPhamDTO", new SanPhamDTO());
 		model.addAttribute("nhaCungCaps", nhaCungCaps);
 		model.addAttribute("loaiSanPhams", loaiSanPhams);
@@ -153,11 +154,8 @@ public class SanPhamAdminController {
 		try {
 			bytes = multipartFile.getBytes();
 
-//			String hinhAnh = new String(bytes);
-			MauSanPhamDTO mauSanPhamDTO = new MauSanPhamDTO(maMau, null, null, sanPhamDTO.getTenSanPham(), soLuong,
-					null);
-//		List<MauSanPhamDTO> mauSanPhamDTOs = new ArrayList<MauSanPhamDTO>(Arrays.asList(mauSanPhamDTO));
-//		sanPhamDTO.setMauSanPhamDTOs(mauSanPhamDTOs);
+			MauSanPhamDTO mauSanPhamDTO = new MauSanPhamDTO(maMau, null, null, sanPhamDTO.getTenSanPham(),soLuong, null);
+
 			mauSanPham = mauSanPhamConverter.toMauSanPham(mauSanPhamDTO, bytes);
 			sanPhamDTO.setTrangThai(true);
 		} catch (Exception e) {
@@ -166,17 +164,6 @@ public class SanPhamAdminController {
 		}
 
 		SanPham sanPham = sanPhamConverter.toSanPham(sanPhamDTO);
-
-//		sanPhamValidator.validate(sanPham, bindingResult);
-
-//		if (bindingResult.hasErrors()) {
-//
-//			model.addAttribute("sanPhamDTO", sanPhamDTO);
-//			model.addAttribute("formTitle", "Thêm nhà cung cấp");
-//			model.addAttribute("formButton", "Thêm");
-//
-//			return "admin/nhacungcap/NhaCungCapForm";
-//		}
 
 		sanPhamService.themSanPham(sanPham, mauSanPham);
 
@@ -229,7 +216,6 @@ public class SanPhamAdminController {
 		model.addAttribute("formTitle", "Thêm màu sản phẩm");
 		model.addAttribute("formButton", "Thêm");
 		return "/admin/sanpham/MauSanPhamForm";
-//		return "redirect:/admin/san-pham/xem-chi-tiet?id="+maSanPham;
 
 	}
 
@@ -266,7 +252,7 @@ public class SanPhamAdminController {
 			@RequestParam("hinhAnh") MultipartFile multipartFile) throws IOException, SQLException {
 
 		byte[] bytes = null;
-//		if (multipartFile.getSize() > 0) {
+
 		if (multipartFile.getSize() > 0) {
 			bytes = multipartFile.getBytes();
 		} else {

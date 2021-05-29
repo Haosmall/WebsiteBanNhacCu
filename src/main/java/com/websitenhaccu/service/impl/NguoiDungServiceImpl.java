@@ -173,7 +173,7 @@ public class NguoiDungServiceImpl implements NguoiDungService {
 
 	@Override
 	public List<NguoiDung> timKiemNguoiDung(String hoTen, String soDienThoai, String email, int page, int size) {
-		return nguoiDungRepository.findByHoTenContainingAndSoDienThoaiContainingAndEmailContaining(hoTen, soDienThoai, email, PageRequest.of(page, size));
+		return nguoiDungRepository.findByHoTenContainingAndSoDienThoaiContainingAndEmailContainingAndRole(hoTen, soDienThoai, email, ROLE.ROLE_USER, PageRequest.of(page, size));
 	}
 
 	@Override

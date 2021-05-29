@@ -5,12 +5,13 @@ import java.util.Set;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 
 import com.websitenhaccu.entity.SanPham;
 import com.websitenhaccu.util.Constant;
 
-public interface SanPhamRepository extends JpaRepository<SanPham, String> {
+public interface SanPhamRepository extends JpaRepository<SanPham, String>, JpaSpecificationExecutor<SanPham> {
 
 	public List<SanPham> findByTenSanPhamContainingAndDongSanPhamTenDongSanPhamAndXuatXuAndDongSanPhamThuongHieuTenThuongHieu(
 			String tenSanPham, String tenDongSanPham, String xuatXu, String tenThuongHieu);
@@ -29,5 +30,5 @@ public interface SanPhamRepository extends JpaRepository<SanPham, String> {
 	public Set<String> getDanhSachXuatXu();
 	
 	@Query(value = Constant.QUERY_DANH_SACH_SAN_PHAM_BAN_CHAY, nativeQuery = true)
-	public void getDanhSachSanPhamBanChay();
+	public List<SanPham> getDanhSachSanPhamBanChay(Pageable pageable);
 }

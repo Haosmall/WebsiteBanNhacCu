@@ -77,6 +77,7 @@ public class SanPhamServiceImpl implements SanPhamService {
 		List<SanPham> sanPhams = sanPhamRepository
 				.findByTenSanPhamContainingAndXuatXuContainingAndDongSanPhamThuongHieuIdContainingAndDongSanPhamLoaiSanPhamIdContaining(
 						tenSanPham, xuatXu, maThuongHieu, maLoaiSanPham, firstPageWithTwoElements);
+		
 		return sanPhams;
 	}
 
@@ -143,6 +144,17 @@ public class SanPhamServiceImpl implements SanPhamService {
 			sanPhamDTOs.add(sanPhamDTO);
 		});
 
+		return sanPhamDTOs;
+	}
+
+	@Override
+	public List<SanPhamDTO> danhSachSanPhamBanChay(int page, int size) {
+		List<SanPham> sanPhams = sanPhamRepository.getDanhSachSanPhamBanChay(PageRequest.of(page, size));
+		List<SanPhamDTO> sanPhamDTOs = new ArrayList<SanPhamDTO>();
+		sanPhams.forEach(sp -> {
+			SanPhamDTO sanPhamDTO = sanPhamConverter.toSanPhamDTO(sp);
+			sanPhamDTOs.add(sanPhamDTO);
+		});
 		return sanPhamDTOs;
 	}
 

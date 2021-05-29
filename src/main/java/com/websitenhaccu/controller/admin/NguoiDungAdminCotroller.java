@@ -40,14 +40,14 @@ public class NguoiDungAdminCotroller {
 		return "admin/nguoidung/nguoidung";
 	}
 	
-	@PostMapping("/xoa-nguoi-dung")
-	private String xoaNguoiDung(Model model, @RequestParam("id") String id) {
-		if(nguoiDungService.XoaNguoiDung(id))
-			model.addAttribute("trangThaiXoa", "Người dùng có hóa đơn. Không thể xóa");
-		else
-			model.addAttribute("trangThaiXoa", "Xóa thành công");
-		return "redirect:/admin/nguoi-dung/danh-sach-nguoi-dung";
-	}
+//	@GetMapping("/xoa-nguoi-dung")
+//	private String xoaNguoiDung(Model model, @RequestParam("id") String id) {
+//		if(nguoiDungService.XoaNguoiDung(id))
+//			model.addAttribute("trangThaiXoa", "Người dùng có hóa đơn. Không thể xóa");
+//		else
+//			model.addAttribute("trangThaiXoa", "Xóa thành công");
+//		return "redirect:/admin/nguoi-dung/danh-sach-nguoi-dung";
+//	}
 
 	@GetMapping("/chi-tiet-nguoi-dung")
 	private String chiTietNguoiDung(Model model, @RequestParam("id") String id) {

@@ -6,6 +6,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,6 +45,15 @@ public class NguoiDungRestController {
 			nguoiDungDTOs.add(nguoiDungDTO);
 		});
 		return nguoiDungDTOs;
+	}
+	
+	@DeleteMapping("/xoa")
+	private String xoaNguoiDung(Model model, @RequestParam("id") String id) {
+		if(nguoiDungService.XoaNguoiDung(id))
+			model.addAttribute("trangThaiXoa", "Người dùng có hóa đơn. Không thể xóa");
+		else
+			model.addAttribute("trangThaiXoa", "Xóa thành công");
+		return "redirect:/admin/nguoi-dung/danh-sach-nguoi-dung";
 	}
 	
 	@GetMapping("/doi-mat-khau")

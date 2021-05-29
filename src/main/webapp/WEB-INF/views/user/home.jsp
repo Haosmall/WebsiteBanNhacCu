@@ -106,36 +106,23 @@
 
 						<!-- The slideshow -->
 						<div class="carousel-inner">
-							<div class="carousel-item active">
-								<a href="${ quangCaoDTOs.get(0).link }"> <img
-									src="data:image/jpg;base64,${ quangCaoDTOs.get(0).hinhAnhBase64 }"
-									alt="" width="100%" height="400">
-								</a>
-								<!-- <div class="carousel-caption">
-											<h3>LA</h3>
-											<p>We had such a great time in LA!</p>
-										</div> -->
-							</div>
-							<div class="carousel-item">
-								<a href="${ quangCaoDTOs.get(1).link }"> <img
-									src="data:image/jpg;base64,${ quangCaoDTOs.get(1).hinhAnhBase64 }"
-									alt="Chicago" width="100%" height="400">
-								</a>
-								<!-- <div class="carousel-caption">
-											<h3>Los Angeles</h3>
-											<p>We had such a great time in LA!</p>
-										</div> -->
-							</div>
-							<div class="carousel-item">
-								<a href="${ quangCaoDTOs.get(2).link }"> <img
-									src="data:image/jpg;base64,${ quangCaoDTOs.get(2).hinhAnhBase64 }"
-									alt="New York" width="100%" height="400">
-								</a>
-								<!-- <div class="carousel-caption">
-											<h3>Los Angeles</h3>
-											<p>We had such a great time in LA!</p>
-										</div> -->
-							</div>
+
+
+							<c:forEach items="${ quangCaoDTOs }" var="quangCaoDTO"
+								varStatus="counter">
+								<c:if test="${ counter.count <= 3 }">
+									<div
+										class="carousel-item <c:if test="${ counter.count == 1 }">active</c:if>">
+										<a href="${ quangCaoDTO.link }"> <img
+											src="data:image/jpg;base64,${ quangCaoDTO.hinhAnhBase64 }"
+											alt="" width="100%" height="400">
+										</a>
+									</div>
+								</c:if>
+
+							</c:forEach>
+
+
 						</div>
 
 						<!-- Left and right controls -->
@@ -147,6 +134,7 @@
 					</div>
 				</div>
 			</div>
+
 
 			<!-- side -->
 			<div class="col ml-2 sider">
@@ -624,319 +612,375 @@
 					<div class="product__option__list"
 						style="transform: translateX(-1140px);">
 
-						<div class="option__item">
-							<div class="option__item__img">
-								<img src="<c:url value='/static/assets/img/yamaha_logo.png'/>"
-									alt="">
-							</div>
-							<p class="option__item__name">
-								<b>Đàn guitar rexona yamaha</b>
-							</p>
+						<!-- side -->
+	<%-- 					<div class="col ml-2 sider">
 
-							<div class="option__item__additional">
-								<p>
-									Thương hiệu: <b>Small</b>
-								</p>
-								<p>
-									Xuất xứ: <b>Ý</b>
-								</p>
-							</div>
-							<p class="option__item__money">123000000 VND</p>
+							<c:forEach items="${ quangCaoDTOs }" var="quangCaoDTO"
+								varStatus="counter">
+								<c:if test="${ counter.count > 3 }">
+									<div class="row">
+										<img
+											src="data:image/jpg;base64,${ quangCaoDTO.hinhAnhBase64 }"
+											alt=""> 
+									</div>
+								</c:if>
+							</c:forEach> --%>
+
+
+
+
+
 						</div>
-
-						<div class="option__item">
-							<div class="option__item__img">
-								<img src="<c:url value='/static/assets/img/yamaha_logo.png'/>"
-									alt="">
-							</div>
-							<p class="option__item__name">
-								<b>Đàn guitar rexona yamaha</b>
-							</p>
-
-							<div class="option__item__additional">
-								<p>
-									Thương hiệu: <b>Small</b>
-								</p>
-								<p>
-									Xuất xứ: <b>Ý</b>
-								</p>
-							</div>
-							<p class="option__item__money">123000000 VND</p>
-						</div>
-
-						<div class="option__item">
-							<div class="option__item__img">
-								<img src="<c:url value='/static/assets/img/yamaha_logo.png'/>"
-									alt="">
-							</div>
-							<p class="option__item__name">
-								<b>Đàn guitar rexona yamaha</b>
-							</p>
-
-							<div class="option__item__additional">
-								<p>
-									Thương hiệu: <b>Small</b>
-								</p>
-								<p>
-									Xuất xứ: <b>Ý</b>
-								</p>
-							</div>
-							<p class="option__item__money">123000000 VND</p>
-						</div>
-
-						<div class="option__item">
-							<div class="option__item__img">
-								<img src="<c:url value='/static/assets/img/yamaha_logo.png'/>"
-									alt="">
-							</div>
-							<p class="option__item__name">
-								<b>Đàn guitar rexona yamaha</b>
-							</p>
-
-							<div class="option__item__additional">
-								<p>
-									Thương hiệu: <b>Small</b>
-								</p>
-								<p>
-									Xuất xứ: <b>Ý</b>
-								</p>
-							</div>
-							<p class="option__item__money">123000000 VND</p>
-						</div>
-
-						<div class="option__item">
-							<div class="option__item__img">
-								<img src="<c:url value='/static/assets/img/yamaha_logo.png'/>"
-									alt="">
-							</div>
-							<p class="option__item__name">
-								<b>Đàn guitar rexona yamaha</b>
-							</p>
-
-							<div class="option__item__additional">
-								<p>
-									Thương hiệu: <b>Small</b>
-								</p>
-								<p>
-									Xuất xứ: <b>Ý</b>
-								</p>
-							</div>
-							<p class="option__item__money">123000000 VND</p>
-						</div>
-
-						<div class="option__item">
-							<div class="option__item__img">
-								<img src="<c:url value='/static/assets/img/yamaha_logo.png'/>"
-									alt="">
-							</div>
-							<p class="option__item__name">
-								<b>Đàn guitar rexona yamaha</b>
-							</p>
-
-							<div class="option__item__additional">
-								<p>
-									Thương hiệu: <b>Small</b>
-								</p>
-								<p>
-									Xuất xứ: <b>Ý</b>
-								</p>
-							</div>
-							<p class="option__item__money">123000000 VND</p>
-						</div>
-
-						<div class="option__item">
-							<div class="option__item__img">
-								<img src="<c:url value='/static/assets/img/yamaha_logo.png'/>"
-									alt="">
-							</div>
-							<p class="option__item__name">
-								<b>Đàn guitar rexona yamaha</b>
-							</p>
-
-							<div class="option__item__additional">
-								<p>
-									Thương hiệu: <b>Small</b>
-								</p>
-								<p>
-									Xuất xứ: <b>Ý</b>
-								</p>
-							</div>
-							<p class="option__item__money">123000000 VND</p>
-						</div>
-
+						<i class="fas fa-chevron-right move arrow"></i> <i
+							class="fas fa-chevron-left move arrow--left"
+							style="opacity: 0.5;"></i>
 
 					</div>
-					<i class="fas fa-chevron-right move arrow"></i> <i
-						class="fas fa-chevron-left move arrow--left" style="opacity: 0.5;"></i>
+
+
 
 				</div>
 
+			</div>
 
+			<!-- ------------------------ -->
+
+			<div class="container mt-3 mb-2 product__options highlight">
+
+				<div class="row">
+					<h2 class="product__title__slider">KÈN</h2>
+					<div class="product__list--wrapper">
+						<div class="product__option__list">
+
+							<div class="option__item">
+								<div class="option__item__img">
+									<img src="<c:url value='/static/assets/img/yamaha_logo.png'/>"
+										alt="">
+								</div>
+								<p class="option__item__name">
+									<b>Đàn guitar rexona yamaha</b>
+								</p>
+
+								<div class="option__item__additional">
+									<p>
+										Thương hiệu: <b>Small</b>
+									</p>
+									<p>
+										Xuất xứ: <b>Ý</b>
+									</p>
+								</div>
+								<p class="option__item__money">123000000 VND</p>
+							</div>
+
+							<div class="option__item">
+								<div class="option__item__img">
+									<img src="<c:url value='/static/assets/img/yamaha_logo.png'/>"
+										alt="">
+								</div>
+								<p class="option__item__name">
+									<b>Đàn guitar rexona yamaha</b>
+								</p>
+
+								<div class="option__item__additional">
+									<p>
+										Thương hiệu: <b>Small</b>
+									</p>
+									<p>
+										Xuất xứ: <b>Ý</b>
+									</p>
+								</div>
+								<p class="option__item__money">123000000 VND</p>
+							</div>
+
+							<div class="option__item">
+								<div class="option__item__img">
+									<img src="<c:url value='/static/assets/img/yamaha_logo.png'/>"
+										alt="">
+								</div>
+								<p class="option__item__name">
+									<b>Đàn guitar rexona yamaha</b>
+								</p>
+
+								<div class="option__item__additional">
+									<p>
+										Thương hiệu: <b>Small</b>
+									</p>
+									<p>
+										Xuất xứ: <b>Ý</b>
+									</p>
+								</div>
+								<p class="option__item__money">123000000 VND</p>
+							</div>
+
+							<div class="option__item">
+								<div class="option__item__img">
+									<img src="<c:url value='/static/assets/img/yamaha_logo.png'/>"
+										alt="">
+								</div>
+								<p class="option__item__name">
+									<b>Đàn guitar rexona yamaha</b>
+								</p>
+
+								<div class="option__item__additional">
+									<p>
+										Thương hiệu: <b>Small</b>
+									</p>
+									<p>
+										Xuất xứ: <b>Ý</b>
+									</p>
+								</div>
+								<p class="option__item__money">123000000 VND</p>
+							</div>
+
+							<div class="option__item">
+								<div class="option__item__img">
+									<img src="<c:url value='/static/assets/img/yamaha_logo.png'/>"
+										alt="">
+								</div>
+								<p class="option__item__name">
+									<b>Đàn guitar rexona yamaha</b>
+								</p>
+
+								<div class="option__item__additional">
+									<p>
+										Thương hiệu: <b>Small</b>
+									</p>
+									<p>
+										Xuất xứ: <b>Ý</b>
+									</p>
+								</div>
+								<p class="option__item__money">123000000 VND</p>
+							</div>
+
+							<div class="option__item">
+								<div class="option__item__img">
+									<img src="<c:url value='/static/assets/img/yamaha_logo.png'/>"
+										alt="">
+								</div>
+								<p class="option__item__name">
+									<b>Đàn guitar rexona yamaha</b>
+								</p>
+
+								<div class="option__item__additional">
+									<p>
+										Thương hiệu: <b>Small</b>
+									</p>
+									<p>
+										Xuất xứ: <b>Ý</b>
+									</p>
+								</div>
+								<p class="option__item__money">123000000 VND</p>
+							</div>
+
+							<div class="option__item">
+								<div class="option__item__img">
+									<img src="<c:url value='/static/assets/img/yamaha_logo.png'/>"
+										alt="">
+								</div>
+								<p class="option__item__name">
+									<b>Đàn guitar rexona yamaha</b>
+								</p>
+
+								<div class="option__item__additional">
+									<p>
+										Thương hiệu: <b>Small</b>
+									</p>
+									<p>
+										Xuất xứ: <b>Ý</b>
+									</p>
+								</div>
+								<p class="option__item__money">123000000 VND</p>
+							</div>
+
+
+						</div>
+						<i class="fas fa-chevron-right move arrow"></i> <i
+							class="fas fa-chevron-left move arrow--left"></i>
+
+					</div>
+
+				</div>
 
 			</div>
+			=======
+		</div>
+
+
+
+	</div>
+	</div>
+
+
+	<!-- Sản phẩm nổi bật -->
+	<div class="container  mt-3 best_sell_product">
+
+		<!-- Chổ này load lên 5 10 hoặc 15 sản phẩm cho nó full dòng -->
+		<h2 class="product__title ">SẢN PHẨM NỔI BẬT</h2>
+
+
+		<div class="row pl-0 pr-0 list__product--sell">
+
+			<c:forEach items="${ sanPhamBanChays }" var="sanPhamBanChay"
+				varStatus="counter">
+
+				<c:if test="${ counter.count <=5 }">
+					<div class="product"
+						onclick="location.href = '/WebsiteBanNhacCu/san-pham?id=${sanPhamBanChay.id}'">
+						<div class="product__img">
+							<img
+								src="data:image/jpg;base64,${ sanPhamBanChay.hinhAnhBase64 }"
+								style="object: fit-contain;" alt="">
+						</div>
+						<p class="product__name">
+							<b>${ sanPhamBanChay.tenSanPham }</b>
+						</p>
+
+						<div class="additional">
+							<p>
+								Thương hiệu: <b>${ sanPhamBanChay.tenThuongHieu }</b>
+							</p>
+							<p>
+								Xuất xứ: <b>${ sanPhamBanChay.xuatXu }</b>
+							</p>
+						</div>
+
+						<p class="money">
+							<fmt:formatNumber type="currency"
+								value="${ sanPhamBanChay.giaBan }" currencySymbol="" />
+							VNĐ
+						</p>
+						<!-- <div class="start-ratting">
+		                        <span class="fa fa-star checked"></span>
+		                        <span class="fa fa-star checked"></span>
+		                        <span class="fa fa-star checked"></span>
+		                        <span class="fa fa-star checked"></span>
+		                        <span class="fa fa-star"></span>
+		                    </div> -->
+					</div>
+				</c:if>
+
+			</c:forEach>
+
+		</div>
+
+	</div>
+
+	<!-- Row logo -->
+	<div class="container mt-3 mb-3 container__brand">
+		<div class="row list__brand">
+			<c:forEach items="${ thuongHieus }" var="thuongHieu"
+				varStatus="counter">
+				<c:if test="${ counter.count <= 4 }">
+					<a
+						href="<c:url value="/danh-sach-san-pham/${ thuongHieu.id }?page=1"/>">
+						<img class="brand--img"
+						src="data:image/jpg;base64,${thuongHieu.hinhAnhBase64}"
+						alt="${ thuongHieu.tenThuongHieu }" alt="">
+					</a>
+
+				</c:if>
+			</c:forEach>
+
+		</div>
+	</div>
+
+
+	<!-- Sản phẩm bán chạy -->
+
+	<div class="container mt-2 best_sell_product">
+
+		<!-- Chổ này load lên 5 10 hoặc 15 sản phẩm cho nó full dòng -->
+		<h2 class="product__title">SẢN PHẨM BÁN CHẠY</h2>
+
+		<div class="row pl-0 pr-0 list__product--sell">
+			<c:forEach items="${ sanPhamBanChays }" var="sanPhamBanChay"
+				varStatus="counter">
+				<c:if test="${ counter.count > 5 }">
+					<div class="product"
+						onclick="location.href = '/WebsiteBanNhacCu/san-pham?id=${sanPhamBanChay.id}'">
+						<div class="product__img">
+							<img
+								src="data:image/jpg;base64,${ sanPhamBanChay.hinhAnhBase64 }"
+								alt="">
+						</div>
+						<p class="product__name">
+							<b>${ sanPhamBanChay.tenSanPham }</b>
+						</p>
+
+						<div class="additional">
+							<p>
+								Thương hiệu: <b>${ sanPhamBanChay.tenThuongHieu }</b>
+							</p>
+							<p>
+								Xuất xứ: <b>${ sanPhamBanChay.xuatXu }</b>
+							</p>
+						</div>
+
+						<p class="money">
+							<fmt:formatNumber type="currency"
+								value="${ sanPhamBanChay.giaBan }" currencySymbol="" />
+							VNĐ
+						</p>
+					</div>
+				</c:if>
+
+			</c:forEach>
 
 		</div>
 
 		<!-- ------------------------ -->
 
-		<div class="container mt-3 mb-2 product__options highlight">
+		<c:forEach items="${ sanPhamLoaiSanPham }" var="map">
+			<div class="container mt-3 mb-2 product__options highlight">
 
-			<div class="row">
-				<h2 class="product__title__slider">KÈN</h2>
-				<div class="product__list--wrapper">
-					<div class="product__option__list">
+				<div class="row">
+					<h2 class="product__title__slider">${ map.key }</h2>
+					<div class="product__list--wrapper">
+						<div class="product__option__list">
 
-						<div class="option__item">
-							<div class="option__item__img">
-								<img src="<c:url value='/static/assets/img/yamaha_logo.png'/>"
-									alt="">
-							</div>
-							<p class="option__item__name">
-								<b>Đàn guitar rexona yamaha</b>
-							</p>
+							<c:forEach items="${ map.value }" var="sanPhamDTO">
+								<div class="option__item"
+									onclick="location.href = '/WebsiteBanNhacCu/san-pham?id=${sanPhamDTO.id}'">
+									<div class="option__item__img">
+										<img src="data:image/jpg;base64,${ sanPhamDTO.hinhAnhBase64 }"
+											alt="">
+									</div>
+									<p class="option__item__name">
+										<b>${ sanPhamDTO.tenSanPham }</b>
+									</p>
 
-							<div class="option__item__additional">
-								<p>
-									Thương hiệu: <b>Small</b>
-								</p>
-								<p>
-									Xuất xứ: <b>Ý</b>
-								</p>
-							</div>
-							<p class="option__item__money">123000000 VND</p>
+									<div class="option__item__additional">
+										<p>
+											Thương hiệu: <b>${ sanPhamDTO.tenThuongHieu }</b>
+										</p>
+										<p>
+											Xuất xứ: <b>${ sanPhamDTO.xuatXu }</b>
+										</p>
+									</div>
+									<p class="option__item__money">
+										<fmt:formatNumber type="currency"
+											value="${ sanPhamDTO.giaBan }" currencySymbol="" />
+										VNĐ
+									</p>
+								</div>
+
+							</c:forEach>
+
 						</div>
-
-						<div class="option__item">
-							<div class="option__item__img">
-								<img src="<c:url value='/static/assets/img/yamaha_logo.png'/>"
-									alt="">
-							</div>
-							<p class="option__item__name">
-								<b>Đàn guitar rexona yamaha</b>
-							</p>
-
-							<div class="option__item__additional">
-								<p>
-									Thương hiệu: <b>Small</b>
-								</p>
-								<p>
-									Xuất xứ: <b>Ý</b>
-								</p>
-							</div>
-							<p class="option__item__money">123000000 VND</p>
-						</div>
-
-						<div class="option__item">
-							<div class="option__item__img">
-								<img src="<c:url value='/static/assets/img/yamaha_logo.png'/>"
-									alt="">
-							</div>
-							<p class="option__item__name">
-								<b>Đàn guitar rexona yamaha</b>
-							</p>
-
-							<div class="option__item__additional">
-								<p>
-									Thương hiệu: <b>Small</b>
-								</p>
-								<p>
-									Xuất xứ: <b>Ý</b>
-								</p>
-							</div>
-							<p class="option__item__money">123000000 VND</p>
-						</div>
-
-						<div class="option__item">
-							<div class="option__item__img">
-								<img src="<c:url value='/static/assets/img/yamaha_logo.png'/>"
-									alt="">
-							</div>
-							<p class="option__item__name">
-								<b>Đàn guitar rexona yamaha</b>
-							</p>
-
-							<div class="option__item__additional">
-								<p>
-									Thương hiệu: <b>Small</b>
-								</p>
-								<p>
-									Xuất xứ: <b>Ý</b>
-								</p>
-							</div>
-							<p class="option__item__money">123000000 VND</p>
-						</div>
-
-						<div class="option__item">
-							<div class="option__item__img">
-								<img src="<c:url value='/static/assets/img/yamaha_logo.png'/>"
-									alt="">
-							</div>
-							<p class="option__item__name">
-								<b>Đàn guitar rexona yamaha</b>
-							</p>
-
-							<div class="option__item__additional">
-								<p>
-									Thương hiệu: <b>Small</b>
-								</p>
-								<p>
-									Xuất xứ: <b>Ý</b>
-								</p>
-							</div>
-							<p class="option__item__money">123000000 VND</p>
-						</div>
-
-						<div class="option__item">
-							<div class="option__item__img">
-								<img src="<c:url value='/static/assets/img/yamaha_logo.png'/>"
-									alt="">
-							</div>
-							<p class="option__item__name">
-								<b>Đàn guitar rexona yamaha</b>
-							</p>
-
-							<div class="option__item__additional">
-								<p>
-									Thương hiệu: <b>Small</b>
-								</p>
-								<p>
-									Xuất xứ: <b>Ý</b>
-								</p>
-							</div>
-							<p class="option__item__money">123000000 VND</p>
-						</div>
-
-						<div class="option__item">
-							<div class="option__item__img">
-								<img src="<c:url value='/static/assets/img/yamaha_logo.png'/>"
-									alt="">
-							</div>
-							<p class="option__item__name">
-								<b>Đàn guitar rexona yamaha</b>
-							</p>
-
-							<div class="option__item__additional">
-								<p>
-									Thương hiệu: <b>Small</b>
-								</p>
-								<p>
-									Xuất xứ: <b>Ý</b>
-								</p>
-							</div>
-							<p class="option__item__money">123000000 VND</p>
-						</div>
-
+						<i class="fas fa-chevron-right move arrow"></i> <i
+							class="fas fa-chevron-left move arrow--left"></i>
 
 					</div>
-					<i class="fas fa-chevron-right move arrow"></i> <i
-						class="fas fa-chevron-left move arrow--left"></i>
 
 				</div>
 
 			</div>
 
-		</div>
 
+		</c:forEach>
+
+
+	
 
 	</div>
 </body>

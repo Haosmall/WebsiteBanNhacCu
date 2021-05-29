@@ -75,10 +75,10 @@
 						<tr>
 							<td>${ counter.count }</td>
 							<td>${ sanPham.tenSanPham }</td>
-							<td>${ sanPham.dongSanPham.loaiSanPham.tenLoaiSanPham }</td>
+							<td>${ sanPham.tenLoaiSanPham }</td>
 							<td>${ sanPham.xuatXu }</td>
-							<td>${ sanPham.dongSanPham.thuongHieu.tenThuongHieu }</td>
-							<td>chua cap nhat</td>
+							<td>${ sanPham.tenThuongHieu }</td>
+							<td>${sanPham.tongSoLuong}</td>
 							<td><input type="button" class="btn btn-primary table__btn"
 								value="Chi tiết"
 								onclick="location.href='<c:url value='/admin/san-pham/xem-chi-tiet?id=${ sanPham.id }' />'">
@@ -99,26 +99,24 @@
 			</table>
 
 		</div>
-		<input type="hidden" id="pageValue" value="${ page + 1}" />
-		
-		<div class="form-group row">
-		
-			<input class="col-3" type="button" onclick="typeSearch()" class="form-control"
-					id="btnPreviusPage" value="-"/>
-		
-		
-			<input class="col-4" type="text" readonly="true" class="form-control"
-				id="viewPage"
-				value="${page = page + 1}">
-		
-			<input class="col-3" type="button" onclick="typeSearch()" class="form-control"
-				id="btnNext" value="+"/>
-		</div>
-		<!-- /.container-fluid -->
-		Admin page <br>
-		<p>${ user.userId }</p>
-		<p>${ user.email }</p>
-		<p>${ user.role }</p>
-		<script src='<c:url value="/static/assets/js/sanpham.js"/>'></script>
+	</div>
+	<input type="hidden" id="pageValue" value="${ page + 1}" />
+
+	<div class="form-group row">
+
+		<input class="col-3" type="button" onclick="typeSearch()"
+			class="form-control" id="btnPreviusPage" value="-" /> <input
+			class="col-4" type="text" readonly class="form-control" id="viewPage"
+			value="${page = page + 1}"> <input class="col-3"
+			type="button" onclick="typeSearch()" class="form-control"
+			id="btnNext" value="+" />
+	</div>
+	<!-- /.container-fluid -->
+	Admin page
+	<br>
+	<p>${ user.userId }</p>
+	<p>${ user.email }</p>
+	<p>${ user.role }</p>
+	<script src='<c:url value="/static/assets/js/sanpham.js"/>'></script>
 </body>
 </html>
