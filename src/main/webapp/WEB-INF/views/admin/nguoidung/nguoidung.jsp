@@ -18,21 +18,20 @@
 				<div class="form-group">
 					<label for="txtSearch">Tìm kiếm tên</label> <input type="text"
 						oninput="searchType()" class="form-control" id="txtSearch"
-						aria-describedby="emailHelp" placeholder="Nhập tên người dùng"/>
+						aria-describedby="emailHelp" placeholder="Nhập tên người dùng" />
 				</div>
 
 				<div class="form-group">
 					<label for="exampleInputEmail1">Số điện thoại</label> <input
 						type="text" oninput="searchType()" class="form-control"
 						id="txtSearchSdt" aria-describedby="emailHelp"
-						placeholder="Nhập số điện thoại"/>
+						placeholder="Nhập số điện thoại" />
 				</div>
-				
+
 				<div class="form-group">
-					<label for="exampleInputEmail1">Email</label> <input
-						type="text" oninput="searchType()" class="form-control"
-						id="txtSearchEmail" aria-describedby="emailHelp"
-						placeholder="Nhập email"/>
+					<label for="exampleInputEmail1">Email</label> <input type="text"
+						oninput="searchType()" class="form-control" id="txtSearchEmail"
+						aria-describedby="emailHelp" placeholder="Nhập email" />
 				</div>
 
 			</div>
@@ -66,18 +65,15 @@
 							<td>${ nguoiDung.phone }</td>
 							<td>${ nguoiDung.email }</td>
 							<td>${ nguoiDung.tinhThanhPho }</td>
-							<td>
-								Chưa cập nhật
-							</td>
+							<td>Chưa cập nhật</td>
 							<td><input type="button" class="btn btn-primary table__btn"
 								value="Chi tiết"
 								onclick="location.href='<c:url value='/admin/nguoi-dung/chi-tiet-nguoi-dung?id=${ nguoiDung.userId }' />'">
 
-								<input type="button" class="btn btn-danger table__btn"
-								value="Xóa"
-								onclick="location.href='<c:url value='/admin/nguoi-dung/xoa-nguoi-dung?id=${ nguoiDung.userId }' />'">
+								<input type="button" class="btn btn-danger table__btn btnXoa"
+								id="" value="Xóa">
 
-							</td>
+								<input type="hidden" class="maNguoiDung" value="${ nguoiDung.userId}" /></td>
 						</tr>
 					</c:forEach>
 
@@ -91,6 +87,7 @@
 	</div>
 	<!-- /.container-fluid -->
 	<input type="hidden" id="pageValue" value="${ page + 1}" />
+	<input type="hidden" id="trangThai" value="${trangThaiXoa}" />
 
 	<div class="form-group row">
 

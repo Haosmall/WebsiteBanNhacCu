@@ -118,6 +118,7 @@
 			</div>
 		</div>
 	</div>
+	<a href="<c:url value="/admin/quan-li-don-hang/danh-sach-don-hang"/>">Trở về danh sách</a>
 <script src="<c:url value="/static/assets/js/don-hang.js"/>"></script> 
 </body>
 </html>

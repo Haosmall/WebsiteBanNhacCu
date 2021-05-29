@@ -22,4 +22,5 @@ public interface MauSanPhamService {
 	
 	public void capNhatMauSanPham(MauSanPham mauSanPham);
 	
+	public List<MauSanPham> getDanhSachSoLuongIdMauTheoMaSanPham(String id);
 }

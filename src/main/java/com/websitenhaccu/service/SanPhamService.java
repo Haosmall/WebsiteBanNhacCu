@@ -36,5 +36,4 @@ public interface SanPhamService {
 	public List<SanPhamDTO> getTatCaSanPham(int page, int size);
 
 	public Set<String> getDanhSachXuatXu();
-
 }
