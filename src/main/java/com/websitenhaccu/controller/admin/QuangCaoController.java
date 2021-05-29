@@ -28,7 +28,7 @@ public class QuangCaoController {
 	@Autowired
 	private QuangCaoConverter quangCaoConverter;
 
-	@GetMapping("/danh-quang-cao")
+	@GetMapping()
 	public ModelAndView getTatCaQuangCao() {
 		List<QuangCaoDTO> quangCaoDTOs = quangCaoService.getTatCaQuangCao();
 		return new ModelAndView("admin/quangcao/QuangCao", "quangCaoDTOs", quangCaoDTOs);

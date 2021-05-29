@@ -22,10 +22,10 @@
 			Sản phẩm không đủ số lượng, hoặc nhập giá trị không hợp lệ
 		</div>
 
-		<h5>GIỎ HÀNG (${ map.size() } sản phẩm)</h5>
+		<h5>GIỎ HÀNG (${ mapCTHD.size() } sản phẩm)</h5>
 		<div class="wrapper_cart">
 			<div class="cart">
-				<c:forEach items="${ map }" var="chiTietHoaDon">
+				<c:forEach items="${ mapCTHD }" var="chiTietHoaDon">
 					<div class="element_cart">
 
 						<!-- <input type="checkbox" class="form-check-input" value="check"> -->

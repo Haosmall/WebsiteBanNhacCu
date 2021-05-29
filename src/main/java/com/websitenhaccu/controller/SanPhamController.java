@@ -126,6 +126,7 @@ public class SanPhamController {
 		model.addAttribute("xuatXus", xuatXus);		
 		return "user/DanhSachSanPham";
 	}
+	
 	@GetMapping("/danh-sach-san-pham/{maLoaisanPham}/{maThuongHieu}")
 	public String hienThiDanhSachSanPhamTheoThuongHieu(Model model, 
 			@PathVariable("maLoaisanPham") String maLoaisanPham, 
@@ -185,6 +186,7 @@ public class SanPhamController {
 		
 		return "user/DanhSachSanPham";
 	}
+	
 	@GetMapping("/san-pham")
 	public String chiTietSanPham(Model model, @RequestParam("id") String id) {
 		
@@ -207,6 +209,33 @@ public class SanPhamController {
 		SanPhamDTO sanPhamDTO = sanPhamConverter.toSanPhamDTO(sanPham);
 		
 		List<BinhLuan> binhLuans = binhLuanService.getBinhLuanTheoMaSanPham(id);
+		
+		List<LoaiSanPham> loaiSanPhams = LoaiSanPhamService.getTatCaLoaiSanPham();
+		List<ThuongHieu> thuongHieus = thuongHieuService.getTatCaThuongHieu();
+		List<DongSanPham> dongSanPhams = dongSanPhamService.getTatCaDongSanPham();
+		
+		Map<LoaiSanPham, Set<ThuongHieuDTO>> map = new HashMap<LoaiSanPham, Set<ThuongHieuDTO>>();
+		
+		loaiSanPhams.forEach(loaiSanPham -> {
+			String maLoai = loaiSanPham.getId();
+			Set<ThuongHieuDTO> temp = new HashSet<ThuongHieuDTO>();
+			
+			dongSanPhams.forEach(dongSanPham -> {
+				if(dongSanPham.getLoaiSanPham().getId().equals(maLoai)) {
+					String maTH = dongSanPham.getThuongHieu().getId();
+					
+					thuongHieus.forEach(thuongHieu -> {
+						if(thuongHieu.getId().equals(maTH)) {
+							temp.add(thuongHieuConverter.toThuongHieuDTO(thuongHieu));
+						}
+					});
+					
+				}
+			});
+			
+			map.put(loaiSanPham, temp);
+		});
+		model.addAttribute("map", map);
 		
 		model.addAttribute("pageTitle", "Chi tiết sản phẩm");
 		model.addAttribute("sanPhamDTO", sanPhamDTO);

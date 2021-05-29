@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Danh sách màu</title>
+<title>Danh sách quảng cáo</title>
 </head>
 <body>
 
@@ -15,11 +15,11 @@
 		<!-- Row input -->
 		<div class="row">
 			<div class="col-lg-4">
-				<div class="form-group">
+				<!-- <div class="form-group">
 					<label for="txtSearch">Tìm kiếm</label> <input type="text"
 						 oninput="typeSearch()" class="form-control" id="txtSearch"
 						aria-describedby="emailHelp" placeholder="Nhập tên màu">
-				</div>
+				</div> -->
 			</div>
 
 			<div class="col-lg-6"></div>
@@ -29,8 +29,7 @@
 					<label for="exampleInputEmail1">&#160;</label> 
 					<a type="button"
 						class="form-control btn btn-primary table__btn"
-						href="<c:url value='/admin/mau/them-mau'/>">Thêm
-						màu</a>
+						href="<c:url value='/admin/quang-cao/them-quang-cao'/>">Thêm quảng cáo</a>
 				</div>
 			</div>
 		</div>
