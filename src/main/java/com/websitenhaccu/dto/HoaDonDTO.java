@@ -17,17 +17,27 @@ public class HoaDonDTO {
 
 	private String diaChiGiaoHang;
 
-	private String soDienThoai;
-
 	private String trangThai;
 
 	private NguoiDungDTO nguoiDung;
 
 	private List<ChiTietHoaDonDTO> chiTietHoaDonDTOs;
+	
+	private double tongTien;
 
 	public HoaDonDTO() {
 		super();
 		this.chiTietHoaDonDTOs = new ArrayList<ChiTietHoaDonDTO>();
+	}
+	
+	public HoaDonDTO(String id, Date ngayLapHD, String diaChiGiaoHang, String trangThai, NguoiDungDTO nguoiDung,
+			List<ChiTietHoaDonDTO> chiTietHoaDonDTOs) {
+		super();
+		this.id = id;
+		this.ngayLapHD = ngayLapHD;
+		this.diaChiGiaoHang = diaChiGiaoHang;
+		this.trangThai = trangThai;
+		this.nguoiDung = nguoiDung;
 	}
 
 	public boolean themChiTietHoaDonDTO(MauSanPhamDTO mauSanPhamDTO) {
@@ -66,5 +76,12 @@ public class HoaDonDTO {
 		}
 		
 	}
+
+
+
+	
+
+
+
 	
 }

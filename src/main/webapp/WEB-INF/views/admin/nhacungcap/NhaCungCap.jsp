@@ -16,9 +16,9 @@
 		<div class="row">
 			<div class="col-lg-4">
 				<div class="form-group">
-					<label for="exampleInputEmail1">Tìm kiếm</label> <input type="text"
-						class="form-control" id="exampleInputEmail1"
-						aria-describedby="emailHelp" placeholder="Nhập tên sản phẩm">
+					<label for="txtSearch">Tìm kiếm</label> <input type="text"
+						oninput="typeSearch()" class="form-control" id="txtSearch"
+						aria-describedby="emailHelp" placeholder="Nhập tên nhà cung cấp">
 				</div>
 			</div>
 
@@ -51,7 +51,7 @@
 					</tr>
 				</thead>
 
-				<tbody>
+				<tbody id="tableNhaCungCap">
 
 					<c:forEach items="${ listNhaCungCap }" var="nhaCungCap"
 						varStatus="counter">
@@ -91,7 +91,23 @@
 		
 
 	</div>
+	<input type="hidden" id="pageValue" value="${ page + 1}" />
+	
+	<div class="form-group row">
+	
+		<input class="col-3" type="button" class="form-control"
+				id="btnPreviusPage" value="-"/>
+	
+	
+		<input class="col-4" type="text" readonly class="form-control"
+			id="viewPage"
+			value="${page = page + 1}"/>
+	
+		<input class="col-3" type="button" class="form-control"
+			id="btnNext" value="+"/>
+	</div>
 	<!-- /.container-fluid -->
 	
+	<script src="<c:url value="/static/assets/js/nhacungcap.js"/>"></script>
 </body>
 </html>

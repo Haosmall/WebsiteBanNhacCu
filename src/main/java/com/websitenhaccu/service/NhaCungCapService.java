@@ -13,4 +13,6 @@ public interface NhaCungCapService {
 	
 	public void themNhaCungCap(NhaCungCap nhaCungCap);
 	
+	public List<NhaCungCap> timKiemNhaCungCap(String tenNhaCungCap, int page, int size);
+	
 }

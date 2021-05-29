@@ -6,6 +6,12 @@ const API = 'api/thuong-hieu/danh-sach'
 
 function typeSearch() {
 	var searchText = document.getElementById("txtSearch").value;
+		
+	var pageHidden = document.getElementById("pageValue");//gia tri hiden
+	var viewPage = document.getElementById("viewPage");//gia tri hien thi trang hien tai
+	viewPage.value = 1; //gan lai  hien thi trang hien tai
+	pageHidden.value = 1; //gan lai gia tri bien hidden
+	
 	const url = `http://${HOST_NAME}:${PORT}/${CONTEXT_PATH}/${API}?tenThuongHieu=${searchText}`;
 
 	$.get(url, function (data, status) {

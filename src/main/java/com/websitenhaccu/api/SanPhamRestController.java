@@ -76,7 +76,7 @@ public class SanPhamRestController {
 			@RequestParam("xuatXu") String xuatXu, @RequestParam("maLoaiSanPham") String maLoaiSanPham,
 			@RequestParam("maThuongHieu") String maThuongHieu,
 			@RequestParam(value = "page", defaultValue = "0") int page,
-			@RequestParam(value = "size", defaultValue = "20") int size) { //chỉnh default size thành 20
+			@RequestParam(value = "size", defaultValue = "10") int size) { //chỉnh default size thành 20
 		List<SanPhamDTO> sanPhamDTOs = new ArrayList<SanPhamDTO>();
 		List<SanPham> sanPhams = sanPhamService.timKiemSanPham(tenSanPham, maLoaiSanPham, xuatXu, maThuongHieu, page,
 				size);

@@ -47,7 +47,7 @@
 						<i class="fas fa-chevron-left move arrow--left"></i>
 					</div>
 
-					<div class="col-8 title__product">
+					<div class="col title__product">
 						<div class="title">
 							<span class="name__product"
 								>${ sanPhamDTO.tenSanPham }</span

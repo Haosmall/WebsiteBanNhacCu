@@ -8,12 +8,24 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ChiTietHoaDonDTO {
-	
+
 	private String maHoaDon;
-	
+
 	private MauSanPhamDTO mauSanPhamDTO;
-//	private String maSanPham;
-//	private String maSanPham;
 
 	private int soLuong;
+
+	private double giaBan;
+
+	public ChiTietHoaDonDTO(String maHoaDon, MauSanPhamDTO mauSanPhamDTO, int soLuong) {
+		super();
+		this.maHoaDon = maHoaDon;
+		this.mauSanPhamDTO = mauSanPhamDTO;
+		this.soLuong = soLuong;
+	}
+
+	public double tinhTien() {
+		return soLuong * giaBan;
+	}
+
 }

@@ -23,7 +23,7 @@ public class LoaiSanPhamRestController {
 	@GetMapping("/danh-sach")
 	public List<LoaiSanPhamDTO> getDanhSachLoaiSanPhamBangTenLoaiSanPham(@RequestParam("tenLoaiSanPham") String tenLoaiSanPham,
 			@RequestParam(value = "page", defaultValue = "0") int page,
-			@RequestParam(value = "size", defaultValue = "20") int size){
+			@RequestParam(value = "size", defaultValue = "10") int size){
 		List<LoaiSanPham> loaiSanPhams = loaiSanPhamService.getDanhSachLoaiSanPhamBangTenLoaiSanPham(tenLoaiSanPham, page, size);
 		List<LoaiSanPhamDTO> loaiSanPhamDTOs = new ArrayList<LoaiSanPhamDTO>();
 		for(LoaiSanPham lsp : loaiSanPhams) {

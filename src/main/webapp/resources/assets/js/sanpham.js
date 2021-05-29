@@ -113,6 +113,12 @@ function typeSearch() {
 	const maThuongHieu = $('#cboThuongHieu').val();
 	const xuatXu = $('#cboXuatXu').val();
 	const page = $('#pageValue').val();
+	
+			
+	var pageHidden = document.getElementById("pageValue");//gia tri hiden
+	var viewPage = document.getElementById("viewPage");//gia tri hien thi trang hien tai
+	viewPage.value = 1; //gan lai  hien thi trang hien tai
+	pageHidden.value = 1; //gan lai gia tri bien hidden
 
 	const url = `http://${HOST_NAME}:${PORT}/${CONTEXT_PATH}/${API1}?tenSanPham=${searchText}&xuatXu=${xuatXu}&maLoaiSanPham=${maLoaiSanPham}&maThuongHieu=${maThuongHieu}&page=0`;
 

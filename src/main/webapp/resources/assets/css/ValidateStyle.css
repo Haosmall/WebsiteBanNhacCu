@@ -4,18 +4,26 @@
 	font-size: 14px;
 }
 
-.duytridangnhap{
+.duytridangnhap {
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
 }
 
-.duytridangnhap label{
+.duytridangnhap label {
 	margin: 0;
 	padding: 0;
 }
 
-#logreg-forms{
-	margin: 5vh auto !important;
+#logreg-forms {
 	background: #fff !important;
-} 
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 70px;
+	margin-bottom: 25px;
+}
+
+#logreg-forms span {
+	color: red;
+	font-style: italic;
+}

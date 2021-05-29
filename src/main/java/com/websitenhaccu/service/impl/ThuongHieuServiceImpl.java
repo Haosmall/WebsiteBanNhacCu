@@ -3,6 +3,7 @@ package com.websitenhaccu.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.websitenhaccu.entity.ThuongHieu;
@@ -61,8 +62,8 @@ public class ThuongHieuServiceImpl implements ThuongHieuService{
 	}
 
 	@Override
-	public List<ThuongHieu> getDanhSachThuongHieuBangTenThuongHieu(String tenThuongHieu) {
-		return thuonghieuRepository.findByTenThuongHieuContaining(tenThuongHieu);
+	public List<ThuongHieu> getDanhSachThuongHieuBangTenThuongHieu(String tenThuongHieu, int page, int size) {
+		return thuonghieuRepository.findByTenThuongHieuContaining(tenThuongHieu, PageRequest.of(page, size));
 	}
 
 }

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 import com.websitenhaccu.dto.LienHeDTO;
 import com.websitenhaccu.entity.LienHe;
-import com.websitenhaccu.util.DiaChiConstant;
+import com.websitenhaccu.util.Constant;
 
 @Component
 public class LienHeConverter {
@@ -32,15 +32,15 @@ public class LienHeConverter {
 		StringBuffer buffer = new StringBuffer(diaChiDTO);
 
 //		Kiểm tra và lưu vào biến diaChi theo thứ tự cấp hành chính  <Số nhà, tên đường>, <Phường/ Xã/ Thị trấn>, <Quận/ Thị xã/ Huyện>, <Thành phố/ Tỉnh>
-		if (phuongXa.contains(DiaChiConstant.PHUONG) || phuongXa.contains(DiaChiConstant.XA)
-				|| phuongXa.contains(DiaChiConstant.THITRAN)) {
+		if (phuongXa.contains(Constant.PHUONG) || phuongXa.contains(Constant.XA)
+				|| phuongXa.contains(Constant.THITRAN)) {
 			buffer.append(", " + phuongXa);
 		}
-		if (quanHuyen.contains(DiaChiConstant.QUAN) || quanHuyen.contains(DiaChiConstant.HUYEN)
-				|| quanHuyen.contains(DiaChiConstant.THIXA)) {
+		if (quanHuyen.contains(Constant.QUAN) || quanHuyen.contains(Constant.HUYEN)
+				|| quanHuyen.contains(Constant.THIXA)) {
 			buffer.append(", " + quanHuyen);
 		}
-		if (tinhThanh.contains(DiaChiConstant.TINH) || tinhThanh.contains(DiaChiConstant.THANHPHO)) {
+		if (tinhThanh.contains(Constant.TINH) || tinhThanh.contains(Constant.THANHPHO)) {
 			buffer.append(", " + tinhThanh);
 		}
 
@@ -85,13 +85,13 @@ public class LienHeConverter {
 			if (temp.length > 1) {
 //				Lưu thông tin địa chỉ theo cấp hành chính
 				for (String string : temp) {
-					if (string.contains(DiaChiConstant.TINH) || string.contains(DiaChiConstant.THANHPHO)) {
+					if (string.contains(Constant.TINH) || string.contains(Constant.THANHPHO)) {
 						tinhThanhPho = string;
-					} else if (string.contains(DiaChiConstant.QUAN) || string.contains(DiaChiConstant.HUYEN)
-							|| string.contains(DiaChiConstant.THIXA)) {
+					} else if (string.contains(Constant.QUAN) || string.contains(Constant.HUYEN)
+							|| string.contains(Constant.THIXA)) {
 						quanHuyen = string;
-					} else if (string.contains(DiaChiConstant.PHUONG) || string.contains(DiaChiConstant.XA)
-							|| string.contains(DiaChiConstant.THITRAN)) {
+					} else if (string.contains(Constant.PHUONG) || string.contains(Constant.XA)
+							|| string.contains(Constant.THITRAN)) {
 						phuongXa = string;
 					} else {
 						buffer.append(string + ", ");
@@ -107,13 +107,13 @@ public class LienHeConverter {
 
 			} else {
 
-				if (diaChiNCC.contains(DiaChiConstant.TINH) || diaChiNCC.contains(DiaChiConstant.THANHPHO)) {
+				if (diaChiNCC.contains(Constant.TINH) || diaChiNCC.contains(Constant.THANHPHO)) {
 					tinhThanhPho = diaChiNCC;
-				} else if (diaChiNCC.contains(DiaChiConstant.QUAN) || diaChiNCC.contains(DiaChiConstant.HUYEN)
-						|| diaChiNCC.contains(DiaChiConstant.THIXA)) {
+				} else if (diaChiNCC.contains(Constant.QUAN) || diaChiNCC.contains(Constant.HUYEN)
+						|| diaChiNCC.contains(Constant.THIXA)) {
 					quanHuyen = diaChiNCC;
-				} else if (diaChiNCC.contains(DiaChiConstant.PHUONG) || diaChiNCC.contains(DiaChiConstant.XA)
-						|| diaChiNCC.contains(DiaChiConstant.THITRAN)) {
+				} else if (diaChiNCC.contains(Constant.PHUONG) || diaChiNCC.contains(Constant.XA)
+						|| diaChiNCC.contains(Constant.THITRAN)) {
 					phuongXa = diaChiNCC;
 				} else {
 					diaChi = diaChiNCC;

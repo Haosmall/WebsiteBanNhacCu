@@ -1,5 +1,6 @@
 package com.websitenhaccu.controller.admin;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,12 +10,22 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.websitenhaccu.converter.MauSanPhamConverter;
+import com.websitenhaccu.converter.SanPhamConverter;
 import com.websitenhaccu.dto.NguoiDungDTO;
+import com.websitenhaccu.entity.LoaiSanPham;
 import com.websitenhaccu.entity.SanPham;
+import com.websitenhaccu.entity.ThuongHieu;
 import com.websitenhaccu.service.SanPhamService;
 import com.websitenhaccu.service.ThuongHieuService;
+import com.websitenhaccu.service.DongSanPhamService;
+import com.websitenhaccu.service.LoaiSanPhamService;
+import com.websitenhaccu.service.MauSanPhamService;
+import com.websitenhaccu.service.MauService;
 import com.websitenhaccu.service.NguoiDungService;
+import com.websitenhaccu.service.NhaCungCapService;
 import com.websitenhaccu.util.CustomUserDetails;
+import com.websitenhaccu.validator.SanPhamValidator;
 
 @Controller
 @RequestMapping("/admin")
@@ -24,7 +35,12 @@ public class QuanLyController {
 	
 	@Autowired
 	private SanPhamService sanPhamService;
-	
+
+	@Autowired
+	private LoaiSanPhamService loaiSanPhamService;
+
+	@Autowired
+	private ThuongHieuService thuongHieuService;
 
 //	@RequestMapping("/home")
 //	public ModelAndView getUser() {
@@ -36,21 +52,26 @@ public class QuanLyController {
 	@RequestMapping("/quan-ly")
 	public String getUser(Model model) {
 
-		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		String email;
-		if (principal instanceof CustomUserDetails) {
-			email = ((CustomUserDetails) principal).getUsername();
-		} else {
-			email = principal.toString();
+		List<SanPham> sanPhams = sanPhamService.timKiemSanPham("", "", "", "", 0, 10);
+		
+		List<String> listXuatXu = new ArrayList<String>();
+		for(SanPham sp : sanPhams) {
+			String xx = sp.getXuatXu().toLowerCase();
+			xx = xx.substring(0, 1).toUpperCase() + xx.substring(1);
+			if(!listXuatXu.contains(xx))
+				listXuatXu.add(xx);
 		}
 		
-		NguoiDungDTO user = userService.getByEmail(email);
+		List<LoaiSanPham> loaiSanPhams = loaiSanPhamService.getTatCaLoaiSanPham();
+		List<ThuongHieu> thuongHieus = thuongHieuService.getTatCaThuongHieu();
 		
-		List<SanPham> sanPhams = sanPhamService.getTatCaSanPham();
-
+		model.addAttribute("page", 0);
+		
 		model.addAttribute("listSanPham", sanPhams);
-		model.addAttribute("user", user);
-
+		model.addAttribute("listXuatXu", listXuatXu);
+		model.addAttribute("listThuongHieu", thuongHieus);
+		model.addAttribute("listLoaiSanPham", loaiSanPhams);
+		
 		return "admin/sanpham/SanPham";
 	}
 }

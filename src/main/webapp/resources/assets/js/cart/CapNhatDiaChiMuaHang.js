@@ -285,27 +285,33 @@ document.querySelector(".btnSubmit").addEventListener("click", function(event) {
 			let xa = $("#xa option:selected").text();
 			let diaChi = $("#diaChi").val();
 			
-
-			let apiCall = `http://${HOST_NAME}:${PORT}${PAGE_PATH}${api}id=${idUser}thanhPho=${thanhPho}&huyen=${huyen}&xa=${xa}&soNha=${diaChi}`;
-
-			console.log(apiCall);
-
-			$.post(apiCall, function(data, status) {
-
-
-			})
-
-
+			let diaChiMoi = diaChi + ", " + xa + ", " + huyen + ", " + thanhPho;
+			$('#diaChiGiaoHang').val(diaChiMoi);
+			$('.inf_ad').html(diaChiMoi);
+			
 			e.preventDefault();
-
-
-
-
+			box_confirm.css({ "visibility": "hidden", "opacity": "0", "transform": "translateY(-30px)" });
+			
+			jQuery(function(){
+				   jQuery('.close').click();
+				});
+			
+			$.ajax({
+			      type: "PUT",
+			      url: "http://localhost:8080/WebsiteBanNhacCu/api/gio-hang/cap-nhat-dia-chi",
+			      data: {diaChiMoi},
+			      dataType: "json",
+			      contentType:"application/json;charset=utf-8",
+			      encode: true,
+			    })
 
 		})
 
 		bntNo.click(function() {
 			box_confirm.css({ "visibility": "hidden", "opacity": "0", "transform": "translateY(-30px)" });
+			jQuery(function(){
+				   jQuery('.close').click();
+				});
 		})
 	} else {
 		event.preventDefault();
@@ -315,7 +321,19 @@ document.querySelector(".btnSubmit").addEventListener("click", function(event) {
 
 
 
-
+$(document).ready(function () {
+	let diaChi = $('#diaChiGiaoHang').val();
+	console.log(diaChi);
+	
+	$.ajax({
+	      type: "PUT",
+	      url: "http://localhost:8080/WebsiteBanNhacCu/api/gio-hang/cap-nhat-dia-chi",
+	      data:{diaChi},
+	      dataType: "json",
+	    })
+	    
+	
+});
 
 
 
@@ -327,8 +345,6 @@ $(".close").click(function() {
 	loadDuLieuDiaChi();
 })
 
-
-$('#myModal').modal({ backdrop: 'static', keyboard: false });
 
 
 

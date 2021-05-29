@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/common/taglib.jsp"%>
@@ -8,7 +9,6 @@
 <title><dec:title /></title>
 
 <%-- <c:set var="pageTitle" value="<dec:title />" /> --%>
-
 
 <link rel="stylesheet" href="<c:url value="/static/style.css"/>">
 
@@ -41,8 +41,8 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-<!-- Static style -->
 
+<!-- Static style -->
 <link rel="stylesheet"
 	href="<c:url value="/static/assets/css/main.css"/>">
 <link rel="stylesheet"
@@ -54,28 +54,18 @@
 
 <c:if test="${pageTitle != 'Trang chủ'}">
 
-
-<link rel="stylesheet"
-	href="<c:url value="/static/assets/css/menu/menu.css"/>">
+	<link rel="stylesheet"
+		href="<c:url value="/static/assets/css/menu/menu.css"/>">
 </c:if>
 
 </head>
-
-
-
-
-</head>
 <body>
+
 	<!-- header -->
 	<div class="overlay"></div>
 	<div class="container-fluid header fixed-top">
 		<div class="container">
-
-
 			<div class="row header__item">
-
-
-
 
 
 
@@ -92,48 +82,73 @@
 
 								<div class="category__adjust">
 
+									<div class="item">
+
+										<i class="fas fa-bars category__icon"></i> <a
+											class="category__name">Danh mục sản phẩm</a>
+									</div>
+									<c:forEach items="${ map }" var="loaiSP">
+
+										<div class="category">
+											<div class="item">
+												<i class="fas fa-guitar category__icon"></i> <a
+													class="category__name"
+													href="<c:url value="/danh-sach-san-pham/${ loaiSP.key.id }?page=1"/>">${ loaiSP.key.tenLoaiSanPham }</a>
+											</div>
+
+											<div class="sub-category">
+												<div class="category-detail">
+													<c:forEach items="${ loaiSP.value }" var="thuongHieu">
+														<div class="category__line">
+															<a
+																href="<c:url value="/danh-sach-san-pham/${ loaiSP.key.id }/${ thuongHieu.id }?page=1"/>"><img
+																src="data:image/jpg;base64,${thuongHieu.hinhAnhBase64}"
+																alt="${ thuongHieu.tenThuongHieu }"></a>
+
+															<p
+																onclick="location.href='<c:url value="/danh-sach-san-pham/${ loaiSP.key.id }/${ thuongHieu.id }?page=1"/>'">
+																<b>${ thuongHieu.tenThuongHieu }</b>
+															</p>
+															<hr>
+															<c:forEach items="${ dongSanPhams }" var="dongSP">
+																<c:if test="${ dongSP.thuongHieu.id eq thuongHieu.id }">
+																	<c:if
+																		test="${ dongSP.loaiSanPham.id eq loaiSP.key.id }">
+
+																		<p
+																			onclick="location.href='<c:url value="/danh-sach-san-pham/${ dongSP.id }?page=1"/>'">${ dongSP.tenDongSanPham }</p>
+
+																	</c:if>
+																</c:if>
+															</c:forEach>
+														</div>
+													</c:forEach>
+
+												</div>
+											</div>
+										</div>
+									</c:forEach>
 									<div class="category">
 										<div class="item">
 											<i class="fas fa-guitar category__icon"></i> <a
-												class="category__name" href="">Guitar</a>
-										</div>
-										<div class="sub-category">
-											<div class="category-detail">
-												<div class="category__line">
-													<a href=""><img src="../asset/image/yamaha_logo.png"
-														alt=""></a>
-													<p>
-														<b>Đàn Guitar yamaha</b>
-													</p>
-													<hr>
-													<p>Dòng sản phẩm 1</p>
-													<p>Dòng sản phẩm 2</p>
-													<p>Dòng sản phẩm 3</p>
-													<p>Dòng sản phẩm 4</p>
-
-
-												</div>
-												<div class="category__line">4</div>
-												<div class="category__line">4</div>
-												<div class="category__line">4</div>
-												<div class="category__line">4</div>
-											</div>
+												class="category__name"
+												href="<c:url value="/danh-sach-san-pham/tat-ca?page=1"/>">Tất
+												cả sản phẩm</a>
 										</div>
 									</div>
+
+
 								</div>
 							</div>
 						</div>
 					</c:if>
 				</div>
 
-
-
 				<div class="col-2 ">
 					<a href="<c:url value="/"/>"> <img alt="logo"
 						src="<c:url value="/static/assets/img/logo_team.png"/>"
 						style="object-fit: cover; background-position: center center; height: 72px; width: 80%;"></a>
 				</div>
-
 
 				<div class="col-4">
 					<div class="input-group">
@@ -145,6 +160,8 @@
 							</button>
 						</div>
 					</div>
+
+
 				</div>
 
 				<div class="col text-center">
@@ -152,6 +169,7 @@
 						class="fas fa-shopping-cart cart__logo"></i> <span>Giỏ hàng</span>
 					</a>
 				</div>
+
 				<div class="col-3">
 
 					<!-- Đã đăng nhập -->
@@ -169,26 +187,19 @@
 
 
 								<img class="img-profile rounded-circle"
-								src="
-										<c:choose> 
-											<c:when test="${ empty user.hinhAnhBase64}">
-												<c:url value='/static/assets/img/undraw_profile.svg'/>
-											</c:when>
-										  	<c:otherwise>
-										  		data:image/jpg;base64,${ user.hinhAnhBase64 }
-										  	</c:otherwise>
-										</c:choose>
-									"
+								src="<c:url value='/static/assets/img/undraw_profile.svg'/>"
 								width="50px" height="50px">
 							</a>
 							<!-- Dropdown - User Information -->
 							<div
 								class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 								aria-labelledby="userDropdown">
-								<a class="dropdown-item" href="#"> <i
-									class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Thông
-									tin người dùng
-								</a> <a class="dropdown-item" href="#"> <i
+								<a class="dropdown-item"
+									href="<c:url value="/tai-khoan/thong-tin-tai-khoan"/>"> <i
+									class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Tài
+									khoản của tôi
+								</a> <a class="dropdown-item"
+									href="<c:url value="/quan-ly-don-hang"/>"> <i
 									class="fas fa-receipt fa-sm fa-fw mr-2 text-gray-400"></i> Đơn
 									hàng của tôi
 								</a>
@@ -231,23 +242,21 @@
 				</div>
 
 
-			</div>
 
+			</div>
 		</div>
+
+
 	</div>
 
 
 
 	<!-- body of page -->
+
+
 	<div class="body">
 
 
-		<c:if
-			test="${pageTitle == 'Trang chủ' and pageTitle != 'Đăng nhập'and pageTitle != 'Giỏ hàng'  and pageTitle != 'Đăng kí tài khoản' and pageTitle !=  'Quên mật khẩu' and pageTitle !=  'Đổi mật khẩu' and pageTitle != 'Chi tiết sản phẩm'}">
-
-			
-
-		</c:if>
 		<dec:body />
 
 		<!-- footer -->
@@ -309,3 +318,4 @@
 		src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 </body>
 </html>
+

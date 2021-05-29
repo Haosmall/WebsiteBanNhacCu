@@ -1,0 +1,77 @@
+
+
+.wrapper {
+    max-width: 1220px;
+    margin: 40px auto;
+    display: flex;
+
+    .side_left {
+        display: flex;
+        flex-direction: column;
+        width: 250px;
+
+        .item {
+            display: flex;
+            height: 38px;
+            align-items: center;
+            padding: 0 15px;
+
+            > i {
+                width: 30px;
+                color: rgb(155, 155, 155);
+            }
+        }
+    }
+
+    .side_right {
+        width: 970px;
+        padding: 20px 15px;
+        background-color: #fff;
+        border-radius: 5px;
+
+        > form {
+            width: 880px;
+        }
+    }
+}
+
+.active {
+    background-color: rgb(212, 211, 211);
+}
+.row {
+    margin: 15px 0;
+}
+
+.adjust-form {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.checkDiaChi {
+    color: red;
+    font-style: italic;
+}
+
+.form_doiMatKhau {
+    display: none;
+}
+
+.btnSubmit {
+    margin-left: 758px;
+    padding: 5px 20px;
+}
+
+.side_link {
+    color: black;
+    font-weight: 400;
+}
+.side_link:hover {
+    color: black;
+    font-weight: 400;
+    text-decoration: none;
+    background-color: rgb(221, 221, 221);
+}
+
+.active {
+    background-color: rgb(221, 221, 221);
+}
