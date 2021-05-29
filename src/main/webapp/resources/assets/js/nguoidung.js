@@ -6,7 +6,7 @@ const API = 'register/api/email/tim-kiem'
 
 
 var trangThai = document.getElementById("trangThai").value;
-if(trangThai != ""){
+if (trangThai != "") {
     alert(trangThai);
 }
 
@@ -27,23 +27,19 @@ function searchType() {
         for (var i = 0; i < data.length; i++) {
             $("#tableNguoiDung").append(
                 `<tr>
-                <td>${i + 1}</td>
-                <td>${data[i].fullName}</td>
-                <td>${data[i].phone}</td>
-                <td>${data[i].email}</td>
-                <td>${data[i].tinhThanhPho}</td>
-                <td>
-                    Chưa cập nhật
-                </td>
+                <td>${ i +1 }</td>
+                <td>${ data[i].fullName }</td>
+                <td>${ data[i].phone }</td>
+                <td>${ data[i].email }</td>
+                <td>${ data[i].tinhThanhPho }</td>
+                <td>Chưa cập nhật</td>
                 <td><input type="button" class="btn btn-primary table__btn"
                     value="Chi tiết"
-                    onclick="location.href='/${CONTEXT_PATH}/admin/nguoi-dung/chi-tiet-nguoi-dung?id=${data[i].userId}' ">
+                    onclick="location.href='/${CONTEXT_PATH}/admin/nguoi-dung/chi-tiet-nguoi-dung?id=${ data[i].userId }'"/>
 
-                    <input type="button" class="btn btn-danger table__btn"
-                    value="Xóa"
-                    onclick="location.href='/${CONTEXT_PATH}/admin/nguoi-dung/xoa-nguoi-dung?id=${data[i].userId}' ">
+                    <input type="button" class="btn btn-danger table__btn btnXoa" value="Xóa"/>
 
-                </td>
+                    <input type="hidden" class="maNguoiDung" value="${ data[i].userId}" /></td>
             </tr>`
             );
         }
@@ -65,7 +61,6 @@ document.getElementById("btnNext").onclick = function () {
         page = page + 1;
     }
 
-
     const url = `http://${HOST_NAME}:${PORT}/${CONTEXT_PATH}/${API}?hoTen=${searchText}&soDienThoai=${txtSearchSdt}&email=${txtSearchEmail}&page=${page - 1}`;
 
     console.log(url)
@@ -78,23 +73,19 @@ document.getElementById("btnNext").onclick = function () {
             for (var i = 0; i < data.length; i++) {
                 $("#tableNguoiDung").append(
                     `<tr>
-                    <td>${i + 1}</td>
-                    <td>${data[i].fullName}</td>
-                    <td>${data[i].phone}</td>
-                    <td>${data[i].email}</td>
-                    <td>${data[i].tinhThanhPho}</td>
-                    <td>
-                        Chưa cập nhật
-                    </td>
+                    <td>${ i +1 }</td>
+                    <td>${ data[i].fullName }</td>
+                    <td>${ data[i].phone }</td>
+                    <td>${ data[i].email }</td>
+                    <td>${ data[i].tinhThanhPho }</td>
+                    <td>Chưa cập nhật</td>
                     <td><input type="button" class="btn btn-primary table__btn"
                         value="Chi tiết"
-                        onclick="location.href='/${CONTEXT_PATH}/admin/nguoi-dung/chi-tiet-nguoi-dung?id=${data[i].userId}' ">
+                        onclick="location.href='/${CONTEXT_PATH}/admin/nguoi-dung/chi-tiet-nguoi-dung?id=${ data[i].userId }'"/>
     
-                        <input type="button" class="btn btn-danger table__btn"
-                        value="Xóa"
-                        onclick="location.href='/${CONTEXT_PATH}/admin/nguoi-dung/xoa-nguoi-dung?id=${data[i].userId}' ">
+                        <input type="button" class="btn btn-danger table__btn btnXoa" value="Xóa"/>
     
-                    </td>
+                        <input type="hidden" class="maNguoiDung" value="${ data[i].userId}" /></td>
                 </tr>`
                 );
             }
@@ -108,8 +99,6 @@ document.getElementById("btnNext").onclick = function () {
 };
 
 document.getElementById("btnPreviusPage").onclick = function () {
-
-
 
     var searchText = document.getElementById("txtSearch").value;
 
@@ -128,29 +117,25 @@ document.getElementById("btnPreviusPage").onclick = function () {
 
         if (data[0] != null) {
             $("#tableNguoiDung").html("");
-		for (var i = 0; i < data.length; i++) {
-			$("#tableNguoiDung").append(
-                `<tr>
-                <td>${i + 1}</td>
-                <td>${data[i].fullName}</td>
-                <td>${data[i].phone}</td>
-                <td>${data[i].email}</td>
-                <td>${data[i].tinhThanhPho}</td>
-                <td>
-                    Chưa cập nhật
-                </td>
-                <td><input type="button" class="btn btn-primary table__btn"
-                    value="Chi tiết"
-                    onclick="location.href='/${CONTEXT_PATH}/admin/nguoi-dung/chi-tiet-nguoi-dung?id=${data[i].userId}' ">
-
-                    <input type="button" class="btn btn-danger table__btn"
-                    value="Xóa"
-                    onclick="location.href='/${CONTEXT_PATH}/admin/nguoi-dung/xoa-nguoi-dung?id=${data[i].userId}' ">
-
-                </td>
-            </tr>`
-            );
-		}
+            for (var i = 0; i < data.length; i++) {
+                $("#tableNguoiDung").append(
+                    `<tr>
+                    <td>${ i +1 }</td>
+                    <td>${ data[i].fullName }</td>
+                    <td>${ data[i].phone }</td>
+                    <td>${ data[i].email }</td>
+                    <td>${ data[i].tinhThanhPho }</td>
+                    <td>Chưa cập nhật</td>
+                    <td><input type="button" class="btn btn-primary table__btn"
+                        value="Chi tiết"
+                        onclick="location.href='/${CONTEXT_PATH}/admin/nguoi-dung/chi-tiet-nguoi-dung?id=${ data[i].userId }'"/>
+    
+                        <input type="button" class="btn btn-danger table__btn btnXoa" value="Xóa"/>
+    
+                        <input type="hidden" class="maNguoiDung" value="${ data[i].userId}" /></td>
+                </tr>`
+                );
+            }
 
             viewPage.value = page; //gan lai  hien thi trang hien tai
             pageHidden.value = page;//gan lai gia tri bien hidden
@@ -159,3 +144,46 @@ document.getElementById("btnPreviusPage").onclick = function () {
     });
 
 };
+
+$(".btnXoa").each(function (index) {
+
+    $(this).click(function () {
+        console.log("da nhan btnXoa")
+        var cf = confirm("Bạn muốn xóa người dùng này ?");
+        if (cf == true) {
+            let id = $(".maNguoiDung").get(index).value;
+            xoaNguoiDung(id);
+        }
+    });
+});
+
+xoaNguoiDung = (id) => {
+
+    $.ajax({
+        url: apiFetch = `http://${HOST_NAME}:${PORT}/${CONTEXT_PATH}/register/api/email/xoa?id=` + id,
+        type: 'DELETE',
+        success: function (result) {
+            window.location.href = `http://${HOST_NAME}:${PORT}/${CONTEXT_PATH}/admin/nguoi-dung/danh-sach-nguoi-dung`;
+            console.log("Đã xóa khách hàng");
+            toastr.success("Đã xóa khách hàng");
+        },
+        error: function () {
+            console.log('Khách hàng này không thể xóa');
+            toastr.error('Khách hàng này không thể xóa');
+        },
+    });
+}
+
+
+$("body").on("DOMSubtreeModified", "#tableNguoiDung", function () {
+	$(".btnXoa").each(function (index) {
+        $(this).click(function () {
+            console.log("da nhan btnXoa")
+            var cf = confirm("Bạn muốn xóa người dùng này ?");
+            if (cf == true) {
+                let id = $(".maNguoiDung").get(index).value;
+                xoaNguoiDung(id);
+            }
+        });
+    });
+});

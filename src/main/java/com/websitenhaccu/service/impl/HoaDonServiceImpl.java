@@ -1,8 +1,10 @@
 package com.websitenhaccu.service.impl;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -73,6 +75,16 @@ public class HoaDonServiceImpl implements HoaDonService {
 
 	public HoaDon getHoaDonByNguoiDungId(String idNguoiDung) {
 		return hoaDonRepository.getHoaDonByNguoiDungId(idNguoiDung);
+	}
+
+	@Override
+	public List<HoaDon> getDanhSachTheoNgayTrangThai(String ngay, String trangThai, int page, int size) {
+		return hoaDonRepository.findByNgayLapHoaDonAndTrangThaiContaining(Date.valueOf(ngay), trangThai, PageRequest.of(page, size));
+	}
+
+	@Override
+	public List<HoaDon> getDanhSachTheoTrangThai(String trangThai, int page, int size) {
+		return hoaDonRepository.findByTrangThaiContaining(trangThai, PageRequest.of(page, size));
 	}
 
 }

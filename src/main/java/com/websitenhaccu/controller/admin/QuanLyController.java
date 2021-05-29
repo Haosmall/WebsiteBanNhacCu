@@ -1,77 +1,65 @@
 package com.websitenhaccu.controller.admin;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
-import com.websitenhaccu.converter.MauSanPhamConverter;
-import com.websitenhaccu.converter.SanPhamConverter;
-import com.websitenhaccu.dto.NguoiDungDTO;
-import com.websitenhaccu.entity.LoaiSanPham;
-import com.websitenhaccu.entity.SanPham;
-import com.websitenhaccu.entity.ThuongHieu;
-import com.websitenhaccu.service.SanPhamService;
-import com.websitenhaccu.service.ThuongHieuService;
-import com.websitenhaccu.service.DongSanPhamService;
-import com.websitenhaccu.service.LoaiSanPhamService;
-import com.websitenhaccu.service.MauSanPhamService;
-import com.websitenhaccu.service.MauService;
-import com.websitenhaccu.service.NguoiDungService;
-import com.websitenhaccu.service.NhaCungCapService;
-import com.websitenhaccu.util.CustomUserDetails;
-import com.websitenhaccu.validator.SanPhamValidator;
+import com.websitenhaccu.converter.ChiTietHoaDonConverter;
+import com.websitenhaccu.converter.HoaDonConverter;
+import com.websitenhaccu.dto.ChiTietHoaDonDTO;
+import com.websitenhaccu.dto.HoaDonDTO;
+import com.websitenhaccu.entity.ChiTietHoaDon;
+import com.websitenhaccu.entity.HoaDon;
+import com.websitenhaccu.service.ChiTietHoaDonService;
+import com.websitenhaccu.service.HoaDonService;
+import com.websitenhaccu.util.Constant;
 
 @Controller
 @RequestMapping("/admin")
 public class QuanLyController {
 	@Autowired
-	NguoiDungService userService;
+	private HoaDonService hoaDonService;
+
+	@Autowired
+	private ChiTietHoaDonService chiTietHoaDonService;
 	
 	@Autowired
-	private SanPhamService sanPhamService;
-
+	private HoaDonConverter hoaDonConverter;
+	
 	@Autowired
-	private LoaiSanPhamService loaiSanPhamService;
-
-	@Autowired
-	private ThuongHieuService thuongHieuService;
-
-//	@RequestMapping("/home")
-//	public ModelAndView getUser() {
-//		
-//
-//		return new ModelAndView("admin/home");
-//	}
+	private ChiTietHoaDonConverter chiTietHoaDonConverter;
 
 	@RequestMapping("/quan-ly")
 	public String getUser(Model model) {
 
-		List<SanPham> sanPhams = sanPhamService.timKiemSanPham("", "", "", "", 0, 10);
+List<HoaDon> hoaDons = hoaDonService.getDanhSachTheoTrangThai("", 0, 10);
 		
-		List<String> listXuatXu = new ArrayList<String>();
-		for(SanPham sp : sanPhams) {
-			String xx = sp.getXuatXu().toLowerCase();
-			xx = xx.substring(0, 1).toUpperCase() + xx.substring(1);
-			if(!listXuatXu.contains(xx))
-				listXuatXu.add(xx);
-		}
-		
-		List<LoaiSanPham> loaiSanPhams = loaiSanPhamService.getTatCaLoaiSanPham();
-		List<ThuongHieu> thuongHieus = thuongHieuService.getTatCaThuongHieu();
-		
+		List<HoaDonDTO> hoaDonDTOs = new ArrayList<HoaDonDTO>();
+		hoaDons.forEach(hd -> {
+			HoaDonDTO hoaDonDTO = hoaDonConverter.toHoaDonDTO(hd);
+			List<ChiTietHoaDonDTO> chiTietHoaDonDTOs = new ArrayList<ChiTietHoaDonDTO>();
+			List<ChiTietHoaDon> chiTietHoaDons = chiTietHoaDonService.getChiTietHoaDonTheoMaHoaDon(hoaDonDTO.getId());
+
+			chiTietHoaDons.forEach(cthd -> {
+				ChiTietHoaDonDTO chiTietHoaDonDTO = chiTietHoaDonConverter.toChiTietHoaDonDTO(cthd);
+				chiTietHoaDonDTOs.add(chiTietHoaDonDTO);
+			});
+			hoaDonDTO.setChiTietHoaDonDTOs(chiTietHoaDonDTOs);
+
+			hoaDonDTOs.add(hoaDonDTO);
+		});
+
+		List<String> trangThais = new ArrayList<String>(Arrays.asList(Constant.DANG_CHO_XU_LY, Constant.DA_TIEP_NHAN,
+				Constant.DANG_DONG_GOI, Constant.BAN_GIAO_VAN_CHUYEN, Constant.GIAO_THANH_CONG, Constant.DA_HUY));
+		model.addAttribute("trangThais", trangThais);
+		model.addAttribute("hoaDonDTOs", hoaDonDTOs);
 		model.addAttribute("page", 0);
 		
-		model.addAttribute("listSanPham", sanPhams);
-		model.addAttribute("listXuatXu", listXuatXu);
-		model.addAttribute("listThuongHieu", thuongHieus);
-		model.addAttribute("listLoaiSanPham", loaiSanPhams);
-		
-		return "admin/sanpham/SanPham";
+		return "admin/quanlydonhang/danhsachdonhang";
 	}
 }

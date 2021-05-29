@@ -19,66 +19,77 @@
 			<div class="col-sm-5">
 				<input type="text" class="form-control" id="maHoaDon" value="">
 			</div>
+			<div class="col-sm-2">
+				<input type="button" class="form-control btn-primary" id="btnClear"
+					onclick="Reset()" value="Hiển thị tất cả">
+			</div>
 		</div>
 
 		<table class="table table-hover">
-
-
-			<tbody>
-
+			<thead>
 				<tr>
 					<th style="width: 3%">STT</th>
 					<th style="width: 10%">Mã đơn hàng</th>
 					<th style="width: 25%">
 						<div class="test">
 							<span>Ngày lập</span> <input class="form-control ngayLap"
-								type="date" value="2011-08-19" id="example-date-input">
+								type="date" value="yyyy-MM-dd" id="date" onchange="searchFull()">
 						</div>
 					</th>
 					<th style="width: 25%" class="sanPham">Sản phẩm</th>
 					<th style="width: 12%">Tổng tiền</th>
-					<th style="width: 14%">
-						<select class="custom-select">
-								<option selected>Trạng thái</option>
-								<option value="1">Đang Thực hiện</option>
-								<option value="1">Đang giao</option>
-								<option value="2">Đã tiếp nhận</option>
-								<option value="3">Đã hủy</option>
-						</select>
-					</th>
+					<th style="width: 14%"><select class="custom-select"
+						id="trangThai" onchange="searchFull()">
+							<option value="">Trạng thái</option>
+							<c:forEach items="${ trangThais }" var="item">
+								<option value="${ item }">${ item }</option>
+							</c:forEach>
+
+					</select></th>
 					<th style="width: 13%"></th>
 				</tr>
-				
-				<c:forEach items="${ hoaDonDTOs }" var="hoaDonDTO" varStatus="counter">
+			</thead>
+
+			<tbody id="tableDonHang">
+				<c:forEach items="${ hoaDonDTOs }" var="hoaDonDTO"
+					varStatus="counter">
 					<tr>
 						<td>${ counter.count }</td>
 						<td>${ hoaDonDTO.id }</td>
-						<td>
-							<fmt:formatDate pattern = "dd-MM-yyyy"  value = "${ hoaDonDTO.ngayLapHD }" />
-						</td>
-						<td>
-							<c:set var="tongTien" value="0"/>
-							<c:forEach items="${ hoaDonDTO.chiTietHoaDonDTOs }" var="chiTietHoaDonDTO">
-								<p> Sản phẩm: ${ chiTietHoaDonDTO.mauSanPhamDTO.tenSanPham } - Màu: ${ chiTietHoaDonDTO.mauSanPhamDTO.tenMau } - Số lượng: ${ chiTietHoaDonDTO.soLuong }</p>
-							</c:forEach>
-						</td>
-						<td><fmt:formatNumber type = "number" value = "${ hoaDonDTO.tongTien }" /> VNĐ</td>
+						<td><fmt:formatDate pattern="dd-MM-yyyy"
+								value="${ hoaDonDTO.ngayLapHD }" /></td>
+						<td><c:set var="tongTien" value="0" /> <c:forEach
+								items="${ hoaDonDTO.chiTietHoaDonDTOs }" var="chiTietHoaDonDTO">
+								<p>Sản phẩm: ${ chiTietHoaDonDTO.mauSanPhamDTO.tenSanPham }
+									- Màu: ${ chiTietHoaDonDTO.mauSanPhamDTO.tenMau } - Số lượng:
+									${ chiTietHoaDonDTO.soLuong }</p>
+							</c:forEach></td>
+						<td><fmt:formatNumber type="number"
+								value="${ hoaDonDTO.tongTien }" /> VNĐ</td>
 						<td>${ hoaDonDTO.trangThai }</td>
-						<td><button class="btn btn-danger" onclick="chiTietDonHang('${ hoaDonDTO.id }')">Xem chi tiết</button></td>
+						<td><button class="btn btn-danger"
+								onclick="chiTietDonHang('${ hoaDonDTO.id }')">Xem chi
+								tiết</button></td>
 					</tr>
-				
+
 				</c:forEach>
 
 			</tbody>
 		</table>
 
 	</div>
+	<input type="hidden" id="pageValue" value="${ page + 1}" />
 
-<script type="text/javascript">
-	function chiTietDonHang(id){
-		window.location.href ="http://localhost:8080/WebsiteBanNhacCu/admin/quan-li-don-hang/chi-tiet-don-hang?maDonHang=" + id;
-	}
-</script>
+	<div class="form-group row">
+
+		<input class="col-3" type="button" class="form-control"
+			id="btnPreviusPage" value="-" /> <input class="col-4" type="text"
+			readonly class="form-control" id="viewPage"
+			value="${page = page + 1}" /> <input class="col-3" type="button"
+			class="form-control" id="btnNext" value="+" />
+	</div>
+
+	<script src="<c:url value="/static/assets/js/danhsachdonhang.js"/>"></script>
 
 </body>
 </html>
