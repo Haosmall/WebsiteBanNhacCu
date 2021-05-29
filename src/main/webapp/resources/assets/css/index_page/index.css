@@ -19,6 +19,10 @@
 	width: 100%;
 }
 
+.category__line a{
+	overflow: hidden;;
+}
+
 .category__adjust {
 	display: flex;
 	flex-direction: column;

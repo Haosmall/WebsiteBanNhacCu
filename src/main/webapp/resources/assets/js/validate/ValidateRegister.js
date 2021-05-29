@@ -59,6 +59,72 @@ validateSdt = () => {
 
 }
 
+const tinh = $("#tinh");
+var checkTinh = $("#checkTinh");
+var vaidateTinh = tinh.blur(function() {
+	let result;
+	if ($(this).val() == -1) {
+		result = false;
+		checkTinh.text("Tỉnh thành phố không hợp lệ")
+	} else {
+		result = true;
+		checkTinh.text("")
+	}
+	return result;
+})
+
+
+
+const huyen = $("#huyen");
+var checkHuyen = $("#checkHuyen");
+var vaidateHuyen = huyen.blur(function() {
+
+	let result;
+	if ($(this).val() == -1) {
+		result = false;
+		checkHuyen.text("Quận Huyện không hợp lệ")
+	} else {
+		result = true;
+		checkHuyen.text("")
+	}
+	return result;
+})
+
+
+
+const xa = $("#xa");
+var checkXa = $("#checkXa");
+var vaidateXa = xa.blur(function() {
+
+	let result;
+	if ($(this).val() == -1) {
+		result = false;
+		checkXa.text("Xã không hợp lệ")
+	} else {
+		result = true;
+		checkXa.text("")
+	}
+	return result;
+})
+
+
+const diaChi = $("#diaChi");
+var checkSoNha = $("#checkSoNha");
+var vaidateSoNha = diaChi.blur(function() {
+
+	let result;
+	if ($(this).val() == "") {
+		result = false;
+		checkSoNha.text("Số nhà, tên dường không hợp lệ")
+	} else {
+		result = true;
+		checkSoNha.text("")
+	}
+
+	return result;
+})
+
+
 
 
 const HOST_NAME = window.location.hostname;;
@@ -97,15 +163,10 @@ validateEmail = () => {
 				}
 			}
 
-			console.log(result);
-			return result;
-		}, 200);
+		}, 300);
+		console.log("check email,result");
+		return result;
 	});
-
-
-
-
-
 }
 
 
@@ -115,13 +176,29 @@ validateEmail = () => {
 const button_submit = $("#btnSubmit");
 const form = $("#formRegister");
 
+
+button_submit.mouseenter(function() {
+	console.log("concat");
+	console.log(vaidateTinh);
+	console.log(vaidateHuyen);
+	console.log(vaidateXa);
+	console.log(vaidateSoNha);
+	console.log(validateFullname());
+	console.log(validateEmail());
+	console.log(validateSdt());
+	console.log(validatePassword());
+	console.log(validatePasswordCf());
+
+
+})
+
 button_submit.click(function(event) {
 
 
 	setTimeout(function() {
 
 
-		if (validateFullname() && validateEmail() && validateSdt() && validatePassword() && validatePasswordCf()) {
+		if (vaidateTinh() && vaidateHuyen() && vaidateXa() && vaidateSoNha() && validateFullname() && validateEmail() && validateSdt() && validatePassword() && validatePasswordCf()) {
 			form.submit();
 		}
 		else {

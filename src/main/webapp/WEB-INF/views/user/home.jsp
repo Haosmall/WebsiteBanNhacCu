@@ -6,8 +6,165 @@
 <head>
 <meta charset="UTF-8">
 <title>Trang chủ</title>
+<link rel="stylesheet"
+	href="<c:url value="/static/assets/css/index_page/Slider.css"/>">
+	
+	
+<link rel="stylesheet"
+	href="<c:url value="/static/assets/css/index_page/index.css"/>">
+
 </head>
 <body>
+
+		
+		<!-- Slider and  category -->
+			<div class="container slider_caterogies">
+
+				<div class="row">
+
+					<!-- category -->
+					<div class="col-2 pl-0 pr-0 ">
+
+
+						<!-- categories -->
+						<div class="categories">
+
+							<div class="category__adjust">
+								<div class="item">
+
+									<i class="fas fa-bars category__icon"></i> <a
+										class="category__name">Danh mục sản phẩm</a>
+								</div>
+
+								<c:forEach items="${ map }" var="loaiSP">
+
+									<div class="category">
+										<div class="item">
+											<i class="fas fa-guitar category__icon"></i> <a
+												class="category__name"
+												href="<c:url value="/danh-sach-san-pham/${ loaiSP.key.id }?page=1"/>">${ loaiSP.key.tenLoaiSanPham }</a>
+										</div>
+
+										<div class="sub-category">
+											<div class="category-detail">
+												<c:forEach items="${ loaiSP.value }" var="thuongHieu">
+													<div class="category__line">
+														<a
+															href="<c:url value="/danh-sach-san-pham/${ loaiSP.key.id }/${ thuongHieu.id }?page=1"/>"><img
+															src="data:image/jpg;base64,${thuongHieu.hinhAnhBase64}"
+															alt="${ thuongHieu.tenThuongHieu }"></a>
+
+														<p
+															onclick="location.href='<c:url value="/danh-sach-san-pham/${ loaiSP.key.id }/${ thuongHieu.id }?page=1"/>'">
+															<b>${ thuongHieu.tenThuongHieu }</b>
+														</p>
+														<hr>
+														<c:forEach items="${ dongSanPhams }" var="dongSP">
+															<c:if test="${ dongSP.thuongHieu.id eq thuongHieu.id }">
+																<c:if test="${ dongSP.loaiSanPham.id eq loaiSP.key.id }">
+
+																	<p
+																		onclick="location.href='<c:url value="/danh-sach-san-pham/${ dongSP.id }?page=1"/>'">${ dongSP.tenDongSanPham }</p>
+
+																</c:if>
+															</c:if>
+														</c:forEach>
+													</div>
+												</c:forEach>
+
+											</div>
+										</div>
+									</div>
+								</c:forEach>
+
+								<div class="category">
+									<div class="item">
+										<i class="fas fa-guitar category__icon"></i> <a
+											class="category__name"
+											href="<c:url value="/danh-sach-san-pham/tat-ca?page=1"/>">Tất
+											cả sản phẩm</a>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+
+
+					<!-- slider -->
+					<div class="col-7 slider ml-2">
+						<div class="row">
+							<div id="demo" class="carousel slide" data-ride="carousel">
+
+								<!-- Indicators -->
+								<ul class="carousel-indicators">
+									<li data-target="#demo" data-slide-to="0" class="active"></li>
+									<li data-target="#demo" data-slide-to="1"></li>
+									<li data-target="#demo" data-slide-to="2"></li>
+								</ul>
+
+								<!-- The slideshow -->
+								<div class="carousel-inner">
+									<div class="carousel-item active">
+										<img src="<c:url value='/static/assets/img/slider_1.jpg'/>"
+											alt="Los Angeles" width="100%" height="400">
+										<div class="carousel-caption">
+											<h3>Los Angeles</h3>
+											<p>We had such a great time in LA!</p>
+										</div>
+									</div>
+									<div class="carousel-item">
+										<img src="<c:url value='/static/assets/img/slider_2.jpg'/>"
+											alt="Chicago" width="100%" height="400">
+										<div class="carousel-caption">
+											<h3>Los Angeles</h3>
+											<p>We had such a great time in LA!</p>
+										</div>
+									</div>
+									<div class="carousel-item">
+										<img src="<c:url value='/static/assets/img/slider_3.jpg'/>"
+											alt="New York" width="100%" height="400">
+										<div class="carousel-caption">
+											<h3>Los Angeles</h3>
+											<p>We had such a great time in LA!</p>
+										</div>
+									</div>
+								</div>
+
+								<!-- Left and right controls -->
+								<a class="carousel-control-prev" href="#demo" data-slide="prev">
+									<span class="carousel-control-prev-icon"></span>
+								</a> <a class="carousel-control-next" href="#demo" data-slide="next">
+									<span class="carousel-control-next-icon"></span>
+								</a>
+							</div>
+						</div>
+					</div>
+
+					<!-- side -->
+					<div class="col ml-2 sider">
+						<div class="row">
+							<img src="<c:url value='/static/assets/img/slider_1.jpg'/>"
+								alt="">
+						</div>
+
+						<div class="row">
+							<img src="<c:url value='/static/assets/img/slider_2.jpg'/>"
+								alt="">
+						</div>
+
+						<div class="row">
+							<img src="<c:url value='/static/assets/img/slider_3.jpg'/>"
+								alt="">
+						</div>
+					</div>
+
+
+
+				</div>
+			</div>
+		
 
         <!-- Sản phẩm nổi bật -->
         <div class="container  mt-3 best_sell_product">
@@ -20,7 +177,7 @@
             <div class="row pl-0 pr-0 list__product--sell">
                 <div class="product">
                     <div class="product__img">
-                        <img src="<c:url value='/static/assets/img/slider_2.jpg'/>" alt="">
+                        <img src="<c:url value='/static/assets/img/slider_2.jpg'/>" style="object:fit-contain;backgr" alt="">
                     </div>
                     <p class="product__name"><b>Đàn guitar rexona yamaha</b></p>
 
