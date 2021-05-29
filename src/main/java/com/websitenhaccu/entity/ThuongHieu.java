@@ -15,7 +15,6 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.websitenhaccu.util.MyGenerator;
 

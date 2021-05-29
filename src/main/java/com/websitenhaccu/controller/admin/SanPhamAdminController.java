@@ -35,7 +35,6 @@ import com.websitenhaccu.service.MauService;
 import com.websitenhaccu.service.NhaCungCapService;
 import com.websitenhaccu.service.SanPhamService;
 import com.websitenhaccu.service.ThuongHieuService;
-import com.websitenhaccu.validator.SanPhamValidator;
 
 /**
  * @author nhath
@@ -67,9 +66,6 @@ public class SanPhamAdminController {
 	private MauSanPhamService mauSanPhamService;
 
 	@Autowired
-	private SanPhamValidator sanPhamValidator;
-
-	@Autowired
 	private SanPhamConverter sanPhamConverter;
 
 	@Autowired
@@ -94,18 +90,17 @@ public class SanPhamAdminController {
 			sanPhamDTO.setTongSoLuong(soLuong);
 			listSanPhamDTO.add(sanPhamDTO);
 		}
-		
+
 		List<LoaiSanPham> loaiSanPhams = loaiSanPhamService.getTatCaLoaiSanPham();
 		List<ThuongHieu> thuongHieus = thuongHieuService.getTatCaThuongHieu();
-		
+
 		model.addAttribute("page", 0);
 
-//		model.addAttribute("listSanPham", sanPhams);
 		model.addAttribute("listSanPham", listSanPhamDTO);
 		model.addAttribute("listXuatXu", listXuatXu);
 		model.addAttribute("listThuongHieu", thuongHieus);
 		model.addAttribute("listLoaiSanPham", loaiSanPhams);
-		
+
 		return "admin/sanpham/SanPham";
 	}
 
@@ -175,13 +170,13 @@ public class SanPhamAdminController {
 		return "redirect:/admin/san-pham/danh-sach-san-pham";
 
 	}
-	
+
 	@GetMapping(value = "/cap-nhat-san-pham")
 	public String hienThiTrangCapNhat(Model model, @RequestParam("id") String maSanPham) {
-		
+
 		SanPham sanPham = sanPhamService.getSanPhamTheoID(maSanPham);
 		SanPhamDTO sanPhamDTO = sanPhamConverter.toSanPhamDTO(sanPham);
-		
+
 		List<NhaCungCap> nhaCungCaps = nhaCungCapService.getTatCaNhaCungCap();
 		List<LoaiSanPham> loaiSanPhams = loaiSanPhamService.getTatCaLoaiSanPham();
 		List<ThuongHieu> thuongHieus = thuongHieuService.getTatCaThuongHieu();
@@ -198,10 +193,9 @@ public class SanPhamAdminController {
 		return "admin/sanpham/SanPhamForm";
 
 	}
-	
+
 	@PostMapping(value = "/cap-nhat-san-pham")
 	public String capNhatSanPham(@ModelAttribute("sanPhamDTO") SanPhamDTO sanPhamDTO) {
-
 
 		SanPham sanPham = sanPhamConverter.toSanPham(sanPhamDTO);
 		String[] temp = sanPham.getId().split(",");

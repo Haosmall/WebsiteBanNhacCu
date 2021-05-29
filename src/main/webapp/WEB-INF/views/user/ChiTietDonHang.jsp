@@ -33,6 +33,7 @@
 			</div>
 			<div class="side_right">
 				<div class="address">
+					<input type="hidden" id="maNguoiDung" value="${ hoaDonDTO.nguoiDung.userId }">
 					<h5>Thông tin người nhận</h5>
 					<p>Họ và tên: <b>${ hoaDonDTO.nguoiDung.fullName }</b></p>
 					<p>
@@ -66,6 +67,7 @@
 										<div class="product_img">
 											<img src="data:image/jpg;base64,${ chiTietHoaDonDTO.mauSanPhamDTO.hinhAnhBase64 }" alt="">
 										</div>
+										<input type="hidden" class="maSanPham" value="${ chiTietHoaDonDTO.mauSanPhamDTO.maSanPham }">
 										<div class="product_name">
 											<p>${ chiTietHoaDonDTO.mauSanPhamDTO.tenSanPham }</p>
 											<c:set value="<%= Constant.GIAO_THANH_CONG %>" var="thanhCong"/>
@@ -73,7 +75,7 @@
 											<c:if test="${ hoaDonDTO.trangThai == thanhCong }">
 												<div>
 													<button
-														class="btn btn-outline-primary"
+														class="btn btn-outline-primary btnNhanXet"
 														data-toggle="modal"
 														data-target="#exampleModalCenter">
 														Viết nhận xét
@@ -141,20 +143,17 @@
 						</button>
 					</div>
 					<div class="modal-body">
-						<form>
 							<div class="form-group">
 								<textarea
 									placeholder="Viết những đánh giá của bạn về sản phẩm"
 									class="form-control"
 									id="exampleFormControlTextarea1"
 									rows="4"
-								>
-								</textarea>
+								></textarea>
 							</div>
-							<button type="submit" class="btn btn-warning btn">
+							<button class="btn btn-warning btn" id="btnGuiDanhGia">
 								Gửi đánh giá
 							</button>
-						</form>
 					</div>
 					<div class="modal-footer"></div>
 				</div>

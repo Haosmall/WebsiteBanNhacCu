@@ -18,6 +18,13 @@ import com.websitenhaccu.entity.HoaDon;
 import com.websitenhaccu.service.ChiTietHoaDonService;
 import com.websitenhaccu.service.HoaDonService;
 import com.websitenhaccu.util.Constant;
+import com.websitenhaccu.entity.LoaiSanPham;
+import com.websitenhaccu.entity.SanPham;
+import com.websitenhaccu.entity.ThuongHieu;
+import com.websitenhaccu.service.LoaiSanPhamService;
+import com.websitenhaccu.service.NguoiDungService;
+import com.websitenhaccu.service.SanPhamService;
+import com.websitenhaccu.service.ThuongHieuService;
 
 @Controller
 @RequestMapping("/admin")
@@ -26,19 +33,28 @@ public class QuanLyController {
 	private HoaDonService hoaDonService;
 
 	@Autowired
+	NguoiDungService userService;
+
+	@Autowired
+	private SanPhamService sanPhamService;
+
+	@Autowired
 	private ChiTietHoaDonService chiTietHoaDonService;
-	
+
 	@Autowired
 	private HoaDonConverter hoaDonConverter;
-	
+
 	@Autowired
 	private ChiTietHoaDonConverter chiTietHoaDonConverter;
+
+	@Autowired
+	private ThuongHieuService thuongHieuService;
 
 	@RequestMapping("/quan-ly")
 	public String getUser(Model model) {
 
-List<HoaDon> hoaDons = hoaDonService.getDanhSachTheoTrangThai("", 0, 10);
-		
+		List<HoaDon> hoaDons = hoaDonService.getDanhSachTheoTrangThai("", 0, 10);
+
 		List<HoaDonDTO> hoaDonDTOs = new ArrayList<HoaDonDTO>();
 		hoaDons.forEach(hd -> {
 			HoaDonDTO hoaDonDTO = hoaDonConverter.toHoaDonDTO(hd);
@@ -59,7 +75,8 @@ List<HoaDon> hoaDons = hoaDonService.getDanhSachTheoTrangThai("", 0, 10);
 		model.addAttribute("trangThais", trangThais);
 		model.addAttribute("hoaDonDTOs", hoaDonDTOs);
 		model.addAttribute("page", 0);
-		
+
 		return "admin/quanlydonhang/danhsachdonhang";
+
 	}
 }

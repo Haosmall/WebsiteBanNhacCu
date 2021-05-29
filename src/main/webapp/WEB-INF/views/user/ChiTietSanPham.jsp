@@ -149,9 +149,36 @@
 		</div>
 
 		<!-- phần đánh giá -->
+		
+		<c:set value="0" var="namSao"/>
+			<c:set value="0" var="bonSao"/>
+			<c:set value="0" var="baSao"/>
+			<c:set value="0" var="haiSao"/>
+			<c:set value="0" var="motSao"/>
+			
+			<c:forEach items="${ binhLuans }" var="binhLuan">
+				<c:choose>
+					<c:when test="${ binhLuan.danhGia == 1 }">
+						<c:set value="${ motSao += 1 }" var="motSao"/>
+					</c:when>
+					<c:when test="${ binhLuan.danhGia == 2 }">
+						<c:set value="${ haiSao += 1 }" var="haiSao"/>
+					</c:when>
+					<c:when test="${ binhLuan.danhGia == 3 }">
+						<c:set value="${ baSao += 1 }" var="baSao"/>
+					</c:when>
+					<c:when test="${ binhLuan.danhGia == 4 }">
+						<c:set value="${ bonSao += 1 }" var="bonSao"/>
+					</c:when>
+					<c:when test="${ binhLuan.danhGia == 5 }">
+						<c:set value="${ namSao += 1 }" var="namSao"/>
+					</c:when>
+				
+				</c:choose>
+			</c:forEach>
 
 		<h5 class="container title_product_evaluate">
-			11 Đánh giá ${ sanPhamDTO.tenSanPham }
+			${ binhLuans.size() } Đánh giá ${ sanPhamDTO.tenSanPham }
 		</h5>
 		<div class="container evaluate__sendratting">
 			<div class="evaluate">
@@ -173,7 +200,7 @@
 							<div class="ratting rat"></div>
 							<div class="ratting"></div>
 							<div class="evaluate--adjust">
-								<span class="amount_of_ratting_star">300</span>
+								<span class="amount_of_ratting_star">${ namSao }</span>
 
 								<span class="amount_evaluate"> đánh giá</span>
 							</div>
@@ -186,7 +213,7 @@
 							<div class="ratting rat"></div>
 							<div class="ratting"></div>
 							<div class="evaluate--adjust">
-								<span class="amount_of_ratting_star">50</span>
+								<span class="amount_of_ratting_star">${ bonSao }</span>
 
 								<span class="amount_evaluate"> đánh giá</span>
 							</div>
@@ -194,12 +221,12 @@
 
 						<div class="user__ratting--sub">
 							<span
-								>4<span class="fa fa-star checked"></span
+								>3<span class="fa fa-star checked"></span
 							></span>
 							<div class="ratting rat"></div>
 							<div class="ratting"></div>
 							<div class="evaluate--adjust">
-								<span class="amount_of_ratting_star">20</span>
+								<span class="amount_of_ratting_star">${ baSao }</span>
 
 								<span class="amount_evaluate"> đánh giá</span>
 							</div>
@@ -212,7 +239,7 @@
 							<div class="ratting rat"></div>
 							<div class="ratting"></div>
 							<div class="evaluate--adjust">
-								<span class="amount_of_ratting_star">70</span>
+								<span class="amount_of_ratting_star">${ haiSao }</span>
 
 								<span class="amount_evaluate"> đánh giá</span>
 							</div>
@@ -225,7 +252,7 @@
 							<div class="ratting rat"></div>
 							<div class="ratting"></div>
 							<div class="evaluate--adjust">
-								<span class="amount_of_ratting_star">30</span>
+								<span class="amount_of_ratting_star">${ motSao }</span>
 
 								<span class="amount_evaluate"> đánh giá</span>
 							</div>
@@ -246,304 +273,21 @@
 
 		<!-- comment đánh giá -->
 		<div class="cmt__evaluate container">
-			<div class="user__cmt">
-				<p>
-					<b>Hoàng Phúc</b><span> || Ngày 05-07-2021 00:00:11</span>
-				</p>
-				<p>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					&nbsp;
-					<span>Loa kêu như con cat ho</span>
-				</p>
-				<hr />
-				<div class="user__cmt--img">
-					<img src="../asset/image/slider_1.jpg" alt="" />
-					<img src="../asset/image/slider_2.jpg" alt="" />
-
-					<img src="../asset/image/slider_3.jpg" alt="" />
-
-					<img src="../asset/image/slider_1.jpg" alt="" />
-					<img src="../asset/image/slider_2.jpg" alt="" />
-					<img src="../asset/image/slider_3.jpg" alt="" />
-					<img src="../asset/image/logo_vinfast.png" alt="" />
+			<c:forEach items="${ binhLuans }" var="binhLuan">
+				<div class="user__cmt">
+					<p>
+						<b>${ binhLuan.nguoiDung.hoTen }</b><span> || Ngày <fmt:formatDate pattern = "dd-MM-yyyy"  value = "${ binhLuan.ngayBinhLuan }" /></span>
+					</p>
+					<p>
+						<c:forEach begin="1" end="5" varStatus="loop">
+						    <span class="fa fa-star <c:if test="${loop.index <= binhLuan.danhGia}">checked</c:if>"></span>
+						    
+						</c:forEach>
+						&nbsp;
+						<span>${ binhLuan.binhLuan }</span>
+					</p>
 				</div>
-			</div>
-
-			<div class="user__cmt">
-				<p>
-					<b>Hoàng Phúc</b><span> || Ngày 05-07-2021 00:00:11</span>
-				</p>
-				<p>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					&nbsp;
-					<span>Loa kêu như con cat ho</span>
-				</p>
-				<hr />
-			</div>
-
-			<div class="user__cmt">
-				<p>
-					<b>Hoàng Phúc</b><span> || Ngày 05-07-2021 00:00:11</span>
-				</p>
-				<p>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					&nbsp;
-					<span>Loa kêu như con cat ho</span>
-				</p>
-				<hr />
-			</div>
-
-			<div class="user__cmt">
-				<p>
-					<b>Hoàng Phúc</b><span> || Ngày 05-07-2021 00:00:11</span>
-				</p>
-				<p>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					&nbsp;
-					<span>Loa kêu như con cat ho</span>
-				</p>
-				<hr />
-			</div>
-
-			<div class="user__cmt">
-				<p>
-					<b>Hoàng Phúc</b><span> || Ngày 05-07-2021 00:00:11</span>
-				</p>
-				<p>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					&nbsp;
-					<span>Loa kêu như con cat ho</span>
-				</p>
-				<hr />
-			</div>
-
-			<div class="user__cmt">
-				<p>
-					<b>Hoàng Phúc</b><span> || Ngày 05-07-2021 00:00:11</span>
-				</p>
-				<p>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					&nbsp;
-					<span>Loa kêu như con cat ho</span>
-				</p>
-				<hr />
-			</div>
-
-			<div class="user__cmt">
-				<p>
-					<b>Hoàng Phúc</b><span> || Ngày 05-07-2021 00:00:11</span>
-				</p>
-				<p>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					&nbsp;
-					<span>Loa kêu như con cat ho</span>
-				</p>
-				<hr />
-			</div>
-
-			<div class="user__cmt">
-				<p>
-					<b>Hoàng Phúc</b><span> || Ngày 05-07-2021 00:00:11</span>
-				</p>
-				<p>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					&nbsp;
-					<span>Loa kêu như con cat ho</span>
-				</p>
-				<hr />
-			</div>
-
-			<div class="user__cmt">
-				<p>
-					<b>Hoàng Phúc</b><span> || Ngày 05-07-2021 00:00:11</span>
-				</p>
-				<p>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					&nbsp;
-					<span>Loa kêu như con cat ho</span>
-				</p>
-				<hr />
-			</div>
-
-			<div class="user__cmt">
-				<p>
-					<b>Hoàng Phúc</b><span> || Ngày 05-07-2021 00:00:11</span>
-				</p>
-				<p>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					&nbsp;
-					<span>Loa kêu như con cat ho</span>
-				</p>
-				<hr />
-			</div>
-
-			<div class="user__cmt">
-				<p>
-					<b>Hoàng Phúc</b><span> || Ngày 05-07-2021 00:00:11</span>
-				</p>
-				<p>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					&nbsp;
-					<span>Loa kêu như con cat ho</span>
-				</p>
-				<hr />
-			</div>
-
-			<div class="user__cmt">
-				<p>
-					<b>Hoàng Phúc</b><span> || Ngày 05-07-2021 00:00:11</span>
-				</p>
-				<p>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					&nbsp;
-					<span>Loa kêu như con cat ho</span>
-				</p>
-				<hr />
-			</div>
-
-			<div class="user__cmt">
-				<p>
-					<b>Hoàng Phúc</b><span> || Ngày 05-07-2021 00:00:11</span>
-				</p>
-				<p>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					&nbsp;
-					<span>Loa kêu như con cat ho</span>
-				</p>
-				<hr />
-			</div>
-
-			<div class="user__cmt">
-				<p>
-					<b>Hoàng Phúc</b><span> || Ngày 05-07-2021 00:00:11</span>
-				</p>
-				<p>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					&nbsp;
-					<span>Loa kêu như con cat ho</span>
-				</p>
-				<hr />
-			</div>
-
-			<div class="user__cmt">
-				<p>
-					<b>Hoàng Phúc</b><span> || Ngày 05-07-2021 00:00:11</span>
-				</p>
-				<p>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					&nbsp;
-					<span>Loa kêu như con cat ho</span>
-				</p>
-				<hr />
-			</div>
-
-			<div class="user__cmt">
-				<p>
-					<b>Hoàng Phúc</b><span> || Ngày 05-07-2021 00:00:11</span>
-				</p>
-				<p>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					&nbsp;
-					<span>Loa kêu như con cat ho</span>
-				</p>
-				<hr />
-			</div>
-
-			<div class="user__cmt">
-				<p>
-					<b>Hoàng Phúc</b><span> || Ngày 05-07-2021 00:00:11</span>
-				</p>
-				<p>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					&nbsp;
-					<span>Loa kêu như con cat ho</span>
-				</p>
-				<hr />
-			</div>
-
-			<div class="user__cmt">
-				<p>
-					<b>Hoàng Phúc</b><span> || Ngày 05-07-2021 00:00:11</span>
-				</p>
-				<p>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					<span class="fa fa-star checked"></span>
-					&nbsp;
-					<span>Loa kêu như con cat ho</span>
-				</p>
-				<hr />
-			</div>
+			</c:forEach>
 		</div>
 
 		<button

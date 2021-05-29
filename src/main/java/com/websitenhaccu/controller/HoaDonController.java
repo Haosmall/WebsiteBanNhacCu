@@ -3,8 +3,11 @@ package com.websitenhaccu.controller;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -20,18 +23,25 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.websitenhaccu.converter.ChiTietHoaDonConverter;
 import com.websitenhaccu.converter.HoaDonConverter;
 import com.websitenhaccu.converter.MauSanPhamConverter;
+import com.websitenhaccu.converter.ThuongHieuConverter;
 import com.websitenhaccu.dto.ChiTietHoaDonDTO;
 import com.websitenhaccu.dto.HoaDonDTO;
 import com.websitenhaccu.dto.MauSanPhamDTO;
 import com.websitenhaccu.dto.NguoiDungDTO;
+import com.websitenhaccu.dto.ThuongHieuDTO;
 import com.websitenhaccu.entity.ChiTietHoaDon;
+import com.websitenhaccu.entity.DongSanPham;
 import com.websitenhaccu.entity.HoaDon;
+import com.websitenhaccu.entity.LoaiSanPham;
 import com.websitenhaccu.entity.MauSanPham;
+import com.websitenhaccu.entity.ThuongHieu;
 import com.websitenhaccu.service.ChiTietHoaDonService;
+import com.websitenhaccu.service.DongSanPhamService;
 import com.websitenhaccu.service.HoaDonService;
+import com.websitenhaccu.service.LoaiSanPhamService;
 import com.websitenhaccu.service.MauSanPhamService;
 import com.websitenhaccu.service.NguoiDungService;
-import com.websitenhaccu.service.SanPhamService;
+import com.websitenhaccu.service.ThuongHieuService;
 import com.websitenhaccu.util.Constant;
 import com.websitenhaccu.util.CustomUserDetails;
 
@@ -46,13 +56,22 @@ public class HoaDonController {
 	private MauSanPhamService mauSanPhamService;
 	
 	@Autowired
-	private SanPhamService sanPhamService;
-	
-	@Autowired
 	private ChiTietHoaDonService chiTietHoaDonService;
 	
 	@Autowired
 	private HoaDonService hoaDonService;
+	
+	@Autowired
+	private LoaiSanPhamService LoaiSanPhamService; 
+	
+	@Autowired
+	private ThuongHieuService thuongHieuService; 
+	
+	@Autowired
+	private DongSanPhamService dongSanPhamService; 
+
+	@Autowired
+	private ThuongHieuConverter thuongHieuConverter; 
 	
 	@Autowired
 	private MauSanPhamConverter mauSanPhamConverter;
@@ -151,6 +170,33 @@ public class HoaDonController {
 
 			hoaDonDTOs.add(hoaDonDTO);
 		});
+		
+		List<LoaiSanPham> loaiSanPhams = LoaiSanPhamService.getTatCaLoaiSanPham();
+		List<ThuongHieu> thuongHieus = thuongHieuService.getTatCaThuongHieu();
+		List<DongSanPham> dongSanPhams = dongSanPhamService.getTatCaDongSanPham();
+
+		Map<LoaiSanPham, Set<ThuongHieuDTO>> map = new HashMap<LoaiSanPham, Set<ThuongHieuDTO>>();
+
+		loaiSanPhams.forEach(loaiSanPham -> {
+			String maLoai = loaiSanPham.getId();
+			Set<ThuongHieuDTO> temp = new HashSet<ThuongHieuDTO>();
+
+			dongSanPhams.forEach(dongSanPham -> {
+				if (dongSanPham.getLoaiSanPham().getId().equals(maLoai)) {
+					String maTH = dongSanPham.getThuongHieu().getId();
+
+					thuongHieus.forEach(thuongHieu -> {
+						if (thuongHieu.getId().equals(maTH)) {
+							temp.add(thuongHieuConverter.toThuongHieuDTO(thuongHieu));
+						}
+					});
+
+				}
+			});
+
+			map.put(loaiSanPham, temp);
+		});
+		model.addAttribute("map", map);
 
 		model.addAttribute("user", user);
 		model.addAttribute("hoaDonDTOs", hoaDonDTOs);
@@ -180,6 +226,33 @@ public class HoaDonController {
 
 		HoaDonDTO hoaDonDTO = hoaDonConverter.toHoaDonDTO(hoaDon);
 		hoaDonDTO.setTongTien(hoaDon.tinhTongTien());
+		
+		List<LoaiSanPham> loaiSanPhams = LoaiSanPhamService.getTatCaLoaiSanPham();
+		List<ThuongHieu> thuongHieus = thuongHieuService.getTatCaThuongHieu();
+		List<DongSanPham> dongSanPhams = dongSanPhamService.getTatCaDongSanPham();
+
+		Map<LoaiSanPham, Set<ThuongHieuDTO>> map = new HashMap<LoaiSanPham, Set<ThuongHieuDTO>>();
+
+		loaiSanPhams.forEach(loaiSanPham -> {
+			String maLoai = loaiSanPham.getId();
+			Set<ThuongHieuDTO> temp = new HashSet<ThuongHieuDTO>();
+
+			dongSanPhams.forEach(dongSanPham -> {
+				if (dongSanPham.getLoaiSanPham().getId().equals(maLoai)) {
+					String maTH = dongSanPham.getThuongHieu().getId();
+
+					thuongHieus.forEach(thuongHieu -> {
+						if (thuongHieu.getId().equals(maTH)) {
+							temp.add(thuongHieuConverter.toThuongHieuDTO(thuongHieu));
+						}
+					});
+
+				}
+			});
+
+			map.put(loaiSanPham, temp);
+		});
+		model.addAttribute("map", map);
 
 		model.addAttribute("hoaDonDTO", hoaDonDTO);
 		model.addAttribute("user", user);
