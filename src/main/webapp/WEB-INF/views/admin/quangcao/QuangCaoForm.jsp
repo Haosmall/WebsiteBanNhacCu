@@ -18,20 +18,15 @@
 			<div class="col-lg-6">
 				<h1 style="text-align: center;">${formTitle}</h1>
 
-				<form:form action="" method="POST" modelAttribute="mauSanPhamDTO"
+				<form:form action="" method="POST" modelAttribute="quangCaoDTO"
 					enctype="multipart/form-data">
-
+					
+					<form:hidden path="id"/>
+					
 					<div class="form-group">
-								<label>Màu:</label>
-								<form:select path="maMau" Class="form-control">
-									<form:options items="${ maus }" itemValue="id"
-										itemLabel="tenMau" />
-								</form:select>
-							</div>
-					<div class="form-group">
-						<label>Số lượng:</label>
-						<form:input  path="soLuong" class="form-control" />
-						<form:errors path="soLuong" cssClass="error"></form:errors>
+						<label>Link:</label>
+						<form:input  path="link" class="form-control" />
+						<form:errors path="link" cssClass="error"></form:errors>
 					</div>
 
 					<div class="form-group">

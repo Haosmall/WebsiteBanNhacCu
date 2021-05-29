@@ -47,7 +47,7 @@ public class QuangCaoServiceImpl implements QuangCaoService {
 	}
 
 	@Override
-	public QuangCaoDTO getQuangCaoTheoId(int id) {
+	public QuangCaoDTO getQuangCaoDTOTheoId(int id) {
 		QuangCao quangCao = quangCaoRepository.findById(id).get();
 		return quangCaoConverter.toQuangCaoDTO(quangCao);
 	}
@@ -65,6 +65,12 @@ public class QuangCaoServiceImpl implements QuangCaoService {
 	@Override
 	public void capNhatQuangCao(QuangCao quangCao) {
 		quangCaoRepository.save(quangCao);
+	}
+
+
+	@Override
+	public QuangCao getQuangCaoTheoId(int id) {
+		return quangCaoRepository.findById(id).get();
 	}
 
 }

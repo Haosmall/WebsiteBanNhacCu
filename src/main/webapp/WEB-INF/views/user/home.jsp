@@ -107,28 +107,34 @@
 								<!-- The slideshow -->
 								<div class="carousel-inner">
 									<div class="carousel-item active">
-										<img src="<c:url value='/static/assets/img/slider_1.jpg'/>"
-											alt="Los Angeles" width="100%" height="400">
-										<div class="carousel-caption">
-											<h3>Los Angeles</h3>
+										<a href="${ quangCaoDTOs.get(0).link }">
+											<img src="data:image/jpg;base64,${ quangCaoDTOs.get(0).hinhAnhBase64 }"
+											alt="" width="100%" height="400">
+										</a>
+										<!-- <div class="carousel-caption">
+											<h3>LA</h3>
 											<p>We had such a great time in LA!</p>
-										</div>
+										</div> -->
 									</div>
 									<div class="carousel-item">
-										<img src="<c:url value='/static/assets/img/slider_2.jpg'/>"
-											alt="Chicago" width="100%" height="400">
-										<div class="carousel-caption">
+										<a href="${ quangCaoDTOs.get(1).link }">
+											<img src="data:image/jpg;base64,${ quangCaoDTOs.get(1).hinhAnhBase64 }"
+												alt="Chicago" width="100%" height="400">
+										</a>
+										<!-- <div class="carousel-caption">
 											<h3>Los Angeles</h3>
 											<p>We had such a great time in LA!</p>
-										</div>
+										</div> -->
 									</div>
 									<div class="carousel-item">
-										<img src="<c:url value='/static/assets/img/slider_3.jpg'/>"
+										<a href="${ quangCaoDTOs.get(2).link }">
+											<img src="data:image/jpg;base64,${ quangCaoDTOs.get(2).hinhAnhBase64 }"
 											alt="New York" width="100%" height="400">
-										<div class="carousel-caption">
+										</a>
+										<!-- <div class="carousel-caption">
 											<h3>Los Angeles</h3>
 											<p>We had such a great time in LA!</p>
-										</div>
+										</div> -->
 									</div>
 								</div>
 
@@ -145,17 +151,17 @@
 					<!-- side -->
 					<div class="col ml-2 sider">
 						<div class="row">
-							<img src="<c:url value='/static/assets/img/slider_1.jpg'/>"
+								<img src="data:image/jpg;base64,${ quangCaoDTOs.get(3).hinhAnhBase64 }" alt="">
+						</div>
+
+						<div class="row">
+						
+							<img src="data:image/jpg;base64,${ quangCaoDTOs.get(4).hinhAnhBase64 }"
 								alt="">
 						</div>
 
 						<div class="row">
-							<img src="<c:url value='/static/assets/img/slider_2.jpg'/>"
-								alt="">
-						</div>
-
-						<div class="row">
-							<img src="<c:url value='/static/assets/img/slider_3.jpg'/>"
+							<img src="data:image/jpg;base64,${ quangCaoDTOs.get(5).hinhAnhBase64 }"
 								alt="">
 						</div>
 					</div>

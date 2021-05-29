@@ -11,7 +11,9 @@ public interface QuangCaoService {
 
 	public List<QuangCaoDTO> getTatCaQuangCao();
 
-	public QuangCaoDTO getQuangCaoTheoId(int id);
+	public QuangCaoDTO getQuangCaoDTOTheoId(int id);
+
+	public QuangCao getQuangCaoTheoId(int id);
 
 	public void themQuangCao(QuangCao quangCao);
 

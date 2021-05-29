@@ -1,5 +1,10 @@
 package com.websitenhaccu.controller.admin;
 
+import java.io.IOException;
+import java.sql.Blob;
+import java.sql.Date;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,11 +16,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.websitenhaccu.converter.QuangCaoConverter;
 import com.websitenhaccu.dto.QuangCaoDTO;
 import com.websitenhaccu.entity.Mau;
+import com.websitenhaccu.entity.MauSanPham;
 import com.websitenhaccu.entity.QuangCao;
 import com.websitenhaccu.service.QuangCaoService;
 
@@ -24,7 +31,7 @@ import com.websitenhaccu.service.QuangCaoService;
 public class QuangCaoController {
 	@Autowired
 	private QuangCaoService quangCaoService;
-	
+
 	@Autowired
 	private QuangCaoConverter quangCaoConverter;
 
@@ -37,19 +44,37 @@ public class QuangCaoController {
 	@GetMapping("/chi-tiet-quang-cao")
 	public ModelAndView getChitietQuangCao(int id) {
 
-		QuangCaoDTO quangCaoDTO = quangCaoService.getQuangCaoTheoId(id);
-		
+		QuangCaoDTO quangCaoDTO = quangCaoService.getQuangCaoDTOTheoId(id);
+
 		return new ModelAndView("admin/quangcao/ChiTietQuangCao", "quangCaoDTO", quangCaoDTO);
 	}
 
 	@GetMapping("/them-quang-cao")
 	public String themQuangCao(Model model) {
+
+		QuangCaoDTO quangCaoDTO = new QuangCaoDTO();
+		model.addAttribute("quangCaoDTO", quangCaoDTO);
+		model.addAttribute("formTitle", "Thêm quảng cáo");
+		model.addAttribute("formButton", "Thêm");
+
 		return "admin/quangcao/QuangCaoForm";
 	}
 
 	@PostMapping("/them-quang-cao")
-	public String themQuangCao(@ModelAttribute("quangCaoDTO") QuangCaoDTO quangCaoDTO) {
-		return "redirect:/admin/quang-cao/danh-sach-quang-cao";
+	public String themQuangCao(@ModelAttribute("quangCaoDTO") QuangCaoDTO quangCaoDTO,
+			@RequestParam("hinhAnh") MultipartFile multipartFile) throws IOException {
+		
+		byte[] bytes = multipartFile.getBytes();
+		QuangCao quangCao = quangCaoConverter.toQuangCao(quangCaoDTO, bytes);
+		
+		Date temp = new Date(System.currentTimeMillis());
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		Date ngayHienTai = Date.valueOf(format.format(temp));
+		quangCao.setNgayThem(ngayHienTai);
+		
+		quangCaoService.themQuangCao(quangCao);
+
+		return "redirect:/admin/quang-cao";
 	}
 
 	@GetMapping(value = "/xoa-quang-cao")
@@ -57,19 +82,44 @@ public class QuangCaoController {
 
 		quangCaoService.xoaQuangCao(id);
 
-		return "redirect:/admin/quang-cao/danh-sach-quang-cao";
+		return "redirect:/admin/quang-cao";
 	}
 
 	@GetMapping("/cap-nhat-quang-cao")
 	public String capNhatQuangCao(@RequestParam("id") int id, Model model) {
 		
+		QuangCaoDTO quangCaoDTO = quangCaoService.getQuangCaoDTOTheoId(id);
+		model.addAttribute("quangCaoDTO", quangCaoDTO);
+		model.addAttribute("formTitle", "Cập nhật quảng cáo");
+		model.addAttribute("formButton", "Lưu");
+
 		return "admin/quangcao/QuangCaoForm";
 	}
 
 	@PostMapping("/cap-nhat-quang-cao")
-	public String capNhatQuangCao(@ModelAttribute("quangCaoDTO") QuangCaoDTO quangCaoDTO) {
+	public String capNhatQuangCao(@ModelAttribute("quangCaoDTO") QuangCaoDTO quangCaoDTO,
+			@RequestParam("hinhAnh") MultipartFile multipartFile) throws IOException, SQLException {
+
+		byte[] bytes = null;
+		if (multipartFile.getSize() > 0) {
+			bytes = multipartFile.getBytes();
+		} else {
+			QuangCao temp = quangCaoService.getQuangCaoTheoId(quangCaoDTO.getId());
+			if (temp != null) {
+				Blob blob = temp.getHinhAnh();
+				int blobLength = (int) blob.length();
+				bytes = blob.getBytes(1, blobLength);
+			}
+		}
+		QuangCao quangCao = quangCaoConverter.toQuangCao(quangCaoDTO, bytes);
 		
-		return "redirect:/admin/quang-cao/danh-sach-quang-cao";
+		Date temp = new Date(System.currentTimeMillis());
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		Date ngayHienTai = Date.valueOf(format.format(temp));
+		quangCao.setNgayThem(ngayHienTai);
+		
+		quangCaoService.capNhatQuangCao(quangCao);
+		return "redirect:/admin/quang-cao";
 	}
 
 }
