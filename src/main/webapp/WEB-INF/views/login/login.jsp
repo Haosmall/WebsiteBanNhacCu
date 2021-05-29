@@ -45,23 +45,23 @@
 			<div class="form-group">
 				<input type="text" id="inputEmail" class="form-control"
 					placeholder="Email" required autofocus name="email"
-					onblur="validateEmail()"> 
-				<span id="checkEmail"></span> 
-			</div>	
-			
-			<div class="form-group">
-				<input
-					type="password" id="inputPassword" class="form-control"
-					onblur="validatePassword()" placeholder="Mật khẩu" required
-					name="password"> 
-				<span id="checkPassword"></span> 
+					onblur="validateEmail()"> <span id="checkEmail"
+					class="check"></span>
 			</div>
-				
-				<label
-				class="form-group">Duy trì đăng nhập</label> <input type="checkbox"
-				name="remember-me"> 
-				
-				
+
+			<div class="form-group">
+				<input type="password" id="inputPassword" class="form-control"
+					onblur="validatePassword()" placeholder="Mật khẩu" required
+					name="password"> <span id="checkPassword" class="check"></span>
+			</div>
+
+			<div class="duytridangnhap">
+				<input type="checkbox" name="remember-me"> <label
+					class="form-group ">Duy trì đăng nhập</label>
+
+			</div>
+
+
 
 
 			<button class="btn btn-success btn-block" type="submit">

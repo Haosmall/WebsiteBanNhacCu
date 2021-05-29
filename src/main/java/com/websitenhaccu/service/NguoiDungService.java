@@ -31,4 +31,6 @@ public interface NguoiDungService {
 	
 	public NguoiDung getNguoiDungById(String id);
 	
+	public void capNhatNguoiDung(NguoiDung nguoiDung);
+	
 }

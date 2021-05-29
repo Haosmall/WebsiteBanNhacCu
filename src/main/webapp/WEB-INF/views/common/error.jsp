@@ -8,8 +8,7 @@
 </head>
 <body>
 
-	<h2>error.jsp</h2>
-	${error}
+	<h2>Không tìm thấy trang</h2>
 
 </body>
 </html>

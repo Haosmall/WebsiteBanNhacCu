@@ -113,7 +113,8 @@ public class SanPhamController {
 				xuatXus.add(dto.getXuatXu());
 			});
 		}
-		
+		model.addAttribute("pageTitle", "Danh sách sản phẩm");
+		model.addAttribute("check_header","header");
 		model.addAttribute("user", user);
 		model.addAttribute("map", map);
 		model.addAttribute("loaiSanPhams", loaiSanPhams);
@@ -121,8 +122,7 @@ public class SanPhamController {
 		model.addAttribute("dongSanPhams", dongSanPhams);
 		model.addAttribute("xuatXus", xuatXus);
 		model.addAttribute("sanPhamDTOs", sanPhamDTOs);
-		model.addAttribute("xuatXus", xuatXus);
-		
+		model.addAttribute("xuatXus", xuatXus);		
 		return "user/DanhSachSanPham";
 	}
 	@GetMapping("/danh-sach-san-pham/{maLoaisanPham}/{maThuongHieu}")

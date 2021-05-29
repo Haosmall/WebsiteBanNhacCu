@@ -86,5 +86,9 @@ public class HoaDonServiceImpl implements HoaDonService {
 	public List<HoaDon> getDanhSachTheoTrangThai(String trangThai, int page, int size) {
 		return hoaDonRepository.findByTrangThaiContaining(trangThai, PageRequest.of(page, size));
 	}
+		
+	public List<HoaDon> getHoaDonTheoNguoiDung(String id) {
+		return hoaDonRepository.findByNguoiDungId(id, Sort.by(Sort.Direction.DESC, "ngayLapHoaDon"));
+	}
 
 }

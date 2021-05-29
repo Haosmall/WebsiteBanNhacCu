@@ -1,6 +1,5 @@
 package com.websitenhaccu.dto;
 
-import com.websitenhaccu.entity.GioiTinh;
 import com.websitenhaccu.entity.ROLE;
 
 import lombok.AllArgsConstructor;
@@ -24,13 +23,9 @@ public class NguoiDungDTO {
 	
 	private String passwordConf;
 	
-	private GioiTinh gender;
-	
 	private ROLE role;
 	
 	private boolean enabled;
-	
-	private String hinhAnhBase64;
 	
 	private String tinhThanhPho;
 
@@ -39,7 +34,7 @@ public class NguoiDungDTO {
 	private String phuongXa;
 
 	private String diaChi;
-
+	
 
 	public NguoiDungDTO(String userId) {
 		super();
@@ -47,14 +42,13 @@ public class NguoiDungDTO {
 
 	}
 
-	public NguoiDungDTO(String userId, String fullName, GioiTinh gender, String phone, String email, ROLE role,
+	public NguoiDungDTO(String userId, String fullName, String phone, String email, ROLE role,
 			boolean enabled) {
 		super();
 		this.userId = userId;
 		this.fullName = fullName;
 		this.email = email;
 		this.phone = phone;
-		this.gender = gender;
 		this.role = role;
 		this.enabled = enabled;
 	}

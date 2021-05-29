@@ -100,4 +100,19 @@ public class SanPhamConverter {
 				maNhaCungCap, tenNhaCungCap, maDongSanPham, tenDongSanPham, maLoaiSanPham, tenLoaiSanPham, maThuongHieu, tenThuongHieu, hinhAnhBase64);
 		
 	}
+	
+	public SanPhamDTO toSanPhamDTO_TrangSanPham(SanPham sanPham) {
+
+		if (sanPham == null)
+			return null;
+
+		String id = sanPham.getId();
+		String tenSanPham = sanPham.getTenSanPham();
+		String xuatXu = sanPham.getXuatXu();
+		String tenLoaiSanPham = sanPham.getDongSanPham().getLoaiSanPham().getTenLoaiSanPham();
+		String tenThuongHieu = sanPham.getDongSanPham().getThuongHieu().getTenThuongHieu();
+		
+		return new SanPhamDTO(id, tenSanPham, xuatXu, tenLoaiSanPham, tenThuongHieu, 0);
+		
+	}
 }

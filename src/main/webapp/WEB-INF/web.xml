@@ -17,8 +17,8 @@
 		<tracking-mode>COOKIE</tracking-mode>
 	</session-config>
 	
-	<error-page>
+	<!-- <error-page>
 		<error-code>404</error-code>
-		<location>/</location>
-	</error-page>
+		<location>/error</location>
+	</error-page> -->
 </web-app>

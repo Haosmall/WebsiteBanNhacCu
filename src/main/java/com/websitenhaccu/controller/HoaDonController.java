@@ -2,10 +2,9 @@ package com.websitenhaccu.controller;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -25,7 +24,6 @@ import com.websitenhaccu.dto.ChiTietHoaDonDTO;
 import com.websitenhaccu.dto.HoaDonDTO;
 import com.websitenhaccu.dto.MauSanPhamDTO;
 import com.websitenhaccu.dto.NguoiDungDTO;
-import com.websitenhaccu.dto.SanPhamDTO;
 import com.websitenhaccu.entity.ChiTietHoaDon;
 import com.websitenhaccu.entity.HoaDon;
 import com.websitenhaccu.entity.MauSanPham;
@@ -42,7 +40,7 @@ import com.websitenhaccu.util.CustomUserDetails;
 public class HoaDonController {
 
 	@Autowired
-	private NguoiDungService UserService;
+	private NguoiDungService nguoiDungService;
 	
 	@Autowired
 	private MauSanPhamService mauSanPhamService;
@@ -76,7 +74,7 @@ public class HoaDonController {
 			email = pricipal.toString();
 		}
 
-		NguoiDungDTO user = UserService.getByEmail(email);
+		NguoiDungDTO user = nguoiDungService.getByEmail(email);
 
 		HoaDonDTO hoaDonDTO = (HoaDonDTO) httpSession.getAttribute("hoaDonDTO");
 		if (hoaDonDTO == null) {
@@ -122,6 +120,80 @@ public class HoaDonController {
 		httpSession.invalidate();
 
 		return "redirect:/gio-hang";
+	}
+	
+	@GetMapping
+	public String danhSachDonHang(Model model) {
+		
+		Object pricipal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String email;
+		if (pricipal instanceof CustomUserDetails) {
+			email = ((CustomUserDetails) pricipal).getUsername();
+		} else {
+			email = pricipal.toString();
+		}
+
+		NguoiDungDTO user = nguoiDungService.getByEmail(email);
+		
+		List<HoaDon> hoaDons = hoaDonService.getHoaDonTheoNguoiDung(user.getUserId());
+		
+		List<HoaDonDTO> hoaDonDTOs = new ArrayList<HoaDonDTO>();
+		hoaDons.forEach(hd -> {
+			HoaDonDTO hoaDonDTO = hoaDonConverter.toHoaDonDTO(hd);
+			List<ChiTietHoaDonDTO> chiTietHoaDonDTOs = new ArrayList<ChiTietHoaDonDTO>();
+			List<ChiTietHoaDon> chiTietHoaDons = chiTietHoaDonService.getChiTietHoaDonTheoMaHoaDon(hoaDonDTO.getId());
+
+			chiTietHoaDons.forEach(cthd -> {
+				ChiTietHoaDonDTO chiTietHoaDonDTO = chiTietHoaDonConverter.toChiTietHoaDonDTO(cthd);
+				chiTietHoaDonDTOs.add(chiTietHoaDonDTO);
+			});
+			hoaDonDTO.setChiTietHoaDonDTOs(chiTietHoaDonDTOs);
+
+			hoaDonDTOs.add(hoaDonDTO);
+		});
+
+		model.addAttribute("user", user);
+		model.addAttribute("hoaDonDTOs", hoaDonDTOs);
+		
+		return "user/DonHangCuaToi";
+	}
+	
+	
+	@GetMapping("/chi-tiet-don-hang")
+	public String chiTietDonHang(Model model, @RequestParam("id") String maDonHang) {
+		
+		Object pricipal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String email;
+		if (pricipal instanceof CustomUserDetails) {
+			email = ((CustomUserDetails) pricipal).getUsername();
+		} else {
+			email = pricipal.toString();
+		}
+		
+		NguoiDungDTO user = nguoiDungService.getByEmail(email);
+		
+
+		HoaDon hoaDon = hoaDonService.getHoaDonTheoId(maDonHang);
+		List<ChiTietHoaDon> chiTietHoaDons = chiTietHoaDonService.getChiTietHoaDonTheoMaHoaDon(maDonHang);
+
+		hoaDon.setChiTietHoaDons(chiTietHoaDons);
+
+		HoaDonDTO hoaDonDTO = hoaDonConverter.toHoaDonDTO(hoaDon);
+		hoaDonDTO.setTongTien(hoaDon.tinhTongTien());
+
+		model.addAttribute("hoaDonDTO", hoaDonDTO);
+		model.addAttribute("user", user);
+
+		
+		return "user/ChiTietDonHang";
+	}
+	
+	@GetMapping("/huy-don-hang")
+	public String huyDonHang(Model model, @RequestParam("id") String maDonHang) {
+		
+		hoaDonService.capNhatHoaDon(maDonHang, 6);
+		
+		return "redirect:/quan-ly-don-hang";
 	}
 
 }

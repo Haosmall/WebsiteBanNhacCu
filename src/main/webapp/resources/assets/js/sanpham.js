@@ -113,8 +113,8 @@ function typeSearch() {
 	const maThuongHieu = $('#cboThuongHieu').val();
 	const xuatXu = $('#cboXuatXu').val();
 	const page = $('#pageValue').val();
-	
-			
+
+
 	var pageHidden = document.getElementById("pageValue");//gia tri hiden
 	var viewPage = document.getElementById("viewPage");//gia tri hien thi trang hien tai
 	viewPage.value = 1; //gan lai  hien thi trang hien tai
@@ -129,29 +129,38 @@ function typeSearch() {
 
 		if (data[0] != null) {
 			$("#tableSanPham").html("");
+			$("#tableSanPham").html("");
 			for (var i = 0; i < data.length; i++) {
+
+				var id = data[i].id;
+				var tenSanPham = data[i].tenSanPham;
+				var maLoaiSanPham = data[i].tenLoaiSanPham;
+				var xuatXu = data[i].xuatXu;
+				var maThuongHieu = data[i].tenThuongHieu;
+				var sl = data[i].tongSoLuong;
+
 				$("#tableSanPham").append(
 					`<tr>
-                <td>${i + 1}</td>
-                <td>${data[i].tenSanPham}</td>
-                <td>${data[i].maLoaiSanPham}</td>
-                <td>${data[i].xuatXu}</td>
-                <td>${data[i].maThuongHieu}</td>
-                <td>chua cap nhat</td>
-                <td><input type="button" class="btn btn-primary table__btn"
-                    value="Chi tiết"
-                    onclick="location.href='/${CONTEXT_PATH}/admin/san-pham/xem-chi-tiet?id=${data[i].id}'">
-
-                    <input type="button" class="btn btn-warning table__btn"
-                    value="Sửa"
-                    onclick="location.href='/${CONTEXT_PATH}/admin/san-pham/cap-nhat-san-pham?id=${data[i].id}'">
-
-                    <input type="button" class="btn btn-danger table__btn"
-                    value="Xóa"
-                    onclick="location.href='/${CONTEXT_PATH}/admin/san-pham/xoa-san-pham?id=${data[i].id}'">
-
-                </td>
-            </tr>`
+						<td>${i + 1}</td>
+						<td>${tenSanPham}</td>
+						<td>${maLoaiSanPham}</td>
+						<td>${xuatXu}</td>
+						<td>${maThuongHieu}</td>
+						<td>${sl}</td>
+						<td><input type="button" class="btn btn-primary table__btn"
+							value="Chi tiết"
+							onclick="location.href='/${CONTEXT_PATH}/admin/san-pham/xem-chi-tiet?id=${id}'">
+			
+							<input type="button" class="btn btn-warning table__btn"
+							value="Sửa"
+							onclick="location.href='/${CONTEXT_PATH}/admin/san-pham/cap-nhat-san-pham?id=${id}'">
+			
+							<input type="button" class="btn btn-danger table__btn"
+							value="Xóa"
+							onclick="location.href='/${CONTEXT_PATH}/admin/san-pham/xoa-san-pham?id=${id}'">
+			
+						</td>
+					</tr>`
 				);
 			}
 		}
@@ -181,6 +190,7 @@ $("select").change(function () {
 	}
 });
 
+
 document.getElementById("btnNext").onclick = function () {
 
 	var searchText = document.getElementById("txtSearch").value;
@@ -207,36 +217,49 @@ document.getElementById("btnNext").onclick = function () {
 	$.get(url, function (data, status) {
 
 		if (data[0] != null) {
-			console.log("data khac null")
+
 			$("#tableSanPham").html("");
 			for (var i = 0; i < data.length; i++) {
+
+				var id = data[i].id;
+				var tenSanPham = data[i].tenSanPham;
+				var maLoaiSanPham = data[i].tenLoaiSanPham;
+				var xuatXu = data[i].xuatXu;
+				var maThuongHieu = data[i].tenThuongHieu;
+				var sl = data[i].tongSoLuong;
+
 				$("#tableSanPham").append(
 					`<tr>
-					<td>${i + 1}</td>
-					<td>${data[i].tenSanPham}</td>
-					<td>${data[i].maLoaiSanPham}</td>
-					<td>${data[i].xuatXu}</td>
-					<td>${data[i].maThuongHieu}</td>
-					<td>chua cap nhat</td>
-					<td><input type="button" class="btn btn-primary table__btn"
-						value="Chi tiết"
-						onclick="location.href='/${CONTEXT_PATH}/admin/san-pham/xem-chi-tiet?id=${data[i].id}'">
-	
-						<input type="button" class="btn btn-warning table__btn"
-						value="Sửa"
-						onclick="location.href='/${CONTEXT_PATH}/admin/san-pham/cap-nhat-san-pham?id=${data[i].id}'">
-	
-						<input type="button" class="btn btn-danger table__btn"
-						value="Xóa"
-						onclick="location.href='/${CONTEXT_PATH}/admin/san-pham/xoa-san-pham?id=${data[i].id}'">
-	
-					</td>
-				</tr>`
+						<td>${i + 1}</td>
+						<td>${tenSanPham}</td>
+						<td>${maLoaiSanPham}</td>
+						<td>${xuatXu}</td>
+						<td>${maThuongHieu}</td>
+						<td>${sl}</td>
+						<td><input type="button" class="btn btn-primary table__btn"
+							value="Chi tiết"
+							onclick="location.href='/${CONTEXT_PATH}/admin/san-pham/xem-chi-tiet?id=${id}'">
+			
+							<input type="button" class="btn btn-warning table__btn"
+							value="Sửa"
+							onclick="location.href='/${CONTEXT_PATH}/admin/san-pham/cap-nhat-san-pham?id=${id}'">
+			
+							<input type="button" class="btn btn-danger table__btn"
+							value="Xóa"
+							onclick="location.href='/${CONTEXT_PATH}/admin/san-pham/xoa-san-pham?id=${id}'">
+			
+						</td>
+					</tr>`
 				);
+
+				console.log("dadendat");
+
+
+
 			}
 
 			viewPage.value = page; //gan lai  hien thi trang hien tai
-			pageHidden.value = page; //gan lai gia tri bien hidden
+			pageHidden.value = page;//gan lai gia tri bien hidden
 		}
 
 	});
@@ -244,8 +267,6 @@ document.getElementById("btnNext").onclick = function () {
 };
 
 document.getElementById("btnPreviusPage").onclick = function () {
-
-
 
 	var searchText = document.getElementById("txtSearch").value;
 	const maLoaiSanPham = $('#cboLoaiSanPham').val();
@@ -266,31 +287,45 @@ document.getElementById("btnPreviusPage").onclick = function () {
 	$.get(url, function (data, status) {
 
 		if (data[0] != null) {
+
 			$("#tableSanPham").html("");
 			for (var i = 0; i < data.length; i++) {
+
+				var id = data[i].id;
+				var tenSanPham = data[i].tenSanPham;
+				var maLoaiSanPham = data[i].tenLoaiSanPham;
+				var xuatXu = data[i].xuatXu;
+				var maThuongHieu = data[i].tenThuongHieu;
+				var sl = data[i].tongSoLuong;
+
 				$("#tableSanPham").append(
 					`<tr>
-					<td>${i + 1}</td>
-					<td>${data[i].tenSanPham}</td>
-					<td>${data[i].maLoaiSanPham}</td>
-					<td>${data[i].xuatXu}</td>
-					<td>${data[i].maThuongHieu}</td>
-					<td>chua cap nhat</td>
-					<td><input type="button" class="btn btn-primary table__btn"
-						value="Chi tiết"
-						onclick="location.href='/${CONTEXT_PATH}/admin/san-pham/xem-chi-tiet?id=${data[i].id}'">
-	
-						<input type="button" class="btn btn-warning table__btn"
-						value="Sửa"
-						onclick="location.href='/${CONTEXT_PATH}/admin/san-pham/cap-nhat-san-pham?id=${data[i].id}'">
-	
-						<input type="button" class="btn btn-danger table__btn"
-						value="Xóa"
-						onclick="location.href='/${CONTEXT_PATH}/admin/san-pham/xoa-san-pham?id=${data[i].id}'">
-	
-					</td>
-				</tr>`
+						<td>${i + 1}</td>
+						<td>${tenSanPham}</td>
+						<td>${maLoaiSanPham}</td>
+						<td>${xuatXu}</td>
+						<td>${maThuongHieu}</td>
+						<td>${sl}</td>
+						<td><input type="button" class="btn btn-primary table__btn"
+							value="Chi tiết"
+							onclick="location.href='/${CONTEXT_PATH}/admin/san-pham/xem-chi-tiet?id=${id}'">
+			
+							<input type="button" class="btn btn-warning table__btn"
+							value="Sửa"
+							onclick="location.href='/${CONTEXT_PATH}/admin/san-pham/cap-nhat-san-pham?id=${id}'">
+			
+							<input type="button" class="btn btn-danger table__btn"
+							value="Xóa"
+							onclick="location.href='/${CONTEXT_PATH}/admin/san-pham/xoa-san-pham?id=${id}'">
+			
+						</td>
+					</tr>`
 				);
+
+				console.log("dadendat");
+
+
+
 			}
 
 			viewPage.value = page; //gan lai  hien thi trang hien tai

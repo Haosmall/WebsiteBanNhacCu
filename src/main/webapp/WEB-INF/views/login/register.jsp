@@ -51,14 +51,15 @@
 				<form:input path="fullName" typed="text" class="form-control"
 					placeholder="Họ tên" required="" autofocus=""
 					onblur="validateFullname()" />
-	
+
 				<span id="checkFullName"></span>
 				<form:errors cssStyle="color:red" path="fullName" />
 			</div>
-			
+
 			<div class="form-group">
 				<form:input path="email" type="email" class="form-control"
-					placeholder="Email" required="" autofocus="" onblur="validateEmail()" />
+					placeholder="Email" required="" autofocus=""
+					onblur="validateEmail()" />
 				<form:errors cssStyle="color:red" path="email" />
 				<span id="checkEmail"></span>
 			</div>
@@ -71,34 +72,36 @@
 				<form:errors cssStyle="color:red" path="phone" />
 			</div>
 			<div class="form-group">
-						<select id="tinh" Class="form-control">
-							<option value="-1" selected>Chọn Tỉnh/ Thành phố</option>
-						</select>
-					</div>
-					
-					<form:hidden path="tinhThanhPho"/>
-					
-					<div class="form-group">
-						<select id="huyen" Class="form-control">
-							<option value="-1" selected>Chọn Huyện/ Quận</option>
-						</select>
-					</div>
-					
-					<form:hidden path="quanHuyen"/>
+				<select id="tinh" Class="form-control">
+					<option value="-1" selected>Chọn Tỉnh/ Thành phố</option>
+				</select> <span id="checkTinh"></span>
+			</div>
 
-					<div class="form-group">
-						<select id="xa" Class="form-control">
-							<option value="-1" selected>Chọn Xã/ Phường</option>
-						</select>
-					</div>
-					
-					<form:hidden path="phuongXa"/>
+			<form:hidden path="tinhThanhPho" />
 
-					<div class="form-group">
-						<form:input path="diaChi" class="form-control" placeholder="Số nhà, tên đường"/>
-						<form:errors path="diaChi" Class="error"></form:errors>
-					</div>
-			
+			<div class="form-group">
+				<select id="huyen" Class="form-control">
+					<option value="-1" selected>Chọn Huyện/ Quận</option>
+				</select> <span id="checkHuyen"></span>
+			</div>
+
+			<form:hidden path="quanHuyen" />
+
+			<div class="form-group">
+				<select id="xa" Class="form-control">
+					<option value="-1" selected>Chọn Xã/ Phường</option>
+				</select> <span id="checkXa"></span>
+			</div>
+
+			<form:hidden path="phuongXa" />
+
+			<div class="form-group">
+				<form:input path="diaChi" class="form-control"
+					placeholder="Số nhà, tên đường" />
+				<form:errors path="diaChi" Class="error"></form:errors>
+				<span id="checkSoNha"></span>
+			</div>
+
 			<div class="form-group">
 				<form:input path="password" type="password" class="form-control"
 					placeholder="Mật khẩu" required="" autofocus=""
@@ -106,7 +109,7 @@
 				<form:errors cssStyle="color:red" path="password" />
 				<span id="checkPassword"></span>
 			</div>
-			
+
 			<div class="form-group">
 				<form:input path="passwordConf" type="password" class="form-control"
 					placeholder="Nhập lại mật khẩu" required="" autofocus=""
@@ -117,7 +120,8 @@
 
 
 
-			<button class="btn btn-primary btn-block" id="btnSubmit" type="submit">
+			<button class="btn btn-primary btn-block" id="btnSubmit"
+				type="submit">
 				<i class="fas fa-user-plus"></i> Đăng kí
 			</button>
 			<!-- <a href="login" id="cancel_signup"><i class="fas fa-angle-left"></i>

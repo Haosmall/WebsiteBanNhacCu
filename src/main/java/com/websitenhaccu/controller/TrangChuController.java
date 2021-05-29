@@ -77,7 +77,7 @@ public class TrangChuController {
 			
 			map.put(loaiSanPham, temp);
 		});
-		
+		model.addAttribute("pageTitle", "Trang chủ");
 		model.addAttribute("user", user);
 		model.addAttribute("map", map);
 		model.addAttribute("loaiSanPhams", loaiSanPhams);

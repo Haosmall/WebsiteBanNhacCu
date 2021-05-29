@@ -1,0 +1,76 @@
+.wrapper {
+    max-width: 1220px;
+    margin: 40px auto;
+    display: flex;
+
+    .side_left {
+        display: flex;
+        flex-direction: column;
+        width: 250px;
+
+        .item {
+            display: flex;
+            height: 38px;
+            align-items: center;
+            padding: 0 15px;
+
+            > i {
+                width: 30px;
+                color: rgb(155, 155, 155);
+            }
+        }
+    }
+
+    .side_right {
+        width: 970px;
+        padding: 20px 15px;
+        background-color: #fff;
+        border-radius: 5px;
+
+        > table {
+            font-size: 14px;
+
+            width: 940px;
+            .maDonHang {
+                width: 126px;
+            }
+            .ngayMua {
+                width: 114px;
+            }
+            .sanPham {
+                width: 354px;
+            }
+            .tongTien {
+                width: 120px;
+            }
+
+            .trangThai {
+                width: 200px;
+            }
+
+            a:hover{
+                text-decoration: none;
+            }
+
+            .adjustPrice::after{
+                content: ' đ';
+              
+            }
+
+        }
+    }
+}
+
+.side_link {
+    color: black;
+    font-weight: 400;
+}
+.side_link:hover {
+    color: black;
+    font-weight: 400;
+    text-decoration: none;
+    background-color: rgb(221, 221, 221);
+}
+.active {
+    background-color: rgb(221, 221, 221);
+}

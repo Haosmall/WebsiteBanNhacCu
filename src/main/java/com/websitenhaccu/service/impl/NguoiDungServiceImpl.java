@@ -193,7 +193,10 @@ public class NguoiDungServiceImpl implements NguoiDungService {
 	public NguoiDung getNguoiDungById(String id) {
 		return nguoiDungRepository.findById(id).get();
 	}
-	
-	
 
+	@Override
+	public void capNhatNguoiDung(NguoiDung nguoiDung) {
+		nguoiDungRepository.save(nguoiDung);
+	}
+	
 }

@@ -64,5 +64,10 @@ public class MauSanPhamServiceImpl implements MauSanPhamService{
 		return mauSanPhamDTOs;
 	}
 
-
+	@Override
+	public List<MauSanPham> getDanhSachSoLuongIdMauTheoMaSanPham(String id) {
+//		return mauSanPhamRepository.getDanhSachSoLuongMauBySanPhamId(id);
+		return null;
+	}
+	
 }

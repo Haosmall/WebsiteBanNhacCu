@@ -77,6 +77,7 @@ public class SanPhamServiceImpl implements SanPhamService {
 		List<SanPham> sanPhams = sanPhamRepository
 				.findByTenSanPhamContainingAndXuatXuContainingAndDongSanPhamThuongHieuIdContainingAndDongSanPhamLoaiSanPhamIdContaining(
 						tenSanPham, xuatXu, maThuongHieu, maLoaiSanPham, firstPageWithTwoElements);
+		
 		return sanPhams;
 	}
 
