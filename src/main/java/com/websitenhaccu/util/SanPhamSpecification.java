@@ -6,7 +6,6 @@ import javax.persistence.criteria.Join;
 
 import org.springframework.data.jpa.domain.Specification;
 
-import com.websitenhaccu.entity.BinhLuan;
 import com.websitenhaccu.entity.DongSanPham;
 import com.websitenhaccu.entity.LoaiSanPham;
 import com.websitenhaccu.entity.SanPham;
@@ -20,18 +19,6 @@ public final class SanPhamSpecification {
 	}
 
 	public static Specification<SanPham> timKiemSanPhamTheoKhoangGia(double giaDau, double giaCuoi) {
-//		return new Specification<SanPham>() {
-//
-//			/**
-//			 * 
-//			 */
-//			private static final long serialVersionUID = 1L;
-//
-//			@Override
-//			public Predicate toPredicate(Root<SanPham> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
-//				return criteriaBuilder.between(root.get("giaBan"), giaDau, giaCuoi);
-//			}
-//		};
 
 		return (root, query, criteriaBuilder) -> criteriaBuilder.between(root.get("giaBan"), giaDau, giaCuoi);
 	}
