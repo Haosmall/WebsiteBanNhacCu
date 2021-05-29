@@ -1,7 +1,5 @@
 package com.websitenhaccu.entity;
 
-import java.sql.Blob;
-import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -9,17 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Parameter;
-
-import com.websitenhaccu.util.MyGenerator;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

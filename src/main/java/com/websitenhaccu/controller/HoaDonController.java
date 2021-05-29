@@ -3,7 +3,6 @@ package com.websitenhaccu.controller;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -31,7 +30,6 @@ import com.websitenhaccu.service.ChiTietHoaDonService;
 import com.websitenhaccu.service.HoaDonService;
 import com.websitenhaccu.service.MauSanPhamService;
 import com.websitenhaccu.service.NguoiDungService;
-import com.websitenhaccu.service.SanPhamService;
 import com.websitenhaccu.util.Constant;
 import com.websitenhaccu.util.CustomUserDetails;
 
@@ -44,9 +42,6 @@ public class HoaDonController {
 	
 	@Autowired
 	private MauSanPhamService mauSanPhamService;
-	
-	@Autowired
-	private SanPhamService sanPhamService;
 	
 	@Autowired
 	private ChiTietHoaDonService chiTietHoaDonService;

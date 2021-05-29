@@ -6,6 +6,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.annotation.MultipartConfig;
+import javax.sql.rowset.serial.SerialBlob;
+import javax.sql.rowset.serial.SerialException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,11 +26,6 @@ import com.websitenhaccu.converter.ThuongHieuConverter;
 import com.websitenhaccu.dto.ThuongHieuDTO;
 import com.websitenhaccu.entity.ThuongHieu;
 import com.websitenhaccu.service.ThuongHieuService;
-import com.websitenhaccu.validator.ThuongHieuValidator;
-
-import javax.sql.rowset.serial.SerialBlob;
-import javax.sql.rowset.serial.SerialException;
-import javax.servlet.annotation.MultipartConfig;
 
 @Controller
 @MultipartConfig(maxFileSize = 16177251)
@@ -34,9 +33,6 @@ import javax.servlet.annotation.MultipartConfig;
 public class ThuongHieuCotroller {
 	@Autowired
 	private ThuongHieuService thuongHieuService;
-
-	@Autowired
-	private ThuongHieuValidator thuongHieuValidator;
 
 	@Autowired
 	private ThuongHieuConverter thuongHieuConverter;

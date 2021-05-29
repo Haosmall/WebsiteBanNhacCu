@@ -6,19 +6,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.websitenhaccu.converter.NguoiDungConverter;
 import com.websitenhaccu.dto.NguoiDungDTO;
-import com.websitenhaccu.entity.HoaDon;
 import com.websitenhaccu.entity.NguoiDung;
-import com.websitenhaccu.service.HoaDonService;
 import com.websitenhaccu.service.NguoiDungService;
 
 @Controller
@@ -30,9 +25,6 @@ public class NguoiDungAdminCotroller {
 	
 	@Autowired
 	private NguoiDungConverter nguoiDungConverter;
-	
-	@Autowired
-	private HoaDonService hoaDonService;
 	
 	@GetMapping("/danh-sach-nguoi-dung")
 	private String getAllKhachHang(Model model) {

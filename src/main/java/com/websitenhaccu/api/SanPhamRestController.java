@@ -4,21 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.websitenhaccu.converter.SanPhamConverter;
 import com.websitenhaccu.dto.SanPhamDTO;
 import com.websitenhaccu.entity.DongSanPham;
 import com.websitenhaccu.entity.NhaCungCap;
 import com.websitenhaccu.entity.SanPham;
-import com.websitenhaccu.repository.SanPhamRepository;
 import com.websitenhaccu.service.DongSanPhamService;
 import com.websitenhaccu.service.LoaiSanPhamService;
 import com.websitenhaccu.service.NhaCungCapService;
@@ -43,9 +39,6 @@ public class SanPhamRestController {
 
 	@Autowired
 	ThuongHieuService thuongHieuService;
-
-	@Autowired
-	private SanPhamConverter sanPhamConverter;
 
 	@GetMapping(value = "/danh-sach-nha-cung-cap")
 	public List<NhaCungCap> getDanhSachNhaCungCap() {

@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -15,24 +13,25 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.websitenhaccu.converter.SanPhamConverter;
 import com.websitenhaccu.converter.ThuongHieuConverter;
 import com.websitenhaccu.dto.MauSanPhamDTO;
+import com.websitenhaccu.dto.NguoiDungDTO;
 import com.websitenhaccu.dto.SanPhamDTO;
 import com.websitenhaccu.dto.ThuongHieuDTO;
-import com.websitenhaccu.dto.NguoiDungDTO;
+import com.websitenhaccu.entity.BinhLuan;
 import com.websitenhaccu.entity.DongSanPham;
 import com.websitenhaccu.entity.LoaiSanPham;
 import com.websitenhaccu.entity.SanPham;
 import com.websitenhaccu.entity.ThuongHieu;
+import com.websitenhaccu.service.BinhLuanService;
 import com.websitenhaccu.service.DongSanPhamService;
 import com.websitenhaccu.service.LoaiSanPhamService;
 import com.websitenhaccu.service.MauSanPhamService;
+import com.websitenhaccu.service.NguoiDungService;
 import com.websitenhaccu.service.SanPhamService;
 import com.websitenhaccu.service.ThuongHieuService;
-import com.websitenhaccu.service.NguoiDungService;
 import com.websitenhaccu.util.CustomUserDetails;
 
 @Controller
@@ -48,6 +47,8 @@ public class SanPhamController {
 	
 	@Autowired
 	private DongSanPhamService dongSanPhamService;
+	@Autowired
+	private BinhLuanService binhLuanService;
 	
 	@Autowired
 	private SanPhamService sanPhamService;
@@ -205,9 +206,12 @@ public class SanPhamController {
 		
 		SanPhamDTO sanPhamDTO = sanPhamConverter.toSanPhamDTO(sanPham);
 		
+		List<BinhLuan> binhLuans = binhLuanService.getBinhLuanTheoMaSanPham(id);
+		
 		model.addAttribute("pageTitle", "Chi tiết sản phẩm");
 		model.addAttribute("sanPhamDTO", sanPhamDTO);
 		model.addAttribute("mauSanPhamDTOs", mauSanPhamDTOs);
+		model.addAttribute("binhLuans", binhLuans);
 		
 		return "user/ChiTietSanPham";
 	}

@@ -2,31 +2,67 @@ const tempPrice = $(".tempPrice");
 const priceInner = $("#priceInner");
 const amounts = $(".ammout");
 const currentPrice = $(".currentPrice");
+const btnNhanXet = $(".btnNhanXet");
+const maSanPham = $(".maSanPham");
+const numberStart = $(".checked");
 
 
-//amounts.each(function (index, element) {
-//    let amount = Number.parseInt(element.textContent);
-//    let priceWithProduct = Number.parseInt(currentPrice.get(index).textContent.replaceAll(",", ""));
+// amounts.each(function (index, element) {
+// let amount = Number.parseInt(element.textContent);
+// let priceWithProduct =
+// Number.parseInt(currentPrice.get(index).textContent.replaceAll(",", ""));
 //
-//    console.log(amount, priceWithProduct)
-//    tempPrice.get(index).innerHTML = amount * priceWithProduct;
-//
-//
-//})
+// console.log(amount, priceWithProduct)
+// tempPrice.get(index).innerHTML = amount * priceWithProduct;
 //
 //
+// })
 //
-//var totalPrice = 0;
 //
-//tempPrice.each(function (index, element) {
-//    let temp = Number.parseInt(element.textContent);
-//    totalPrice += temp;
 //
-//});
+// var totalPrice = 0;
 //
-//priceInner.text(totalPrice);
+// tempPrice.each(function (index, element) {
+// let temp = Number.parseInt(element.textContent);
+// totalPrice += temp;
+//
+// });
+//
+// priceInner.text(totalPrice);
 
+btnNhanXet.each(function (index) {
+	$(this).click(function () {
+		maSanPhamCurrent = maSanPham.get(index).value;
+	});
+});
 
+$("#btnGuiDanhGia").click(function (e) {
+	console.log("Ma nd: "+$("#maNguoiDung").val());
+	console.log("Ma sp: "+maSanPhamCurrent);
+	console.log("ND: "+$("#exampleFormControlTextarea1").val());
+	console.log("danhGia: " + $(".checked").length);
+	
+	$.ajax({
+		url : "http://localhost:8080/WebsiteBanNhacCu/api/hoa-don/danh-gia",
+		type : "post",
+		data : JSON.stringify({
+			maNguoiDung : $("#maNguoiDung").val(),
+			maSanPham : maSanPhamCurrent,
+			noiDung : $("#exampleFormControlTextarea1").val(),
+			danhGia : $(".checked").length
+		}),
+		contentType : "application/json; charset=utf-8",
+		dataType : "json",
+		success : function (result) {
+			
+			jQuery(function(){
+				   jQuery('.close').click();
+				});
+			alert("Đã gửi đánh giá");
+			}
+	});
+	
+});
 
 const start = $(".start-ratting span");
 

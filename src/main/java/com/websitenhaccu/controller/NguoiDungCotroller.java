@@ -12,27 +12,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.websitenhaccu.converter.NguoiDungConverter;
 import com.websitenhaccu.dto.NguoiDungDTO;
 import com.websitenhaccu.entity.NguoiDung;
-import com.websitenhaccu.service.HoaDonService;
 import com.websitenhaccu.service.NguoiDungService;
 import com.websitenhaccu.util.CustomUserDetails;
 
 @Controller
 @RequestMapping("/tai-khoan")
 public class NguoiDungCotroller {
-	
+
 	@Autowired
 	private NguoiDungService nguoiDungService;
-	
+
 	@Autowired
 	private NguoiDungConverter nguoiDungConverter;
-	
-	@Autowired
-	private HoaDonService hoaDonService;
-	
 
 	@GetMapping("/thong-tin-tai-khoan")
 	private String chiTietNguoiDung(Model model) {
-		
+
 		Object pricipal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String email;
 		if (pricipal instanceof CustomUserDetails) {
@@ -40,20 +35,21 @@ public class NguoiDungCotroller {
 		} else {
 			email = pricipal.toString();
 		}
-		
+
 		NguoiDung nguoiDung = nguoiDungService.getNguoiDungTheoEmail(email);
 		NguoiDungDTO user = nguoiDungConverter.toNguoiDungDTO(nguoiDung);
-		
+
 		model.addAttribute("user", user);
 
 		return "/user/ThongTinTaiKhoan";
 	}
+
 	@PostMapping("/thong-tin-tai-khoan")
 	private String capNhatThongTinNguoiDung(@ModelAttribute("user") NguoiDungDTO nguoiDungDTO) {
-		
+
 		NguoiDung nguoiDung = nguoiDungConverter.toUpdateUser(nguoiDungDTO);
 		nguoiDungService.capNhatNguoiDung(nguoiDung);
 		return "redirect:/tai-khoan/thong-tin-tai-khoan";
 	}
-	
+
 }
