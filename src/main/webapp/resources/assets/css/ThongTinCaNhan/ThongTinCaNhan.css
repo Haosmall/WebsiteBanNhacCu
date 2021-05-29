@@ -1,89 +1,50 @@
 .wrapper {
-  max-width: 1220px;
-  margin: 40px auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.wrapper .side_left {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  width: 250px;
-}
-
-.wrapper .side_left .item {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  height: 38px;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  padding: 0 15px;
-}
-
-.wrapper .side_left .item > i {
-  width: 30px;
-  color: #9b9b9b;
+	margin-top: 60px;
+	margin-bottom: 50px;
 }
 
 .wrapper .side_right {
-  width: 970px;
-  padding: 20px 15px;
-  background-color: #fff;
-  border-radius: 5px;
-}
-
-.wrapper .side_right > form {
-  width: 880px;
+	padding: 15px 30px;
+	background-color: #fff;
+	border-radius: 5px;
 }
 
 .active {
-  background-color: #d4d3d3;
-}
-
-.row {
-  margin: 15px 0;
+	background-color: #d4d3d3;
 }
 
 .adjust-form {
-  margin-top: auto;
-  margin-bottom: auto;
+	margin-top: auto;
+	margin-bottom: auto;
 }
 
 .checkDiaChi {
-  color: red;
-  font-style: italic;
+	color: red;
+	font-style: italic;
 }
 
 .form_doiMatKhau {
-  display: none;
+	display: none;
 }
 
 .btnSubmit {
-  margin-left: 758px;
-  padding: 5px 20px;
+	margin-left: 944px;
+	padding: 5px 20px;
 }
 
 .side_link {
-  color: black;
-  font-weight: 400;
+	color: black;
+	font-weight: 400;
 }
 
 .side_link:hover {
-  color: black;
-  font-weight: 400;
-  text-decoration: none;
-  background-color: #dddddd;
+	color: black;
+	font-weight: 400;
+	text-decoration: none;
+	background-color: #dddddd;
 }
 
 .active {
-  background-color: #dddddd;
+	background-color: #dddddd;
 }
 /*# sourceMappingURL=ThongTinCaNhan.css.map */

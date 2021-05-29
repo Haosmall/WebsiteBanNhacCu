@@ -16,21 +16,7 @@
 <body>
 
 	<div class="wrapper">
-			<div class="side_left">
-				<a class="side_link" href="">
-					<div class="item account">
-						<i class="fas fa-user-alt"></i>
-						<span>Thông tin tài khoản</span>
-					</div>
-				</a>
 
-				<a class="side_link" href="">
-					<div class="item shipments active">
-						<i class="fas fa-clipboard-list"></i>
-						<span>Quản lý đơn hàng</span>
-					</div>
-				</a>
-			</div>
 			<div class="side_right">
 				<div class="address">
 					<h5>Thông tin người nhận</h5>

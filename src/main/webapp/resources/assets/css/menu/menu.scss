@@ -90,6 +90,9 @@
     background-color: white;
 }
 
+
+
+
 .category:hover .sub-category {
     display: block;
     transition: all 0.5s ease-in-out;
@@ -130,7 +133,7 @@
 .category__line {
     min-width: 200px;
     padding: 0px 5px;
-    margin: 5px auto;
+    margin: 5px 5px;
     display: flex;
 
     flex-direction: column;
@@ -170,7 +173,7 @@
 }
 
 .category__line > a > img:hover {
-    transform: scale(1.2);
+    transform: scale(1.05);
 }
 
 .category__line > p:hover {

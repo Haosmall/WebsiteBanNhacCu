@@ -59,151 +59,106 @@ validateSdt = () => {
 
 }
 
-const tinh = $("#tinh");
-var checkTinh = $("#checkTinh");
-var vaidateTinh = tinh.blur(function() {
-	let result;
-	if ($(this).val() == -1) {
-		result = false;
-		checkTinh.text("Tỉnh thành phố không hợp lệ")
+
+
+
+
+validateTinh = () => {
+	const tinh = document.getElementById("tinh").value;
+	let checkTinh = document.getElementById("checkTinh");
+
+	if (tinh == -1) {
+		checkTinh.innerHTML = "(*) Tỉnh thành phố không hợp lệ";
+		return false;
 	} else {
-		result = true;
-		checkTinh.text("")
-	}
-	return result;
-})
-
-
-
-const huyen = $("#huyen");
-var checkHuyen = $("#checkHuyen");
-var vaidateHuyen = huyen.blur(function() {
-
-	let result;
-	if ($(this).val() == -1) {
-		result = false;
-		checkHuyen.text("Quận Huyện không hợp lệ")
-	} else {
-		result = true;
-		checkHuyen.text("")
-	}
-	return result;
-})
-
-
-
-const xa = $("#xa");
-var checkXa = $("#checkXa");
-var vaidateXa = xa.blur(function() {
-
-	let result;
-	if ($(this).val() == -1) {
-		result = false;
-		checkXa.text("Xã không hợp lệ")
-	} else {
-		result = true;
-		checkXa.text("")
-	}
-	return result;
-})
-
-
-const diaChi = $("#diaChi");
-var checkSoNha = $("#checkSoNha");
-var vaidateSoNha = diaChi.blur(function() {
-
-	let result;
-	if ($(this).val() == "") {
-		result = false;
-		checkSoNha.text("Số nhà, tên dường không hợp lệ")
-	} else {
-		result = true;
-		checkSoNha.text("")
+		checkTinh.innerHTML = "";
+		return true;
 	}
 
-	return result;
-})
-
-
-
-
-const HOST_NAME = window.location.hostname;;
-const PAGE_PATH = window.location.pathname;
-const PORT = window.location.port;
-const api = "/api/email?email=";
-const regexEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-
-validateEmail = () => {
-	let email = document.getElementById("email").value;
-	let apiFetch = "http://" + HOST_NAME + ":" + PORT + PAGE_PATH + api + email;
-
-	let checkEmail = document.getElementById("checkEmail");
-
-	var result;
-	$.get(apiFetch, function(data, status) {
-
-		setTimeout(function() {
-			console.log("check data", data);
-			if (status == "success") {
-				if (data === 1) {
-
-					checkEmail.innerHTML = "(*) Email đã tồn tại";
-					result = false;
-					console.log(result);
-
-				} else {
-					if (!regexEmail.test(email)) {
-						checkEmail.innerHTML = "(*) Email không hợp lệ";
-						result = false;
-					} else {
-						checkEmail.innerHTML = "";
-						result = true;
-					}
-				}
-			}
-
-		}, 300);
-		console.log("check email,result");
-		return result;
-	});
 }
 
 
 
+vaidateHuyen = () => {
+	const huyen = document.getElementById("huyen").value;
+	let checkHuyen = document.getElementById("checkHuyen");
+
+	if (huyen == -1) {
+		checkHuyen.innerHTML = "(*) Quận/huyện không hợp lệ";
+		return false;
+	} else {
+		checkHuyen.innerHTML = "";
+		return true;
+	}
+
+}
 
 
-const button_submit = $("#btnSubmit");
-const form = $("#formRegister");
+vaidateXa = () => {
+	const xa = document.getElementById("xa").value;
+	let checkXa = document.getElementById("checkXa");
+
+	if (xa == -1) {
+		checkXa.innerHTML = "(*) Phường/xã không hợp lệ";
+		return false;
+	} else {
+		checkXa.innerHTML = "";
+		return true;
+	}
+
+}
 
 
-button_submit.mouseenter(function() {
-	console.log("concat");
-	console.log(vaidateTinh);
-	console.log(vaidateHuyen);
-	console.log(vaidateXa);
-	console.log(vaidateSoNha);
-	console.log(validateFullname());
-	console.log(validateEmail());
-	console.log(validateSdt());
-	console.log(validatePassword());
-	console.log(validatePasswordCf());
+
+vaidateSoNha = () => {
+	const diaChi = document.getElementById("diaChi").value;
+	let checkSoNha = document.getElementById("checkSoNha");
+
+	if (diaChi == "") {
+		checkSoNha.innerHTML = "(*) Số nhà tên đường không hợp lệ";
+		return false;
+	} else {
+		checkSoNha.innerHTML = "";
+		return true;
+	}
+
+}
 
 
-})
+const regexEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-button_submit.click(function(event) {
+function validateEmail() {
+
+	let email = document.getElementById("email").value;
+	let checkEmail = document.getElementById("checkEmail");
 
 
-	setTimeout(function() {
+	if (!regexEmail.test(email)) {
+		checkEmail.innerHTML = "(*) Email không hợp lệ";
+		return false;
+	} else {
+		checkEmail.innerHTML = "";
+		return true;
+	}
 
 
-		if (vaidateTinh() && vaidateHuyen() && vaidateXa() && vaidateSoNha() && validateFullname() && validateEmail() && validateSdt() && validatePassword() && validatePasswordCf()) {
-			form.submit();
-		}
-		else {
-			console.log("failed");
-			event.preventDefault();
-		}
-	}, 200)
+}
+
+
+
+document.getElementById("btnSubmit").addEventListener("click", function(e) {
+
+
+	if (validateFullname()&& validateEmail()  && validateSdt()  && validateTinh() && vaidateHuyen() && vaidateXa() && vaidateSoNha() && validatePassword() && validatePasswordCf()) {
+		form.submit();
+	}
+	else {
+		e.preventDefault();
+
+	}
+
 });
+
+
+
+

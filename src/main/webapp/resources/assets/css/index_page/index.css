@@ -107,11 +107,11 @@
 }
 
 .category__line>a>img {
-	object-fit: cover;
+	object-fit: contain;
 	background-position: center;
 	height: 60px;
 	width: 200px;
-	transition: all 0.15s ease-in 0.075s;
+	transition: all 0.3s ease-in-out;
 }
 
 .category__line>p {
@@ -135,7 +135,7 @@
 }
 
 .category__line>a>img:hover {
-	transform: scale(1.2);
+	transform: scale(1.05);
 }
 
 .category__line>p:hover {
