@@ -20,6 +20,9 @@ public class HoaDonServiceImpl implements HoaDonService {
 	@Override
 	public List<HoaDon> getTatCaHoaDons() {
 		return hoaDonRepository.findAll(Sort.by(Sort.Direction.DESC, "ngayLapHoaDon"));
+//		@SuppressWarnings("unchecked")
+//		List<HoaDon> hoaDons = (List<HoaDon>) hoaDonRepository.findAll(PageRequest.of(0, 5, Sort.by(Sort.Direction.DESC, "ngayLapHoaDon")));
+//		return hoaDons;
 	}
 
 	@Override

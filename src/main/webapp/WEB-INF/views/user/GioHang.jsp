@@ -22,10 +22,10 @@
 			Sản phẩm không đủ số lượng, hoặc nhập giá trị không hợp lệ
 		</div>
 
-		<h5>GIỎ HÀNG (${ map.size() } sản phẩm)</h5>
+		<h5>GIỎ HÀNG (<span id = "amountCart">${ mapCTHD.size() }</span> sản phẩm)</h5>
 		<div class="wrapper_cart">
 			<div class="cart">
-				<c:forEach items="${ map }" var="chiTietHoaDon">
+				<c:forEach items="${ mapCTHD }" var="chiTietHoaDon">
 					<div class="element_cart">
 
 						<!-- <input type="checkbox" class="form-check-input" value="check"> -->
@@ -90,7 +90,7 @@
 							value="${ diaChiTemp }${ phuongXaTemp }${ quanHuyenTemp }${ tinhThanhPhoTemp }"
 							var="temp"></c:set>
 
-						<p class="inf_per">${user.fullName }|${user.phone}</p>
+						<p class="inf_per">${user.fullName } | ${user.phone}</p>
 						<%-- <p class="inf_ad">${ hoaDonDTO.diaChiGiaoHang }</p> --%>
 						<p class="inf_ad">${ temp }</p>
 						<input id="idUser" type="hidden" value="${user.userId }" /> <input

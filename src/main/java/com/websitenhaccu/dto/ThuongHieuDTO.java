@@ -2,8 +2,6 @@ package com.websitenhaccu.dto;
 
 import java.util.List;
 
-import org.springframework.stereotype.Component;
-
 import com.websitenhaccu.entity.DongSanPham;
 
 import lombok.AllArgsConstructor;

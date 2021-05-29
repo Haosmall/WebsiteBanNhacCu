@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.websitenhaccu.dto.MauDTO;
 import com.websitenhaccu.entity.Mau;
 import com.websitenhaccu.service.MauService;
 import com.websitenhaccu.validator.MauValidator;

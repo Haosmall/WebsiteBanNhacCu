@@ -2,6 +2,15 @@
 
 $name__product: #4c4d4c;
 $outline: #e6e6e6;
+
+.body_product{
+	    background-color: #fff !important;
+}
+
+.wrapper--top{
+	background: #fff;
+    margin-top: 74px;
+}
 .title {
     display: flex;
     justify-content: flex-start;
@@ -229,14 +238,18 @@ $outline: #e6e6e6;
 .info__specific {
     display: flex;
     flex-wrap: wrap;
+	background-color: #fff;
 
     margin-top: 30px;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
 
     position: relative;
+
+	
     .info {
         position: relative;
         overflow: hidden;
+		width :100%;
 
         padding: 10px 20px;
         #readmore {
@@ -271,6 +284,7 @@ $outline: #e6e6e6;
 }
 
 .evaluate__sendratting {
+	background-color: #fff;
     border-radius: 20px;
     border: 0.5px solid #c4c4c4;
     margin-bottom: 20px;

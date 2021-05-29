@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.websitenhaccu.converter.MauSanPhamConverter;
 import com.websitenhaccu.converter.SanPhamConverter;
@@ -36,7 +34,6 @@ import com.websitenhaccu.service.MauService;
 import com.websitenhaccu.service.NhaCungCapService;
 import com.websitenhaccu.service.SanPhamService;
 import com.websitenhaccu.service.ThuongHieuService;
-import com.websitenhaccu.validator.SanPhamValidator;
 
 /**
  * @author nhath
@@ -68,9 +65,6 @@ public class SanPhamAdminController {
 	private MauSanPhamService mauSanPhamService;
 
 	@Autowired
-	private SanPhamValidator sanPhamValidator;
-
-	@Autowired
 	private SanPhamConverter sanPhamConverter;
 
 	@Autowired
@@ -80,25 +74,25 @@ public class SanPhamAdminController {
 	public String danhSachSanPham(Model model) throws IOException, SQLException {
 
 		List<SanPham> sanPhams = sanPhamService.timKiemSanPham("", "", "", "", 0, 10);
-		
+
 		List<String> listXuatXu = new ArrayList<String>();
-		for(SanPham sp : sanPhams) {
+		for (SanPham sp : sanPhams) {
 			String xx = sp.getXuatXu().toLowerCase();
 			xx = xx.substring(0, 1).toUpperCase() + xx.substring(1);
-			if(!listXuatXu.contains(xx))
+			if (!listXuatXu.contains(xx))
 				listXuatXu.add(xx);
 		}
-		
+
 		List<LoaiSanPham> loaiSanPhams = loaiSanPhamService.getTatCaLoaiSanPham();
 		List<ThuongHieu> thuongHieus = thuongHieuService.getTatCaThuongHieu();
-		
+
 		model.addAttribute("page", 0);
-		
+
 		model.addAttribute("listSanPham", sanPhams);
 		model.addAttribute("listXuatXu", listXuatXu);
 		model.addAttribute("listThuongHieu", thuongHieus);
 		model.addAttribute("listLoaiSanPham", loaiSanPhams);
-		
+
 		return "admin/sanpham/SanPham";
 	}
 
@@ -160,7 +154,8 @@ public class SanPhamAdminController {
 			bytes = multipartFile.getBytes();
 
 //			String hinhAnh = new String(bytes);
-			MauSanPhamDTO mauSanPhamDTO = new MauSanPhamDTO(maMau, null, null, sanPhamDTO.getTenSanPham(),soLuong, null);
+			MauSanPhamDTO mauSanPhamDTO = new MauSanPhamDTO(maMau, null, null, sanPhamDTO.getTenSanPham(), soLuong,
+					null);
 //		List<MauSanPhamDTO> mauSanPhamDTOs = new ArrayList<MauSanPhamDTO>(Arrays.asList(mauSanPhamDTO));
 //		sanPhamDTO.setMauSanPhamDTOs(mauSanPhamDTOs);
 			mauSanPham = mauSanPhamConverter.toMauSanPham(mauSanPhamDTO, bytes);
@@ -188,13 +183,13 @@ public class SanPhamAdminController {
 		return "redirect:/admin/san-pham/danh-sach-san-pham";
 
 	}
-	
+
 	@GetMapping(value = "/cap-nhat-san-pham")
 	public String hienThiTrangCapNhat(Model model, @RequestParam("id") String maSanPham) {
-		
+
 		SanPham sanPham = sanPhamService.getSanPhamTheoID(maSanPham);
 		SanPhamDTO sanPhamDTO = sanPhamConverter.toSanPhamDTO(sanPham);
-		
+
 		List<NhaCungCap> nhaCungCaps = nhaCungCapService.getTatCaNhaCungCap();
 		List<LoaiSanPham> loaiSanPhams = loaiSanPhamService.getTatCaLoaiSanPham();
 		List<ThuongHieu> thuongHieus = thuongHieuService.getTatCaThuongHieu();
@@ -211,10 +206,9 @@ public class SanPhamAdminController {
 		return "admin/sanpham/SanPhamForm";
 
 	}
-	
+
 	@PostMapping(value = "/cap-nhat-san-pham")
 	public String capNhatSanPham(@ModelAttribute("sanPhamDTO") SanPhamDTO sanPhamDTO) {
-
 
 		SanPham sanPham = sanPhamConverter.toSanPham(sanPhamDTO);
 		String[] temp = sanPham.getId().split(",");

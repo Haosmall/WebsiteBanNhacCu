@@ -75,9 +75,10 @@
 
 
 			<!-- Nav Item - Pages Collapse Menu -->
-			<li class="nav-item"><a class="nav-link collapsed" href="#"
+			<li class="nav-item"><a class="nav-link collapsed" href="<c:url value ="/admin/quan-li-don-hang/danh-sach-don-hang"/>"
 				data-toggle="collapse" data-target="#collapseTwo"
-				aria-expanded="true" aria-controls="collapseTwo"> <i
+				aria-expanded="true" aria-controls="collapseTwo"> 
+				<i
 					class="fas fa-receipt fa-fw fa-cog"></i> <span>Quản lý đơn
 						hàng</span>
 			</a>
@@ -166,8 +167,8 @@
 
 
 
-						<h6 class="collapse-header">Bình luận:</h6>
-						<a class="collapse-item" href="login.html">Danh sách Bình luận</a>
+						<h6 class="collapse-header">Quảng cáo:</h6>
+						<a class="collapse-item" href="<c:url value='/admin/quang-cao'/>">Danh sách quảng cáo</a>
 						<div class="collapse-divider"></div>
 
 						<h6 class="collapse-header">Cửa hàng:</h6>
