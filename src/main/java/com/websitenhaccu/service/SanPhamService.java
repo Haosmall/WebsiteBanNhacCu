@@ -34,8 +34,12 @@ public interface SanPhamService {
 			int size);
 
 	public List<SanPhamDTO> getTatCaSanPham(int page, int size);
-	
+
 	public List<SanPhamDTO> danhSachSanPhamBanChay(int page, int size);
 
 	public Set<String> getDanhSachXuatXu();
+
+	public List<SanPhamDTO> timKiemSanPhamTheoNhieuDieuKien(String tenSanPham, List<String> xuatXus, double giaDau,
+			double giaCuoi, List<String> listDongSanPhamId, List<String> listThuongHieuId,
+			List<String> listLoaiSanPhamId, int page, int size, int sort);
 }

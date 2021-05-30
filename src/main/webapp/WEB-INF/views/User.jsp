@@ -19,25 +19,6 @@
 			<option value="${ tinh.id }">${ tinh.tenTinh }</option>
 		</c:forEach>
 	</select> --%>
-	<form:form modelAttribute="tinh">
-		<form:select path="maTinh">
-			<form:option value="" label="-- Chọn Tỉnh/ Thành phố"></form:option>
-			<form:options items="${ listTinh }" />
-		</form:select>
-	</form:form>
-
-	<form:form modelAttribute="huyen">
-		<form:select path="maHuyen">
-			<form:option value="" label="-- Chọn Huyện/ Quận"></form:option>
-			<form:options items="${ listHuyen }" />
-		</form:select>
-	</form:form>
-
-	<form:form modelAttribute="xa">
-		<form:select path="maXa">
-			<form:option value="" label="-- Chọn Xã/ Phường"></form:option>
-			<form:options items="${ listXa }" />
-		</form:select>
-	</form:form>
+	test
 </body>
 </html>
