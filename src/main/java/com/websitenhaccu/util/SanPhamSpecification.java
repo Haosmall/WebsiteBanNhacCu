@@ -52,4 +52,11 @@ public final class SanPhamSpecification {
 		};
 		
 	}
+	public static Specification<SanPham> timKiemSanPhamTheoTenSanPham(String tenSanPham) {
+		
+		return (root, query, criteriaBuilder) -> {
+			return criteriaBuilder.like(root.get("tenSanPham"), "%"+tenSanPham+"%");
+		};
+		
+	}
 }

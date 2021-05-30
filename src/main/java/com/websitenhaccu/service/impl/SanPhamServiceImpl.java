@@ -2,11 +2,15 @@ package com.websitenhaccu.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
+import java.util.Set;import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.websitenhaccu.converter.SanPhamConverter;
@@ -17,6 +21,7 @@ import com.websitenhaccu.repository.ChiTietHoaDonRepository;
 import com.websitenhaccu.repository.MauSanPhamRepository;
 import com.websitenhaccu.repository.SanPhamRepository;
 import com.websitenhaccu.service.SanPhamService;
+import com.websitenhaccu.util.SanPhamSpecification;
 
 @Service
 public class SanPhamServiceImpl implements SanPhamService {
@@ -77,7 +82,7 @@ public class SanPhamServiceImpl implements SanPhamService {
 		List<SanPham> sanPhams = sanPhamRepository
 				.findByTenSanPhamContainingAndXuatXuContainingAndDongSanPhamThuongHieuIdContainingAndDongSanPhamLoaiSanPhamIdContaining(
 						tenSanPham, xuatXu, maThuongHieu, maLoaiSanPham, firstPageWithTwoElements);
-		
+
 		return sanPhams;
 	}
 
@@ -95,8 +100,7 @@ public class SanPhamServiceImpl implements SanPhamService {
 	@Override
 	public SanPhamDTO getSanPhamDTOTheoID(String id) {
 
-		SanPhamDTO sanPhamDTO = sanPhamRepository.findById(id)
-				.map(sanPham -> sanPhamConverter.toSanPhamDTO(sanPham))
+		SanPhamDTO sanPhamDTO = sanPhamRepository.findById(id).map(sanPham -> sanPhamConverter.toSanPhamDTO(sanPham))
 				.orElse(null);
 		return sanPhamDTO;
 	}
@@ -156,6 +160,56 @@ public class SanPhamServiceImpl implements SanPhamService {
 			sanPhamDTOs.add(sanPhamDTO);
 		});
 		return sanPhamDTOs;
+	}
+
+	@Override
+	public List<SanPhamDTO> timKiemSanPhamTheoNhieuDieuKien(String tenSanPham, List<String> xuatXus, double giaDau,
+			double giaCuoi, List<String> listDongSanPhamId, List<String> listThuongHieuId,
+			List<String> listLoaiSanPhamId, int page, int size, int sort) {
+
+		Specification<SanPham> dieuKien = Specification
+				.where(SanPhamSpecification.timKiemSanPhamTheoTenSanPham(tenSanPham));
+
+		if ( xuatXus != null && xuatXus.size() > 0) {
+			dieuKien.and(SanPhamSpecification.timKiemSanPhamTheoXuatXu(xuatXus));
+		}
+		if (giaDau != 0) {
+			dieuKien.and(SanPhamSpecification.timKiemSanPhamTheoKhoangGia(giaDau, giaCuoi));
+		}
+		if (listDongSanPhamId != null && listDongSanPhamId.size() > 0) {
+			dieuKien.and(SanPhamSpecification.timKiemSanPhamTheoDongSanPham(listDongSanPhamId));
+		}
+		if (listThuongHieuId != null && listThuongHieuId.size() > 0) {
+			dieuKien.and(SanPhamSpecification.timKiemSanPhamTheoThuongHieu(listThuongHieuId));
+		}
+		if (listLoaiSanPhamId != null && listLoaiSanPhamId.size() > 0) {
+			dieuKien.and(SanPhamSpecification.timKiemSanPhamTheoLoaiSanPham(listLoaiSanPhamId));
+		}
+		
+		List<SanPham> sanPhams = null;
+		
+		switch (sort) {
+		case 1:
+			sanPhams = sanPhamRepository.findAll(dieuKien, PageRequest.of(page, size, Sort.by(Sort.Direction.ASC, "giaBan"))).getContent();
+			break;
+		case 2:
+			sanPhams = sanPhamRepository.findAll(dieuKien, PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "giaBan"))).getContent();
+			break;
+
+		default:
+			sanPhams = sanPhamRepository.findAll(dieuKien, PageRequest.of(page, size, Sort.by(Sort.Direction.ASC, "giaBan"))).getContent();
+			break;
+		}
+		
+		return sanPhams.stream().map(sp -> sanPhamConverter.toSanPhamDTO(sp)).collect(Collectors.toList());
+		
+//		List<SanPhamDTO> sanPhamDTOs = new ArrayList<SanPhamDTO>();
+//		
+//		sanPhams.forEach(sp -> {
+//			SanPhamDTO sanPhamDTO = sanPhamConverter.toSanPhamDTO(sp);
+//			sanPhamDTOs.add(sanPhamDTO);
+//		});
+		
 	}
 
 }
