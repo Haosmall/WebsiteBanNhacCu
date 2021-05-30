@@ -208,5 +208,23 @@ capNhatSoLuongChiTietHoaDon = (maSanPham, maMau, soLuong) =>{
 
 
 
-// console.log(add);
+let amountCart = $("#amountCart");
+let personel_info = $(".personel_info");
+
+var currentAmountCart = amountCart.text();
+
+if (currentAmountCart == 0) {
+	personel_info.css({ "visibility": "hidden" })
+}
+
+amountCart.change(function() {
+	let amount = amountCart.text();
+
+	if (amount == 0) {
+		personel_info.css({ "visibility": "hidden" })
+	}
+
+
+
+})
 

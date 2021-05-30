@@ -14,30 +14,20 @@
 </head>
 <body>
 
-	<div class="wrapper">
-		<div class="side_left">
-			<a class="side_link" href="">
-				<div class="item account  ">
-					<i class="fas fa-user-alt"></i> <span>Thông tin tài khoản</span>
-				</div>
-			</a> <a class="side_link" href="">
-				<div class="item shipments active">
-					<i class="fas fa-clipboard-list"></i> <span>Quản lý đơn hàng</span>
-				</div>
-			</a>
-		</div>
+	<div class="wrapper container">
+	
 		<div class="side_right">
 
 
 			<table class="table table-hover">
 				<thead>
-					<tr>
-						<th scope="col" class="maDonHang">Mã đơn hàng</th>
-						<th scope="col" class="ngayMua">Ngày mua</th>
-						<th scope="col" class="sanPham">Sản phẩm</th>
-						<th scope="col" class="tongTien">Tổng tiền</th>
-						<th scope="col" class="trangThai">Trạng thái đơn hàng</th>
-					</tr>
+                    <tr>
+                        <th width="12%" scope="col" class="maDonHang">Mã đơn hàng</th>
+                        <th width ="10%" scope="col" class="ngayMua">Ngày mua</th>
+                        <th width = "46%" scope="col" class="sanPham">Sản phẩm</th>
+                        <th width ="16%" scope="col" class="tongTien">Tổng tiền</th>
+                        <th width ="16%" scope="col" class="trangThai">Trạng thái đơn hàng</th>
+                    </tr>
 				</thead>
 				<tbody>
 					<c:forEach items="${ hoaDonDTOs }" var="hoaDonDTO" >

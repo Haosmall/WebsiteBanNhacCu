@@ -11,8 +11,8 @@
 </head>
 <body>
 
-	<div class="container mt-3 wrapper--top">
-			<div class="container body">
+	<div class="container wrapper--top">
+			<div class="container body body_product">
 				<div class="row main_info">
 					<!--slider and image  -->
 					<div class="col-4 slider">
@@ -186,7 +186,7 @@
 					<div class="average__star">
 						<h4>Sao trung bình</h4>
 						<p class="figure__average">
-							4.8<span class="fa fa-star checked"></span>
+							
 						</p>
 					</div>
 

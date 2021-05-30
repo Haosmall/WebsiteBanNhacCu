@@ -15,4 +15,5 @@ public interface NguoiDungRepository extends JpaRepository<NguoiDung, String> {
 	
 	public List<NguoiDung> findByHoTenContainingAndSoDienThoaiContainingAndEmailContainingAndRole(String hoTen, String soDienThoai, String email, ROLE role, Pageable pageable);
 	
+	boolean existsByEmail(String email);
 }

@@ -107,6 +107,7 @@
 						<!-- The slideshow -->
 						<div class="carousel-inner">
 
+
 							<c:forEach items="${ quangCaoDTOs }" var="quangCaoDTO"
 								varStatus="counter">
 								<c:if test="${ counter.count <= 3 }">
@@ -121,6 +122,7 @@
 
 							</c:forEach>
 
+
 						</div>
 
 						<!-- Left and right controls -->
@@ -133,25 +135,35 @@
 				</div>
 			</div>
 
+
 			<!-- side -->
 			<div class="col ml-2 sider">
+				<div class="row">
+					<a href="https://www.youtube.com/watch?v=MHNiCwZbuZE"><img
+						src="data:image/jpg;base64,${ quangCaoDTOs.get(3).hinhAnhBase64 }"
+						alt=""></a>
+				</div>
 
-				<c:forEach items="${ quangCaoDTOs }" var="quangCaoDTO"
-					varStatus="counter">
-					<c:if test="${ counter.count > 3 }">
-						<div class="row">
-							<img src="data:image/jpg;base64,${ quangCaoDTO.hinhAnhBase64 }"
-								alt="">
-						</div>
-					</c:if>
-				</c:forEach>
+				<div class="row">
 
+					<a href="https://www.youtube.com/watch?v=MHNiCwZbuZE"><img
+						src="data:image/jpg;base64,${ quangCaoDTOs.get(4).hinhAnhBase64 }"
+						alt=""></a>
+				</div>
+
+				<div class="row">
+					<a href="https://www.youtube.com/watch?v=MHNiCwZbuZE"><img
+						src="data:image/jpg;base64,${ quangCaoDTOs.get(5).hinhAnhBase64 }"
+						alt=""></a>
+				</div>
 			</div>
 
 
 
 		</div>
 	</div>
+
+
 
 
 	<!-- Sản phẩm nổi bật -->
@@ -280,9 +292,10 @@
 					<h2 class="product__title__slider">${ map.key }</h2>
 					<div class="product__list--wrapper">
 						<div class="product__option__list">
-							
+
 							<c:forEach items="${ map.value }" var="sanPhamDTO">
-								<div class="option__item" onclick="location.href = '/WebsiteBanNhacCu/san-pham?id=${sanPhamDTO.id}'">
+								<div class="option__item"
+									onclick="location.href = '/WebsiteBanNhacCu/san-pham?id=${sanPhamDTO.id}'">
 									<div class="option__item__img">
 										<img src="data:image/jpg;base64,${ sanPhamDTO.hinhAnhBase64 }"
 											alt="">
@@ -290,7 +303,7 @@
 									<p class="option__item__name">
 										<b>${ sanPhamDTO.tenSanPham }</b>
 									</p>
-	
+
 									<div class="option__item__additional">
 										<p>
 											Thương hiệu: <b>${ sanPhamDTO.tenThuongHieu }</b>
@@ -299,11 +312,15 @@
 											Xuất xứ: <b>${ sanPhamDTO.xuatXu }</b>
 										</p>
 									</div>
-									<p class="option__item__money"><fmt:formatNumber type="currency" value="${ sanPhamDTO.giaBan }" currencySymbol="" /> VNĐ</p>
+									<p class="option__item__money">
+										<fmt:formatNumber type="currency"
+											value="${ sanPhamDTO.giaBan }" currencySymbol="" />
+										VNĐ
+									</p>
 								</div>
-							
+
 							</c:forEach>
-							
+
 						</div>
 						<i class="fas fa-chevron-right move arrow"></i> <i
 							class="fas fa-chevron-left move arrow--left"></i>
@@ -318,7 +335,7 @@
 		</c:forEach>
 
 
-
+	
 
 	</div>
 </body>

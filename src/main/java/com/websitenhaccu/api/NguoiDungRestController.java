@@ -32,8 +32,7 @@ public class NguoiDungRestController {
 	@GetMapping
 	public int getEmailExist(@RequestParam("email") String email) {
 		NguoiDungDTO userDTO = nguoiDungService.getByEmail(email);
-		System.out.println(email);
-		System.out.println(userDTO);
+
 		return userDTO == null ? -1 : 1;
 	}
 	

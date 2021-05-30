@@ -1,7 +1,7 @@
 .wrapper {
   background-color: #fff;
   padding: 0 20px !important;
-  margin-top: 52px !important;
+  margin-top: 75px !important;
 }
 
 .wrapper__listProduct__rightSide .top--bar {
@@ -101,6 +101,7 @@ p {
   -o-object-fit: contain;
      object-fit: contain;
   height: 100px;
+  max-width: 188px;
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
 }

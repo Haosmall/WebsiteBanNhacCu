@@ -5,7 +5,7 @@ $titleColor: #393d3f;
 .wrapper {
     background-color: #fff;
     padding: 0 20px !important;
-	margin-top: 52px !important;
+	margin-top: 75px !important;
 }
 
 .wrapper__listProduct__rightSide {
@@ -89,6 +89,7 @@ p {
         .product__img > img {
             object-fit: contain;
             height: 100px;
+   			max-width: 188px;
             transition: all 0.5s ease-in-out;
         }
         .product__name > b {
