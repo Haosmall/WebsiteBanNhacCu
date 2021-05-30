@@ -289,8 +289,7 @@
 
 .evaluate__sendratting {
 	background-color: #fff;
-	border-radius: 20px;
-	border: 0.5px solid #c4c4c4;
+	
 	margin-bottom: 20px;
 	display: -webkit-box;
 	display: -ms-flexbox;
@@ -560,5 +559,9 @@
 	font-size: 14px;
 	color: #999;
 	font-style: italic;
+}
+
+.cmt__evaluate{
+	background-color: #fff;
 }
 /*# sourceMappingURL=ProductDetail.css.map */
