@@ -48,11 +48,13 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.css" />
 
 
+<link rel="stylesheet"
+	href='<c:url value ="/static/assets/css/errors.css"/>'>
 </head>
 <body>
 
 
-	<div class="container-fluid">
+	<div class="container-fluid" style="background-color: #fff;padding-top: 20px;">
 
 		<!-- Row input -->
 		<div class="row">
@@ -159,7 +161,7 @@
 							<div class="col-lg-3">
 								<div class="form-group">
 									<label>Màu:</label> <select id="maMau" name="maMau"
-										Class="form-control">
+										class="form-control">
 										<c:forEach items="${ maus }" var="mau">
 											<option value="${mau.id}">${mau.tenMau}</option>
 										</c:forEach>
@@ -171,7 +173,7 @@
 								<div class="form-group">
 									<label>Số lượng:</label> <input name="soLuong"
 										class="form-control" />
-										<form:errors path="soLuong" cssClass="error"></form:errors>
+										<form:errors path="tongSoLuong" cssClass="error"></form:errors>
 								</div>
 							</div>
 
@@ -208,7 +210,7 @@
 
 
 					<button type="submit" class="btn btn-success">${ formButton }</button>
-					<button type="reset" class="btn btn-danger">Hủy</button>
+					<button type="button" class="btn btn-danger" onClick="window.location.href='http://localhost:8080/WebsiteBanNhacCu/admin/san-pham/danh-sach-san-pham'">Hủy</button>
 
 				</form:form>
 

@@ -1,28 +1,10 @@
 .wrapper {
-    max-width: 1220px;
-    margin: 40px auto;
-    display: flex;
+    margin: 70px auto;
+    min-height: 48vh;
 
-    .side_left {
-        display: flex;
-        flex-direction: column;
-        width: 250px;
-
-        .item {
-            display: flex;
-            height: 38px;
-            align-items: center;
-            padding: 0 15px;
-
-            > i {
-                width: 30px;
-                color: rgb(155, 155, 155);
-            }
-        }
-    }
 
     .side_right {
-        width: 970px;
+     
         padding: 20px 15px;
         background-color: #fff;
         border-radius: 5px;
@@ -32,23 +14,9 @@
         }
         .products_table {
             table {
-                width: 940px;
-
-                .sanPham {
-                    width: 480px;
-                }
-                .gia {
-                    width: 135px;
-                }
-                .soluong {
-                    width: 94px;
-                }
-                .tamtinh {
-                    width: 135px;
-                }
 
                 .product {
-                    width: 575px;
+                    
                     display: flex;
                 }
                 .product_name {
@@ -81,7 +49,7 @@
         }
 
         .totalPrice {
-            margin-left: 700px;
+            margin-left: 742px;
 
             span {
                 color: red;

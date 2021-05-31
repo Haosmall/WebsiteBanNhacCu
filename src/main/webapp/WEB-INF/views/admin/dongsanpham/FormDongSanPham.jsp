@@ -6,11 +6,20 @@
 <head>
 <meta charset="UTF-8">
 <title>${formTitle}</title>
+
+<link rel="stylesheet"
+	href='<c:url value ="/static/assets/css/errors.css"/>'>
 </head>
 <body>
 
+	<div class="container">
+		<a
+			href="<c:url value='/admin/dong-san-pham/danh-sach-dong-san-pham' />">Quay
+			lại</a>
 
-	<div class="container-fluid">
+	</div>
+
+	<div class="container" style="background-color: #fff; padding: 20px 0">
 
 		<!-- Row input -->
 		<div class="row">
@@ -33,8 +42,7 @@
 					</div>
 
 					<div class="form-group">
-						<label>Loại sản phẩm:</label>
-						<select class="form-control"
+						<label>Loại sản phẩm:</label> <select class="form-control"
 							id="loaiSanPham" name="loaiSanPham">
 
 							<c:forEach items="${ listLoaiSanPham }" var="loaiSanPham1">
@@ -70,7 +78,7 @@
 					</div>
 
 					<button type="submit" class="btn btn-success">${formButton}</button>
-					<button type="reset" class="btn btn-danger">Hủy</button>
+					<button type="button" class="btn btn-danger" onClick="window.location.href='http://localhost:8080/WebsiteBanNhacCu/admin/dong-san-pham/danh-sach-dong-san-pham'">Hủy</button>
 
 				</form:form>
 
@@ -79,9 +87,6 @@
 			<div class="col-lg-3"></div>
 		</div>
 
-		<a
-			href="<c:url value='/admin/dong-san-pham/danh-sach-dong-san-pham' />">Quay
-			lại</a>
 
 
 

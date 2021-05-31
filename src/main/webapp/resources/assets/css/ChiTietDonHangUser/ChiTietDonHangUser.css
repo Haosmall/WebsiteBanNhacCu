@@ -1,41 +1,10 @@
 @charset "UTF-8";
 .wrapper {
-  max-width: 1220px;
-  margin: 40px auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.wrapper .side_left {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  width: 250px;
-}
-
-.wrapper .side_left .item {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  height: 38px;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  padding: 0 15px;
-}
-
-.wrapper .side_left .item > i {
-  width: 30px;
-  color: #9b9b9b;
+  margin: 70px auto;
+  min-height: 48vh;
 }
 
 .wrapper .side_right {
-  width: 970px;
   padding: 20px 15px;
   background-color: #fff;
   border-radius: 5px;
@@ -45,28 +14,7 @@
   margin: 0;
 }
 
-.wrapper .side_right .products_table table {
-  width: 940px;
-}
-
-.wrapper .side_right .products_table table .sanPham {
-  width: 480px;
-}
-
-.wrapper .side_right .products_table table .gia {
-  width: 135px;
-}
-
-.wrapper .side_right .products_table table .soluong {
-  width: 94px;
-}
-
-.wrapper .side_right .products_table table .tamtinh {
-  width: 135px;
-}
-
 .wrapper .side_right .products_table table .product {
-  width: 575px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -106,7 +54,7 @@
 }
 
 .wrapper .side_right .totalPrice {
-  margin-left: 700px;
+  margin-left: 742px;
 }
 
 .wrapper .side_right .totalPrice span {

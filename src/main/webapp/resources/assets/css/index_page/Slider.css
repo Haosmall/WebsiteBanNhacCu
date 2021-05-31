@@ -25,9 +25,9 @@
 }
 .option__item > .option__item__img > img {
     height: 180px;
-    width: inherit;
+    width: 228px !important;
+    object-fit:contain;
     background-position: center center;
-
     transition: all 0.15s ease-in 0.075s;
 }
 

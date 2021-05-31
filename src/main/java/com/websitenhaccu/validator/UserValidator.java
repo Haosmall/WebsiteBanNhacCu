@@ -1,14 +1,19 @@
 package com.websitenhaccu.validator;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 import com.websitenhaccu.dto.NguoiDungDTO;
+import com.websitenhaccu.repository.NguoiDungRepository;
 
 @Component
 public class UserValidator implements Validator {
 
+	@Autowired
+	NguoiDungRepository nguoidung;
+	
 	@Override
 	public boolean supports(Class<?> clazz) {
 		return NguoiDungDTO.class.isAssignableFrom(clazz);
@@ -23,6 +28,9 @@ public class UserValidator implements Validator {
 //		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "address", NOTNULL);
 //		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", NOTNULL);
 //		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "passwordConf", NOTNULL);
+		
+		
+		
 
 		// kiểm tra object
 		if (!supports(target.getClass())) {
@@ -57,7 +65,12 @@ public class UserValidator implements Validator {
 			if (!userDTO.getEmail().trim().matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
 				errors.rejectValue("email", null, "Email không đúng định dạng");
 			}
-
+			
+			else {
+				if(nguoidung.existsByEmail(userDTO.getEmail())) {
+					errors.rejectValue("email", null, "Email đã tồn tại");
+				}
+			}
 		}
 
 		// kiểm tra địa chỉ

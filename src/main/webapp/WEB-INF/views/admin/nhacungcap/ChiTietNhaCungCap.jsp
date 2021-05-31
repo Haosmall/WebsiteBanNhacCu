@@ -10,7 +10,7 @@
 <body>
 
 
-	<div class="container-fluid">
+	<div class="container-fluid" style="background-color: #fff">
 		
 		<p>${ nhaCungCap.maNhaCungCap }</p>
 		<p>${ nhaCungCap.tenNhaCungCap }</p>

@@ -1,77 +1,24 @@
 @charset "UTF-8";
 .wrapper {
-  max-width: 1220px;
-  margin: 40px auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.wrapper .side_left {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  width: 250px;
-}
-
-.wrapper .side_left .item {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  height: 38px;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  padding: 0 15px;
-}
-
-.wrapper .side_left .item > i {
-  width: 30px;
-  color: #9b9b9b;
+  margin: 70px auto;
+    min-height: 48vh;
 }
 
 .wrapper .side_right {
-  width: 970px;
   padding: 20px 15px;
   background-color: #fff;
   border-radius: 5px;
 }
 
-.wrapper .side_right > table {
-  font-size: 14px;
-  width: 940px;
-}
-
-.wrapper .side_right > table .maDonHang {
-  width: 126px;
-}
-
-.wrapper .side_right > table .ngayMua {
-  width: 114px;
-}
-
-.wrapper .side_right > table .sanPham {
-  width: 354px;
-}
-
-.wrapper .side_right > table .tongTien {
-  width: 120px;
-}
-
-.wrapper .side_right > table .trangThai {
-  width: 200px;
-}
+.wrapper .side_right > table  {
+	font-size: 14px;}
 
 .wrapper .side_right > table a:hover {
   text-decoration: none;
 }
 
 .wrapper .side_right > table .adjustPrice::after {
-  content: ' đ';
+  content: " đ";
 }
 
 .side_link {

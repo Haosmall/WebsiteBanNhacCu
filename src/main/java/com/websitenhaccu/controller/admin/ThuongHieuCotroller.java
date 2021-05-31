@@ -78,13 +78,17 @@ public class ThuongHieuCotroller {
 	public String ThemThuongHieu(@RequestParam("hinhAnh") MultipartFile filePart,
 			@ModelAttribute("thuongHieu") ThuongHieu thuongHieu, BindingResult bindingResult, Model model)
 			throws IOException, SerialException, SQLException {
-		thuongHieuValidator.validate(thuongHieu, bindingResult);
-		if (bindingResult.hasErrors()) {
-			model.addAttribute("formTitle", "Thêm thương hiệu");
-			model.addAttribute("formButton", "Thêm");
-			return "admin/thuonghieu/FormThuongHieu";
-		}
-		
+
+//		System.out.println("da vao controller");
+//		
+//		thuongHieuValidator.validate(thuongHieu, bindingResult);
+//		if (bindingResult.hasErrors()) {
+//			model.addAttribute("thuongHieu", thuongHieu);
+//			model.addAttribute("formTitle", "Thêm thương hiệu");
+//			model.addAttribute("formButton", "Thêm");
+//			return "admin/thuonghieu/FormThuongHieu";
+//		}
+//		System.out.println("da qua validate");
 		byte[] bytes = filePart.getBytes();
 		Blob blob = new SerialBlob(bytes);
 		thuongHieu.setHinhAnh(blob);

@@ -1,5 +1,7 @@
 package com.websitenhaccu.validator;
 
+import java.util.Optional;
+
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
@@ -26,14 +28,13 @@ public class SanPhamDTOValidator implements Validator {
 		System.out.println("@@@@@@@@@@@@@@ class validate: "+ sanPhamDTO);
 		
 		if (sanPhamDTO.getTenSanPham().trim().equals("")) {
-			System.out.println("=======loi ten");
 			errors.rejectValue("tenSanPham", null, "Tên sản phẩm không được bỏ trống");
 		}
 		if (sanPhamDTO.getXuatXu().trim().equals("")) {
 			errors.rejectValue("xuatXu", null, "Xuất xứ không được bỏ trống");
 		}
-		if (sanPhamDTO.getNamSanXuat() == 0 || String.valueOf(sanPhamDTO.getNamSanXuat()).trim().equals("")) {
-			errors.rejectValue("namSanXuat", null, "Năm sản xuất không được bỏ trống");
+		if (sanPhamDTO.getNamSanXuat() <= 1700) {
+			errors.rejectValue("namSanXuat", null, "Năm sản xuất không hợp lệ");
 		}
 		if (sanPhamDTO.getBaoHanh() == 0 || String.valueOf(sanPhamDTO.getBaoHanh()).trim().equals("")) {
 			errors.rejectValue("baoHanh", null, "Bảo hành không được bỏ trống");
@@ -46,7 +47,7 @@ public class SanPhamDTOValidator implements Validator {
 		}
 
 		if (sanPhamDTO.getTongSoLuong() == 0 || String.valueOf(sanPhamDTO.getTongSoLuong()).trim().equals("")) {
-			errors.rejectValue("soLuong", null, "Số lượng không được bỏ trống");
+			errors.rejectValue("tongSoLuong", null, "Số lượng không được bỏ trống");
 		}
 	}
 

@@ -14,14 +14,8 @@
 <body>
 
 	<div class="wrapper container">
-		<div class="d-flex flex-row-reverse mb-3">
-		<button class="btn btn-danger  " type="button" onclick="doiMatKhau()">Đổi
-			mật khẩu</button>
-		</div>
-		
+
 		<div class="side_right">
-
-
 
 			<form:form method="POST" modelAttribute="user">
 				<form:hidden path="userId" />
@@ -70,11 +64,31 @@
 						<form:input placeholder="Số nhà/tên đường" type="text"
 							class="form-control mt-3" path="diaChi" />
 						<span class="checkDiaChi"></span>
+						
+						
+						
 					</div>
 
 				</div>
+				
+				<div class="form-group row">
+					<label class="col-sm-2 col-form-label">Trạng thái</label>
+					<div class = "col-sm-10">
+					<select class="  custom-select col-3" id="trangThaiCbo" onchange="thayDoiTrangThai()">
+							<c:if test="${trangThai == 1 }">
+								<option value="1" selected>Đã xác minh</option>
+								<option value="0">Chưa Xác minh</option>
+							</c:if>
+							<c:if test="${trangThai == 0 }">
+								<option value="1">Đã xác minh</option>
+								<option value="0" selected>Chưa Xác minh</option>
+							</c:if>
+						</select>
+					</div>
+				</div>
 
-
+				<input value="${ trangThai }" type="hidden" name="trangThai"
+					id="trangThai">
 
 				<button class="btn btn-warning btnSubmit" type="submit">Cập
 					nhật</button>
@@ -84,11 +98,15 @@
 		</div>
 	</div>
 
-
 	<script
 		src="<c:url value="/static/assets/js/ThongTinCaNhan/ThongTinCaNhan.js"/>">
 		
 	</script>
 	<script src="<c:url value="/static/assets/js/diaChi.js"/>"></script>
+	<script type="text/javascript">
+		function thayDoiTrangThai(){
+			document.getElementById("trangThai").value = document.getElementById("trangThaiCbo").value;
+		}
+	</script>
 </body>
 </html>

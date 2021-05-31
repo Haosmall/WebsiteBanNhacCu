@@ -70,4 +70,14 @@ public class DongSanPhamServiceImpl implements DongSanPhamService {
 		return dongSanPhamRepository.findByTenDongSanPhamAndLoaiSanPhamIdAndThuongHieuId(tenDongSanPham, maLoaiSanPham, maThuongHieu);
 	}
 
+	@Override
+	public DongSanPham getDongSanPhamBangIdLoaiSP(String idLoaiSanPham) {
+		return dongSanPhamRepository.findFirstByLoaiSanPhamId(idLoaiSanPham);
+	}
+
+	@Override
+	public DongSanPham getDongSanPhamBangIdThuongHieu(String idThuongHieu) {
+		return dongSanPhamRepository.findFirstByThuongHieuId(idThuongHieu);
+	}
+
 }

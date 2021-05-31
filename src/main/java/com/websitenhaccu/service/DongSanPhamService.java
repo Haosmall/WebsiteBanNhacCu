@@ -24,5 +24,9 @@ public interface DongSanPhamService {
 			String maLoaiSanPham, String maThuongHieu, int page, int size);
 	
 	public DongSanPham getDongSanPham_DungTenLoaiSPThuongHieu (String tenDongSanPham, String maLoaiSanPham, String maThuongHieu);
+	
+	public DongSanPham getDongSanPhamBangIdLoaiSP(String idLoaiSanPham);
+	
+	public DongSanPham getDongSanPhamBangIdThuongHieu(String idThuongHieu);
 
 }

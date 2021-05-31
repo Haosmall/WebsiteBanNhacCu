@@ -5,6 +5,7 @@ import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -155,21 +156,20 @@ public class SanPhamAdminController {
 
 	@PostMapping(value = "/them-san-pham")
 	public String themSanPham(Model model, @ModelAttribute("sanPhamDTO") SanPhamDTO sanPhamDTO,
-			@RequestParam("maMau") int maMau, @RequestParam("soLuong") int soLuong,
+			@RequestParam("maMau") int maMau, @RequestParam(value = "soLuong") String soLuong,
 			@RequestParam("hinhAnh") MultipartFile multipartFile, BindingResult bindingResult) {
 
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@ da chay den day: "+ sanPhamDTO);
+		System.out.println("@@@@@@@@@@@@@ controller sanpham: "+ sanPhamDTO);
+		int tongSoLuong = 0;
+		if(!soLuong.equals(""))
+			tongSoLuong = Integer.parseInt(soLuong);
 		
-		sanPhamDTO.setTongSoLuong(soLuong);
+		sanPhamDTO.setTongSoLuong(tongSoLuong);
 		
 		sanPhamDTOValidator.validate(sanPhamDTO, bindingResult);
 		
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@ da chay den day: "+ sanPhamDTO);
-
 		if (bindingResult.hasErrors()) {
 
-			System.out.println("@@@@@@@@@@@@@@@@@@@@@@@ da chay vao validate: ");
-			
 			List<NhaCungCap> nhaCungCaps = nhaCungCapService.getTatCaNhaCungCap();
 			List<LoaiSanPham> loaiSanPhams = loaiSanPhamService.getTatCaLoaiSanPham();
 			List<ThuongHieu> thuongHieus = thuongHieuService.getTatCaThuongHieu();
@@ -195,7 +195,7 @@ public class SanPhamAdminController {
 
 			bytes = multipartFile.getBytes();
 
-			MauSanPhamDTO mauSanPhamDTO = new MauSanPhamDTO(maMau, null, null, sanPhamDTO.getTenSanPham(), soLuong,
+			MauSanPhamDTO mauSanPhamDTO = new MauSanPhamDTO(maMau, null, null, sanPhamDTO.getTenSanPham(), tongSoLuong,
 					null);
 
 			mauSanPham = mauSanPhamConverter.toMauSanPham(mauSanPhamDTO, bytes);
@@ -240,7 +240,7 @@ public class SanPhamAdminController {
 	@PostMapping(value = "/cap-nhat-san-pham")
 	public String capNhatSanPham(@ModelAttribute("sanPhamDTO") SanPhamDTO sanPhamDTO, BindingResult bindingResult, Model model) {
 
-		sanPhamDTO.setTongSoLuong(1);
+		sanPhamDTO.setTongSoLuong(1); //ko xoa
 		sanPhamDTOValidator.validate(sanPhamDTO, bindingResult);
 
 		if (bindingResult.hasErrors()) {

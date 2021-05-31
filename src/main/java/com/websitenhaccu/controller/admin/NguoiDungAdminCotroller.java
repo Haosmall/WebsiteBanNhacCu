@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -55,5 +56,34 @@ public class NguoiDungAdminCotroller {
 		model.addAttribute("nguoiDung", nguoiDung);
 
 		return "/admin/nguoidung/ChiTietNguoiDung";
+	}
+	
+	@GetMapping("/cap-nhat-nguoi-dung")
+	private String FormCapNhatNguoiDung(Model model, @RequestParam("id") String id) {
+		
+		NguoiDung nguoiDung = nguoiDungService.getNguoiDungById(id);
+		
+		NguoiDungDTO nguoiDungDTO = nguoiDungConverter.toNguoiDungDTO(nguoiDung);
+
+		model.addAttribute("user", nguoiDungDTO);
+		if(nguoiDung.isTrangThai() == true)
+			model.addAttribute("trangThai", 1);
+		else 
+			model.addAttribute("trangThai", 0);
+		
+		return "/admin/nguoidung/capnhatnguoidung";
+	}
+	
+	@PostMapping("/cap-nhat-nguoi-dung")
+	private String capNhatThongTinNguoiDung(@ModelAttribute("user") NguoiDungDTO nguoiDungDTO, @RequestParam("trangThai") String trangThai) {
+		
+		NguoiDung nguoiDung = nguoiDungConverter.toUpdateUser(nguoiDungDTO);
+		System.out.println("trang thai: "+trangThai);
+		nguoiDung.setTrangThai(trangThai.equals("1") ? true : false);
+		System.out.println(nguoiDung);
+		
+		nguoiDungService.capNhatNguoiDung(nguoiDung);
+		
+		return "redirect:/admin/nguoi-dung/danh-sach-nguoi-dung";
 	}
 }

@@ -72,7 +72,7 @@
 				<form:errors cssStyle="color:red" path="phone" />
 			</div>
 			<div class="form-group">
-				<select id="tinh" Class="form-control">
+				<select id="tinh" Class="form-control" onblur="validateTinh()">
 					<option value="-1" selected>Chọn Tỉnh/ Thành phố</option>
 				</select> <span id="checkTinh"></span>
 			</div>
@@ -80,7 +80,7 @@
 			<form:hidden path="tinhThanhPho" />
 
 			<div class="form-group">
-				<select id="huyen" Class="form-control">
+				<select id="huyen" Class="form-control" onblur="vaidateHuyen()">
 					<option value="-1" selected>Chọn Huyện/ Quận</option>
 				</select> <span id="checkHuyen"></span>
 			</div>
@@ -88,7 +88,7 @@
 			<form:hidden path="quanHuyen" />
 
 			<div class="form-group">
-				<select id="xa" Class="form-control">
+				<select id="xa" Class="form-control" onblur="vaidateXa()">
 					<option value="-1" selected>Chọn Xã/ Phường</option>
 				</select> <span id="checkXa"></span>
 			</div>
@@ -97,7 +97,7 @@
 
 			<div class="form-group">
 				<form:input path="diaChi" class="form-control"
-					placeholder="Số nhà, tên đường" />
+					placeholder="Số nhà, tên đường" onblur="vaidateSoNha()" />
 				<form:errors path="diaChi" Class="error"></form:errors>
 				<span id="checkSoNha"></span>
 			</div>
@@ -120,8 +120,7 @@
 
 
 
-			<button class="btn btn-primary btn-block" id="btnSubmit"
-				type="submit">
+			<button class="btn btn-primary btn-block" id="btnSubmit">
 				<i class="fas fa-user-plus"></i> Đăng kí
 			</button>
 			<!-- <a href="login" id="cancel_signup"><i class="fas fa-angle-left"></i>
