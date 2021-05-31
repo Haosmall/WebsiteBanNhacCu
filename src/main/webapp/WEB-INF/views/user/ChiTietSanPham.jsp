@@ -37,6 +37,7 @@
 											src="data:image/jpg;base64,${ mauSanPhamDTO.hinhAnhBase64 }"
 											class="slider__image__frame--detail"
 											alt=""
+											style="object-fit:contain !important"
 										/>
 									</div>
 								</c:forEach>

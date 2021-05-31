@@ -272,6 +272,14 @@ public class HoaDonController {
 	public String huyDonHang(Model model, @RequestParam("id") String maDonHang) {
 		
 		hoaDonService.capNhatHoaDon(maDonHang, 6);
+		chiTietHoaDonService.getChiTietHoaDonTheoMaHoaDon(maDonHang).forEach(cthd ->{
+			
+			MauSanPham mauSanPham = cthd.getMauSanPham();
+			int sl = cthd.getSoLuong() + mauSanPham.getSoLuong();
+			mauSanPham.setSoLuong(sl);
+			mauSanPhamService.capNhatMauSanPham(mauSanPham);
+		});
+		
 		
 		return "redirect:/quan-ly-don-hang";
 	}

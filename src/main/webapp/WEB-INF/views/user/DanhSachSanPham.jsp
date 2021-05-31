@@ -9,6 +9,41 @@
 <link rel="stylesheet"
 	href="<c:url value="/static/assets/css/Product_page/ProductPage.css"/>">
 
+
+<style type="text/css">
+.partition_price {
+	margin-top: 10px;
+	height: 110px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	display: flex;
+	height: 110px;
+}
+
+.partition_price--layout {
+	display: flex;
+	justify-content: space-between;
+}
+
+.partition_price--layout input {
+	width: 75px;
+	border-radius: 3px;
+	border: 1px solid #e6e6e6;
+	outline: none;
+}
+
+.partition_price button {
+	font-weight: 500;
+	color: #fff;
+	background-color: orange;
+	outline: none;
+	border: 1px solid orange;
+	border-radius: 3px;
+}
+</style>
+
+
 </head>
 
 <body>
@@ -16,7 +51,7 @@
 
 	<div class="container wrapper mt-3">
 
-		<div class="row wrapper__title">
+		<div class="row wrapper__title pt-3">
 			<h2 class="col offset-2">Đàn Guitar Electric</h2>
 		</div>
 
@@ -25,28 +60,18 @@
 			<!-- Left Side (tìm kiếm) -->
 			<div class="col-2  wrapper__listProduct__leftSide">
 
-				<div class="ratting-search">
-					<div class="item__title">Đánh giá</div>
-					<div class="list_start">
 
-						<a href=""> <span class="fa fa-star checked"></span> <span
-							class="fa fa-star checked"></span> <span
-							class="fa fa-star checked"></span> <span
-							class="fa fa-star checked"></span> <span
-							class="fa fa-star checked"></span> <span>Từ 5 sao</span>
-						</a> <a href=""> <span class="fa fa-star checked"></span> <span
-							class="fa fa-star checked"></span> <span
-							class="fa fa-star checked"></span> <span
-							class="fa fa-star checked"></span> <span class="fa fa-star "></span>
-							<span>Từ 4 sao</span>
-						</a> <a href=""> <span class="fa fa-star checked"></span> <span
-							class="fa fa-star checked"></span> <span
-							class="fa fa-star checked"></span> <span class="fa fa-star "></span>
-							<span class="fa fa-star "></span> <span>Từ 3 sao</span>
-						</a>
+				<div class="partition_price">
+					<b>Khoảng giá</b>
+					<div class="partition_price--layout">
+						<input placeholder="Từ " /> <span>-</span> <input
+							placeholder="đến " />
 
 					</div>
+					<button>Áp dụng</button>
+
 				</div>
+
 
 
 
@@ -113,42 +138,29 @@
 
 			<div class="col-10 wrapper__listProduct__rightSide">
 
-				<div class="row top--bar">
-
-					<div class="top--bar--left">
-						<p>Chọn mức giá:</p>
-						<div class="partion--price">
-							<a href="">Dưới 3 triệu</a> <a href="">3 - 6 triệu</a> <a href="">Trên
-								6 triệu</a>
-						</div>
-					</div>
-
-
-					<div class="top--bar--right">
-						<div class="input-group mb-3">
-							<select class="custom-select" id="inputGroupSelect">
-								<option selected>Sắp xếp theo giá</option>
-								<option value="1"><a href="">Tăng dần</a></option>
-								<option value="1"><a href="accbcc">Giảm dần</a></option>
-							</select>
-						</div>
-					</div>
-
-
-				</div>
 
 
 				<div class="row">
 
 					<div class="nav__list">
-						<a href="" class="nav__list--index checked--popular ">Phổ biến</a>
+						<a href="" class="nav__list--index checked--popular ">Tất cả</a>
 						<div class="bar bar--popular active"></div>
 
 						<a href="" class="nav__list--index checked--selling">Bán chạy</a>
 						<div class="bar bar--selling"></div>
 
-						<a href="" class="nav__list--index checked--new">Mới nhất</a>
-						<div class="bar bar--new"></div>
+						<div class="" style="position: absolute; right: 0;">
+							<div class="input-group ">
+								<select class="custom-select" id="inputGroupSelect">
+									<option selected>Sắp xếp theo giá</option>
+									<option value="1"><a href="">Tăng dần</a></option>
+									<option value="1"><a href="accbcc">Giảm dần</a></option>
+								</select>
+							</div>
+						</div>
+
+
+
 					</div>
 
 					<div class="product__list">

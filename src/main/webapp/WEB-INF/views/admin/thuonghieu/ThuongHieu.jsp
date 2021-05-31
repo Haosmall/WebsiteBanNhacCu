@@ -66,9 +66,10 @@
 											width="120" height="80" style="object-fit: contain" />
 									</c:if></td>
 								<td>${ thuonghieu.tenThuongHieu }</td>
-								<td><input type="button" class="btn btn-primary table__btn"
+								<td>
+								<%-- <input type="button" class="btn btn-primary table__btn"
 									value="Chi tiết"
-									onclick="location.href='<c:url value='/admin/thuong-hieu/chi-tiet-thuong-hieu?id=${ thuonghieu.id }' />'">
+									onclick="location.href='<c:url value='/admin/thuong-hieu/chi-tiet-thuong-hieu?id=${ thuonghieu.id }' />'"> --%>
 
 									<input type="button" class="btn btn-warning table__btn"
 									value="Sửa"

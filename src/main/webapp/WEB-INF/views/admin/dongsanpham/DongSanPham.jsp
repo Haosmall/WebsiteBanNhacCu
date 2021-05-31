@@ -102,9 +102,10 @@
 								<td>${ dongSanPham.tenDongSanPham }</td>
 								<td>${ dongSanPham.loaiSanPham.tenLoaiSanPham }</td>
 								<td>${ dongSanPham.thuongHieu.tenThuongHieu }</td>
-								<td><input type="button" class="btn btn-primary table__btn"
+								<td>
+								<%-- <input type="button" class="btn btn-primary table__btn"
 									value="Chi tiết"
-									onclick="location.href='<c:url value='/admin/dong-san-pham/chi-tiet-dong-san-pham?id=${ dongSanPham.id }' />'">
+									onclick="location.href='<c:url value='/admin/dong-san-pham/chi-tiet-dong-san-pham?id=${ dongSanPham.id }' />'"> --%>
 
 									<input type="button" class="btn btn-warning table__btn"
 									value="Sửa"

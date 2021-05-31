@@ -194,8 +194,8 @@
 
 .slider .image img {
 	height: 380px;
-	-o-object-fit: cover;
-	object-fit: cover;
+	-o-object-fit: contain;
+	object-fit: contain;
 	background-position: center center;
 	max-width: -webkit-fill-available;
 	-webkit-transition: all 1s ease-in-out;
