@@ -9,7 +9,7 @@ function searchType() {
 	var cboLoaiSanPham = document.getElementById("cboLoaiSanPham").value;
 	var cboThuongHieu = document.getElementById("cboThuongHieu").value;
 
-	
+
 	var pageHidden = document.getElementById("pageValue");//gia tri hiden
 	var viewPage = document.getElementById("viewPage");//gia tri hien thi trang hien tai
 	viewPage.value = 1; //gan lai  hien thi trang hien tai
@@ -22,7 +22,7 @@ function searchType() {
 		for (var i = 0; i < data.length; i++) {
 			$("#tableDongSanPham").append(
 				`<tr>
-							<td>${i+1}</td>
+							<td>${i + 1}</td>
 							<td>${data[i].id}</td>
 							<td>${data[i].tenDongSanPham}</td>
 							<td>${data[i].loaiSanPham}</td>
@@ -36,8 +36,7 @@ function searchType() {
 								onclick="location.href='/WebsiteBanNhacCu/admin/dong-san-pham/cap-nhat-dong-san-pham?id=${data[i].id}'">
 
 								<input type="button" class="btn btn-danger table__btn"
-								value="Xóa"
-								onclick="location.href='/WebsiteBanNhacCu/admin/dong-san-pham/xoa-dong-san-pham?id=${data[i].id}'">
+								value="Xóa" onclick="Delete('${ data[i].id }')">
 
 							</td>
 						</tr>`
@@ -47,18 +46,18 @@ function searchType() {
 }
 
 $("select").change(function () {
-    let optionSelected = $(this).find("option:selected");
-    let valueSelected = optionSelected.val();
+	let optionSelected = $(this).find("option:selected");
+	let valueSelected = optionSelected.val();
 
-    let id = $(this).attr("id");
+	let id = $(this).attr("id");
 
-    if (id === "cboLoaiSanPham") {
-        searchType();
-    }
+	if (id === "cboLoaiSanPham") {
+		searchType();
+	}
 
-    if (id === "cboThuongHieu") {
-        searchType();
-    }
+	if (id === "cboThuongHieu") {
+		searchType();
+	}
 });
 
 document.getElementById("btnNext").onclick = function () {
@@ -79,7 +78,7 @@ document.getElementById("btnNext").onclick = function () {
 	}
 
 
-	const url = `http://${HOST_NAME}:${PORT}/${CONTEXT_PATH}/${API}?tenDongSanPham=${searchText}&maLoaiSanPham=${cboLoaiSanPham}&maThuongHieu=${cboThuongHieu}&page=${ page - 1 }`;
+	const url = `http://${HOST_NAME}:${PORT}/${CONTEXT_PATH}/${API}?tenDongSanPham=${searchText}&maLoaiSanPham=${cboLoaiSanPham}&maThuongHieu=${cboThuongHieu}&page=${page - 1}`;
 
 	console.log(url)
 
@@ -88,10 +87,10 @@ document.getElementById("btnNext").onclick = function () {
 		if (data[0] != null) {
 			console.log("data khac null")
 			$("#tableDongSanPham").html("");
-		for (var i = 0; i < data.length; i++) {
-			$("#tableDongSanPham").append(
-				`<tr>
-							<td>${i+1}</td>
+			for (var i = 0; i < data.length; i++) {
+				$("#tableDongSanPham").append(
+					`<tr>
+							<td>${i + 1}</td>
 							<td>${data[i].id}</td>
 							<td>${data[i].tenDongSanPham}</td>
 							<td>${data[i].loaiSanPham}</td>
@@ -105,13 +104,12 @@ document.getElementById("btnNext").onclick = function () {
 								onclick="location.href='/WebsiteBanNhacCu/admin/dong-san-pham/cap-nhat-dong-san-pham?id=${data[i].id}'">
 
 								<input type="button" class="btn btn-danger table__btn"
-								value="Xóa"
-								onclick="location.href='/WebsiteBanNhacCu/admin/dong-san-pham/xoa-dong-san-pham?id=${data[i].id}'">
+								value="Xóa" onclick="Delete('${ data[i].id }')">
 
 							</td>
 						</tr>`
-			);
-		}
+				);
+			}
 
 			viewPage.value = page; //gan lai  hien thi trang hien tai
 			pageHidden.value = page; //gan lai gia tri bien hidden
@@ -137,17 +135,17 @@ document.getElementById("btnPreviusPage").onclick = function () {
 		page = page - 1;
 	}
 
-	const url = `http://${HOST_NAME}:${PORT}/${CONTEXT_PATH}/${API}?tenDongSanPham=${searchText}&maLoaiSanPham=${cboLoaiSanPham}&maThuongHieu=${cboThuongHieu}&page=${ page - 1 }`;
+	const url = `http://${HOST_NAME}:${PORT}/${CONTEXT_PATH}/${API}?tenDongSanPham=${searchText}&maLoaiSanPham=${cboLoaiSanPham}&maThuongHieu=${cboThuongHieu}&page=${page - 1}`;
 	console.log(url);
 
 	$.get(url, function (data, status) {
 
 		if (data[0] != null) {
 			$("#tableDongSanPham").html("");
-		for (var i = 0; i < data.length; i++) {
-			$("#tableDongSanPham").append(
-				`<tr>
-							<td>${i+1}</td>
+			for (var i = 0; i < data.length; i++) {
+				$("#tableDongSanPham").append(
+					`<tr>
+							<td>${i + 1}</td>
 							<td>${data[i].id}</td>
 							<td>${data[i].tenDongSanPham}</td>
 							<td>${data[i].loaiSanPham}</td>
@@ -161,13 +159,12 @@ document.getElementById("btnPreviusPage").onclick = function () {
 								onclick="location.href='/WebsiteBanNhacCu/admin/dong-san-pham/cap-nhat-dong-san-pham?id=${data[i].id}'">
 
 								<input type="button" class="btn btn-danger table__btn"
-								value="Xóa"
-								onclick="location.href='/WebsiteBanNhacCu/admin/dong-san-pham/xoa-dong-san-pham?id=${data[i].id}'">
+								value="Xóa" onclick="Delete('${ data[i].id }')">
 
 							</td>
 						</tr>`
-			);
-		}
+				);
+			}
 
 			viewPage.value = page; //gan lai  hien thi trang hien tai
 			pageHidden.value = page;//gan lai gia tri bien hidden
@@ -176,3 +173,10 @@ document.getElementById("btnPreviusPage").onclick = function () {
 	});
 
 };
+
+function Delete(id) {
+	var cf = confirm("Bạn muốn xóa dòng sản phẩm này ?");
+	if (cf == true) {
+		window.location.href = `http://${HOST_NAME}:${PORT}/${CONTEXT_PATH}/admin/dong-san-pham/xoa-dong-san-pham?id=${ id }`;
+	}
+}

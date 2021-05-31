@@ -53,7 +53,7 @@ public class QuanLyController {
 	@RequestMapping("/quan-ly")
 	public String getUser(Model model) {
 
-		List<HoaDon> hoaDons = hoaDonService.getDanhSachTheoTrangThai("", 0, 10);
+		List<HoaDon> hoaDons = hoaDonService.getDanhSachTheoTrangThai("", 0, 5);
 
 		List<HoaDonDTO> hoaDonDTOs = new ArrayList<HoaDonDTO>();
 		hoaDons.forEach(hd -> {

@@ -52,10 +52,12 @@ public class LoaiSanPhamCotroller {
 	}
 
 	@PostMapping("/them-loai-san-pham")
-	public String ThemLoaiSanPham(@ModelAttribute("loaiSanPham") LoaiSanPham loaiSanPham, BindingResult bindingResult) {
+	public String ThemLoaiSanPham(@ModelAttribute("loaiSanPham") LoaiSanPham loaiSanPham, BindingResult bindingResult, Model model) {
 		loaiSanPhamValidator.validate(loaiSanPham, bindingResult);
 		if (bindingResult.hasErrors()) {
-			return "addmin/loaisanpham/FormLoaiSanPham";
+			model.addAttribute("formTitle", "Thêm loại sản phẩm");
+			model.addAttribute("formButton", "Thêm");
+			return "admin/loaisanpham/FormLoaiSanPham";
 		}
 		loaiSanPhamService.ThemLoaiSanPham(loaiSanPham);
 		return "redirect:/admin/loai-san-pham/danh-sach-loai-san-pham";
@@ -79,9 +81,12 @@ public class LoaiSanPhamCotroller {
 	}
 
 	@PostMapping("/cap-nhat-loai-san-pham")
-	public String CapNhatLoaiSanPham(@ModelAttribute("loaiSanPham") LoaiSanPham loaiSanPham, BindingResult bindingResult) {
+	public String CapNhatLoaiSanPham(@ModelAttribute("loaiSanPham") LoaiSanPham loaiSanPham, BindingResult bindingResult, Model model) {
 		loaiSanPhamValidator.validate(loaiSanPham, bindingResult);
 		if (bindingResult.hasErrors()) {
+			model.addAttribute("formTitle", "Cập nhật loại sản phẩm");
+			model.addAttribute("formButton", "Cập nhật");
+			model.addAttribute("loaiSanPham", loaiSanPham);
 			return "admin/loaisanpham/FormLoaiSanPham";
 		}
 		loaiSanPhamService.CapnhatLoaiSanPham(loaiSanPham);

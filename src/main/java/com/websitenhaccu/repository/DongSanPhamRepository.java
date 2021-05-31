@@ -16,4 +16,6 @@ public interface DongSanPhamRepository extends JpaRepository<DongSanPham, String
 	public List<DongSanPham> findByLoaiSanPhamIdAndThuongHieuId(String maLoaiSanPham, String maThuongHieu);
 
 	public List<DongSanPham> findByTenDongSanPhamContainingAndLoaiSanPhamIdContainingAndThuongHieuIdContaining(String tenDongSanPham, String maLoaiSanPham, String maThuongHieu, Pageable pageable);
+	
+	public DongSanPham findByTenDongSanPhamAndLoaiSanPhamIdAndThuongHieuId(String tenDongSanPham, String maLoaiSanPham, String maThuongHieu);
 }

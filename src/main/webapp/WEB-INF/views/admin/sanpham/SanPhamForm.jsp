@@ -171,6 +171,7 @@
 								<div class="form-group">
 									<label>Số lượng:</label> <input name="soLuong"
 										class="form-control" />
+										<form:errors path="soLuong" cssClass="error"></form:errors>
 								</div>
 							</div>
 

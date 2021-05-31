@@ -10,6 +10,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,6 +29,7 @@ import com.websitenhaccu.entity.MauSanPham;
 import com.websitenhaccu.entity.NhaCungCap;
 import com.websitenhaccu.entity.SanPham;
 import com.websitenhaccu.entity.ThuongHieu;
+import com.websitenhaccu.service.ChiTietHoaDonService;
 import com.websitenhaccu.service.DongSanPhamService;
 import com.websitenhaccu.service.LoaiSanPhamService;
 import com.websitenhaccu.service.MauSanPhamService;
@@ -35,6 +37,7 @@ import com.websitenhaccu.service.MauService;
 import com.websitenhaccu.service.NhaCungCapService;
 import com.websitenhaccu.service.SanPhamService;
 import com.websitenhaccu.service.ThuongHieuService;
+import com.websitenhaccu.validator.SanPhamDTOValidator;
 
 /**
  * @author nhath
@@ -71,19 +74,25 @@ public class SanPhamAdminController {
 	@Autowired
 	private MauSanPhamConverter mauSanPhamConverter;
 
+	@Autowired
+	private SanPhamDTOValidator sanPhamDTOValidator;
+	
+	@Autowired
+	private ChiTietHoaDonService chiTietHoaDonService;
+
 	@RequestMapping("/danh-sach-san-pham")
 	public String danhSachSanPham(Model model) throws IOException, SQLException {
 
 		List<SanPham> sanPhams = sanPhamService.timKiemSanPham("", "", "", "", 0, 10);
-		
+
 		Set<String> listXuatXu = sanPhamService.getDanhSachXuatXu();
 
 		List<SanPhamDTO> listSanPhamDTO = new ArrayList<>();
-		
-		for(SanPham sp : sanPhams) {
+
+		for (SanPham sp : sanPhams) {
 			List<MauSanPham> mauSanPhams = mauSanPhamService.getMauSanPhamTheoMaSanPham(sp.getId());
 			int soLuong = 0;
-			for(MauSanPham msp : mauSanPhams) {
+			for (MauSanPham msp : mauSanPhams) {
 				soLuong += msp.getSoLuong();
 			}
 			SanPhamDTO sanPhamDTO = sanPhamConverter.toSanPhamDTO_TrangSanPham(sp);
@@ -147,17 +156,51 @@ public class SanPhamAdminController {
 	@PostMapping(value = "/them-san-pham")
 	public String themSanPham(Model model, @ModelAttribute("sanPhamDTO") SanPhamDTO sanPhamDTO,
 			@RequestParam("maMau") int maMau, @RequestParam("soLuong") int soLuong,
-			@RequestParam("hinhAnh") MultipartFile multipartFile) {
+			@RequestParam("hinhAnh") MultipartFile multipartFile, BindingResult bindingResult) {
+
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@ da chay den day: "+ sanPhamDTO);
+		
+		sanPhamDTO.setTongSoLuong(soLuong);
+		
+		sanPhamDTOValidator.validate(sanPhamDTO, bindingResult);
+		
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@ da chay den day: "+ sanPhamDTO);
+
+		if (bindingResult.hasErrors()) {
+
+			System.out.println("@@@@@@@@@@@@@@@@@@@@@@@ da chay vao validate: ");
+			
+			List<NhaCungCap> nhaCungCaps = nhaCungCapService.getTatCaNhaCungCap();
+			List<LoaiSanPham> loaiSanPhams = loaiSanPhamService.getTatCaLoaiSanPham();
+			List<ThuongHieu> thuongHieus = thuongHieuService.getTatCaThuongHieu();
+			List<DongSanPham> dongSanPhams = dongSanPhamService.getTatCaDongSanPham();
+			List<Mau> maus = mauService.getTatCamau();
+
+			model.addAttribute("sanPhamDTO", sanPhamDTO);
+			model.addAttribute("nhaCungCaps", nhaCungCaps);
+			model.addAttribute("loaiSanPhams", loaiSanPhams);
+			model.addAttribute("thuongHieus", thuongHieus);
+			model.addAttribute("dongSanPhams", dongSanPhams);
+			model.addAttribute("maus", maus);
+
+			model.addAttribute("formTitle", "Thêm sản phẩm");
+			model.addAttribute("formButton", "Thêm");
+
+			return "admin/sanpham/SanPhamForm";
+		}
 
 		byte[] bytes;
 		MauSanPham mauSanPham = null;
 		try {
+
 			bytes = multipartFile.getBytes();
 
-			MauSanPhamDTO mauSanPhamDTO = new MauSanPhamDTO(maMau, null, null, sanPhamDTO.getTenSanPham(),soLuong, null);
+			MauSanPhamDTO mauSanPhamDTO = new MauSanPhamDTO(maMau, null, null, sanPhamDTO.getTenSanPham(), soLuong,
+					null);
 
 			mauSanPham = mauSanPhamConverter.toMauSanPham(mauSanPhamDTO, bytes);
 			sanPhamDTO.setTrangThai(true);
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -195,7 +238,28 @@ public class SanPhamAdminController {
 	}
 
 	@PostMapping(value = "/cap-nhat-san-pham")
-	public String capNhatSanPham(@ModelAttribute("sanPhamDTO") SanPhamDTO sanPhamDTO) {
+	public String capNhatSanPham(@ModelAttribute("sanPhamDTO") SanPhamDTO sanPhamDTO, BindingResult bindingResult, Model model) {
+
+		sanPhamDTO.setTongSoLuong(1);
+		sanPhamDTOValidator.validate(sanPhamDTO, bindingResult);
+
+		if (bindingResult.hasErrors()) {
+
+			List<NhaCungCap> nhaCungCaps = nhaCungCapService.getTatCaNhaCungCap();
+			List<LoaiSanPham> loaiSanPhams = loaiSanPhamService.getTatCaLoaiSanPham();
+			List<ThuongHieu> thuongHieus = thuongHieuService.getTatCaThuongHieu();
+			List<DongSanPham> dongSanPhams = dongSanPhamService.getTatCaDongSanPham();
+
+			model.addAttribute("sanPhamDTO", sanPhamDTO);
+			model.addAttribute("nhaCungCaps", nhaCungCaps);
+			model.addAttribute("loaiSanPhams", loaiSanPhams);
+			model.addAttribute("thuongHieus", thuongHieus);
+			model.addAttribute("dongSanPhams", dongSanPhams);
+			model.addAttribute("formTitle", "Cập nhật Sản phẩm");
+			model.addAttribute("formButton", "Lưu");
+
+			return "admin/sanpham/SanPhamForm";
+		}
 
 		SanPham sanPham = sanPhamConverter.toSanPham(sanPhamDTO);
 		String[] temp = sanPham.getId().split(",");

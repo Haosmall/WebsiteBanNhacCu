@@ -29,8 +29,10 @@ public class SanPhamServiceImpl implements SanPhamService {
 
 	@Autowired
 	ChiTietHoaDonRepository chiTietHoaDonRepository;
+	
 	@Autowired
 	SanPhamConverter sanPhamConverter;
+	
 
 	@Override
 	public void themSanPham(SanPham sanPham, MauSanPham mauSanPham) {
@@ -55,16 +57,7 @@ public class SanPhamServiceImpl implements SanPhamService {
 //		});
 	}
 
-	@Override
-	public boolean xoaSanPham(String id) {
-
-		if (chiTietHoaDonRepository.findByMauSanPhamSanPhamId(id).size() > 0)
-			return false;
-
-		sanPhamRepository.deleteById(id);
-		return true;
-	}
-
+	
 	@Override
 	public void capNhatSanPham(SanPham sanPham) {
 		sanPhamRepository.save(sanPham);
@@ -146,5 +139,23 @@ public class SanPhamServiceImpl implements SanPhamService {
 
 		return sanPhamDTOs;
 	}
+	
+	@Override
+	public boolean xoaSanPham(String id) {
+
+//		if (chiTietHoaDonRepository.findByMauSanPhamSanPhamId(id).size() > 0)
+//			return false;
+		if(chiTietHoaDonRepository.findFirstByMauSanPhamSanPhamId(id) != null)
+			return false;
+//		mauSanPhamRepository.customXoaMauSanPhamBySanPhamId(id);
+		List<MauSanPham> listMauSP = mauSanPhamRepository.findBySanPhamId(id);
+		listMauSP.forEach(t->{
+			mauSanPhamRepository.delete(t);
+		});
+
+		sanPhamRepository.deleteById(id);
+		return true;
+	}
+
 
 }

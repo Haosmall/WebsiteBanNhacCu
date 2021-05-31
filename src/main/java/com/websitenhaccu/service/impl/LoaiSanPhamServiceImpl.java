@@ -55,4 +55,9 @@ public class LoaiSanPhamServiceImpl implements LoaiSanPhamService{
 		return loaiSanPhamRepository.findByTenLoaiSanPhamContaining(tenLoaiSanPham, PageRequest.of(page, size));
 	}
 
+	@Override
+	public LoaiSanPham getLoaiSanPhamTheoTen(String tenLoaiSanPham) {
+		return loaiSanPhamRepository.findByTenLoaiSanPham(tenLoaiSanPham);
+	}
+
 }

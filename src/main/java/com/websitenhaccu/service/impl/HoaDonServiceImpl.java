@@ -82,12 +82,12 @@ public class HoaDonServiceImpl implements HoaDonService {
 
 	@Override
 	public List<HoaDon> getDanhSachTheoNgayTrangThai(String ngay, String trangThai, int page, int size) {
-		return hoaDonRepository.findByNgayLapHoaDonAndTrangThaiContaining(Date.valueOf(ngay), trangThai, PageRequest.of(page, size));
+		return hoaDonRepository.findByNgayLapHoaDonAndTrangThaiContaining(Date.valueOf(ngay), trangThai, PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "ngayLapHoaDon")));
 	}
 
 	@Override
 	public List<HoaDon> getDanhSachTheoTrangThai(String trangThai, int page, int size) {
-		return hoaDonRepository.findByTrangThaiContaining(trangThai, PageRequest.of(page, size));
+		return hoaDonRepository.findByTrangThaiContaining(trangThai, PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "ngayLapHoaDon")));
 	}
 		
 	public List<HoaDon> getHoaDonTheoNguoiDung(String id) {

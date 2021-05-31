@@ -49,12 +49,8 @@ public class NguoiDungRestController {
 	}
 	
 	@DeleteMapping("/xoa")
-	private String xoaNguoiDung(Model model, @RequestParam("id") String id) {
-		if(nguoiDungService.XoaNguoiDung(id))
-			model.addAttribute("trangThaiXoa", "Người dùng có hóa đơn. Không thể xóa");
-		else
-			model.addAttribute("trangThaiXoa", "Xóa thành công");
-		return "redirect:/admin/nguoi-dung/danh-sach-nguoi-dung";
+	private void xoaNguoiDung(@RequestParam("id") String id) {
+		nguoiDungService.XoaNguoiDung(id);
 	}
 	
 	@GetMapping("/doi-mat-khau")

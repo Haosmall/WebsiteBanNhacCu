@@ -37,8 +37,6 @@
 						<select class="form-control"
 							id="loaiSanPham" name="loaiSanPham">
 
-							<option>Loại sản phẩm</option>
-
 							<c:forEach items="${ listLoaiSanPham }" var="loaiSanPham1">
 
 								<c:if test="${loaiSanPham1.id == dongSanPham.loaiSanPham.id}">
@@ -56,8 +54,6 @@
 					<div class="form-group">
 						<label>Thương Hiệu:</label> <select class="form-control"
 							id="thuongHieu" name="thuongHieu">
-
-							<option>Thương Hiệu</option>
 
 							<c:forEach items="${ listThuongHieu }" var="thuongHieu">
 

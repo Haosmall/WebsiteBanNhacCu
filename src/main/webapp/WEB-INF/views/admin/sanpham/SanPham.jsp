@@ -87,10 +87,9 @@
 								value="Sửa"
 								onclick="location.href='<c:url value='/admin/san-pham/cap-nhat-san-pham?id=${ sanPham.id }' />'">
 
-								<input type="button" class="btn btn-danger table__btn"
-								value="Xóa"
-								onclick="location.href='<c:url value='/admin/san-pham/xoa-san-pham?id=${ sanPham.id }' />'">
-
+								<input type="button" class="btn btn-danger table__btn btnXoa"
+								value="Xóa">
+								<input class="maSanPham" value="${sanPham.id}" type="hidden"/>
 							</td>
 						</tr>
 					</c:forEach>

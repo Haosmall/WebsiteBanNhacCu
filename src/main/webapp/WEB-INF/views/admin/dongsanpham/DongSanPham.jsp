@@ -102,8 +102,7 @@
 								onclick="location.href='<c:url value='/admin/dong-san-pham/cap-nhat-dong-san-pham?id=${ dongSanPham.id }' />'">
 
 								<input type="button" class="btn btn-danger table__btn"
-								value="Xóa"
-								onclick="location.href='<c:url value='/admin/dong-san-pham/xoa-dong-san-pham?id=${ dongSanPham.id }' />'">
+								value="Xóa" onclick="Delete('${ dongSanPham.id }')">
 
 							</td>
 						</tr>

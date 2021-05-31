@@ -3,6 +3,7 @@ package com.websitenhaccu.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -20,5 +21,9 @@ public interface MauSanPhamRepository extends JpaRepository<MauSanPham, MauSanPh
 	
 //	@Query(value = "SELECT mau_id , so_luong from Mau_SanPhams", nativeQuery = true)
 //	public List<MauSanPham> getDanhSachSoLuongMauBySanPhamId(@Param("id") String id);
+	
+	@Modifying
+	@Query(value = "delete from MauSanPham m where m.sanPham.id =:id", nativeQuery = true)
+	public void customXoaMauSanPhamBySanPhamId(@Param("id") String id);
 
 }

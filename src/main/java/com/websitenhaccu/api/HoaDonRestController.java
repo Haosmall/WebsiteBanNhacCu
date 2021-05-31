@@ -43,9 +43,13 @@ public class HoaDonRestController {
 
 	@Autowired
 	private ChiTietHoaDonConverter chiTietHoaDonConverter;
+	
+	@Autowired
 	private HoaDonService HoaDonService;
+	
 	@Autowired
 	private BinhLuanService binhLuanService;
+	
 	@Autowired
 	private BinhLuanConverter binhLuanConverter;
 
@@ -64,9 +68,9 @@ public class HoaDonRestController {
 
 		List<HoaDon> hoaDons = null;
 		if(date != "" && date != null)
-			hoaDons = hoaDonService.getDanhSachTheoNgayTrangThai(date, trangThai, page, 10);
+			hoaDons = hoaDonService.getDanhSachTheoNgayTrangThai(date, trangThai, page, 5);
 		else
-			hoaDons = hoaDonService.getDanhSachTheoTrangThai(trangThai, page, 10);
+			hoaDons = hoaDonService.getDanhSachTheoTrangThai(trangThai, page, 5);
 		
 		List<HoaDonDTO> hoaDonDTOs = new ArrayList<HoaDonDTO>();
 		hoaDons.forEach(hd -> {

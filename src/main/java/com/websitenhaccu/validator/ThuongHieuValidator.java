@@ -1,13 +1,18 @@
 package com.websitenhaccu.validator;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 import com.websitenhaccu.entity.ThuongHieu;
+import com.websitenhaccu.service.ThuongHieuService;
 
 @Component
 public class ThuongHieuValidator implements Validator{
+	
+	@Autowired
+	private ThuongHieuService thuongHieuService;
 
 	@Override
 	public boolean supports(Class<?> clazz) {
@@ -25,6 +30,9 @@ public class ThuongHieuValidator implements Validator{
 		
 		if(thuongHieu.getTenThuongHieu() == null) {
 			errors.rejectValue("tenThuongHieu", null, "Tên thương hiệu không được bỏ trống");
+		}
+		else if(thuongHieuService.getThuonghieuBangTenThuonghieu(thuongHieu.getTenThuongHieu()) != null) {
+			errors.rejectValue("tenThuongHieu", null, "Tên thương hiệu này đã tồn tại");
 		}
 	}
 

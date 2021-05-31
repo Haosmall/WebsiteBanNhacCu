@@ -22,5 +22,7 @@ public interface DongSanPhamService {
 
 	public List<DongSanPham> getDanhSachDongSanPhamTheoTenVaLoaiSanPhamVaThuongHieu(String tenDongSanPham,
 			String maLoaiSanPham, String maThuongHieu, int page, int size);
+	
+	public DongSanPham getDongSanPham_DungTenLoaiSPThuongHieu (String tenDongSanPham, String maLoaiSanPham, String maThuongHieu);
 
 }

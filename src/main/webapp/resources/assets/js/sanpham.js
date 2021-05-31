@@ -155,9 +155,9 @@ function typeSearch() {
 							value="Sửa"
 							onclick="location.href='/${CONTEXT_PATH}/admin/san-pham/cap-nhat-san-pham?id=${id}'">
 			
-							<input type="button" class="btn btn-danger table__btn"
-							value="Xóa"
-							onclick="location.href='/${CONTEXT_PATH}/admin/san-pham/xoa-san-pham?id=${id}'">
+							<input type="button" class="btn btn-danger table__btn btnXoa"
+								value="Xóa">
+							<input class="maSanPham" value="${id}" type="hidden"/>
 			
 						</td>
 					</tr>`
@@ -244,17 +244,13 @@ document.getElementById("btnNext").onclick = function () {
 							value="Sửa"
 							onclick="location.href='/${CONTEXT_PATH}/admin/san-pham/cap-nhat-san-pham?id=${id}'">
 			
-							<input type="button" class="btn btn-danger table__btn"
-							value="Xóa"
-							onclick="location.href='/${CONTEXT_PATH}/admin/san-pham/xoa-san-pham?id=${id}'">
+							<input type="button" class="btn btn-danger table__btn btnXoa"
+								value="Xóa">
+							<input class="maSanPham" value="${id}" type="hidden"/>
 			
 						</td>
 					</tr>`
 				);
-
-				console.log("dadendat");
-
-
 
 			}
 
@@ -314,17 +310,13 @@ document.getElementById("btnPreviusPage").onclick = function () {
 							value="Sửa"
 							onclick="location.href='/${CONTEXT_PATH}/admin/san-pham/cap-nhat-san-pham?id=${id}'">
 			
-							<input type="button" class="btn btn-danger table__btn"
-							value="Xóa"
-							onclick="location.href='/${CONTEXT_PATH}/admin/san-pham/xoa-san-pham?id=${id}'">
+							<input type="button" class="btn btn-danger table__btn btnXoa"
+								value="Xóa">
+							<input class="maSanPham" value="${id}" type="hidden"/>
 			
 						</td>
 					</tr>`
 				);
-
-				console.log("dadendat");
-
-
 
 			}
 
@@ -335,3 +327,54 @@ document.getElementById("btnPreviusPage").onclick = function () {
 	});
 
 };
+
+$(".btnXoa").each(function (index) {
+
+	$(this).click(function () {
+		console.log("da nhan btnXoa")
+		var cf = confirm("Bạn muốn xóa sản phẩm này ?");
+		if (cf == true) {
+			let id = $(".maSanPham").get(index).value;
+			xoaSanPham(id);
+		}
+	});
+});
+
+xoaSanPham = (id) => {
+
+	console.log(`http://${HOST_NAME}:${PORT}/${CONTEXT_PATH}/api/san-pham/xoa?id=${id}`);
+	$.ajax({
+		url: apiFetch = `http://${HOST_NAME}:${PORT}/${CONTEXT_PATH}/api/san-pham/xoa?id=${id}`,
+		type: 'DELETE',
+		success: function (result) {
+
+			var pageHidden = document.getElementById("pageValue");//gia tri hiden
+			var viewPage = document.getElementById("viewPage");//gia tri hien thi trang hien tai
+			viewPage.value = 1; //gan lai  hien thi trang hien tai
+			pageHidden.value = 1; //gan lai gia tri bien hidden
+
+			window.location.href = 'http://localhost:8080/WebsiteBanNhacCu/admin/san-pham/danh-sach-san-pham';
+
+			console.log("Đã xóa sản phẩm");
+			toastr.success("Đã xóa sản phẩm");
+		},
+		error: function () {
+			alert('sản phẩm này không thể xóa');
+			toastr.error('sản phẩm này không thể xóa');
+		},
+	});
+}
+
+
+$("body").on("DOMSubtreeModified", "#tableSanPham", function () {
+	$(".btnXoa").each(function (index) {
+		$(this).click(function () {
+			console.log("da nhan btnXoa")
+			var cf = confirm("Bạn muốn xóa sản phẩm này ?");
+			if (cf == true) {
+				let id = $(".maSanPham").get(index).value;
+				xoaNguoiDung(id);
+			}
+		});
+	});
+});

@@ -14,10 +14,10 @@
 
 	<div class="container-fluid management">
 		<div class="form-group row timkiem">
-			<label for="maHoaDon" class="col-2 col-form-label">Tìm mã hóa
+			<label for="txtSearch" class="col-2 col-form-label">Tìm mã hóa
 				đơn</label>
 			<div class="col-sm-5">
-				<input type="text" class="form-control" id="maHoaDon" value="">
+				<input type="text" class="form-control" id="txtSearch" value="" on>
 			</div>
 			<div class="col-sm-2">
 				<input type="button" class="form-control btn-primary" id="btnClear"

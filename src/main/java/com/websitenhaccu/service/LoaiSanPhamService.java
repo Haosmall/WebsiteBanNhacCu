@@ -12,4 +12,5 @@ public interface LoaiSanPhamService {
 	public void XoaLoaiSanPham (String maLoaiSanPham);
 	public void CapnhatLoaiSanPham (LoaiSanPham oaiSanPham);
 	public List<LoaiSanPham> getDanhSachLoaiSanPhamBangTenLoaiSanPham (String tenLoaiSanPham, int page, int size);
+	public LoaiSanPham getLoaiSanPhamTheoTen(String tenLoaiSanPham);
 }
