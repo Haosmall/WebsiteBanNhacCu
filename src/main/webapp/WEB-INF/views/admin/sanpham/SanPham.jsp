@@ -25,9 +25,10 @@
 		<div class="row">
 			<div class="col-lg-4">
 				<div class="form-group">
-					<label for="exampleInputEmail1"><b style="margin-top:5px">Tìm kiếm</b></label> <input type="text"
-						oninput="typeSearch()" class="form-control" id="txtSearch"
-						aria-describedby="emailHelp" placeholder="Nhập tên sản phẩm">
+					<label for="exampleInputEmail1"><b style="margin-top: 5px">Tìm
+							kiếm</b></label> <input type="text" oninput="typeSearch()"
+						class="form-control" id="txtSearch" aria-describedby="emailHelp"
+						placeholder="Nhập tên sản phẩm">
 
 				</div>
 			</div>
@@ -47,33 +48,38 @@
 
 
 		<div class="row">
-			<div class="table-wrapper-scroll-y my-custom-scrollbar" style="width: 100%">
+			<div class="table-wrapper-scroll-y my-custom-scrollbar"
+				style="width: 100%">
 				<table class="table">
 
 					<thead class="thead-light">
 						<tr>
-							<th style="width:2%">STT</th>
-							<th style="width:25%">Tên sản phẩm</th>
-							<th style="width:14%"><select class="form-control" id="cboLoaiSanPham">
+
+							<th style="width: 2%">STT</th>
+							<th style="width: 25%">Tên sản phẩm</th>
+							<th style="width: 14%"><select class="form-control"
+								id="cboLoaiSanPham">
 									<option value="">Loại sản phẩm</option>
 									<c:forEach items="${listLoaiSanPham}" var="loaiSanPham">
 										<option value="${loaiSanPham.id}">${loaiSanPham.tenLoaiSanPham}</option>
 									</c:forEach>
 							</select></th>
-							<th style="width:14%"><select class="form-control" id="cboXuatXu">
+							<th style="width: 14%"><select class="form-control"
+								id="cboXuatXu">
 									<option value="">Xuất Xứ</option>
 									<c:forEach items="${listXuatXu}" var="xuatXu">
 										<option value="${xuatXu}">${xuatXu}</option>
 									</c:forEach>
 							</select></th>
-							<th style="width:14%"><select class="form-control" id="cboThuongHieu">
+							<th style="width: 14%"><select class="form-control"
+								id="cboThuongHieu">
 									<option value="">Thương Hiệu</option>
 									<c:forEach items="${listThuongHieu}" var="thuongHieu">
 										<option value="${thuongHieu.id}">${thuongHieu.tenThuongHieu}</option>
 									</c:forEach>
 							</select></th>
-							<th style="width:7%">Số lượng</th>
-							<th style="width:18%"></th>
+							<th style="width: 7%">Số lượng</th>
+							<th style="width: 18%"></th>
 						</tr>
 					</thead>
 
@@ -96,11 +102,8 @@
 									value="Sửa"
 									onclick="location.href='<c:url value='/admin/san-pham/cap-nhat-san-pham?id=${ sanPham.id }' />'">
 
-									<input type="button" class="btn btn-danger table__btn"
-									value="Xóa"
-									onclick="location.href='<c:url value='/admin/san-pham/xoa-san-pham?id=${ sanPham.id }' />'">
-
-								</td>
+									<input type="button" class="btn btn-danger table__btn btnXoa" value="Xóa">
+									<input class="maSanPham" value="${sanPham.id}"type="hidden" /></td>
 							</tr>
 						</c:forEach>
 
@@ -114,7 +117,7 @@
 	<div class="form-group row adjust_button">
 
 		<button class="btn btn-danger color" onclick="typeSearch()"
-			id="btnPreviusPage"">Trang trước</button>
+			id="btnPreviusPage">Trang trước</button>
 
 		<input type="text" readonly class="form-control" id="viewPage"
 			value="${page = page + 1}">

@@ -170,7 +170,7 @@ xoaNguoiDung = (id) => {
         error: function () {
             console.log('Khách hàng này không thể xóa');
             toastr.error('Khách hàng này không thể xóa');
-        },
+        }
     });
 }
 

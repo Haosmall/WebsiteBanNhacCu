@@ -73,22 +73,27 @@ public class DongSanPhamCotroller {
 
 	@PostMapping("/them-dong-san-pham")
 	public String ThemDongSanPham(@ModelAttribute("dongSanPham") DongSanPham dongSanPham, BindingResult bindingResult, Model model, @RequestParam("thuongHieu") String idth, @RequestParam("loaiSanPham") String idlsp) {
+
+		LoaiSanPham lsp = new LoaiSanPham(idlsp);
+		ThuongHieu th = new ThuongHieu(idth);
+		dongSanPham.setThuongHieu(th);
+		dongSanPham.setLoaiSanPham(lsp);
+		
 		dongSanPhamValidator.validate(dongSanPham, bindingResult);
 		if (bindingResult.hasErrors()) {
 
 			List<LoaiSanPham> listSanPham = loaiSanPhamService.getTatCaLoaiSanPham();
 			List<ThuongHieu> listThuongHieu = thuongHieuService.getTatCaThuongHieu();
 			
-			model.addAttribute("listSanPham", listSanPham);
+			model.addAttribute("listLoaiSanPham", listSanPham);
 			model.addAttribute("listThuongHieu", listThuongHieu);
 			
-			return "addmin/dongsanpham/FormDongSanPham";
+			model.addAttribute("formTitle", "Thêm dòng sản phẩm");
+			model.addAttribute("formButton", "Thêm");
+			
+			return "admin/dongsanpham/FormDongSanPham";
 		}
 		
-		LoaiSanPham lsp = new LoaiSanPham(idlsp);
-		ThuongHieu th = new ThuongHieu(idth);
-		dongSanPham.setThuongHieu(th);
-		dongSanPham.setLoaiSanPham(lsp);
 		
 		dongSanPhamService.ThemDongSanPham(dongSanPham);
 		return "redirect:/admin/dong-san-pham/danh-sach-dong-san-pham";
@@ -106,10 +111,10 @@ public class DongSanPhamCotroller {
 	public String CapNhatDongSanPham(@RequestParam("id") String id, Model model) {
 		DongSanPham dongSanPham = dongSanPhamService.getDongSanPhamBangMa(id);
 
-		List<LoaiSanPham> listLoaiSanPham = loaiSanPhamService.getTatCaLoaiSanPham();
 		List<ThuongHieu> listThuongHieu = thuongHieuService.getTatCaThuongHieu();
+		List<LoaiSanPham> listSanPham = loaiSanPhamService.getTatCaLoaiSanPham();
 		
-		model.addAttribute("listLoaiSanPham", listLoaiSanPham);
+		model.addAttribute("listLoaiSanPham", listSanPham);
 		model.addAttribute("listThuongHieu", listThuongHieu);
 		
 		model.addAttribute("formTitle", "Cập nhật loại sản phẩm");
@@ -120,6 +125,12 @@ public class DongSanPhamCotroller {
 	
 	@PostMapping("/cap-nhat-dong-san-pham")
 	public String CapNhatDongSanPham(@ModelAttribute("dongSanPham") DongSanPham dongSanPham, BindingResult bindingResult, Model model, @RequestParam("thuongHieu") String idth, @RequestParam("loaiSanPham") String idlsp) {
+
+		ThuongHieu th = new ThuongHieu(idth);
+		LoaiSanPham lsp = new LoaiSanPham(idlsp);
+		dongSanPham.setThuongHieu(th);
+		dongSanPham.setLoaiSanPham(lsp);
+		
 		dongSanPhamValidator.validate(dongSanPham, bindingResult);
 		if (bindingResult.hasErrors()) {
 			
@@ -131,11 +142,6 @@ public class DongSanPhamCotroller {
 			
 			return "admin/dongsanpham/FormDongSanPham";
 		}
-
-		ThuongHieu th = new ThuongHieu(idth);
-		LoaiSanPham lsp = new LoaiSanPham(idlsp);
-		dongSanPham.setThuongHieu(th);
-		dongSanPham.setLoaiSanPham(lsp);
 		
 		dongSanPhamService.CapnhatDongSanPham(dongSanPham);
 		return "redirect:/admin/dong-san-pham/danh-sach-dong-san-pham";

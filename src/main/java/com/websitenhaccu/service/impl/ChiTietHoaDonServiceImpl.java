@@ -31,4 +31,9 @@ public class ChiTietHoaDonServiceImpl implements ChiTietHoaDonService {
 		chiTietHoaDonRepository.deleteByHoaDonId(maHoaDon);
 	}
 
+	@Override
+	public ChiTietHoaDon getChiTietHoaDonByMaSanPham(String maSanPham) {
+		return chiTietHoaDonRepository.findFirstByMauSanPhamSanPhamId(maSanPham);
+	}
+
 }

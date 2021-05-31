@@ -64,4 +64,20 @@ public class DongSanPhamServiceImpl implements DongSanPhamService {
 		return dongSanPhamRepository.findByTenDongSanPhamContainingAndLoaiSanPhamIdContainingAndThuongHieuIdContaining(tenDongSanPham, maLoaiSanPham, maThuongHieu, firstPageWithTwoElements);
 	}
 
+	@Override
+	public DongSanPham getDongSanPham_DungTenLoaiSPThuongHieu(String tenDongSanPham, String maLoaiSanPham,
+			String maThuongHieu) {
+		return dongSanPhamRepository.findByTenDongSanPhamAndLoaiSanPhamIdAndThuongHieuId(tenDongSanPham, maLoaiSanPham, maThuongHieu);
+	}
+
+	@Override
+	public DongSanPham getDongSanPhamBangIdLoaiSP(String idLoaiSanPham) {
+		return dongSanPhamRepository.findFirstByLoaiSanPhamId(idLoaiSanPham);
+	}
+
+	@Override
+	public DongSanPham getDongSanPhamBangIdThuongHieu(String idThuongHieu) {
+		return dongSanPhamRepository.findFirstByThuongHieuId(idThuongHieu);
+	}
+
 }

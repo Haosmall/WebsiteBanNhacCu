@@ -186,7 +186,7 @@ $outline: #e6e6e6;
 
         img {
             height: 380px;
-            object-fit: cover;
+            object-fit: contain;
             background-position: center center;
             max-width: -webkit-fill-available;
 
@@ -285,7 +285,8 @@ $outline: #e6e6e6;
 
 .evaluate__sendratting {
 	background-color: #fff;
-  
+    border-radius: 20px;
+    border: 0.5px solid #c4c4c4;
     margin-bottom: 20px;
     display: flex;
     flex-direction: column;
@@ -507,8 +508,4 @@ $outline: #e6e6e6;
         color: #999;
         font-style: italic;
     }
-}
-
-.cmt__evaluate{
-	background-color: #fff;
 }

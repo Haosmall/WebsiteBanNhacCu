@@ -76,6 +76,10 @@
 									value="Chi tiết"
 									onclick="location.href='<c:url value='/admin/nguoi-dung/chi-tiet-nguoi-dung?id=${ nguoiDung.userId }' />'">
 
+									<input type="button" class="btn btn-primary table__btn"
+									value="Cập nhật"
+									onclick="location.href='<c:url value='/admin/nguoi-dung/cap-nhat-nguoi-dung?id=${ nguoiDung.userId }' />'">
+
 									<input type="button" class="btn btn-danger table__btn btnXoa"
 									id="" value="Xóa"> <input type="hidden"
 									class="maNguoiDung" value="${ nguoiDung.userId}" /></td>

@@ -1,14 +1,19 @@
 package com.websitenhaccu.validator;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 import com.websitenhaccu.entity.LoaiSanPham;
+import com.websitenhaccu.service.LoaiSanPhamService;
 
 @Component
 public class LoaiSanPhamValidator implements Validator{
 
+	@Autowired
+	private LoaiSanPhamService loaiSanPhamService;
+	
 	@Override
 	public boolean supports(Class<?> clazz) {
 		return LoaiSanPham.class.isAssignableFrom(clazz);
@@ -23,8 +28,11 @@ public class LoaiSanPhamValidator implements Validator{
 		
 		LoaiSanPham loaiSanPham = (LoaiSanPham) target;
 		
-		if(loaiSanPham.getTenLoaiSanPham() == null) {
+		if(loaiSanPham.getTenLoaiSanPham().trim() == "") {
 			errors.rejectValue("tenLoaiSanPham", null, "Tên loại sản phẩm không được bỏ trống");
+		}
+		else if(loaiSanPhamService.getLoaiSanPhamTheoTen(loaiSanPham.getTenLoaiSanPham()) != null) {
+			errors.rejectValue("tenLoaiSanPham", null, "Tên loại sản phẩm đã tồn tại");
 		}
 	}
 

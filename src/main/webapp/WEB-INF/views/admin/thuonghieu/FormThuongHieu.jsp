@@ -40,7 +40,7 @@
 					</div>
 
 					<button type="submit" class="btn btn-success">${formButton}</button>
-					<button type="reset" class="btn btn-danger">Hủy</button>
+					<button type="button" class="btn btn-danger" onClick="window.location.href='http://localhost:8080/WebsiteBanNhacCu/admin/thuong-hieu/danh-sach-thuong-hieu'">Hủy</button>
 
 				</form:form>
 
@@ -49,10 +49,6 @@
 
 			<div class="col-lg-3"></div>
 		</div>
-
-
-
-
 
 	</div>
 	<!-- /.container-fluid -->

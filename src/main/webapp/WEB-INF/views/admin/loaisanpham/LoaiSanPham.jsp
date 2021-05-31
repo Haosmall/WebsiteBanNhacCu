@@ -14,7 +14,11 @@
 
 </head>
 <body>
-
+	<c:if test="${thongBao == 1}">
+		<script type="text/javascript">
+			alert("Loại sản phẩm này không thể xóa");
+		</script>
+	</c:if>
 
 	<div class="container-fluid" style="background-color: #fff">
 
@@ -63,7 +67,8 @@
 								<td>${ counter.count }</td>
 								<td>${ loaiSanPham.id }</td>
 								<td>${ loaiSanPham.tenLoaiSanPham }</td>
-								<td><input type="button" class="btn btn-primary table__btn"
+								<td>
+									<input type="button" class="btn btn-primary table__btn"
 									value="Chi tiết"
 									onclick="location.href='<c:url value='/admin/loai-san-pham/chi-tiet-loai-san-pham?id=${ loaiSanPham.id }' />'">
 
@@ -71,17 +76,11 @@
 									value="Sửa"
 									onclick="location.href='<c:url value='/admin/loai-san-pham/cap-nhat-loai-san-pham?id=${ loaiSanPham.id }' />'">
 
-									<input type="button" class="btn btn-danger table__btn"
-									value="Xóa"
-									onclick="location.href='<c:url value='/admin/loai-san-pham/xoa-loai-san-pham?id=${ loaiSanPham.id }' />'">
-
+									<input type="button" class="btn btn-danger table__btn btnXoa" id="" value="Xóa">
+                    				<input type="hidden" class="maLoaiSanPham" value="${loaiSanPham.id}" />
 								</td>
 							</tr>
 						</c:forEach>
-
-	
-
-
 					</tbody>
 				</table>
 			</div>

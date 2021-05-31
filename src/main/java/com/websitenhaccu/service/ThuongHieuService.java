@@ -9,7 +9,7 @@ public interface ThuongHieuService {
 	public ThuongHieu getThuonghieuBangTenThuonghieu (String tenThuongHieu);
 	public ThuongHieu getThuonghieuBangMa (String maThuongHieu);
 	public void ThemThuonghieu (ThuongHieu thuongHieu);
-	public void XoaThuonghieu (String maThuongHieu);
+	public boolean XoaThuonghieu (String maThuongHieu);
 	public void CapnhatThuonghieu (ThuongHieu thuongieu);
 	public List<ThuongHieu> getDanhSachThuongHieuBangTenThuongHieu(String tenThuongHieu, int page, int size);
 }

@@ -38,9 +38,8 @@ public class MauSanPhamServiceImpl implements MauSanPhamService{
 	}
 
 	@Override
-	public void xoaMauSanPham(String id) {
-		
-		
+	public void xoaMauSanPham(String idSanPham) {
+		mauSanPhamRepository.customXoaMauSanPhamBySanPhamId(idSanPham);
 	}
 
 	@Override
