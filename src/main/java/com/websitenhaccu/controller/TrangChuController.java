@@ -1,6 +1,7 @@
 package com.websitenhaccu.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -123,7 +124,8 @@ public class TrangChuController {
 	@GetMapping(value = "/test")
 	public String test() {
 		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-		sanPhamService.timKiemSanPhamTheoNhieuDieuKien("", null, 0, 0, null, null, null, 0, 2, 0).forEach(s -> {
+		List<String> loai = new ArrayList<String>(Arrays.asList("LSP00003"));
+		sanPhamService.timKiemSanPhamTheoNhieuDieuKien("", null, 0.1, 10000, null, null, loai, 0, 10, 0).forEach(s -> {
 			System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 			System.out.println(s.getId());
 			System.out.println(s.getTenSanPham());

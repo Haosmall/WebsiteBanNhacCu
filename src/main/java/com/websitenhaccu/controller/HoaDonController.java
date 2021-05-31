@@ -136,7 +136,8 @@ public class HoaDonController {
 			chiTietHoaDonService.themChiTietHoaDon(chiTietHoaDon);
 		});
 		
-		httpSession.invalidate();
+		hoaDonDTO = new HoaDonDTO();
+		httpSession.setAttribute("hoaDonDTO", hoaDonDTO);
 
 		return "redirect:/gio-hang";
 	}

@@ -169,20 +169,26 @@ public class SanPhamServiceImpl implements SanPhamService {
 
 		Specification<SanPham> dieuKien = Specification
 				.where(SanPhamSpecification.timKiemSanPhamTheoTenSanPham(tenSanPham));
+		System.out.println("----------------------------------------------- ten");
 
 		if ( xuatXus != null && xuatXus.size() > 0) {
+			System.out.println("----------------------------------------------- xx");
 			dieuKien.and(SanPhamSpecification.timKiemSanPhamTheoXuatXu(xuatXus));
 		}
 		if (giaDau != 0) {
+			System.out.println("----------------------------------------------- gia");
 			dieuKien.and(SanPhamSpecification.timKiemSanPhamTheoKhoangGia(giaDau, giaCuoi));
 		}
 		if (listDongSanPhamId != null && listDongSanPhamId.size() > 0) {
+			System.out.println("----------------------------------------------- dong");
 			dieuKien.and(SanPhamSpecification.timKiemSanPhamTheoDongSanPham(listDongSanPhamId));
 		}
 		if (listThuongHieuId != null && listThuongHieuId.size() > 0) {
+			System.out.println("----------------------------------------------- th");
 			dieuKien.and(SanPhamSpecification.timKiemSanPhamTheoThuongHieu(listThuongHieuId));
 		}
 		if (listLoaiSanPhamId != null && listLoaiSanPhamId.size() > 0) {
+			System.out.println("----------------------------------------------- loai");
 			dieuKien.and(SanPhamSpecification.timKiemSanPhamTheoLoaiSanPham(listLoaiSanPhamId));
 		}
 		
