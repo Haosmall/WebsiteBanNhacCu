@@ -11,7 +11,6 @@
 	href='<c:url value ="/static/assets/css/errors.css"/>'>
 </head>
 <body>
-
 	<div class="container" style="padding: 0">
 		<a
 			href="<c:url value='/admin/loai-san-pham/danh-sach-loai-san-pham' />">Quay
@@ -35,7 +34,7 @@
 					</div>
 
 					<button type="submit" class="btn btn-success">${formButton}</button>
-					<button type="reset" class="btn btn-danger">Hủy</button>
+					<button type="button" class="btn btn-danger" onClick="window.location.href='http://localhost:8080/WebsiteBanNhacCu/admin/loai-san-pham/danh-sach-loai-san-pham'">Hủy</button>
 
 				</form:form>
 

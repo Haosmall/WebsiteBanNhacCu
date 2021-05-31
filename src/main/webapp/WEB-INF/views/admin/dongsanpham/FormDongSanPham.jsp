@@ -45,8 +45,6 @@
 						<label>Loại sản phẩm:</label> <select class="form-control"
 							id="loaiSanPham" name="loaiSanPham">
 
-							<option>Loại sản phẩm</option>
-
 							<c:forEach items="${ listLoaiSanPham }" var="loaiSanPham1">
 
 								<c:if test="${loaiSanPham1.id == dongSanPham.loaiSanPham.id}">
@@ -65,8 +63,6 @@
 						<label>Thương Hiệu:</label> <select class="form-control"
 							id="thuongHieu" name="thuongHieu">
 
-							<option>Thương Hiệu</option>
-
 							<c:forEach items="${ listThuongHieu }" var="thuongHieu">
 
 								<c:if test="${thuongHieu.id == dongSanPham.thuongHieu.id}">
@@ -82,7 +78,7 @@
 					</div>
 
 					<button type="submit" class="btn btn-success">${formButton}</button>
-					<button type="reset" class="btn btn-danger">Hủy</button>
+					<button type="button" class="btn btn-danger" onClick="window.location.href='http://localhost:8080/WebsiteBanNhacCu/admin/dong-san-pham/danh-sach-dong-san-pham'">Hủy</button>
 
 				</form:form>
 

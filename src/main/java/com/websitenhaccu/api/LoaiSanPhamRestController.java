@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.websitenhaccu.dto.LoaiSanPhamDTO;
 import com.websitenhaccu.entity.LoaiSanPham;
+import com.websitenhaccu.service.DongSanPhamService;
 import com.websitenhaccu.service.LoaiSanPhamService;
 
 @RestController
@@ -19,6 +22,9 @@ public class LoaiSanPhamRestController {
 	
 	@Autowired
 	private LoaiSanPhamService loaiSanPhamService;
+	
+	@Autowired
+	private DongSanPhamService dongSanPhamService;
 	
 	@GetMapping("/danh-sach")
 	public List<LoaiSanPhamDTO> getDanhSachLoaiSanPhamBangTenLoaiSanPham(@RequestParam("tenLoaiSanPham") String tenLoaiSanPham,
@@ -31,6 +37,15 @@ public class LoaiSanPhamRestController {
 			loaiSanPhamDTOs.add(loaiSanPhamDTO);
 		}
 		return loaiSanPhamDTOs;
+	}
+	
+	@DeleteMapping("/xoa")
+	public HttpStatus deleteLoaiSanPham(@RequestParam("id") String id) {
+		if(dongSanPhamService.getDongSanPhamBangIdLoaiSP(id) != null)
+			return HttpStatus.BAD_REQUEST;
+		loaiSanPhamService.XoaLoaiSanPham(id);
+		
+		return HttpStatus.OK;
 	}
 	
 }

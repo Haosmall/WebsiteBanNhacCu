@@ -125,11 +125,13 @@ public class TrangChuController {
 	public String test() {
 		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		List<String> loai = new ArrayList<String>(Arrays.asList("LSP00003"));
-		sanPhamService.timKiemSanPhamTheoNhieuDieuKien("", null, 0.1, 10000, null, null, loai, 0, 10, 0).forEach(s -> {
+		List<String> xuatXu = new ArrayList<String>(Arrays.asList("Nhật Bản"));
+		sanPhamService.timKiemSanPhamTheoNhieuDieuKien("", xuatXu, 0, 10000, null, null, null, 0, 10, 2).forEach(s -> {
 			System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 			System.out.println(s.getId());
 			System.out.println(s.getTenSanPham());
 			System.out.println(s.getGiaBan());
+			System.out.println(s.getXuatXu());
 		});
 
 		return "User";

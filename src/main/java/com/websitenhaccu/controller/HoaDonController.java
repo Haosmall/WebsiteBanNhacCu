@@ -134,12 +134,18 @@ public class HoaDonController {
 			cthd.setMaHoaDon(id);
 			ChiTietHoaDon chiTietHoaDon = chiTietHoaDonConverter.toChiTietHoaDon(cthd);
 			chiTietHoaDonService.themChiTietHoaDon(chiTietHoaDon);
+			MauSanPham mauSanPham = chiTietHoaDon.getMauSanPham();
+			
+			int slt = mauSanPham.getSoLuong();
+			
+			mauSanPham.setSoLuong(slt - chiTietHoaDon.getSoLuong());
+			mauSanPhamService.capNhatMauSanPham(mauSanPham);
 		});
 		
 		hoaDonDTO = new HoaDonDTO();
 		httpSession.setAttribute("hoaDonDTO", hoaDonDTO);
 
-		return "redirect:/gio-hang";
+		return "redirect:/quan-ly-don-hang/chi-tiet-don-hang?id=" + id;
 	}
 	
 	@GetMapping

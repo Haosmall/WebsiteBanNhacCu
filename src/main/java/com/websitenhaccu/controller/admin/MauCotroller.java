@@ -29,7 +29,7 @@ public class MauCotroller {
 	@GetMapping("/danh-sach-mau")
 	public ModelAndView getTatcaMau() {
 		List<Mau> danhSachMau = mauService.getTatCamau();
-		System.out.println("mau trong danh sach: " +danhSachMau.get(0));
+		System.out.println("mau trong danh sach: " + danhSachMau.get(0));
 		return new ModelAndView("admin/mau/Mau", "listMau", danhSachMau);
 	}
 
@@ -37,7 +37,7 @@ public class MauCotroller {
 	public ModelAndView getChitietMau(int id) {
 
 		Mau mau = mauService.getMauTheoId(id);
-		
+
 		return new ModelAndView("admin/mau/ChiTietMau", "mau", mau);
 	}
 
@@ -51,12 +51,17 @@ public class MauCotroller {
 	}
 
 	@PostMapping("/them-mau")
-	public String ThemMau(@ModelAttribute("mau") Mau mau, BindingResult bindingResult) {
+	public String ThemMau(@ModelAttribute("mau") Mau mau, BindingResult bindingResult, Model model) {
 		mauValidator.validate(mau, bindingResult);
+
 		if (bindingResult.hasErrors()) {
-			return "addmin/mau/FormMau";
+			model.addAttribute("formTitle", "Thêm màu");
+			model.addAttribute("formButton", "Thêm");
+			return "admin/mau/FormMau";
 		}
+
 		mauService.themMau(mau);
+
 		return "redirect:/admin/mau/danh-sach-mau";
 	}
 
@@ -71,18 +76,21 @@ public class MauCotroller {
 	@GetMapping("/cap-nhat-mau")
 	public String CapNhatMau(@RequestParam("id") int id, Model model) {
 		Mau mau = mauService.getMauTheoId(id);
-		
+
 		model.addAttribute("formTitle", "Cập nhật màu");
 		model.addAttribute("formButton", "Cập nhật");
 		model.addAttribute("mau", mau);
-		
+
 		return "admin/mau/FormMau";
 	}
 
 	@PostMapping("/cap-nhat-mau")
-	public String CapNhatMau(@ModelAttribute("mau") Mau mau, BindingResult bindingResult) {
+	public String CapNhatMau(@ModelAttribute("mau") Mau mau, BindingResult bindingResult, Model model) {
 		mauValidator.validate(mau, bindingResult);
+
 		if (bindingResult.hasErrors()) {
+			model.addAttribute("formTitle", "Thêm màu");
+			model.addAttribute("formButton", "Thêm");
 			return "admin/mau/FormMau";
 		}
 		mauService.capNhatMau(mau);

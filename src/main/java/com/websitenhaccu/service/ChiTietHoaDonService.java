@@ -11,4 +11,5 @@ public interface ChiTietHoaDonService {
 	
 	public void xoaChiTietHoaDon(String maHoaDon);
 
+	public ChiTietHoaDon getChiTietHoaDonByMaSanPham(String maSanPham);
 }

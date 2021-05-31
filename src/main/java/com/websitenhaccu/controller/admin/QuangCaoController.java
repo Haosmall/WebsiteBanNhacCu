@@ -21,10 +21,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.websitenhaccu.converter.QuangCaoConverter;
 import com.websitenhaccu.dto.QuangCaoDTO;
-import com.websitenhaccu.entity.Mau;
-import com.websitenhaccu.entity.MauSanPham;
 import com.websitenhaccu.entity.QuangCao;
 import com.websitenhaccu.service.QuangCaoService;
+import com.websitenhaccu.validator.QuangCaoValidator;
 
 @Controller
 @RequestMapping("/admin/quang-cao")
@@ -34,6 +33,9 @@ public class QuangCaoController {
 
 	@Autowired
 	private QuangCaoConverter quangCaoConverter;
+	
+	@Autowired
+	private QuangCaoValidator quangCaoValidator;
 
 	@GetMapping()
 	public ModelAndView getTatCaQuangCao() {
@@ -62,15 +64,25 @@ public class QuangCaoController {
 
 	@PostMapping("/them-quang-cao")
 	public String themQuangCao(@ModelAttribute("quangCaoDTO") QuangCaoDTO quangCaoDTO,
-			@RequestParam("hinhAnh") MultipartFile multipartFile) throws IOException {
+			@RequestParam("hinhAnh") MultipartFile multipartFile, BindingResult bindingResult, Model model) throws IOException {
 		
 		byte[] bytes = multipartFile.getBytes();
+		if(bytes.length > 0)
+			quangCaoDTO.setHinhAnhBase64("da co hinh anh");
 		QuangCao quangCao = quangCaoConverter.toQuangCao(quangCaoDTO, bytes);
 		
 		Date temp = new Date(System.currentTimeMillis());
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		Date ngayHienTai = Date.valueOf(format.format(temp));
 		quangCao.setNgayThem(ngayHienTai);
+		
+		quangCaoValidator.validate(quangCaoDTO, bindingResult);
+		if (bindingResult.hasErrors()) {
+			model.addAttribute("quangCaoDTO", quangCaoDTO);
+			model.addAttribute("formTitle", "Thêm quảng cáo");
+			model.addAttribute("formButton", "Thêm");
+			return "admin/quangcao/QuangCaoForm";
+		}
 		
 		quangCaoService.themQuangCao(quangCao);
 

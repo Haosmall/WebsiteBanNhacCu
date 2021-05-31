@@ -74,9 +74,8 @@
 									value="Sửa"
 									onclick="location.href='<c:url value='/admin/thuong-hieu/cap-nhat-thuong-hieu?id=${ thuonghieu.id }' />'">
 
-									<input type="button" class="btn btn-danger table__btn"
-									value="Xóa"
-									onclick="location.href='<c:url value='/admin/thuong-hieu/xoa-thuong-hieu?id=${ thuonghieu.id }' />'">
+									<input type="button" class="btn btn-danger table__btn btnXoa" id="" value="Xóa">
+                    				<input type="hidden" class="maThuongHieu" value="${thuonghieu.id}" />
 
 								</td>
 							</tr>

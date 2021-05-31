@@ -22,7 +22,7 @@ function typeSearch() {
 				<td>${i + 1}</td>
 				<td>${data[i].id}</td>
 				<td>${data[i].tenLoaiSanPham}</td>
-				<td>
+				<>
 
 					<input type="button" class="btn btn-primary table__btn"
 					value="Chi tiết"
@@ -32,9 +32,8 @@ function typeSearch() {
 					value="Sửa"
 					onclick="location.href='/WebsiteBanNhacCu/admin/loai-san-pham/cap-nhat-loai-san-pham?id=${data[i].id}'">
 
-					<input type="button" class="btn btn-danger table__btn"
-					value="Xóa"
-					onclick="location.href='/WebsiteBanNhacCu/admin/loai-san-pham/xoa-loai-san-pham?id=${data[i].id}'">
+					<input type="button" class="btn btn-danger table__btn btnXoa" id="" value="Xóa">
+                    <input type="hidden" class="maLoaiSanPham" value="${ data[i].id}" />
 
 				</td>
 			</tr>`
@@ -74,7 +73,7 @@ document.getElementById("btnNext").onclick = function () {
 					<td>${i + 1}</td>
 					<td>${data[i].id}</td>
 					<td>${data[i].tenLoaiSanPham}</td>
-					<td>
+					<>
 
 						<input type="button" class="btn btn-primary table__btn"
 						value="Chi tiết"
@@ -84,9 +83,8 @@ document.getElementById("btnNext").onclick = function () {
 						value="Sửa"
 						onclick="location.href='/WebsiteBanNhacCu/admin/loai-san-pham/cap-nhat-loai-san-pham?id=${data[i].id}'">
 
-						<input type="button" class="btn btn-danger table__btn"
-						value="Xóa"
-						onclick="location.href='/WebsiteBanNhacCu/admin/loai-san-pham/xoa-loai-san-pham?id=${data[i].id}'">
+						<input type="button" class="btn btn-danger table__btn btnXoa" id="" value="Xóa">
+                        <input type="hidden" class="maLoaiSanPham" value="${ data[i].id}" />
 
 					</td>
 				</tr>`
@@ -102,8 +100,6 @@ document.getElementById("btnNext").onclick = function () {
 };
 
 document.getElementById("btnPreviusPage").onclick = function () {
-
-
 
 	var searchText = document.getElementById("txtSearch").value;
 
@@ -128,7 +124,7 @@ document.getElementById("btnPreviusPage").onclick = function () {
 					<td>${i + 1}</td>
 					<td>${data[i].id}</td>
 					<td>${data[i].tenLoaiSanPham}</td>
-					<td>
+					<>
 
 						<input type="button" class="btn btn-primary table__btn"
 						value="Chi tiết"
@@ -138,9 +134,8 @@ document.getElementById("btnPreviusPage").onclick = function () {
 						value="Sửa"
 						onclick="location.href='/WebsiteBanNhacCu/admin/loai-san-pham/cap-nhat-loai-san-pham?id=${data[i].id}'">
 
-						<input type="button" class="btn btn-danger table__btn"
-						value="Xóa"
-						onclick="location.href='/WebsiteBanNhacCu/admin/loai-san-pham/xoa-loai-san-pham?id=${data[i].id}'">
+						<input type="button" class="btn btn-danger table__btn btnXoa" id="" value="Xóa">
+                        <input type="hidden" class="maLoaiSanPham" value="${ data[i].id}" />
 
 					</td>
 				</tr>`
@@ -154,3 +149,55 @@ document.getElementById("btnPreviusPage").onclick = function () {
 	});
 
 };
+
+$(".btnXoa").each(function (index) {
+
+	$(this).click(function () {
+		console.log("da nhan btnXoa")
+		var cf = confirm("Bạn muốn xóa loại sản phẩm này ?");
+		if (cf == true) {
+			let id = $(".maLoaiSanPham").get(index).value;
+			xoaSanPham(id);
+		}
+	});
+});
+
+xoaSanPham = (id) => {
+
+	console.log(`http://${HOST_NAME}:${PORT}/${CONTEXT_PATH}/api/loai-san-pham/xoa?id=${id}`);
+	$.ajax({
+		url: apiFetch = `http://${HOST_NAME}:${PORT}/${CONTEXT_PATH}/api/loai-san-pham/xoa?id=${id}`,
+		type: 'DELETE',
+		success: function () {
+
+			var pageHidden = document.getElementById("pageValue"); //gia tri hiden
+			var viewPage = document.getElementById("viewPage"); //gia tri hien thi trang hien tai
+			viewPage.value = 1; //gan lai  hien thi trang hien tai
+			pageHidden.value = 1; //gan lai gia tri bien hidden
+
+			window.location.href = 'http://localhost:8080/WebsiteBanNhacCu/admin/loai-san-pham/danh-sach-loai-san-pham';
+
+			console.log("Đã xóa loại sản phẩm");
+			toastr.success("Đã xóa loại sản phẩm");
+		},
+		error: function () {
+			alert('Loại sản phẩm này không thể xóa');
+			toastr.error('Loại sản phẩm này không thể xóa');
+		}
+
+	});
+}
+
+
+$("body").on("DOMSubtreeModified", "#tableLoaiSanPham", function () {
+	$(".btnXoa").each(function (index) {
+		$(this).click(function () {
+			console.log("da nhan btnXoa")
+			var cf = confirm("Bạn muốn xóa loại sản phẩm này ?");
+			if (cf == true) {
+				let id = $(".maLoaiSanPham").get(index).value;
+				xoaNguoiDung(id);
+			}
+		});
+	});
+});

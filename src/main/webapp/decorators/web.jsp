@@ -58,6 +58,22 @@
 		href="<c:url value="/static/assets/css/menu/menu.css"/>">
 </c:if>
 
+<style type="text/css">
+#toast-container{
+	margin-top: 60px !important;
+}
+
+
+.toast {
+	background-color: #33CC33 !important;
+	z-index: 2000000000;
+}
+.toast-error {
+	background-color: #e62e2d !important;
+	z-index: 2000000000;
+}
+</style>
+
 </head>
 <body>
 

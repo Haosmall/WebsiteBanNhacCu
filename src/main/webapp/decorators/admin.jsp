@@ -34,6 +34,18 @@
 
 <link rel="stylesheet"
 	href="<c:url value="/static/assets/css/style.css"/>">
+	
+<style type="text/css">
+#toast-container{
+	margin-top: 60px !important;
+}
+
+
+.toast {
+	background-color: #33CC33 !important;
+	z-index: 2000000000;
+}
+</style>
 
 
 <dec:head></dec:head>

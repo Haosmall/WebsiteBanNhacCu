@@ -34,8 +34,10 @@ public class SanPhamServiceImpl implements SanPhamService {
 
 	@Autowired
 	ChiTietHoaDonRepository chiTietHoaDonRepository;
+	
 	@Autowired
 	SanPhamConverter sanPhamConverter;
+	
 
 	@Override
 	public void themSanPham(SanPham sanPham, MauSanPham mauSanPham) {
@@ -60,16 +62,7 @@ public class SanPhamServiceImpl implements SanPhamService {
 //		});
 	}
 
-	@Override
-	public boolean xoaSanPham(String id) {
-
-		if (chiTietHoaDonRepository.findByMauSanPhamSanPhamId(id).size() > 0)
-			return false;
-
-		sanPhamRepository.deleteById(id);
-		return true;
-	}
-
+	
 	@Override
 	public void capNhatSanPham(SanPham sanPham) {
 		sanPhamRepository.save(sanPham);
@@ -150,6 +143,24 @@ public class SanPhamServiceImpl implements SanPhamService {
 
 		return sanPhamDTOs;
 	}
+	
+	@Override
+	public boolean xoaSanPham(String id) {
+
+//		if (chiTietHoaDonRepository.findByMauSanPhamSanPhamId(id).size() > 0)
+//			return false;
+		if(chiTietHoaDonRepository.findFirstByMauSanPhamSanPhamId(id) != null)
+			return false;
+//		mauSanPhamRepository.customXoaMauSanPhamBySanPhamId(id);
+		List<MauSanPham> listMauSP = mauSanPhamRepository.findBySanPhamId(id);
+		listMauSP.forEach(t->{
+			mauSanPhamRepository.delete(t);
+		});
+
+		sanPhamRepository.deleteById(id);
+		return true;
+	}
+
 
 	@Override
 	public List<SanPhamDTO> danhSachSanPhamBanChay(int page, int size) {
@@ -169,28 +180,32 @@ public class SanPhamServiceImpl implements SanPhamService {
 
 		Specification<SanPham> dieuKien = Specification
 				.where(SanPhamSpecification.timKiemSanPhamTheoTenSanPham(tenSanPham));
-//		System.out.println("----------------------------------------------- ten");
-//
-//		if ( xuatXus != null && xuatXus.size() > 0) {
-//			System.out.println("----------------------------------------------- xx");
+		
+		if(!tenSanPham.equals("")) {
+			System.out.println("----------------------------------------------- ten");
+			dieuKien.and(SanPhamSpecification.timKiemSanPhamTheoTenSanPham(tenSanPham));
+		}
+		
+		if ( xuatXus != null && xuatXus.size() > 0) {
+			System.out.println("----------------------------------------------- xx");
 			dieuKien.and(SanPhamSpecification.timKiemSanPhamTheoXuatXu(xuatXus));
-//		}
-//		if (giaDau != 0) {
-//			System.out.println("----------------------------------------------- gia");
+		}
+		if (giaDau != 0 || giaCuoi != 0) {
+			System.out.println("----------------------------------------------- gia");
 			dieuKien.and(SanPhamSpecification.timKiemSanPhamTheoKhoangGia(giaDau, giaCuoi));
-//		}
-//		if (listDongSanPhamId != null && listDongSanPhamId.size() > 0) {
-//			System.out.println("----------------------------------------------- dong");
+		}
+		if (listDongSanPhamId != null && listDongSanPhamId.size() > 0) {
+			System.out.println("----------------------------------------------- dong");
 			dieuKien.and(SanPhamSpecification.timKiemSanPhamTheoDongSanPham(listDongSanPhamId));
-//		}
-//		if (listThuongHieuId != null && listThuongHieuId.size() > 0) {
-//			System.out.println("----------------------------------------------- th");
+		}
+		if (listThuongHieuId != null && listThuongHieuId.size() > 0) {
+			System.out.println("----------------------------------------------- th");
 			dieuKien.and(SanPhamSpecification.timKiemSanPhamTheoThuongHieu(listThuongHieuId));
-//		}
-//		if (listLoaiSanPhamId != null && listLoaiSanPhamId.size() > 0) {
-//			System.out.println("----------------------------------------------- loai");
+		}
+		if (listLoaiSanPhamId != null && listLoaiSanPhamId.size() > 0) {
+			System.out.println("----------------------------------------------- loai");
 			dieuKien.and(SanPhamSpecification.timKiemSanPhamTheoLoaiSanPham(listLoaiSanPhamId));
-//		}
+		}
 		
 		List<SanPham> sanPhams = null;
 		

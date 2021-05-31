@@ -39,7 +39,8 @@
 
 					<div class="form-group">
 						<label>Chọn ảnh:</label> <input type="file" name="hinhAnh"
-							multiple="multiple" />
+							multiple="multiple" /><br/>
+						<form:errors path="hinhAnhBase64" cssClass="error"></form:errors>
 					</div>
 
 					<button type="submit" class="btn btn-success">${formButton}</button>
