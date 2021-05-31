@@ -182,9 +182,9 @@
 					<div class="product"
 						onclick="location.href = '/WebsiteBanNhacCu/san-pham?id=${sanPhamBanChay.id}'">
 						<div class="product__img">
-							<img
+							<img 
 								src="data:image/jpg;base64,${ sanPhamBanChay.hinhAnhBase64 }"
-								style="object: fit-contain;" alt="">
+								style="object-fit:contain;" alt="">
 						</div>
 						<p class="product__name">
 							<b>${ sanPhamBanChay.tenSanPham }</b>
