@@ -48,11 +48,13 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.css" />
 
 
+<link rel="stylesheet"
+	href='<c:url value ="/static/assets/css/errors.css"/>'>
 </head>
 <body>
 
 
-	<div class="container-fluid">
+	<div class="container-fluid" style="background-color: #fff;padding-top: 20px;">
 
 		<!-- Row input -->
 		<div class="row">

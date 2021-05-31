@@ -10,7 +10,7 @@
 <body>
 
 
-	<div class="container-fluid">
+	<div class="container-fluid" style="background: #fff">
 
 		<!-- Row input -->
 		<div class="row">
@@ -41,10 +41,10 @@
 
 				<thead class="thead-light">
 					<tr>
-						<th>STT</th>
-						<th>Mã màu</th>
-						<th>Tên màu</th>
-						<th></th>
+						<th style="width: 10%">STT</th>
+						<th style="width: 30%" >Mã màu</th>
+						<th style="width: 30%">Tên màu</th>
+						<th style="width: 30%" ></th>
 					</tr>
 				</thead>
 

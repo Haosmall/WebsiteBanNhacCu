@@ -6,11 +6,20 @@
 <head>
 <meta charset="UTF-8">
 <title>${formTitle}</title>
+
+<link rel="stylesheet"
+	href='<c:url value ="/static/assets/css/errors.css"/>'>
 </head>
 <body>
 
+	<div class="container">
+		<a
+			href="<c:url value='/admin/dong-san-pham/danh-sach-dong-san-pham' />">Quay
+			lại</a>
 
-	<div class="container-fluid">
+	</div>
+
+	<div class="container" style="background-color: #fff; padding: 20px 0">
 
 		<!-- Row input -->
 		<div class="row">
@@ -33,8 +42,7 @@
 					</div>
 
 					<div class="form-group">
-						<label>Loại sản phẩm:</label>
-						<select class="form-control"
+						<label>Loại sản phẩm:</label> <select class="form-control"
 							id="loaiSanPham" name="loaiSanPham">
 
 							<option>Loại sản phẩm</option>
@@ -83,9 +91,6 @@
 			<div class="col-lg-3"></div>
 		</div>
 
-		<a
-			href="<c:url value='/admin/dong-san-pham/danh-sach-dong-san-pham' />">Quay
-			lại</a>
 
 
 
