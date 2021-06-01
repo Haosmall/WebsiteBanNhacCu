@@ -8,6 +8,7 @@
 <title>Chi tiết sản phẩm</title>
 <link rel="stylesheet" href="<c:url value="/static/assets/css/ProductDetail/ProductDetail.css"/>"/>
 <link rel="stylesheet" href="<c:url value="/static/assets/css/main.css"/>"/>
+<link rel="stylesheet" href="<c:url value="/static/assets/css/ProductDetail/Addition.css"/>"/>
 </head>
 <body>
 
@@ -36,6 +37,7 @@
 											src="data:image/jpg;base64,${ mauSanPhamDTO.hinhAnhBase64 }"
 											class="slider__image__frame--detail"
 											alt=""
+											style="object-fit:contain !important"
 										/>
 									</div>
 								</c:forEach>
@@ -70,36 +72,47 @@
 								></span
 							>
 							<div class="select_color">
-									<div class="color selected__color">
-										<input type="hidden" value="${ mauSanPhamDTOs.get(0).maMau }">
-										<span>${ mauSanPhamDTOs.get(0).tenMau }</span>
-									</div>
+								
+								<c:set var="tongSoluong" value="0"/>
+								<c:set var="checkSelect" value="0"/>
 								<c:forEach items="${ mauSanPhamDTOs }" var="mauSanPhamDTO">
-									<c:if test="${ mauSanPhamDTOs.get(0).tenMau !=  mauSanPhamDTO.tenMau }">
-										<div class="color">
+										
+										<div class="color <c:if test="${ checkSelect == 0 and mauSanPhamDTO.soLuong > 0}">selected__color<c:set var="checkSelect" value="1"/></c:if> <c:if test="${ mauSanPhamDTO.soLuong == 0 }">disabled</c:if>">
 											<input type="hidden" value="${ mauSanPhamDTO.maMau }">
 											<span>${ mauSanPhamDTO.tenMau }</span>
 										</div>
-									</c:if>
+											<c:set var="tongSoluong" value="${ tongSoluong += mauSanPhamDTO.soLuong }"></c:set>
 								</c:forEach>
 							</div>
 						</div>
+						
+						
 
 						<div class="interactive__general--info">
 							<div class="interactive">
-								<a href="">
-									<button class="button--inter mua--ngay" id="btnMuaNgay">
-										Mua ngay
-									</button>
-								</a>
-
-								<a href="">
-									<button
-										class="button--inter themvao--giohang" id="btnThemVaoGioHang"
-									>
-										Thêm vào giỏ hàng
-									</button>
-								</a>
+								<c:choose>
+									<c:when test="${ tongSoluong < 1 }">
+										<b style="color: #d82b2a; font-size: 1.6rem;">Sản phẩm này đã hết hàng</b>
+									</c:when>
+									<c:otherwise>
+										<a href="">
+											<button class="button--inter mua--ngay" id="btnMuaNgay">
+												Mua ngay
+											</button>
+										</a>
+		
+										<a href="">
+											<button
+												class="button--inter themvao--giohang" id="btnThemVaoGioHang"
+											>
+												Thêm vào giỏ hàng
+											</button>
+										</a>
+									
+									</c:otherwise>
+								</c:choose>
+								
+								
 							</div>
 
 							<div class="general--info">

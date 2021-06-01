@@ -19,10 +19,12 @@ $('#btnThemVaoGioHang').click(function(e){
 });
 $('#btnMuaNgay').click(function(e){
 	
-	themSanPham();
+	const rs = themSanPham();
 	e.preventDefault();
 	setTimeout(function () {
-		window.location.href = "http://localhost:8080/WebsiteBanNhacCu/gio-hang";
+		if(rs){
+			window.location.href = "http://localhost:8080/WebsiteBanNhacCu/gio-hang";
+		}
 	}, 300);
 });
 
@@ -39,6 +41,10 @@ themSanPham = () =>{
 				if (data === 1) {
 					console.log("Đã thêm vào giỏ hàng");
 					toastr.success("Đã thêm vào giỏ hàng");
+					return true;
+				}else{
+					toastr.error("Sản phẩm đã hết hàng");
+					return false;
 				}
 			}
 		}, 500);

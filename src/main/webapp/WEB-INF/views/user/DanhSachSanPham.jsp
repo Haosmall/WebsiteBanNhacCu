@@ -9,6 +9,41 @@
 <link rel="stylesheet"
 	href="<c:url value="/static/assets/css/Product_page/ProductPage.css"/>">
 
+
+<style type="text/css">
+.partition_price {
+	margin-top: 10px;
+	height: 110px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	display: flex;
+	height: 110px;
+}
+
+.partition_price--layout {
+	display: flex;
+	justify-content: space-between;
+}
+
+.partition_price--layout input {
+	width: 75px;
+	border-radius: 3px;
+	border: 1px solid #e6e6e6;
+	outline: none;
+}
+
+.partition_price button {
+	font-weight: 500;
+	color: #fff;
+	background-color: orange;
+	outline: none;
+	border: 1px solid orange;
+	border-radius: 3px;
+}
+</style>
+
+
 </head>
 
 <body>
@@ -16,38 +51,25 @@
 
 	<div class="container wrapper mt-3">
 
-		<div class="row wrapper__title">
+		<!-- <div class="row wrapper__title pt-3">
 			<h2 class="col offset-2">Đàn Guitar Electric</h2>
-		</div>
+		</div> -->
 
 		<div class="row wrapper__listProduct">
 
 			<!-- Left Side (tìm kiếm) -->
 			<div class="col-2  wrapper__listProduct__leftSide">
 
-				<div class="ratting-search">
-					<div class="item__title">Đánh giá</div>
-					<div class="list_start">
 
-						<a href=""> <span class="fa fa-star checked"></span> <span
-							class="fa fa-star checked"></span> <span
-							class="fa fa-star checked"></span> <span
-							class="fa fa-star checked"></span> <span
-							class="fa fa-star checked"></span> <span>Từ 5 sao</span>
-						</a> <a href=""> <span class="fa fa-star checked"></span> <span
-							class="fa fa-star checked"></span> <span
-							class="fa fa-star checked"></span> <span
-							class="fa fa-star checked"></span> <span class="fa fa-star "></span>
-							<span>Từ 4 sao</span>
-						</a> <a href=""> <span class="fa fa-star checked"></span> <span
-							class="fa fa-star checked"></span> <span
-							class="fa fa-star checked"></span> <span class="fa fa-star "></span>
-							<span class="fa fa-star "></span> <span>Từ 3 sao</span>
-						</a>
-
+				<div class="partition_price">
+					<b>Khoảng giá</b>
+					<div class="partition_price--layout">
+						<input placeholder="Từ " type="number" id="giaDau"/> <span>-</span> 
+						<input placeholder="đến " type="number" id="giaCuoi"/>
 					</div>
-				</div>
+					<button id="btnApDung">Áp dụng</button>
 
+				</div>
 
 
 				<div class="boxSearch">
@@ -55,7 +77,7 @@
 
 					<div class="itemSearch">
 						<c:forEach items="${ loaiSanPhams }" var="loaiSanPham">
-							<input type="checkbox" value="${ loaiSanPham.id }"
+							<input type="checkbox" class="loaiSanPham" value="${ loaiSanPham.id }"
 								onchange="console.log(1233123)" />
 							<span>${ loaiSanPham.tenLoaiSanPham }</span>
 							<br>
@@ -68,7 +90,7 @@
 
 					<div class="itemSearch">
 						<c:forEach items="${ thuongHieus }" var="thuongHieu">
-							<input type="checkbox" value="${ thuongHieu.id }"
+							<input type="checkbox" class="thuongHieu" value="${ thuongHieu.id }"
 								onchange="console.log(1233123)" />
 							<span>${ thuongHieu.tenThuongHieu }</span>
 							<br>
@@ -81,7 +103,7 @@
 
 					<div class="itemSearch">
 						<c:forEach items="${ dongSanPhams }" var="dongSanPham">
-							<input type="checkbox" value="${ dongSanPham.id }"
+							<input type="checkbox" class="dongSanPham" value="${ dongSanPham.id }"
 								onchange="console.log(1233123)" />
 							<span>${ dongSanPham.tenDongSanPham }</span>
 							<br>
@@ -94,7 +116,7 @@
 
 					<div class="itemSearch">
 						<c:forEach items="${ xuatXus }" var="xuatXu">
-							<input type="checkbox" value="${ xuatXu }"
+							<input type="checkbox" class="xuatXu" value="${ xuatXu }"
 								onchange="console.log(1233123)" />
 							<span>${ xuatXu }</span>
 							<br>
@@ -113,49 +135,35 @@
 
 			<div class="col-10 wrapper__listProduct__rightSide">
 
-				<div class="row top--bar">
-
-					<div class="top--bar--left">
-						<p>Chọn mức giá:</p>
-						<div class="partion--price">
-							<a href="">Dưới 3 triệu</a> <a href="">3 - 6 triệu</a> <a href="">Trên
-								6 triệu</a>
-						</div>
-					</div>
-
-
-					<div class="top--bar--right">
-						<div class="input-group mb-3">
-							<select class="custom-select" id="inputGroupSelect">
-								<option selected>Sắp xếp theo giá</option>
-								<option value="1"><a href="">Tăng dần</a></option>
-								<option value="1"><a href="accbcc">Giảm dần</a></option>
-							</select>
-						</div>
-					</div>
-
-
-				</div>
 
 
 				<div class="row">
 
 					<div class="nav__list">
-						<a href="" class="nav__list--index checked--popular ">Phổ biến</a>
+						<a href="" class="nav__list--index checked--popular ">Tất cả</a>
 						<div class="bar bar--popular active"></div>
 
 						<a href="" class="nav__list--index checked--selling">Bán chạy</a>
 						<div class="bar bar--selling"></div>
 
-						<a href="" class="nav__list--index checked--new">Mới nhất</a>
-						<div class="bar bar--new"></div>
+						<div class="" style="position: absolute; right: 0;">
+							<div class="input-group ">
+								<select class="custom-select" id="inputGroupSelect">
+									<option value="1">Giá tăng dần</option>
+									<option value="2">Giá giảm dần</option>
+								</select>
+							</div>
+						</div>
+
+
+
 					</div>
 
 					<div class="product__list">
 
 						<c:forEach items="${ sanPhamDTOs }" var="sanPhamDTO">
 							<div class="product"
-								onclick="location.href = '/WebsiteBanNhacCu/san-pham?id=${ sanPhamDTO.id }'">
+								onclick="chiTietSanPham('${ sanPhamDTO.id }')">
 								<div class="product__img">
 									<c:choose>
 										<c:when test="${ !empty sanPhamDTO.hinhAnhBase64 }">
@@ -187,12 +195,6 @@
 										value="${ sanPhamDTO.giaBan }" currencySymbol="" />
 									VNĐ
 								</p>
-								<div class="start-ratting">
-									<span class="fa fa-star checked"></span> <span
-										class="fa fa-star checked"></span> <span
-										class="fa fa-star checked"></span> <span
-										class="fa fa-star checked"></span> <span class="fa fa-star"></span>
-								</div>
 							</div>
 						</c:forEach>
 
@@ -209,14 +211,13 @@
 		</div>
 		<div class="page d-flex justify-content-center">
 			<ul class="pagination ">
-				<li class="page-item"><a class="page-link" href="#">Previous</a></li>
-				<li class="page-item"><a class="page-link" href="#">1</a></li>
-				<li class="page-item"><a class="page-link" href="#">2</a></li>
-				<li class="page-item"><a class="page-link" href="#">3</a></li>
-				<li class="page-item"><a class="page-link" href="#">Next</a></li>
+				<li class="page-item"><a class="page-link" href="#">Trang trước</a></li>
+					<%-- <c:if test="${ counter.count <= 3 }">
+						<li class="page-item"><a class="page-link" href="#">${ i }</a></li>
+					</c:if> --%>
+					<li class="page-item"><a class="page-link" href="#">Trang Sau</a></li>
 			</ul>
 		</div>
-
 
 	</div>
 
@@ -235,6 +236,11 @@
 				"display" : "none"
 			});
 		})
+		
+		chiTietSanPham = (id)=>{
+            window.location.href = '/WebsiteBanNhacCu/san-pham?id=' + id;
+        }
 	</script>
+	<script src="<c:url value="/static/assets/js/tim-kiem.js"/>"></script>
 </body>
 </html>

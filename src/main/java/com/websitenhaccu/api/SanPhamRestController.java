@@ -1,5 +1,8 @@
 package com.websitenhaccu.api;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -96,9 +99,9 @@ public class SanPhamRestController {
 //	}
 
 	@GetMapping("/danh-sach-san-pham/loai/xuat-xu/thuong-hieu")
-	public List<SanPhamDTO> getDanhSachDongSanPhamByLoaiXuatXuThuongHieu(
-			@RequestParam("tenSanPham") String tenSanPham, @RequestParam("xuatXu") String xuatXu,
-			@RequestParam("maLoaiSanPham") String maLoaiSanPham, @RequestParam("maThuongHieu") String maThuongHieu,
+	public List<SanPhamDTO> getDanhSachDongSanPhamByLoaiXuatXuThuongHieu(@RequestParam("tenSanPham") String tenSanPham,
+			@RequestParam("xuatXu") String xuatXu, @RequestParam("maLoaiSanPham") String maLoaiSanPham,
+			@RequestParam("maThuongHieu") String maThuongHieu,
 			@RequestParam(value = "page", defaultValue = "0") int page,
 			@RequestParam(value = "size", defaultValue = "10") int size) {
 
@@ -120,11 +123,53 @@ public class SanPhamRestController {
 		return listSanPhamSoLuong;
 
 	}
-	
+
 	@DeleteMapping("/xoa")
 	private void xoaSanPham(@RequestParam("id") String id) {
 		System.out.println("@@@@@@@@@@@@da vao ham xoa san pham rest controler");
 		sanPhamService.xoaSanPham(id);
+	}
+
+	@GetMapping("/tim-kiem")
+	private List<SanPhamDTO> timKiemSanPhamTheoNhieuTieuChi(
+			@RequestParam(value = "xuatXus", required = false) List<String> xuatXus,
+			@RequestParam(value = "giaDau", defaultValue = "0") int giaDau,
+			@RequestParam(value = "giaCuoi", defaultValue = "0") int giaCuoi,
+			@RequestParam(value = "dongSanPhams", required = false) List<String> dongSanPhams,
+			@RequestParam(value = "thuongHieus", required = false) List<String> thuongHieus,
+			@RequestParam(value = "loais", required = false) List<String> loais,
+			@RequestParam(value = "sort", defaultValue = "1") int sort,
+			@RequestParam(value = "page", defaultValue = "1") int page) {
+
+		if (xuatXus != null && xuatXus.size() > 0) {
+			xuatXus.forEach(xuatXu -> {
+				String temp = xuatXu;
+				try {
+					xuatXu = URLDecoder.decode(temp, StandardCharsets.UTF_8.name());
+					System.out.println(xuatXu);
+				} catch (UnsupportedEncodingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			});
+		}
+
+		List<SanPhamDTO> sanPhamDTOs = sanPhamService.timKiemSanPhamTheoNhieuDieuKien("", xuatXus, giaDau, giaCuoi,
+				dongSanPhams, thuongHieus, loais, page - 1, 15, sort);
+		System.out.println(
+				"-----------------------------------------------------------------------------------");
+		sanPhamDTOs.forEach(s -> {
+			System.out.println(
+					"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+			System.out.println(s.getId());
+			System.out.println(s.getTenSanPham());
+			System.out.println(s.getGiaBan());
+			System.out.println(s.getXuatXu());
+			System.out.println(s.getTenLoaiSanPham());
+			System.out.println(s.getTenDongSanPham());
+			System.out.println(s.getTenThuongHieu());
+		});
+		return sanPhamDTOs;
 	}
 
 }

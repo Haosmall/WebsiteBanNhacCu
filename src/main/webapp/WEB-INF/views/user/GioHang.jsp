@@ -136,7 +136,7 @@
 	<sec:authorize access="isAuthenticated()">
 		<!-- The Modal -->
 		<div class="modal fade" id="myModal" data-backdrop="static"
-			data-keyboard="false">
+			data-keyboard="false" style="z-index: 90000000">
 			<div class="modal-dialog modal-lg">
 				<div class="modal-content">
 
@@ -202,7 +202,7 @@
 		</div>
 
 	</sec:authorize>
-	<div class="box_confirm">
+	<div class="box_confirm" style="z-index: 9000000000">
 		<div>Xác nhận thay thay đổi</div>
 		<div>
 			<button id="no" data-dismiss="modal">Hủy</button>

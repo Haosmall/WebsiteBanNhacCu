@@ -41,7 +41,9 @@ public class HoaDonDTO {
 	}
 
 	public boolean themChiTietHoaDonDTO(MauSanPhamDTO mauSanPhamDTO) {
-
+		if(mauSanPhamDTO.getSoLuong() == 0)
+			return false;
+		
 		for (ChiTietHoaDonDTO chiTietHoaDon : chiTietHoaDonDTOs) {
 			// nếu đã có trong giỏ hàng
 			if (chiTietHoaDon.getMauSanPhamDTO().equals(mauSanPhamDTO)) {

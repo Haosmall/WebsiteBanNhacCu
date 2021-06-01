@@ -68,9 +68,9 @@
 								<td>${ loaiSanPham.id }</td>
 								<td>${ loaiSanPham.tenLoaiSanPham }</td>
 								<td>
-									<input type="button" class="btn btn-primary table__btn"
+									<%-- <input type="button" class="btn btn-primary table__btn"
 									value="Chi tiết"
-									onclick="location.href='<c:url value='/admin/loai-san-pham/chi-tiet-loai-san-pham?id=${ loaiSanPham.id }' />'">
+									onclick="location.href='<c:url value='/admin/loai-san-pham/chi-tiet-loai-san-pham?id=${ loaiSanPham.id }' />'"> --%>
 
 									<input type="button" class="btn btn-warning table__btn"
 									value="Sửa"

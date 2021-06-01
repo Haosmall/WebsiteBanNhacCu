@@ -73,9 +73,9 @@
 								<a type="button" class="btn btn-warning table__btn" href="<c:url value='/admin/nha-cung-cap/cap-nhat-thong-tin-nha-cung-cap?id=${ nhaCungCap.maNhaCungCap }' />">Sửa</a>
 								<a type="button" class="btn btn-danger table__btn" href="<c:url value='/admin/nha-cung-cap/xoa-nha-cung-cap?id=${ nhaCungCap.maNhaCungCap }' />">Xóa</a> --%>
 
-									<input type="button" class="btn btn-primary table__btn"
+									<%-- <input type="button" class="btn btn-primary table__btn"
 									value="Chi tiết"
-									onclick="location.href='<c:url value='/admin/nha-cung-cap/xem-chi-tiet?id=${ nhaCungCap.maNhaCungCap }' />'">
+									onclick="location.href='<c:url value='/admin/nha-cung-cap/xem-chi-tiet?id=${ nhaCungCap.maNhaCungCap }' />'"> --%>
 
 									<input type="button" class="btn btn-warning table__btn"
 									value="Sửa"

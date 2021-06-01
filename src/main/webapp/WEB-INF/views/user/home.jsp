@@ -81,7 +81,7 @@
 							<div class="item">
 								<i class="fas fa-guitar category__icon"></i> <a
 									class="category__name"
-									href="<c:url value="/danh-sach-san-pham/tat-ca?page=1"/>">Tất
+									href="<c:url value="/danh-sach-san-pham?page=1"/>">Tất
 									cả sản phẩm</a>
 							</div>
 						</div>
@@ -138,33 +138,20 @@
 
 			<!-- side -->
 			<div class="col ml-2 sider">
-				<div class="row">
-					<a href="https://www.youtube.com/watch?v=MHNiCwZbuZE"><img
-						src="data:image/jpg;base64,${ quangCaoDTOs.get(3).hinhAnhBase64 }"
-						alt=""></a>
-				</div>
-
-				<div class="row">
-
-					<a href="https://www.youtube.com/watch?v=MHNiCwZbuZE"><img
-						src="data:image/jpg;base64,${ quangCaoDTOs.get(4).hinhAnhBase64 }"
-						alt=""></a>
-				</div>
-
-				<div class="row">
-					<a href="https://www.youtube.com/watch?v=MHNiCwZbuZE"><img
-						src="data:image/jpg;base64,${ quangCaoDTOs.get(5).hinhAnhBase64 }"
-						alt=""></a>
-				</div>
+				<c:forEach items="${ quangCaoDTOs }" var="quangCaoDTO" varStatus="counter">
+					<c:if test="${ counter.count > 3 }">
+						<div class="row">
+							<a href="${ quangCaoDTO.link }"><img
+								src="data:image/jpg;base64,${ quangCaoDTO.hinhAnhBase64 }"
+								alt=""></a>
+						</div>
+					</c:if>
+				</c:forEach>
+				
 			</div>
-
-
 
 		</div>
 	</div>
-
-
-
 
 	<!-- Sản phẩm nổi bật -->
 	<div class="container  mt-3 best_sell_product">
@@ -182,9 +169,9 @@
 					<div class="product"
 						onclick="location.href = '/WebsiteBanNhacCu/san-pham?id=${sanPhamBanChay.id}'">
 						<div class="product__img">
-							<img
+							<img 
 								src="data:image/jpg;base64,${ sanPhamBanChay.hinhAnhBase64 }"
-								style="object: fit-contain;" alt="">
+								style="object-fit:contain;" alt="">
 						</div>
 						<p class="product__name">
 							<b>${ sanPhamBanChay.tenSanPham }</b>
