@@ -27,11 +27,12 @@ public class DongSanPhamValidator implements Validator {
 		}
 
 		DongSanPham dongSanPham = (DongSanPham) target;
+		DongSanPham dsp = dongSanPhamService.getDongSanPham_DungTenLoaiSPThuongHieu(dongSanPham.getTenDongSanPham(),
+				dongSanPham.getLoaiSanPham().getId(), dongSanPham.getThuongHieu().getId());
 		
 		if (dongSanPham.getTenDongSanPham() == null || dongSanPham.getTenDongSanPham().trim() == "") {
 			errors.rejectValue("tenDongSanPham", null, "Tên dòng sản phẩm không được bỏ trống");
-		} else if (dongSanPhamService.getDongSanPham_DungTenLoaiSPThuongHieu(dongSanPham.getTenDongSanPham(),
-				dongSanPham.getLoaiSanPham().getId(), dongSanPham.getThuongHieu().getId()) != null) {
+		} else if (dsp != null && !dsp.getId().equals(dongSanPham.getId())) {
 			errors.rejectValue("tenDongSanPham", null, "Dòng sản phẩm này đã tồn tại");
 		}
 		if (String.valueOf(dongSanPham.getThue()).trim().length() == 0) {
