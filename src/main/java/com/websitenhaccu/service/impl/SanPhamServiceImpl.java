@@ -179,33 +179,13 @@ public class SanPhamServiceImpl implements SanPhamService {
 			List<String> listLoaiSanPhamId, int page, int size, int sort) {
 
 		Specification<SanPham> dieuKien = Specification
-				.where(SanPhamSpecification.timKiemSanPhamTheoTenSanPham(tenSanPham));
-		
-		if(!tenSanPham.equals("")) {
-			System.out.println("----------------------------------------------- ten");
-			dieuKien.and(SanPhamSpecification.timKiemSanPhamTheoTenSanPham(tenSanPham));
-		}
-		
-		if ( xuatXus != null && xuatXus.size() > 0) {
-			System.out.println("----------------------------------------------- xx");
-			dieuKien.and(SanPhamSpecification.timKiemSanPhamTheoXuatXu(xuatXus));
-		}
-		if (giaDau != 0 || giaCuoi != 0) {
-			System.out.println("----------------------------------------------- gia");
-			dieuKien.and(SanPhamSpecification.timKiemSanPhamTheoKhoangGia(giaDau, giaCuoi));
-		}
-		if (listDongSanPhamId != null && listDongSanPhamId.size() > 0) {
-			System.out.println("----------------------------------------------- dong");
-			dieuKien.and(SanPhamSpecification.timKiemSanPhamTheoDongSanPham(listDongSanPhamId));
-		}
-		if (listThuongHieuId != null && listThuongHieuId.size() > 0) {
-			System.out.println("----------------------------------------------- th");
-			dieuKien.and(SanPhamSpecification.timKiemSanPhamTheoThuongHieu(listThuongHieuId));
-		}
-		if (listLoaiSanPhamId != null && listLoaiSanPhamId.size() > 0) {
-			System.out.println("----------------------------------------------- loai");
-			dieuKien.and(SanPhamSpecification.timKiemSanPhamTheoLoaiSanPham(listLoaiSanPhamId));
-		}
+				.where(SanPhamSpecification.timKiemSanPhamTheoTenSanPham(tenSanPham))
+				.and(SanPhamSpecification.timKiemSanPhamTheoTenSanPham(tenSanPham))
+				.and(SanPhamSpecification.timKiemSanPhamTheoXuatXu(xuatXus))
+				.and(SanPhamSpecification.timKiemSanPhamTheoKhoangGia(giaDau, giaCuoi))
+				.and(SanPhamSpecification.timKiemSanPhamTheoDongSanPham(listDongSanPhamId))
+				.and(SanPhamSpecification.timKiemSanPhamTheoThuongHieu(listThuongHieuId))
+				.and(SanPhamSpecification.timKiemSanPhamTheoLoaiSanPham(listLoaiSanPhamId));
 		
 		List<SanPham> sanPhams = null;
 		

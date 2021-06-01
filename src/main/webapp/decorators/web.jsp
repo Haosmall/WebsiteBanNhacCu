@@ -148,7 +148,7 @@
 										<div class="item">
 											<i class="fas fa-guitar category__icon"></i> <a
 												class="category__name"
-												href="<c:url value="/danh-sach-san-pham/tat-ca?page=1"/>">Tất
+												href="<c:url value="/danh-sach-san-pham?page=1"/>">Tất
 												cả sản phẩm</a>
 										</div>
 									</div>

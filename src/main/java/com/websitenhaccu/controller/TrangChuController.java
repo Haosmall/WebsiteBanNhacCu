@@ -121,20 +121,5 @@ public class TrangChuController {
 		return "user/home";
 	}
 
-	@GetMapping(value = "/test")
-	public String test() {
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-		List<String> loai = new ArrayList<String>(Arrays.asList("LSP00003"));
-		List<String> xuatXu = new ArrayList<String>(Arrays.asList("Nhật Bản"));
-		sanPhamService.timKiemSanPhamTheoNhieuDieuKien("", xuatXu, 0, 10000, null, null, null, 0, 10, 2).forEach(s -> {
-			System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-			System.out.println(s.getId());
-			System.out.println(s.getTenSanPham());
-			System.out.println(s.getGiaBan());
-			System.out.println(s.getXuatXu());
-		});
-
-		return "User";
-	}
 
 }
