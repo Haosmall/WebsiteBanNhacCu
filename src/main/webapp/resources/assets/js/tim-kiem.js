@@ -76,6 +76,7 @@ $("#btnApDung").click((e) => {
 });
 
 
+
 function timKiem() {
 	const dataTimKiem = {xuatXus , giaDau , giaCuoi , dongSanPhams , thuongHieus , loais , sort , page};
 	
