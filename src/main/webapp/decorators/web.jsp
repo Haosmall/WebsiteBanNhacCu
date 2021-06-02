@@ -329,7 +329,6 @@
 
 	</div>
 	<script src="<c:url value="/static/assets/js/test.js"/>"></script>
-	<script src="<c:url value="/static/assets/js/index_page/Slider.js"/>"></script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 	<script type="text/javascript">
