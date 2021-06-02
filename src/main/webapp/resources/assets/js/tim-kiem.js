@@ -182,7 +182,7 @@ function redirectNext() {
 	}
 	else if (PAGE_PATH.includes("tim-kiem-san-pham")) {
 
-		console.log("file path: "+PAGE_PATH);
+		console.log("file path: " + PAGE_PATH);
 		SearchTenSanPham = window.location.href.split("=")[1].split("&")[0];
 
 		loais = [];
@@ -193,6 +193,12 @@ function redirectNext() {
 		flagPageBefore = page;
 		page++;
 		timKiem(`http://localhost:8080/WebsiteBanNhacCu/danh-sach-san-pham/tim-kiem-san-pham?tenSanPham=${SearchTenSanPham}&page=` + page);
+	}
+	else {
+
+		flagPageBefore = page;
+		page++;
+		timKiem("http://localhost:8080/WebsiteBanNhacCu/danh-sach-san-pham?page=" + page);
 	}
 }
 
@@ -275,6 +281,14 @@ function redirectPrevius() {
 			flagPageBefore = page;
 			page--;
 			timKiem(`http://localhost:8080/WebsiteBanNhacCu/danh-sach-san-pham/tim-kiem-san-pham?tenSanPham=${SearchTenSanPham}&page=` + page);
+		}
+	}
+	else {
+		if (page > 1) {
+
+			flagPageBefore = page;
+			page--;
+			timKiem("http://localhost:8080/WebsiteBanNhacCu/danh-sach-san-pham?page=" + page);
 		}
 	}
 }

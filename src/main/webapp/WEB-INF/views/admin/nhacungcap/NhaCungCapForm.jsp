@@ -51,7 +51,8 @@
 </head>
 <body>
 
-
+	<a href="<c:url value='/admin/nha-cung-cap/danh-sach-nha-cung-cap' />">Quay
+		lại</a>
 	<div class="container-fluid" style="background-color: #fff">
 
 		<!-- Row input -->
@@ -123,7 +124,8 @@
 					</div>
 
 					<button type="submit" class="btn btn-success">${ formButton }</button>
-					<button type="button" class="btn btn-danger" onClick="window.location.href='http://localhost:8080/WebsiteBanNhacCu/admin/nha-cung-cap/danh-sach-nha-cung-cap'">Hủy</button>
+					<button type="button" class="btn btn-danger"
+						onClick="window.location.href='http://localhost:8080/WebsiteBanNhacCu/admin/nha-cung-cap/danh-sach-nha-cung-cap'">Hủy</button>
 
 				</form:form>
 
@@ -132,8 +134,6 @@
 			<div class="col-lg-3"></div>
 		</div>
 
-		<a href="<c:url value='/admin/nha-cung-cap/danh-sach-nha-cung-cap' />">Quay
-			lại</a>
 
 	</div>
 	<!-- /.container-fluid -->

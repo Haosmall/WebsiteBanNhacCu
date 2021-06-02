@@ -174,7 +174,7 @@ public class SanPhamController {
 						new ArrayList<String>(Arrays.asList(id)), page - 1, size, 1);
 			else
 				sanPhamDTOs = sanPhamService.timKiemSanPhamTheoNhieuDieuKien("", null, 0, 0,
-						new ArrayList<String>(Arrays.asList(id)), null, null, page - 1, size, 1);
+						null, new ArrayList<String>(Arrays.asList(id)), null, page - 1, size, 1);
 
 			sanPhamDTOs.forEach(dto -> {
 				xuatXus.add(dto.getXuatXu());

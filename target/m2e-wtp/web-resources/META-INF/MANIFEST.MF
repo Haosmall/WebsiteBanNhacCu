@@ -1,5 +1,10 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: nhath
 Build-Jdk: 15.0.1
+=======
+Built-By: Admintrator
+Build-Jdk: 15.0.2
+>>>>>>> f291a35f881b0c7ede8c7398169f331edcc51b4c
 Created-By: Maven Integration for Eclipse
 

@@ -41,9 +41,22 @@
 	border: 1px solid orange;
 	border-radius: 3px;
 }
+
+.scroll {
+	height: 160px;
+	overflow-y: scroll;
+	margin: 20px 0;
+}
+
+
+
+#viewPage{
+
+}
 </style>
 
-
+<link rel="stylesheet"
+	href='<c:url value ="/static/assets/css/admin/AlignButton.css"/>'>
 </head>
 
 <body>
@@ -72,7 +85,7 @@
 				</div>
 
 
-				<div class="boxSearch">
+				<div class="boxSearch ">
 					<div class="item__title">Loại nhạc cụ</div>
 
 					<div class="itemSearch">
@@ -85,7 +98,7 @@
 					</div>
 				</div>
 
-				<div class="boxSearch">
+				<div class="boxSearch scroll">
 					<div class="item__title">Thương hiệu</div>
 
 					<div class="itemSearch">
@@ -98,7 +111,7 @@
 					</div>
 				</div>
 
-				<div class="boxSearch">
+				<div class="boxSearch scroll">
 					<div class="item__title">Dòng nhạc cụ</div>
 
 					<div class="itemSearch">
@@ -111,7 +124,7 @@
 					</div>
 				</div>
 
-				<div class="boxSearch">
+				<div class="boxSearch scroll">
 					<div class="item__title">Xuất xứ</div>
 
 					<div class="itemSearch">
@@ -209,17 +222,20 @@
 			</div>
 
 		</div>
-		<div class="page d-flex justify-content-center">
-			<ul class="pagination ">
-				<li class="page-item"><button class="page-link" onclick="redirectPrevius()">Trang
-						trước</button></li>
-				<li><input type="text" readonly class="form-control textPage"
-					id="viewPage" value="1"></li>
-				<li class="page-item"><button class="page-link" onclick="redirectNext()">Trang
-						Sau</button></li>
-			</ul>
-		</div>
 
+
+	</div>
+
+	<div class="page d-flex justify-content-center">
+		<ul class="pagination ">
+
+			<li class="page-item"><button class="page-link color btn_interact"
+					onclick="redirectPrevius()">Trang trước</button></li>
+			<li><input type="text" readonly class="form-control textPage adjust--input"
+				id="viewPage" value="1"></li>
+			<li class="page-item"><button class="page-link color btn_interact"
+					onclick="redirectNext()">Trang Sau</button></li>
+		</ul>
 	</div>
 
 	<script>

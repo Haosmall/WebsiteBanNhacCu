@@ -53,7 +53,8 @@
 </head>
 <body>
 
-
+<a href="<c:url value='/admin/san-pham/danh-sach-san-pham' />">Quay
+			lại</a>
 	<div class="container-fluid" style="background-color: #fff;padding-top: 20px;">
 
 		<!-- Row input -->
@@ -219,8 +220,7 @@
 			<div class="col-lg-3"></div>
 		</div>
 
-		<a href="<c:url value='/admin/san-pham/danh-sach-san-pham' />">Quay
-			lại</a>
+		
 
 	</div>
 	<!-- /.container-fluid -->

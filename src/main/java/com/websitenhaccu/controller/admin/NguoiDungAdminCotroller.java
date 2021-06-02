@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.websitenhaccu.converter.NguoiDungConverter;
 import com.websitenhaccu.dto.NguoiDungDTO;
 import com.websitenhaccu.entity.NguoiDung;
+import com.websitenhaccu.service.HoaDonService;
 import com.websitenhaccu.service.NguoiDungService;
 
 @Controller
@@ -26,6 +27,9 @@ public class NguoiDungAdminCotroller {
 	
 	@Autowired
 	private NguoiDungConverter nguoiDungConverter;
+	
+	@Autowired
+	private HoaDonService hoaDonService;
 	
 	@GetMapping("/danh-sach-nguoi-dung")
 	private String getAllKhachHang(Model model) {
@@ -53,7 +57,11 @@ public class NguoiDungAdminCotroller {
 	@GetMapping("/chi-tiet-nguoi-dung")
 	private String chiTietNguoiDung(Model model, @RequestParam("id") String id) {
 		NguoiDung nguoiDung = nguoiDungService.getNguoiDungById(id);
+
+		int soLuongHoaDon = hoaDonService.getHoaDonTheoNguoiDung(nguoiDung.getId()).size();
+		
 		model.addAttribute("nguoiDung", nguoiDung);
+		model.addAttribute("soLuongHoaDon", soLuongHoaDon);
 
 		return "/admin/nguoidung/ChiTietNguoiDung";
 	}

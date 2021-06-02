@@ -12,7 +12,10 @@
 	href="<c:url value="/static/assets/css/ThongTinCaNhan/ThongTinCaNhan.css"/>" />
 </head>
 <body>
-
+<div class="container" style="padding: 0">
+		<a href="/WebsiteBanNhacCu/admin/nguoi-dung/danh-sach-nguoi-dung">Quay
+			lại </a>
+	</div>
 	<div class="wrapper container">
 
 		<div class="side_right">
