@@ -4,6 +4,9 @@
 	justify-content: center;
 	
 }
+.adjust--input{
+	width: 60px;
+}
 
 .adjust_button > input{
 	width : 80px;
