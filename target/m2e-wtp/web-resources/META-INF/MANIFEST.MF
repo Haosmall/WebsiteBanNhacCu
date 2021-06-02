@@ -1,10 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
 Built-By: This Laptop
 Build-Jdk: 15.0.2
-=======
-Built-By: nhath
-Build-Jdk: 15.0.1
->>>>>>> 897d4ef6b3022d4d94c125e2d1b1708e2bc9e22e
 Created-By: Maven Integration for Eclipse
 
