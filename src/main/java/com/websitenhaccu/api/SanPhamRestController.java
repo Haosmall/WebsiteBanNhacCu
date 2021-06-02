@@ -132,6 +132,7 @@ public class SanPhamRestController {
 
 	@GetMapping("/tim-kiem")
 	private List<SanPhamDTO> timKiemSanPhamTheoNhieuTieuChi(
+			@RequestParam(value = "textSearch", required = false) String tenSanPham,
 			@RequestParam(value = "xuatXus", required = false) List<String> xuatXus,
 			@RequestParam(value = "giaDau", defaultValue = "0") int giaDau,
 			@RequestParam(value = "giaCuoi", defaultValue = "0") int giaCuoi,
@@ -154,7 +155,15 @@ public class SanPhamRestController {
 			});
 		}
 
-		List<SanPhamDTO> sanPhamDTOs = sanPhamService.timKiemSanPhamTheoNhieuDieuKien("", xuatXus, giaDau, giaCuoi,
+		if(tenSanPham == null)
+			tenSanPham = "";
+		try {
+			tenSanPham = URLDecoder.decode(tenSanPham, StandardCharsets.UTF_8.name());
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		List<SanPhamDTO> sanPhamDTOs = sanPhamService.timKiemSanPhamTheoNhieuDieuKien(tenSanPham, xuatXus, giaDau, giaCuoi,
 				dongSanPhams, thuongHieus, loais, page - 1, 15, sort);
 		System.out.println(
 				"-----------------------------------------------------------------------------------");

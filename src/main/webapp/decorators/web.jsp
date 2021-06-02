@@ -169,9 +169,9 @@
 				<div class="col-4">
 					<div class="input-group">
 						<input type="text" class="form-control" placeholder="Tìm kiếm"
-							aria-label="Recipient's username" aria-describedby="basic-addon2">
+							aria-label="Recipient's username" aria-describedby="basic-addon2" id="tenSanPham">
 						<div class="input-group-append">
-							<button type="button" class="btn btn-warning">
+							<button type="button" class="btn btn-warning" onclick="searchType()">
 								<i class="fas fa-search"></i>
 							</button>
 						</div>
@@ -332,6 +332,12 @@
 	<script src="<c:url value="/static/assets/js/index_page/Slider.js"/>"></script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+	<script type="text/javascript">
+		function searchType(){
+			var textSearch = $('#tenSanPham').val();
+			window.location.href = "http://localhost:8080/WebsiteBanNhacCu/danh-sach-san-pham/tim-kiem-san-pham?tenSanPham="+textSearch+"&page=1";
+		}
+	</script>
 </body>
 </html>
 

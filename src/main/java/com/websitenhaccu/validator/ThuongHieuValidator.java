@@ -29,12 +29,13 @@ public class ThuongHieuValidator implements Validator{
 		ThuongHieu thuongHieu = (ThuongHieu) target;
 		System.out.println(thuongHieu);
 		
-		if(thuongHieu.getTenThuongHieu() == null || thuongHieu.getTenThuongHieu().trim() == "") {
-			System.out.println("loi ten");
+		ThuongHieu th = thuongHieuService.getThuonghieuBangTenThuonghieu(thuongHieu.getTenThuongHieu());
+		if(thuongHieu.getTenThuongHieu() == null || thuongHieu.getTenThuongHieu().trim().equals("")) {
+			System.out.println("loi o ten");
 			errors.rejectValue("tenThuongHieu", null, "Tên thương hiệu không được bỏ trống");
 		}
-		else if(thuongHieuService.getThuonghieuBangTenThuonghieu(thuongHieu.getTenThuongHieu()) != null) {
-			System.out.println("loi ten");
+		else if(th != null && !th.getId().equals(thuongHieu.getId())) {
+			System.out.println("bi5 trung ten vi khac ma");
 			errors.rejectValue("tenThuongHieu", null, "Tên thương hiệu này đã tồn tại");
 		}
 	}

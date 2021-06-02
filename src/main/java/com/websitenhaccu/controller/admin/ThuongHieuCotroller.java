@@ -76,19 +76,19 @@ public class ThuongHieuCotroller {
 
 	@PostMapping("/them-thuong-hieu")
 	public String ThemThuongHieu(@RequestParam("hinhAnh") MultipartFile filePart,
-			@ModelAttribute("thuongHieu") ThuongHieu thuongHieu, BindingResult bindingResult, Model model)
+			@ModelAttribute("thuongHieu") ThuongHieuDTO thuongHieuDTO, BindingResult bindingResult, Model model)
 			throws IOException, SerialException, SQLException {
 
-//		System.out.println("da vao controller");
-//		
-//		thuongHieuValidator.validate(thuongHieu, bindingResult);
-//		if (bindingResult.hasErrors()) {
-//			model.addAttribute("thuongHieu", thuongHieu);
-//			model.addAttribute("formTitle", "Thêm thương hiệu");
-//			model.addAttribute("formButton", "Thêm");
-//			return "admin/thuonghieu/FormThuongHieu";
-//		}
-//		System.out.println("da qua validate");
+		ThuongHieu thuongHieu = new ThuongHieu(thuongHieuDTO.getId(), thuongHieuDTO.getTenThuongHieu());
+		
+		thuongHieuValidator.validate(thuongHieu, bindingResult);
+		if (bindingResult.hasErrors()) {
+			model.addAttribute("thuongHieu", thuongHieu);
+			model.addAttribute("formTitle", "Thêm thương hiệu");
+			model.addAttribute("formButton", "Thêm");
+			return "admin/thuonghieu/FormThuongHieu";
+		}
+		System.out.println("da qua validate");
 		byte[] bytes = filePart.getBytes();
 		Blob blob = new SerialBlob(bytes);
 		thuongHieu.setHinhAnh(blob);
@@ -119,14 +119,18 @@ public class ThuongHieuCotroller {
 
 	@PostMapping("/cap-nhat-thuong-hieu")
 	public String CapNhatThuongHieu(@RequestParam("hinhAnh") MultipartFile filePart,
-			@ModelAttribute("thuongHieu") ThuongHieu thuongHieu, BindingResult bindingResult, Model model)
+			@ModelAttribute("thuongHieu") ThuongHieuDTO thuongHieuDTO, BindingResult bindingResult, Model model)
 			throws IOException, SerialException, SQLException {
+		
+		ThuongHieu thuongHieu = new ThuongHieu(thuongHieuDTO.getId(), thuongHieuDTO.getTenThuongHieu());
+		
 		thuongHieuValidator.validate(thuongHieu, bindingResult);
 		if (bindingResult.hasErrors()) {
-			model.addAttribute("formTitle", "Thêm thương hiệu");
-			model.addAttribute("formButton", "Thêm");
+			model.addAttribute("formTitle", "Cập nhật thương hiệu");
+			model.addAttribute("formButton", "Cập nhật");
 			model.addAttribute("thuongHieu", thuongHieu);
 			model.addAttribute("blob", thuongHieu.getHinhAnh());
+			System.out.println("has error");
 			return "admin/thuonghieu/FormThuongHieu";
 		}
 		if (filePart.getSize() > 0) {

@@ -86,7 +86,6 @@ public class GioHangController {
 		List<DongSanPham> dongSanPhams = dongSanPhamService.getTatCaDongSanPham();
 
 		Map<LoaiSanPham, Set<ThuongHieuDTO>> map = new HashMap<LoaiSanPham, Set<ThuongHieuDTO>>();
-
 		loaiSanPhams.forEach(loaiSanPham -> {
 			String maLoai = loaiSanPham.getId();
 			Set<ThuongHieuDTO> temp = new HashSet<ThuongHieuDTO>();
@@ -107,7 +106,7 @@ public class GioHangController {
 			map.put(loaiSanPham, temp);
 		});
 		model.addAttribute("map", map);
-
+		model.addAttribute("dongSanPhams", dongSanPhams);
 		model.addAttribute("mapCTHD", mapCTHD);
 		model.addAttribute("pageTitle", "Giỏ hàng");
 		model.addAttribute("user", user);

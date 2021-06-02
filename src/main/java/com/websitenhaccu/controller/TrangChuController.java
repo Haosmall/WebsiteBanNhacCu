@@ -101,12 +101,13 @@ public class TrangChuController {
 
 		Map<String, List<SanPhamDTO>> sanPhamLoaiSanPham = new HashMap<String, List<SanPhamDTO>>();
 
-		for (int i = 0; i < 3; i++) {
-			String maLoai = loaiSanPhams.get(i).getId();
-			List<SanPhamDTO> sanPhamDTOs = sanPhamService.getDanhSachSanPhamTheoLoaiThuongHieuDong(maLoai, 0, 10);
+		if (loaiSanPhams.size() > 0) // vua them vao de tranh viec loi out of index
+			for (int i = 0; i < 3; i++) {
+				String maLoai = loaiSanPhams.get(i).getId();
+				List<SanPhamDTO> sanPhamDTOs = sanPhamService.getDanhSachSanPhamTheoLoaiThuongHieuDong(maLoai, 0, 10);
 
-			sanPhamLoaiSanPham.put(loaiSanPhams.get(i).getTenLoaiSanPham(), sanPhamDTOs);
-		}
+				sanPhamLoaiSanPham.put(loaiSanPhams.get(i).getTenLoaiSanPham(), sanPhamDTOs);
+			}
 
 		model.addAttribute("map", map);
 		model.addAttribute("pageTitle", "Trang chủ");
@@ -121,5 +122,19 @@ public class TrangChuController {
 		return "user/home";
 	}
 
+	@GetMapping(value = "/test")
+	public String test() {
+		System.out.println(
+				"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+		sanPhamService.timKiemSanPhamTheoNhieuDieuKien("", null, 0, 0, null, null, null, 0, 2, 0).forEach(s -> {
+			System.out.println(
+					"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+			System.out.println(s.getId());
+			System.out.println(s.getTenSanPham());
+			System.out.println(s.getGiaBan());
+		});
+
+		return "User";
+	}
 
 }

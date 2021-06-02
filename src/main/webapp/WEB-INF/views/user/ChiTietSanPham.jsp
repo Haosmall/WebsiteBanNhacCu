@@ -95,19 +95,15 @@
 										<b style="color: #d82b2a; font-size: 1.6rem;">Sản phẩm này đã hết hàng</b>
 									</c:when>
 									<c:otherwise>
-										<a href="">
-											<button class="button--inter mua--ngay" id="btnMuaNgay">
+											<button class="button--inter mua--ngay" id="btnMuaNgay" onclick="muaNgay()">
 												Mua ngay
 											</button>
-										</a>
 		
-										<a href="">
 											<button
-												class="button--inter themvao--giohang" id="btnThemVaoGioHang"
+												class="button--inter themvao--giohang" id="btnThemVaoGioHang" onclick="themVaoGio()"
 											>
 												Thêm vào giỏ hàng
 											</button>
-										</a>
 									
 									</c:otherwise>
 								</c:choose>
