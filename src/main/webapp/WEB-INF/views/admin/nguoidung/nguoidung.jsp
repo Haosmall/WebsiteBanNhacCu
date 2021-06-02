@@ -81,7 +81,7 @@
 									onclick="location.href='<c:url value='/admin/nguoi-dung/chi-tiet-nguoi-dung?id=${ nguoiDung.userId }' />'">
 
 									<input type="button" class="btn btn-warning table__btn"
-									value="Cập nhật"
+									value="Sửa"
 									onclick="location.href='<c:url value='/admin/nguoi-dung/cap-nhat-nguoi-dung?id=${ nguoiDung.userId }' />'">
 
 									<input type="button" class="btn btn-danger table__btn btnXoa"

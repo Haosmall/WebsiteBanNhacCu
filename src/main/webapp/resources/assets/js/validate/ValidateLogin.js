@@ -30,3 +30,9 @@ validatePassword = () => {
 		return true;
 	}
 }
+
+$(document).ready(function () {
+	if(window.location.href.includes("error")){
+		toastr.error("Tài khoản hoặc mật khẩu không chính xác");
+	}
+});
