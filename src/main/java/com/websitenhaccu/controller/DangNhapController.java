@@ -128,7 +128,6 @@ public class DangNhapController {
 	@PostMapping(value = "/register")
 	public String register(Model model, HttpServletRequest request, @ModelAttribute("user") NguoiDungDTO userDTO,
 			BindingResult bindingResult) {
-		System.out.println("UserDTO" + userDTO);
 
 		userValidator.validate(userDTO, bindingResult);
 

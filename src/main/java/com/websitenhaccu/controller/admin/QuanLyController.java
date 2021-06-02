@@ -17,14 +17,8 @@ import com.websitenhaccu.entity.ChiTietHoaDon;
 import com.websitenhaccu.entity.HoaDon;
 import com.websitenhaccu.service.ChiTietHoaDonService;
 import com.websitenhaccu.service.HoaDonService;
-import com.websitenhaccu.util.Constant;
-import com.websitenhaccu.entity.LoaiSanPham;
-import com.websitenhaccu.entity.SanPham;
-import com.websitenhaccu.entity.ThuongHieu;
-import com.websitenhaccu.service.LoaiSanPhamService;
 import com.websitenhaccu.service.NguoiDungService;
-import com.websitenhaccu.service.SanPhamService;
-import com.websitenhaccu.service.ThuongHieuService;
+import com.websitenhaccu.util.Constant;
 
 @Controller
 @RequestMapping("/admin")
@@ -36,9 +30,6 @@ public class QuanLyController {
 	NguoiDungService userService;
 
 	@Autowired
-	private SanPhamService sanPhamService;
-
-	@Autowired
 	private ChiTietHoaDonService chiTietHoaDonService;
 
 	@Autowired
@@ -47,8 +38,6 @@ public class QuanLyController {
 	@Autowired
 	private ChiTietHoaDonConverter chiTietHoaDonConverter;
 
-	@Autowired
-	private ThuongHieuService thuongHieuService;
 
 	@RequestMapping("/quan-ly")
 	public String getUser(Model model) {

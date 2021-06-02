@@ -1,13 +1,10 @@
 package com.websitenhaccu.validator;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 import com.websitenhaccu.dto.QuangCaoDTO;
-import com.websitenhaccu.entity.QuangCao;
-import com.websitenhaccu.service.QuangCaoService;
 
 @Component
 public class QuangCaoValidator implements Validator {
@@ -27,7 +24,6 @@ public class QuangCaoValidator implements Validator {
 		QuangCaoDTO quangCaoDTO = (QuangCaoDTO) target;
 		
 		if(quangCaoDTO.getLink().trim().equals("")) {
-			System.out.println("@@@@@@@@@@ sai link");
 			errors.rejectValue("link", null, "Link quảng cáo không được bỏ trống");
 		}
 		if(quangCaoDTO.getHinhAnhBase64() == null || quangCaoDTO.getHinhAnhBase64().trim().equals("")) {

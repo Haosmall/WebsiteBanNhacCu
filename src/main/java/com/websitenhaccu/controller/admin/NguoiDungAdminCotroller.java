@@ -86,9 +86,7 @@ public class NguoiDungAdminCotroller {
 	private String capNhatThongTinNguoiDung(@ModelAttribute("user") NguoiDungDTO nguoiDungDTO, @RequestParam("trangThai") String trangThai) {
 		
 		NguoiDung nguoiDung = nguoiDungConverter.toUpdateUser(nguoiDungDTO);
-		System.out.println("trang thai: "+trangThai);
 		nguoiDung.setTrangThai(trangThai.equals("1") ? true : false);
-		System.out.println(nguoiDung);
 		
 		nguoiDungService.capNhatNguoiDung(nguoiDung);
 		

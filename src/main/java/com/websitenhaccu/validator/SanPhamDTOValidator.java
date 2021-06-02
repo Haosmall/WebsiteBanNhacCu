@@ -1,7 +1,5 @@
 package com.websitenhaccu.validator;
 
-import java.util.Optional;
-
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
@@ -24,8 +22,6 @@ public class SanPhamDTOValidator implements Validator {
 		}
 
 		SanPhamDTO sanPhamDTO = (SanPhamDTO) target;
-		
-		System.out.println("@@@@@@@@@@@@@@ class validate: "+ sanPhamDTO);
 		
 		if (sanPhamDTO.getTenSanPham().trim().equals("")) {
 			errors.rejectValue("tenSanPham", null, "Tên sản phẩm không được bỏ trống");

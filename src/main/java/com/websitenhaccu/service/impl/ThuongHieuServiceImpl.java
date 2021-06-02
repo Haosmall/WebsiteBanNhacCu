@@ -7,7 +7,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.websitenhaccu.entity.ThuongHieu;
-import com.websitenhaccu.repository.DongSanPhamRepository;
 import com.websitenhaccu.repository.ThuongHieuRepository;
 import com.websitenhaccu.service.ThuongHieuService;
 
@@ -16,9 +15,6 @@ public class ThuongHieuServiceImpl implements ThuongHieuService{
 
 	@Autowired
 	private ThuongHieuRepository thuonghieuRepository;
-	
-	@Autowired
-	private DongSanPhamRepository dongSanPhamRepository;
 	
 	@Override
 	public List<ThuongHieu> getTatCaThuongHieu() {

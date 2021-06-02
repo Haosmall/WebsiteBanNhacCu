@@ -88,7 +88,6 @@ public class ThuongHieuCotroller {
 			model.addAttribute("formButton", "Thêm");
 			return "admin/thuonghieu/FormThuongHieu";
 		}
-		System.out.println("da qua validate");
 		byte[] bytes = filePart.getBytes();
 		Blob blob = new SerialBlob(bytes);
 		thuongHieu.setHinhAnh(blob);
@@ -130,7 +129,6 @@ public class ThuongHieuCotroller {
 			model.addAttribute("formButton", "Cập nhật");
 			model.addAttribute("thuongHieu", thuongHieu);
 			model.addAttribute("blob", thuongHieu.getHinhAnh());
-			System.out.println("has error");
 			return "admin/thuonghieu/FormThuongHieu";
 		}
 		if (filePart.getSize() > 0) {
