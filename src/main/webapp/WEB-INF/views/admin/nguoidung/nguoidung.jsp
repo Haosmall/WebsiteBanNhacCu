@@ -56,8 +56,8 @@
 							<th style="width: 10%">Số điện thoại</th>
 							<th style="width: 10%">Email</th>
 							<th style="width: 20%">Địa chỉ</th>
-							<th style="width: 15%">Trạng thái</th>
-							<th style="width: 20%"></th>
+							<th style="width: 12%">Trạng thái</th>
+							<th style="width: 23%"></th>
 						</tr>
 					</thead>
 
