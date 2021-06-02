@@ -14,7 +14,7 @@
 <body>
 	<div class="container">
 		<a
-			href="<c:url value='/admin/san-pham/xem-chi-tiet?id=${ mauSanPhamDTO.maSanPham }' />">Quay
+			href="/WebsiteBanNhacCu/admin/quang-cao">Quay
 			lại</a>
 	</div>
 	<div class="container"
@@ -44,7 +44,7 @@
 					</div>
 
 					<button type="submit" class="btn btn-success">${formButton}</button>
-					<button type="reset" class="btn btn-danger">Hủy</button>
+					<button type="reset" class="btn btn-danger" onclick="window.location.href='http://localhost:8080/WebsiteBanNhacCu/admin/quang-cao'">Hủy</button>
 
 				</form:form>
 

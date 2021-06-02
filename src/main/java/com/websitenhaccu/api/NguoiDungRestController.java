@@ -37,8 +37,8 @@ public class NguoiDungRestController {
 	}
 	
 	@GetMapping("/tim-kiem")
-	public List<NguoiDungDTO> getTimKiem(@RequestParam("hoTen") String hoTen, @RequestParam("soDienThoai") String soDienThoai, @RequestParam("email") String email) {
-		List<NguoiDung> nguoiDungs = nguoiDungService.timKiemNguoiDung(hoTen, soDienThoai, email, 0, 10);
+	public List<NguoiDungDTO> getTimKiem(@RequestParam("hoTen") String hoTen, @RequestParam("soDienThoai") String soDienThoai, @RequestParam("email") String email, @RequestParam(value = "page", defaultValue = "0") int page) {
+		List<NguoiDung> nguoiDungs = nguoiDungService.timKiemNguoiDung(hoTen, soDienThoai, email, page, 10);
 		List<NguoiDungDTO> nguoiDungDTOs = new ArrayList<NguoiDungDTO>();
 		nguoiDungs.forEach(ng ->{
 			NguoiDungDTO nguoiDungDTO = nguoiDungConverter.toNguoiDungDTO(ng);

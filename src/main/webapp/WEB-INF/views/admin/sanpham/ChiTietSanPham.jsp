@@ -13,6 +13,8 @@
 
 </head>
 <body>
+<a href="<c:url value='/admin/san-pham/danh-sach-san-pham' />">Quay
+			lại</a>
 	<div class="container-fluid wrapper">
 
 

@@ -11,9 +11,9 @@ if (trangThai != "") {
 }
 
 function searchType() {
-    var searchText = document.getElementById("txtSearch").value;
-    var txtSearchSdt = document.getElementById("txtSearchSdt").value;
-    var txtSearchEmail = document.getElementById("txtSearchEmail").value;
+    var searchText = document.getElementById("txtSearch").value.replaceAll(' ', '+');
+    var txtSearchSdt = document.getElementById("txtSearchSdt").value.replaceAll(' ', '+');
+    var txtSearchEmail = document.getElementById("txtSearchEmail").value.replaceAll(' ', '+');
 
     var pageHidden = document.getElementById("pageValue");//gia tri hiden
     var viewPage = document.getElementById("viewPage");//gia tri hien thi trang hien tai
@@ -37,6 +37,10 @@ function searchType() {
                     value="Chi tiết"
                     onclick="location.href='/${CONTEXT_PATH}/admin/nguoi-dung/chi-tiet-nguoi-dung?id=${ data[i].userId }'"/>
 
+                    <input type="button" class="btn btn-warning table__btn"
+                        value="Cập nhật"
+                        onclick="location.href='/${CONTEXT_PATH}/admin/nguoi-dung/cap-nhat-nguoi-dung?id=${ data[i].userId }'">
+
                     <input type="button" class="btn btn-danger table__btn btnXoa" value="Xóa"/>
 
                     <input type="hidden" class="maNguoiDung" value="${ data[i].userId}" /></td>
@@ -48,7 +52,9 @@ function searchType() {
 
 document.getElementById("btnNext").onclick = function () {
 
-    var searchText = document.getElementById("txtSearch").value;
+    var searchText = document.getElementById("txtSearch").value.replaceAll(' ', '+');
+    var txtSearchSdt = document.getElementById("txtSearchSdt").value.replaceAll(' ', '+');
+    var txtSearchEmail = document.getElementById("txtSearchEmail").value.replaceAll(' ', '+');
 
     var pageHidden = document.getElementById("pageValue");//gia tri hiden
     var viewPage = document.getElementById("viewPage");//gia tri hien thi trang hien tai
@@ -83,6 +89,10 @@ document.getElementById("btnNext").onclick = function () {
                         value="Chi tiết"
                         onclick="location.href='/${CONTEXT_PATH}/admin/nguoi-dung/chi-tiet-nguoi-dung?id=${ data[i].userId }'"/>
     
+                        <input type="button" class="btn btn-warning table__btn"
+                        value="Cập nhật"
+                        onclick="location.href='/${CONTEXT_PATH}/admin/nguoi-dung/cap-nhat-nguoi-dung?id=${ data[i].userId }'">
+
                         <input type="button" class="btn btn-danger table__btn btnXoa" value="Xóa"/>
     
                         <input type="hidden" class="maNguoiDung" value="${ data[i].userId}" /></td>
@@ -100,7 +110,9 @@ document.getElementById("btnNext").onclick = function () {
 
 document.getElementById("btnPreviusPage").onclick = function () {
 
-    var searchText = document.getElementById("txtSearch").value;
+    var searchText = document.getElementById("txtSearch").value.replaceAll(' ', '+');
+    var txtSearchSdt = document.getElementById("txtSearchSdt").value.replaceAll(' ', '+');
+    var txtSearchEmail = document.getElementById("txtSearchEmail").value.replaceAll(' ', '+');
 
     var pageHidden = document.getElementById("pageValue");//gia tri hiden
     var viewPage = document.getElementById("viewPage");//gia tri hien thi trang hien tai
@@ -130,6 +142,10 @@ document.getElementById("btnPreviusPage").onclick = function () {
                         value="Chi tiết"
                         onclick="location.href='/${CONTEXT_PATH}/admin/nguoi-dung/chi-tiet-nguoi-dung?id=${ data[i].userId }'"/>
     
+                        <input type="button" class="btn btn-warning table__btn"
+                        value="Cập nhật"
+                        onclick="location.href='/${CONTEXT_PATH}/admin/nguoi-dung/cap-nhat-nguoi-dung?id=${ data[i].userId }'">
+
                         <input type="button" class="btn btn-danger table__btn btnXoa" value="Xóa"/>
     
                         <input type="hidden" class="maNguoiDung" value="${ data[i].userId}" /></td>
