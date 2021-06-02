@@ -47,9 +47,16 @@
 	overflow-y: scroll;
 	margin: 20px 0;
 }
+
+
+
+#viewPage{
+
+}
 </style>
 
-
+<link rel="stylesheet"
+	href='<c:url value ="/static/assets/css/admin/AlignButton.css"/>'>
 </head>
 
 <body>
@@ -215,18 +222,20 @@
 			</div>
 
 		</div>
-		<div class="page d-flex justify-content-center">
-			<ul class="pagination ">
-				<li class="page-item"><a class="page-link" href="#">Trang
-						trước</a></li>
-				<%-- <c:if test="${ counter.count <= 3 }">
-						<li class="page-item"><a class="page-link" href="#">${ i }</a></li>
-					</c:if> --%>
-				<li class="page-item"><a class="page-link" href="#">Trang
-						Sau</a></li>
-			</ul>
-		</div>
 
+
+	</div>
+
+	<div class="page d-flex justify-content-center">
+		<ul class="pagination ">
+
+			<li class="page-item"><button class="page-link color btn_interact"
+					onclick="redirectPrevius()">Trang trước</button></li>
+			<li><input type="text" readonly class="form-control textPage adjust--input"
+				id="viewPage" value="1"></li>
+			<li class="page-item"><button class="page-link color btn_interact"
+					onclick="redirectNext()">Trang Sau</button></li>
+		</ul>
 	</div>
 
 	<script>

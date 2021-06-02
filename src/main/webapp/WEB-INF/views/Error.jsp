@@ -22,8 +22,8 @@
             <div class="notfound-404">
                 <h1>Oops!</h1>
             </div>
-            <h2>404 - Không tìm thấy trang</h2>
-            <a href="#">Trờ về trang chủ</a>
+            <h2>Đã xảy ra lỗi</h2>
+            <a href='<c:url value ="/"/>'>Trờ về trang chủ</a>
         </div>
     </div>
 </body>
