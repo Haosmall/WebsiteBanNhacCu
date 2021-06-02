@@ -25,6 +25,9 @@ function searchType() {
     $.get(url, function (data, status) {
         $("#tableNguoiDung").html("");
         for (var i = 0; i < data.length; i++) {
+            var trangThaiND = 'Chưa xác minh';
+            if(data[i].enabled == true)
+                trangThaiND = 'Đã xác minh';
             $("#tableNguoiDung").append(
                 `<tr>
                 <td>${ i +1 }</td>
@@ -32,7 +35,9 @@ function searchType() {
                 <td>${ data[i].phone }</td>
                 <td>${ data[i].email }</td>
                 <td>${ data[i].tinhThanhPho }</td>
-                <td>Chưa cập nhật</td>
+                <td>
+                    ${trangThaiND}
+                </td>
                 <td><input type="button" class="btn btn-primary table__btn"
                     value="Chi tiết"
                     onclick="location.href='/${CONTEXT_PATH}/admin/nguoi-dung/chi-tiet-nguoi-dung?id=${ data[i].userId }'"/>
@@ -77,6 +82,9 @@ document.getElementById("btnNext").onclick = function () {
             console.log("data khac null")
             $("#tableNguoiDung").html("");
             for (var i = 0; i < data.length; i++) {
+                var trangThaiND = 'Chưa xác minh';
+                if(data[i].enabled == true)
+                    trangThaiND = 'Đã xác minh';
                 $("#tableNguoiDung").append(
                     `<tr>
                     <td>${ i +1 }</td>
@@ -84,15 +92,17 @@ document.getElementById("btnNext").onclick = function () {
                     <td>${ data[i].phone }</td>
                     <td>${ data[i].email }</td>
                     <td>${ data[i].tinhThanhPho }</td>
-                    <td>Chưa cập nhật</td>
+                    <td>
+                        ${trangThaiND}
+                    </td>
                     <td><input type="button" class="btn btn-primary table__btn"
                         value="Chi tiết"
                         onclick="location.href='/${CONTEXT_PATH}/admin/nguoi-dung/chi-tiet-nguoi-dung?id=${ data[i].userId }'"/>
     
                         <input type="button" class="btn btn-warning table__btn"
-                        value="Cập nhật"
-                        onclick="location.href='/${CONTEXT_PATH}/admin/nguoi-dung/cap-nhat-nguoi-dung?id=${ data[i].userId }'">
-
+                            value="Cập nhật"
+                            onclick="location.href='/${CONTEXT_PATH}/admin/nguoi-dung/cap-nhat-nguoi-dung?id=${ data[i].userId }'">
+    
                         <input type="button" class="btn btn-danger table__btn btnXoa" value="Xóa"/>
     
                         <input type="hidden" class="maNguoiDung" value="${ data[i].userId}" /></td>
@@ -130,6 +140,9 @@ document.getElementById("btnPreviusPage").onclick = function () {
         if (data[0] != null) {
             $("#tableNguoiDung").html("");
             for (var i = 0; i < data.length; i++) {
+                var trangThaiND = 'Chưa xác minh';
+                if(data[i].enabled == true)
+                    trangThaiND = 'Đã xác minh';
                 $("#tableNguoiDung").append(
                     `<tr>
                     <td>${ i +1 }</td>
@@ -137,15 +150,17 @@ document.getElementById("btnPreviusPage").onclick = function () {
                     <td>${ data[i].phone }</td>
                     <td>${ data[i].email }</td>
                     <td>${ data[i].tinhThanhPho }</td>
-                    <td>Chưa cập nhật</td>
+                    <td>
+                        ${trangThaiND}
+                    </td>
                     <td><input type="button" class="btn btn-primary table__btn"
                         value="Chi tiết"
                         onclick="location.href='/${CONTEXT_PATH}/admin/nguoi-dung/chi-tiet-nguoi-dung?id=${ data[i].userId }'"/>
     
                         <input type="button" class="btn btn-warning table__btn"
-                        value="Cập nhật"
-                        onclick="location.href='/${CONTEXT_PATH}/admin/nguoi-dung/cap-nhat-nguoi-dung?id=${ data[i].userId }'">
-
+                            value="Cập nhật"
+                            onclick="location.href='/${CONTEXT_PATH}/admin/nguoi-dung/cap-nhat-nguoi-dung?id=${ data[i].userId }'">
+    
                         <input type="button" class="btn btn-danger table__btn btnXoa" value="Xóa"/>
     
                         <input type="hidden" class="maNguoiDung" value="${ data[i].userId}" /></td>

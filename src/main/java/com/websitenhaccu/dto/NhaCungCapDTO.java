@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 public class NhaCungCapDTO {
 
 	private String maNhaCungCap;
@@ -26,6 +25,8 @@ public class NhaCungCapDTO {
 	private String phuongXa;
 
 	private String diaChi;
+	
+	
 
 	public NhaCungCapDTO(String tenNhaCungCap, String soDienThoai, String email, String website, String tinhThanhPho,
 			String quanHuyen, String phuongXa, String diaChi) {
@@ -40,4 +41,12 @@ public class NhaCungCapDTO {
 		this.diaChi = diaChi;
 	}
 
+	public NhaCungCapDTO() {
+		super();
+		this.tinhThanhPho ="";
+		this.quanHuyen = "";
+		this.phuongXa = "";
+		this.diaChi = "";
+	}
+	
 }

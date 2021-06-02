@@ -71,7 +71,11 @@
 								<td>${ nguoiDung.phone }</td>
 								<td>${ nguoiDung.email }</td>
 								<td>${ nguoiDung.tinhThanhPho }</td>
-								<td>Chưa cập nhật</td>
+								<td><c:if test="${ nguoiDung.enabled == true }">
+									Đã xác minh
+								</c:if> <c:if test="${ nguoiDung.enabled == false }">
+									Chưa xác minh
+								</c:if></td>
 								<td><input type="button" class="btn btn-primary table__btn"
 									value="Chi tiết"
 									onclick="location.href='<c:url value='/admin/nguoi-dung/chi-tiet-nguoi-dung?id=${ nguoiDung.userId }' />'">

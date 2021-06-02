@@ -1,4 +1,3 @@
-
 const HOST_NAME = window.location.hostname
 const PAGE_PATH = window.location.pathname
 const PORT = window.location.port
