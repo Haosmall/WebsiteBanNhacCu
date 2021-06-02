@@ -2,7 +2,6 @@ package com.websitenhaccu.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -72,27 +71,7 @@ public class TrangChuController {
 
 		List<DongSanPham> dongSanPhams = dongSanPhamService.getTatCaDongSanPham();
 
-		Map<LoaiSanPham, Set<ThuongHieuDTO>> map = new HashMap<LoaiSanPham, Set<ThuongHieuDTO>>();
-
-		loaiSanPhams.forEach(loaiSanPham -> {
-			String maLoai = loaiSanPham.getId();
-			Set<ThuongHieuDTO> temp = new HashSet<ThuongHieuDTO>();
-
-			dongSanPhams.forEach(dongSanPham -> {
-				if (dongSanPham.getLoaiSanPham().getId().equals(maLoai)) {
-					String maTH = dongSanPham.getThuongHieu().getId();
-
-					thuongHieus.forEach(thuongHieu -> {
-						if (thuongHieu.getId().equals(maTH)) {
-							temp.add(thuongHieuConverter.toThuongHieuDTO(thuongHieu));
-						}
-					});
-
-				}
-			});
-
-			map.put(loaiSanPham, temp);
-		});
+		Map<LoaiSanPham, Set<ThuongHieuDTO>> map = LoaiSanPhamService.getMapLoaiThuongHieu();
 
 		List<QuangCaoDTO> quangCaoDTOs = quangCaoService.get6QuangCao();
 		List<SanPhamDTO> sanPhamBanChays = sanPhamService.danhSachSanPhamBanChay(0, 15);

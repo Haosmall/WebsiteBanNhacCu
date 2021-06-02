@@ -151,7 +151,6 @@ public class NguoiDungConverter {
 		String quanHuyen = "";
 		String phuongXa = "";
 		String diaChi = "";
-		System.out.println("=============" + nguoiDung.getDiaChi());
 
 //		Kiểm tra xem có địa chỉ nhà cung cấp không
 		if (nguoiDung.getDiaChi().length() > 0) {

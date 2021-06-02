@@ -37,21 +37,6 @@ public class HoaDonAdminController {
 	@GetMapping("/danh-sach-don-hang")
 	public String DanhSachHoaDon(Model model) {
 
-//		List<HoaDon> hoaDons = hoaDonService.getTatCaHoaDons();
-//		List<HoaDonDTO> hoaDonDTOs = new ArrayList<HoaDonDTO>();
-//		hoaDons.forEach(hd -> {
-//			HoaDonDTO hoaDonDTO = hoaDonConverter.toHoaDonDTO(hd);
-//			List<ChiTietHoaDonDTO> chiTietHoaDonDTOs = new ArrayList<ChiTietHoaDonDTO>();
-//			List<ChiTietHoaDon> chiTietHoaDons = chiTietHoaDonService.getChiTietHoaDonTheoMaHoaDon(hoaDonDTO.getId());
-//
-//			chiTietHoaDons.forEach(cthd -> {
-//				ChiTietHoaDonDTO chiTietHoaDonDTO = chiTietHoaDonConverter.toChiTietHoaDonDTO(cthd);
-//				chiTietHoaDonDTOs.add(chiTietHoaDonDTO);
-//			});
-//			hoaDonDTO.setChiTietHoaDonDTOs(chiTietHoaDonDTOs);
-//
-//			hoaDonDTOs.add(hoaDonDTO);
-//		});
 		List<HoaDon> hoaDons = hoaDonService.getDanhSachTheoTrangThai("", 0, 5);
 		
 		List<HoaDonDTO> hoaDonDTOs = new ArrayList<HoaDonDTO>();

@@ -27,7 +27,6 @@ public class ThuongHieuValidator implements Validator{
 		}
 		
 		ThuongHieu thuongHieu = (ThuongHieu) target;
-		System.out.println(thuongHieu);
 		
 		ThuongHieu th = thuongHieuService.getThuonghieuBangTenThuonghieu(thuongHieu.getTenThuongHieu());
 		if(thuongHieu.getTenThuongHieu() == null || thuongHieu.getTenThuongHieu().trim().equals("")) {

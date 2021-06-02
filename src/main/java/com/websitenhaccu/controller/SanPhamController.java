@@ -2,8 +2,6 @@ package com.websitenhaccu.controller;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -17,7 +15,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.websitenhaccu.converter.SanPhamConverter;
-import com.websitenhaccu.converter.ThuongHieuConverter;
 import com.websitenhaccu.dto.MauSanPhamDTO;
 import com.websitenhaccu.dto.NguoiDungDTO;
 import com.websitenhaccu.dto.SanPhamDTO;
@@ -59,9 +56,6 @@ public class SanPhamController {
 	private MauSanPhamService mauSanPhamService;
 
 	@Autowired
-	private ThuongHieuConverter thuongHieuConverter;
-
-	@Autowired
 	private SanPhamConverter sanPhamConverter;
 
 	@GetMapping("/danh-sach-san-pham")
@@ -82,27 +76,8 @@ public class SanPhamController {
 		List<DongSanPham> dongSanPhams = dongSanPhamService.getTatCaDongSanPham();
 		List<SanPhamDTO> sanPhamDTOs;
 		Set<String> xuatXus = sanPhamService.getDanhSachXuatXu();
-		Map<LoaiSanPham, Set<ThuongHieuDTO>> map = new HashMap<LoaiSanPham, Set<ThuongHieuDTO>>();
 
-		loaiSanPhams.forEach(loaiSanPham -> {
-			String maLoai = loaiSanPham.getId();
-			Set<ThuongHieuDTO> temp = new HashSet<ThuongHieuDTO>();
-
-			dongSanPhams.forEach(dongSanPham -> {
-				if (dongSanPham.getLoaiSanPham().getId().equals(maLoai)) {
-					String maTH = dongSanPham.getThuongHieu().getId();
-
-					thuongHieus.forEach(thuongHieu -> {
-						if (thuongHieu.getId().equals(maTH)) {
-							temp.add(thuongHieuConverter.toThuongHieuDTO(thuongHieu));
-						}
-					});
-
-				}
-			});
-
-			map.put(loaiSanPham, temp);
-		});
+		Map<LoaiSanPham, Set<ThuongHieuDTO>> map = LoaiSanPhamService.getMapLoaiThuongHieu();
 
 		sanPhamDTOs = sanPhamService.timKiemSanPhamTheoNhieuDieuKien("", null, 0, 0, null, null, null, page - 1, size,
 				1);
@@ -143,49 +118,31 @@ public class SanPhamController {
 		List<LoaiSanPham> loaiSanPhams = LoaiSanPhamService.getTatCaLoaiSanPham();
 		List<ThuongHieu> thuongHieus = thuongHieuService.getTatCaThuongHieu();
 		List<DongSanPham> dongSanPhams = dongSanPhamService.getTatCaDongSanPham();
-		List<SanPhamDTO> sanPhamDTOs;
+		Map<LoaiSanPham, Set<ThuongHieuDTO>> map = LoaiSanPhamService.getMapLoaiThuongHieu();
+
+		List<SanPhamDTO> sanPhamDTOs = new ArrayList<SanPhamDTO>();
 		Set<String> xuatXus = sanPhamService.getDanhSachXuatXu();
-		Map<LoaiSanPham, Set<ThuongHieuDTO>> map = new HashMap<LoaiSanPham, Set<ThuongHieuDTO>>();
 
-		loaiSanPhams.forEach(loaiSanPham -> {
-			String maLoai = loaiSanPham.getId();
-			Set<ThuongHieuDTO> temp = new HashSet<ThuongHieuDTO>();
+		if (id.contains("LSP")) {
 
-			dongSanPhams.forEach(dongSanPham -> {
-				if (dongSanPham.getLoaiSanPham().getId().equals(maLoai)) {
-					String maTH = dongSanPham.getThuongHieu().getId();
+			sanPhamDTOs = sanPhamService.timKiemSanPhamTheoNhieuDieuKien("", null, 0, 0, null, null,
+					new ArrayList<String>(Arrays.asList(id)), page - 1, size, 1);
 
-					thuongHieus.forEach(thuongHieu -> {
-						if (thuongHieu.getId().equals(maTH)) {
-							temp.add(thuongHieuConverter.toThuongHieuDTO(thuongHieu));
-						}
-					});
+		} else if (id.contains("TH")) {
 
-				}
-			});
+			sanPhamDTOs = sanPhamService.timKiemSanPhamTheoNhieuDieuKien("", null, 0, 0, null,
+					new ArrayList<String>(Arrays.asList(id)), null, page - 1, size, 1);
 
-			map.put(loaiSanPham, temp);
-		});
+		} else if (id.contains("DSP")) {
 
-		if (!id.equals("tat-ca")) {
-//			sanPhamDTOs = sanPhamService.getDanhSachSanPhamTheoLoaiThuongHieuDong(id, page-1, size);
-			if (id.contains("LSP"))
-				sanPhamDTOs = sanPhamService.timKiemSanPhamTheoNhieuDieuKien("", null, 0, 0, null, null,
-						new ArrayList<String>(Arrays.asList(id)), page - 1, size, 1);
-			else
-				sanPhamDTOs = sanPhamService.timKiemSanPhamTheoNhieuDieuKien("", null, 0, 0,
-						null, new ArrayList<String>(Arrays.asList(id)), null, page - 1, size, 1);
+			sanPhamDTOs = sanPhamService.timKiemSanPhamTheoNhieuDieuKien("", null, 0, 0,
+					new ArrayList<String>(Arrays.asList(id)), null, null, page - 1, size, 1);
 
-			sanPhamDTOs.forEach(dto -> {
-				xuatXus.add(dto.getXuatXu());
-			});
-		} else {
-			sanPhamDTOs = sanPhamService.timKiemSanPhamTheoNhieuDieuKien("", null, 0, 0, null, null, null, page - 1,
-					size, 1);
-			sanPhamDTOs.forEach(dto -> {
-				xuatXus.add(dto.getXuatXu());
-			});
 		}
+
+		sanPhamDTOs.forEach(dto -> {
+			xuatXus.add(dto.getXuatXu());
+		});
 
 		double maxpage = Math.ceil(sanPhamDTOs.size() / 15);
 
@@ -223,27 +180,7 @@ public class SanPhamController {
 		List<DongSanPham> dongSanPhams = dongSanPhamService.getTatCaDongSanPham();
 		List<SanPhamDTO> sanPhamDTOs;
 		Set<String> xuatXus = sanPhamService.getDanhSachXuatXu();
-		Map<LoaiSanPham, Set<ThuongHieuDTO>> map = new HashMap<LoaiSanPham, Set<ThuongHieuDTO>>();
-
-		loaiSanPhams.forEach(loaiSanPham -> {
-			String maLoai = loaiSanPham.getId();
-			Set<ThuongHieuDTO> temp = new HashSet<ThuongHieuDTO>();
-
-			dongSanPhams.forEach(dongSanPham -> {
-				if (dongSanPham.getLoaiSanPham().getId().equals(maLoai)) {
-					String maTH = dongSanPham.getThuongHieu().getId();
-
-					thuongHieus.forEach(thuongHieu -> {
-						if (thuongHieu.getId().equals(maTH)) {
-							temp.add(thuongHieuConverter.toThuongHieuDTO(thuongHieu));
-						}
-					});
-
-				}
-			});
-
-			map.put(loaiSanPham, temp);
-		});
+		Map<LoaiSanPham, Set<ThuongHieuDTO>> map = LoaiSanPhamService.getMapLoaiThuongHieu();
 
 		sanPhamDTOs = sanPhamService.timKiemSanPhamTheoNhieuDieuKien("", null, 0, 0, null,
 				new ArrayList<String>(Arrays.asList(maThuongHieu)), new ArrayList<String>(Arrays.asList(maLoaisanPham)),
@@ -291,35 +228,15 @@ public class SanPhamController {
 
 		List<BinhLuan> binhLuans = binhLuanService.getBinhLuanTheoMaSanPham(id);
 
-		List<LoaiSanPham> loaiSanPhams = LoaiSanPhamService.getTatCaLoaiSanPham();
-		List<ThuongHieu> thuongHieus = thuongHieuService.getTatCaThuongHieu();
 		List<DongSanPham> dongSanPhams = dongSanPhamService.getTatCaDongSanPham();
 
-		Map<LoaiSanPham, Set<ThuongHieuDTO>> map = new HashMap<LoaiSanPham, Set<ThuongHieuDTO>>();
+		Map<LoaiSanPham, Set<ThuongHieuDTO>> map = LoaiSanPhamService.getMapLoaiThuongHieu();
 
-		loaiSanPhams.forEach(loaiSanPham -> {
-			String maLoai = loaiSanPham.getId();
-			Set<ThuongHieuDTO> temp = new HashSet<ThuongHieuDTO>();
-
-			dongSanPhams.forEach(dongSanPham -> {
-				if (dongSanPham.getLoaiSanPham().getId().equals(maLoai)) {
-					String maTH = dongSanPham.getThuongHieu().getId();
-
-					thuongHieus.forEach(thuongHieu -> {
-						if (thuongHieu.getId().equals(maTH)) {
-							temp.add(thuongHieuConverter.toThuongHieuDTO(thuongHieu));
-						}
-					});
-
-				}
-			});
-
-			map.put(loaiSanPham, temp);
-		});
 		model.addAttribute("map", map);
 
 		model.addAttribute("pageTitle", "Chi tiết sản phẩm");
 		model.addAttribute("sanPhamDTO", sanPhamDTO);
+		model.addAttribute("dongSanPhams", dongSanPhams);
 		model.addAttribute("mauSanPhamDTOs", mauSanPhamDTOs);
 		model.addAttribute("binhLuans", binhLuans);
 
@@ -327,7 +244,8 @@ public class SanPhamController {
 	}
 
 	@GetMapping("/danh-sach-san-pham/tim-kiem-san-pham")
-	public String timKiemTheoThem(Model model, @RequestParam("tenSanPham") String tenSanPham, @RequestParam(name = "page", defaultValue = "1") int page,
+	public String timKiemTheoThem(Model model, @RequestParam("tenSanPham") String tenSanPham,
+			@RequestParam(name = "page", defaultValue = "1") int page,
 			@RequestParam(name = "size", defaultValue = "15") int size) {
 
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -344,30 +262,10 @@ public class SanPhamController {
 		List<DongSanPham> dongSanPhams = dongSanPhamService.getTatCaDongSanPham();
 		List<SanPhamDTO> sanPhamDTOs;
 		Set<String> xuatXus = sanPhamService.getDanhSachXuatXu();
-		Map<LoaiSanPham, Set<ThuongHieuDTO>> map = new HashMap<LoaiSanPham, Set<ThuongHieuDTO>>();
+		Map<LoaiSanPham, Set<ThuongHieuDTO>> map = LoaiSanPhamService.getMapLoaiThuongHieu();
 
-		loaiSanPhams.forEach(loaiSanPham -> {
-			String maLoai = loaiSanPham.getId();
-			Set<ThuongHieuDTO> temp = new HashSet<ThuongHieuDTO>();
-
-			dongSanPhams.forEach(dongSanPham -> {
-				if (dongSanPham.getLoaiSanPham().getId().equals(maLoai)) {
-					String maTH = dongSanPham.getThuongHieu().getId();
-
-					thuongHieus.forEach(thuongHieu -> {
-						if (thuongHieu.getId().equals(maTH)) {
-							temp.add(thuongHieuConverter.toThuongHieuDTO(thuongHieu));
-						}
-					});
-
-				}
-			});
-
-			map.put(loaiSanPham, temp);
-		});
-
-		sanPhamDTOs = sanPhamService.timKiemSanPhamTheoNhieuDieuKien(tenSanPham, null, 0, 0, null, null, null, page - 1, size,
-				1);
+		sanPhamDTOs = sanPhamService.timKiemSanPhamTheoNhieuDieuKien(tenSanPham, null, 0, 0, null, null, null, page - 1,
+				size, 1);
 		sanPhamDTOs.forEach(dto -> {
 			xuatXus.add(dto.getXuatXu());
 		});

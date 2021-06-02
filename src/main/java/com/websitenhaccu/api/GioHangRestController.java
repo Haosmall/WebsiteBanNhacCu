@@ -79,7 +79,6 @@ public class GioHangRestController {
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-		System.out.println(diaChiMoi);
 
 		HoaDonDTO hoaDonDTO = (HoaDonDTO) httpSession.getAttribute("hoaDonDTO");
 		if (hoaDonDTO == null) {

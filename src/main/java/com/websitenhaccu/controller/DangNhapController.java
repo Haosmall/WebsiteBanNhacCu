@@ -1,7 +1,5 @@
 package com.websitenhaccu.controller;
 
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -23,16 +21,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.websitenhaccu.converter.ThuongHieuConverter;
 import com.websitenhaccu.dto.NguoiDungDTO;
 import com.websitenhaccu.dto.ThuongHieuDTO;
 import com.websitenhaccu.entity.DongSanPham;
 import com.websitenhaccu.entity.LoaiSanPham;
-import com.websitenhaccu.entity.ThuongHieu;
 import com.websitenhaccu.service.DongSanPhamService;
 import com.websitenhaccu.service.LoaiSanPhamService;
 import com.websitenhaccu.service.NguoiDungService;
-import com.websitenhaccu.service.ThuongHieuService;
 import com.websitenhaccu.validator.UserValidator;
 
 @Controller
@@ -43,47 +38,20 @@ public class DangNhapController {
 
 	@Autowired
 	private UserValidator userValidator;
-	
-	@Autowired
-	private LoaiSanPhamService LoaiSanPhamService; 
-	
-	@Autowired
-	private ThuongHieuService thuongHieuService; 
-	
-	@Autowired
-	private DongSanPhamService dongSanPhamService; 
 
 	@Autowired
-	private ThuongHieuConverter thuongHieuConverter; 
+	private LoaiSanPhamService LoaiSanPhamService;
+
+	@Autowired
+	private DongSanPhamService dongSanPhamService;
 
 	@RequestMapping("/login")
 	public String login(Model model) {
-		List<LoaiSanPham> loaiSanPhams = LoaiSanPhamService.getTatCaLoaiSanPham();
-		List<ThuongHieu> thuongHieus = thuongHieuService.getTatCaThuongHieu();
 		List<DongSanPham> dongSanPhams = dongSanPhamService.getTatCaDongSanPham();
-		
-		Map<LoaiSanPham, Set<ThuongHieuDTO>> map = new HashMap<LoaiSanPham, Set<ThuongHieuDTO>>();
-		
-		loaiSanPhams.forEach(loaiSanPham -> {
-			String maLoai = loaiSanPham.getId();
-			Set<ThuongHieuDTO> temp = new HashSet<ThuongHieuDTO>();
-			
-			dongSanPhams.forEach(dongSanPham -> {
-				if(dongSanPham.getLoaiSanPham().getId().equals(maLoai)) {
-					String maTH = dongSanPham.getThuongHieu().getId();
-					
-					thuongHieus.forEach(thuongHieu -> {
-						if(thuongHieu.getId().equals(maTH)) {
-							temp.add(thuongHieuConverter.toThuongHieuDTO(thuongHieu));
-						}
-					});
-					
-				}
-			});
-			
-			map.put(loaiSanPham, temp);
-		});
+
+		Map<LoaiSanPham, Set<ThuongHieuDTO>> map = LoaiSanPhamService.getMapLoaiThuongHieu();
 		model.addAttribute("map", map);
+		model.addAttribute("dongSanPhams", dongSanPhams);
 		model.addAttribute("pageTitle", "Đăng nhập");
 		return "login/login";
 	}
@@ -92,34 +60,13 @@ public class DangNhapController {
 	public String register(Model model) {
 		String userId = RandomStringUtils.randomNumeric(8);
 		NguoiDungDTO userDTO = new NguoiDungDTO(userId);
-		
-		List<LoaiSanPham> loaiSanPhams = LoaiSanPhamService.getTatCaLoaiSanPham();
-		List<ThuongHieu> thuongHieus = thuongHieuService.getTatCaThuongHieu();
+
 		List<DongSanPham> dongSanPhams = dongSanPhamService.getTatCaDongSanPham();
-		
-		Map<LoaiSanPham, Set<ThuongHieuDTO>> map = new HashMap<LoaiSanPham, Set<ThuongHieuDTO>>();
-		
-		loaiSanPhams.forEach(loaiSanPham -> {
-			String maLoai = loaiSanPham.getId();
-			Set<ThuongHieuDTO> temp = new HashSet<ThuongHieuDTO>();
-			
-			dongSanPhams.forEach(dongSanPham -> {
-				if(dongSanPham.getLoaiSanPham().getId().equals(maLoai)) {
-					String maTH = dongSanPham.getThuongHieu().getId();
-					
-					thuongHieus.forEach(thuongHieu -> {
-						if(thuongHieu.getId().equals(maTH)) {
-							temp.add(thuongHieuConverter.toThuongHieuDTO(thuongHieu));
-						}
-					});
-					
-				}
-			});
-			
-			map.put(loaiSanPham, temp);
-		});
+
+		Map<LoaiSanPham, Set<ThuongHieuDTO>> map = LoaiSanPhamService.getMapLoaiThuongHieu();
 		model.addAttribute("map", map);
-		
+		model.addAttribute("dongSanPhams", dongSanPhams);
+
 		model.addAttribute("pageTitle", "Đăng kí tài khoản");
 		model.addAttribute("user", userDTO);
 		return "login/register";
@@ -163,6 +110,11 @@ public class DangNhapController {
 
 	@GetMapping("/forgot-password")
 	public String forgotPassword(Model model) {
+		List<DongSanPham> dongSanPhams = dongSanPhamService.getTatCaDongSanPham();
+
+		Map<LoaiSanPham, Set<ThuongHieuDTO>> map = LoaiSanPhamService.getMapLoaiThuongHieu();
+		model.addAttribute("map", map);
+		model.addAttribute("dongSanPhams", dongSanPhams);
 		model.addAttribute("pageTitle", "Quên mật khẩu");
 		return "login/forgotPassword";
 	}
@@ -180,6 +132,11 @@ public class DangNhapController {
 	public String verifyPassword(Model model, @RequestParam(name = "email", required = true) String email,
 			@RequestParam(name = "token", required = true) String token) {
 
+		List<DongSanPham> dongSanPhams = dongSanPhamService.getTatCaDongSanPham();
+
+		Map<LoaiSanPham, Set<ThuongHieuDTO>> map = LoaiSanPhamService.getMapLoaiThuongHieu();
+		model.addAttribute("map", map);
+		model.addAttribute("dongSanPhams", dongSanPhams);
 		model.addAttribute("email", email);
 		model.addAttribute("token", token);
 		model.addAttribute("pageTitle", "Đổi mật khẩu");
@@ -196,7 +153,7 @@ public class DangNhapController {
 		if (result)
 			return "redirect:/login";
 
-		return "error";
+		return "common/error";
 	}
 
 	@GetMapping(value = "/logout")
