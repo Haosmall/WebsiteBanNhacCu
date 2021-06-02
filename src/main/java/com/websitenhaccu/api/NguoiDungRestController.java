@@ -15,8 +15,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.websitenhaccu.converter.NguoiDungConverter;
+import com.websitenhaccu.dto.HoaDonDTO;
 import com.websitenhaccu.dto.NguoiDungDTO;
+import com.websitenhaccu.entity.HoaDon;
 import com.websitenhaccu.entity.NguoiDung;
+import com.websitenhaccu.service.HoaDonService;
 import com.websitenhaccu.service.NguoiDungService;
 
 @RestController
@@ -25,6 +28,8 @@ public class NguoiDungRestController {
 
 	@Autowired
 	private NguoiDungService nguoiDungService;
+	@Autowired
+	private HoaDonService hoaDonService;
 	
 	@Autowired
 	private NguoiDungConverter nguoiDungConverter;
@@ -48,8 +53,13 @@ public class NguoiDungRestController {
 	}
 	
 	@DeleteMapping("/xoa")
-	private void xoaNguoiDung(@RequestParam("id") String id) {
+	private int xoaNguoiDung(@RequestParam("id") String id) {
+		
+		List<HoaDon> hoaDons = hoaDonService.getHoaDonTheoNguoiDung(id);
+		if(hoaDons.size() > 0)
+			return -1;
 		nguoiDungService.XoaNguoiDung(id);
+		return 1;
 	}
 	
 	@GetMapping("/doi-mat-khau")

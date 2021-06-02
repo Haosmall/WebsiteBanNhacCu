@@ -179,13 +179,16 @@ xoaNguoiDung = (id) => {
         url: apiFetch = `http://${HOST_NAME}:${PORT}/${CONTEXT_PATH}/register/api/email/xoa?id=` + id,
         type: 'DELETE',
         success: function (result) {
-            window.location.href = `http://${HOST_NAME}:${PORT}/${CONTEXT_PATH}/admin/nguoi-dung/danh-sach-nguoi-dung`;
-            console.log("Đã xóa khách hàng");
-            toastr.success("Đã xóa khách hàng");
-        },
-        error: function () {
-            console.log('Khách hàng này không thể xóa');
-            toastr.error('Khách hàng này không thể xóa');
+        	if(result == 1){
+        		
+	            window.location.href = `http://${HOST_NAME}:${PORT}/${CONTEXT_PATH}/admin/nguoi-dung/danh-sach-nguoi-dung`;
+	            console.log("Đã xóa khách hàng");
+	            toastr.success("Đã xóa khách hàng");
+        	}else{
+        		
+        		console.log('Khách hàng này không thể xóa');
+        		toastr.error('Khách hàng này không thể xóa');
+        	}
         }
     });
 }

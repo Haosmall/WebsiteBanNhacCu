@@ -16,6 +16,8 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
 <!-- Custom fonts for this template-->
 <link
@@ -45,8 +47,11 @@
 	background-color: #33CC33 !important;
 	z-index: 2000000000;
 }
+.toast-error {
+	background-color: #e62e2d !important;
+	z-index: 2000000000;
+}
 </style>
-
 
 <dec:head></dec:head>
 
@@ -91,6 +96,20 @@
 				href="<c:url value ="/admin/quan-li-don-hang/danh-sach-don-hang"/>"> <i
 					class="fas fa-receipt fa-fw fa-cog"></i> <span>Quản lý đơn
 						hàng</span>
+			</a>
+				<%-- <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item"
+							href='<c:url value ="/admin/quan-li-don-hang/danh-sach-don-hang"/>'>Danh
+							sách đơn hàng</a> <a class="collapse-item"
+							href='<c:url value ="/admin/quan-li-don-hang/danh-sach-don-hang"/>'>Cards</a>
+					</div>
+				</div> --%>
+				</li>
+			<li class="nav-item"><a class="nav-link collapsed"
+				href="<c:url value='/admin/nguoi-dung/danh-sach-nguoi-dung'/>"> <i
+					class="fas fa-receipt fa-fw fa-cog"></i> <span>Quản lý người dùng</span>
 			</a>
 				<%-- <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
@@ -160,12 +179,6 @@
 							sách nhà cung cấp</a> <a class="collapse-item"
 							href="<c:url value='/admin/nha-cung-cap/them-nha-cung-cap'/>">Thêm
 							nhà cung cấp</a>
-						<div class="collapse-divider"></div>
-
-						<h6 class="collapse-header">Người dùng:</h6>
-						<a class="collapse-item"
-							href="<c:url value='/admin/nguoi-dung/danh-sach-nguoi-dung'/>">Danh
-							sách người dùng</a>
 						<div class="collapse-divider"></div>
 
 						<h6 class="collapse-header">Thương hiệu:</h6>
@@ -332,7 +345,10 @@
 	<script
 		src='<c:url value="/static/assets/js/demo/chart-area-demo.js"/>'></script>
 	<script src='<c:url value="/static/assets/js/demo/chart-pie-demo.js"/>'></script>
-
+	
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+	<script type="text/javascript">
 
 </body>
 </html>
