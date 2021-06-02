@@ -14,15 +14,7 @@
 
 		<!-- Row input -->
 		<div class="row">
-			<div class="col-lg-4">
-				<div class="form-group">
-					<label for="exampleInputEmail1">Tìm kiếm</label> <input type="text"
-						class="form-control" id="exampleInputEmail1"
-						aria-describedby="emailHelp" placeholder="Nhập tên sản phẩm">
-				</div>
-			</div>
-
-			<div class="col-lg-6"></div>
+			
 
 			<div class="col-lg-2">
 				<div class="form-group">

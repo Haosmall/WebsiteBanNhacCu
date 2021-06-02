@@ -16,6 +16,8 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
 <!-- Custom fonts for this template-->
 <link
@@ -45,8 +47,11 @@
 	background-color: #33CC33 !important;
 	z-index: 2000000000;
 }
+.toast-error {
+	background-color: #e62e2d !important;
+	z-index: 2000000000;
+}
 </style>
-
 
 <dec:head></dec:head>
 
@@ -77,24 +82,22 @@
 			<hr class="sidebar-divider my-0">
 
 			<!-- Nav Item - Dashboard -->
-			<li class="nav-item active"><a class="nav-link"
+			<!-- <li class="nav-item active"><a class="nav-link"
 				href="index.html"> <i class="fas fa-fw fa-tachometer-alt"></i> <span>Dashboard</span></a>
 			</li>
 
-			<!-- Divider -->
-			<hr class="sidebar-divider">
+			Divider
+			<hr class="sidebar-divider"> -->
 
 
 
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed"
-				href="<c:url value ="/admin/quan-li-don-hang/danh-sach-don-hang"/>"
-				data-toggle="collapse" data-target="#collapseTwo"
-				aria-expanded="true" aria-controls="collapseTwo"> <i
+				href="<c:url value ="/admin/quan-li-don-hang/danh-sach-don-hang"/>"> <i
 					class="fas fa-receipt fa-fw fa-cog"></i> <span>Quản lý đơn
 						hàng</span>
 			</a>
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+				<%-- <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item"
@@ -102,7 +105,22 @@
 							sách đơn hàng</a> <a class="collapse-item"
 							href='<c:url value ="/admin/quan-li-don-hang/danh-sach-don-hang"/>'>Cards</a>
 					</div>
-				</div></li>
+				</div> --%>
+				</li>
+			<li class="nav-item"><a class="nav-link collapsed"
+				href="<c:url value='/admin/nguoi-dung/danh-sach-nguoi-dung'/>"> <i
+					class="fas fa-receipt fa-fw fa-cog"></i> <span>Quản lý người dùng</span>
+			</a>
+				<%-- <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item"
+							href='<c:url value ="/admin/quan-li-don-hang/danh-sach-don-hang"/>'>Danh
+							sách đơn hàng</a> <a class="collapse-item"
+							href='<c:url value ="/admin/quan-li-don-hang/danh-sach-don-hang"/>'>Cards</a>
+					</div>
+				</div> --%>
+				</li>
 
 			<!-- Nav Item - Utilities Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
@@ -161,12 +179,6 @@
 							sách nhà cung cấp</a> <a class="collapse-item"
 							href="<c:url value='/admin/nha-cung-cap/them-nha-cung-cap'/>">Thêm
 							nhà cung cấp</a>
-						<div class="collapse-divider"></div>
-
-						<h6 class="collapse-header">Người dùng:</h6>
-						<a class="collapse-item"
-							href="<c:url value='/admin/nguoi-dung/danh-sach-nguoi-dung'/>">Danh
-							sách người dùng</a>
 						<div class="collapse-divider"></div>
 
 						<h6 class="collapse-header">Thương hiệu:</h6>
@@ -249,44 +261,23 @@
 						<!-- Nav Item - Alerts -->
 
 						<!-- Nav Item - Messages -->
-
-
+						<li class="nav-item dropdown no-arrow mx-1">
+							<a class="nav-link dropdown-toggle" href="<c:url value="/"/>" id="messagesDropdown"> 
+								<i class="fab fa-internet-explorer fa-sm fa-fw mr-2 text-gray-400"></i>
+									Trang chủ
+							</a> 
+							
+						</li>
+						
+						
 						<div class="topbar-divider d-none d-sm-block"></div>
-
-						<!-- Nav Item - User Information -->
-						<li class="nav-item dropdown no-arrow"><a
-							class="nav-link dropdown-toggle" href="#" id="userDropdown"
-							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> <span
-								class="mr-2 d-none d-lg-inline text-gray-600 small">Hào
-									Small</span> <img class="img-profile rounded-circle"
-								src="<c:url value='/static/assets/img/undraw_profile.svg'/>">
-						</a> <!-- Dropdown - User Information -->
-							<div
-								class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-								aria-labelledby="userDropdown">
-								<a class="dropdown-item" href="#"> <i
-									class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Thông
-									tin người dùng
-								</a>
-								<!--  <a class="dropdown-item" href="#"> <i
-									class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-									Settings
-								</a> -->
-
-								<a class="dropdown-item" href="<c:url value="/"/>"> <i
-									class="fab fa-internet-explorer fa-sm fa-fw mr-2 text-gray-400"></i>
-									<!-- class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i> -->
-									Website
-								</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href='<c:url value="/logout"/>'
-									data-toggle="modal" data-target="#logoutModal"> <i
-									class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-									Đăng xuất
-								</a>
-							</div></li>
-
+						<li class="nav-item dropdown no-arrow mx-1">
+							<a class="nav-link dropdown-toggle" href="<c:url value="/logout"/>" id="messagesDropdown"
+									data-toggle="modal" data-target="#logoutModal"> 
+								 <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>Đăng xuất
+							</a> 
+							
+						</li>
 					</ul>
 
 				</nav>
@@ -316,18 +307,18 @@
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+					<h5 class="modal-title" id="exampleModalLabel">Bạn có muốn đăng xuất?</h5>
 					<button class="close" type="button" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">×</span>
 					</button>
 				</div>
-				<div class="modal-body">Select "Logout" below if you are ready
-					to end your current session.</div>
+				<!-- <div class="modal-body">Select "Logout" below if you are ready
+					to end your current session.</div> -->
 				<div class="modal-footer">
 					<button class="btn btn-secondary" type="button"
-						data-dismiss="modal">Cancel</button>
-					<a class="btn btn-primary" href="<c:url value='/logout'/>">Logout</a>
+						data-dismiss="modal">Không</button>
+					<a class="btn btn-primary" href="<c:url value='/logout'/>">Có</a>
 				</div>
 			</div>
 		</div>
@@ -354,7 +345,10 @@
 	<script
 		src='<c:url value="/static/assets/js/demo/chart-area-demo.js"/>'></script>
 	<script src='<c:url value="/static/assets/js/demo/chart-pie-demo.js"/>'></script>
-
+	
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+	<script type="text/javascript">
 
 </body>
 </html>

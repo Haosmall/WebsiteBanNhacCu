@@ -77,6 +77,7 @@ $("#btnApDung").click((e) => {
 });
 
 
+
 function timKiem(callUrl) {
 	const dataTimKiem = { SearchTenSanPham, xuatXus, giaDau, giaCuoi, dongSanPhams, thuongHieus, loais, sort, page };
 
