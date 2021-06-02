@@ -29,7 +29,7 @@
 				<!-- categories -->
 				<div class="categories">
 
-					<div class="category__adjust">
+					<div class="category__adjust" style="background-color: #e6e6e6;">
 						<div class="item">
 
 							<i class="fas fa-bars category__icon"></i> <a
@@ -81,8 +81,8 @@
 							<div class="item">
 								<i class="fas fa-guitar category__icon"></i> <a
 									class="category__name"
-									href="<c:url value="/danh-sach-san-pham?page=1"/>">Tất
-									cả sản phẩm</a>
+									href="<c:url value="/danh-sach-san-pham?page=1"/>">Tất cả
+									sản phẩm</a>
 							</div>
 						</div>
 					</div>
@@ -138,7 +138,8 @@
 
 			<!-- side -->
 			<div class="col ml-2 sider">
-				<c:forEach items="${ quangCaoDTOs }" var="quangCaoDTO" varStatus="counter">
+				<c:forEach items="${ quangCaoDTOs }" var="quangCaoDTO"
+					varStatus="counter">
 					<c:if test="${ counter.count > 3 }">
 						<div class="row">
 							<a href="${ quangCaoDTO.link }"><img
@@ -147,7 +148,7 @@
 						</div>
 					</c:if>
 				</c:forEach>
-				
+
 			</div>
 
 		</div>
@@ -169,9 +170,9 @@
 					<div class="product"
 						onclick="location.href = '/WebsiteBanNhacCu/san-pham?id=${sanPhamBanChay.id}'">
 						<div class="product__img">
-							<img 
+							<img
 								src="data:image/jpg;base64,${ sanPhamBanChay.hinhAnhBase64 }"
-								style="object-fit:contain;" alt="">
+								style="object-fit: contain;" alt="">
 						</div>
 						<p class="product__name">
 							<b>${ sanPhamBanChay.tenSanPham }</b>
@@ -322,7 +323,7 @@
 		</c:forEach>
 
 
-	
+
 
 	</div>
 </body>

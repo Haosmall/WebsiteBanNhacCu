@@ -41,6 +41,12 @@
 	border: 1px solid orange;
 	border-radius: 3px;
 }
+
+.scroll {
+	height: 160px;
+	overflow-y: scroll;
+	margin: 20px 0;
+}
 </style>
 
 
@@ -64,54 +70,54 @@
 				<div class="partition_price">
 					<b>Khoảng giá</b>
 					<div class="partition_price--layout">
-						<input placeholder="Từ " type="number" id="giaDau"/> <span>-</span> 
-						<input placeholder="đến " type="number" id="giaCuoi"/>
+						<input placeholder="Từ " type="number" id="giaDau" /> <span>-</span>
+						<input placeholder="đến " type="number" id="giaCuoi" />
 					</div>
 					<button id="btnApDung">Áp dụng</button>
 
 				</div>
 
 
-				<div class="boxSearch">
+				<div class="boxSearch ">
 					<div class="item__title">Loại nhạc cụ</div>
 
 					<div class="itemSearch">
 						<c:forEach items="${ loaiSanPhams }" var="loaiSanPham">
-							<input type="checkbox" class="loaiSanPham" value="${ loaiSanPham.id }"
-								onchange="console.log(1233123)" />
+							<input type="checkbox" class="loaiSanPham"
+								value="${ loaiSanPham.id }" onchange="console.log(1233123)" />
 							<span>${ loaiSanPham.tenLoaiSanPham }</span>
 							<br>
 						</c:forEach>
 					</div>
 				</div>
 
-				<div class="boxSearch">
+				<div class="boxSearch scroll">
 					<div class="item__title">Thương hiệu</div>
 
 					<div class="itemSearch">
 						<c:forEach items="${ thuongHieus }" var="thuongHieu">
-							<input type="checkbox" class="thuongHieu" value="${ thuongHieu.id }"
-								onchange="console.log(1233123)" />
+							<input type="checkbox" class="thuongHieu"
+								value="${ thuongHieu.id }" onchange="console.log(1233123)" />
 							<span>${ thuongHieu.tenThuongHieu }</span>
 							<br>
 						</c:forEach>
 					</div>
 				</div>
 
-				<div class="boxSearch">
+				<div class="boxSearch scroll">
 					<div class="item__title">Dòng nhạc cụ</div>
 
 					<div class="itemSearch">
 						<c:forEach items="${ dongSanPhams }" var="dongSanPham">
-							<input type="checkbox" class="dongSanPham" value="${ dongSanPham.id }"
-								onchange="console.log(1233123)" />
+							<input type="checkbox" class="dongSanPham"
+								value="${ dongSanPham.id }" onchange="console.log(1233123)" />
 							<span>${ dongSanPham.tenDongSanPham }</span>
 							<br>
 						</c:forEach>
 					</div>
 				</div>
 
-				<div class="boxSearch">
+				<div class="boxSearch scroll">
 					<div class="item__title">Xuất xứ</div>
 
 					<div class="itemSearch">
@@ -211,11 +217,13 @@
 		</div>
 		<div class="page d-flex justify-content-center">
 			<ul class="pagination ">
-				<li class="page-item"><a class="page-link" href="#">Trang trước</a></li>
-					<%-- <c:if test="${ counter.count <= 3 }">
+				<li class="page-item"><a class="page-link" href="#">Trang
+						trước</a></li>
+				<%-- <c:if test="${ counter.count <= 3 }">
 						<li class="page-item"><a class="page-link" href="#">${ i }</a></li>
 					</c:if> --%>
-					<li class="page-item"><a class="page-link" href="#">Trang Sau</a></li>
+				<li class="page-item"><a class="page-link" href="#">Trang
+						Sau</a></li>
 			</ul>
 		</div>
 
