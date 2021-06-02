@@ -21,11 +21,13 @@ capNhatTrangThai = (maDonHang, trangThai) => {
 	    url: apiFetch = "http://localhost:8080/WebsiteBanNhacCu/api/hoa-don/cap-nhat-trang-thai?maDonHang=" + maDonHang + "&trangThai=" + trangThai,
 	    type: 'GET',
 	    success: function(result) {
-	    		alert("Cập nhật trạng thái thành công");
-	    },
-	    error: function() {
-	    		alert('Cập nhật trạng thái không thành công');
-		},
+	    	if(result == 1){
+	    		toastr.success("Cập nhật trạng thái thành công");
+	    	}else{
+	    		toastr.error('Sản phẩm không đủ số lượng');
+	    		
+	    	}
+	    }
 	});
 }
 
