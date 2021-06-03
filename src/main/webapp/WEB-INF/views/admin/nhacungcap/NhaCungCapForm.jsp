@@ -48,6 +48,14 @@
 
 <link rel="stylesheet"
 	href='<c:url value ="/static/assets/css/errors.css"/>'>
+	<style type="text/css">
+		.error_custom{
+			font-style: italic;
+			color: red;
+			border: none;
+			outline: none;
+		}
+	</style>
 </head>
 <body>
 
@@ -114,7 +122,7 @@
 							<option value="-1" selected>Chọn Xã/ Phường</option>
 						</select>
 					</div>
-
+					
 					<form:hidden path="phuongXa" />
 
 					<div class="form-group">
@@ -123,7 +131,7 @@
 						<form:errors path="diaChi" Class="error"></form:errors>
 					</div>
 
-					<button type="submit" class="btn btn-success">${ formButton }</button>
+					<button type="submit" id="btnSubmit" class="btn btn-success">${ formButton }</button>
 					<button type="button" class="btn btn-danger"
 						onClick="window.location.href='http://localhost:8080/WebsiteBanNhacCu/admin/nha-cung-cap/danh-sach-nha-cung-cap'">Hủy</button>
 

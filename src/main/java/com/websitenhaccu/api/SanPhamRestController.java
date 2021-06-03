@@ -17,10 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.websitenhaccu.converter.SanPhamConverter;
 import com.websitenhaccu.dto.SanPhamDTO;
+import com.websitenhaccu.entity.ChiTietHoaDon;
 import com.websitenhaccu.entity.DongSanPham;
+import com.websitenhaccu.entity.HoaDon;
 import com.websitenhaccu.entity.MauSanPham;
 import com.websitenhaccu.entity.NhaCungCap;
 import com.websitenhaccu.entity.SanPham;
+import com.websitenhaccu.service.ChiTietHoaDonService;
 import com.websitenhaccu.service.DongSanPhamService;
 import com.websitenhaccu.service.LoaiSanPhamService;
 import com.websitenhaccu.service.MauSanPhamService;
@@ -40,6 +43,8 @@ public class SanPhamRestController {
 
 	@Autowired
 	LoaiSanPhamService loaiSanPhamService;
+	@Autowired
+	ChiTietHoaDonService chiTietHoaDonService;
 
 	@Autowired
 	SanPhamService sanPhamService;
@@ -125,14 +130,18 @@ public class SanPhamRestController {
 	}
 
 	@DeleteMapping("/xoa")
-	private void xoaSanPham(@RequestParam("id") String id) {
-		System.out.println("@@@@@@@@@@@@da vao ham xoa san pham rest controler");
+	private int xoaSanPham(@RequestParam("id") String id) {
+		List<ChiTietHoaDon> hoaDons = chiTietHoaDonService.getChiTietHoaDonTheoMaSanPham(id);
+		
+		if(hoaDons.size() > 0)
+			return -1;
 		sanPhamService.xoaSanPham(id);
+		return 1;
 	}
 
 	@GetMapping("/tim-kiem")
 	private List<SanPhamDTO> timKiemSanPhamTheoNhieuTieuChi(
-			@RequestParam(value = "textSearch", required = false) String tenSanPham,
+			@RequestParam(value = "SearchTenSanPham", required = false) String tenSanPham,
 			@RequestParam(value = "xuatXus", required = false) List<String> xuatXus,
 			@RequestParam(value = "giaDau", defaultValue = "0") int giaDau,
 			@RequestParam(value = "giaCuoi", defaultValue = "0") int giaCuoi,
@@ -155,8 +164,10 @@ public class SanPhamRestController {
 			});
 		}
 
-		if(tenSanPham == null)
+		if(tenSanPham == null) {
+			System.out.println("ten da bi null");
 			tenSanPham = "";
+		}
 		try {
 			tenSanPham = URLDecoder.decode(tenSanPham, StandardCharsets.UTF_8.name());
 		} catch (UnsupportedEncodingException e) {
@@ -165,19 +176,7 @@ public class SanPhamRestController {
 		}
 		List<SanPhamDTO> sanPhamDTOs = sanPhamService.timKiemSanPhamTheoNhieuDieuKien(tenSanPham, xuatXus, giaDau, giaCuoi,
 				dongSanPhams, thuongHieus, loais, page - 1, 15, sort);
-		System.out.println(
-				"-----------------------------------------------------------------------------------");
-		sanPhamDTOs.forEach(s -> {
-			System.out.println(
-					"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-			System.out.println(s.getId());
-			System.out.println(s.getTenSanPham());
-			System.out.println(s.getGiaBan());
-			System.out.println(s.getXuatXu());
-			System.out.println(s.getTenLoaiSanPham());
-			System.out.println(s.getTenDongSanPham());
-			System.out.println(s.getTenThuongHieu());
-		});
+
 		return sanPhamDTOs;
 	}
 

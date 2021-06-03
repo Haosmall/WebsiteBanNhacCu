@@ -153,11 +153,8 @@
 				<div class="row">
 
 					<div class="nav__list">
-						<a href="" class="nav__list--index checked--popular ">Tất cả</a>
+						<a href="<c:url value ='/danh-sach-san-pham?page=1'/>" class="nav__list--index checked--popular ">Tất cả</a>
 						<div class="bar bar--popular active"></div>
-
-						<a href="" class="nav__list--index checked--selling">Bán chạy</a>
-						<div class="bar bar--selling"></div>
 
 						<div class="" style="position: absolute; right: 0;">
 							<div class="input-group ">

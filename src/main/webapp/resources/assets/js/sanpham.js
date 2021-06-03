@@ -347,20 +347,22 @@ xoaSanPham = (id) => {
 		url: apiFetch = `http://${HOST_NAME}:${PORT}/${CONTEXT_PATH}/api/san-pham/xoa?id=${id}`,
 		type: 'DELETE',
 		success: function (result) {
-
-			var pageHidden = document.getElementById("pageValue");//gia tri hiden
-			var viewPage = document.getElementById("viewPage");//gia tri hien thi trang hien tai
-			viewPage.value = 1; //gan lai  hien thi trang hien tai
-			pageHidden.value = 1; //gan lai gia tri bien hidden
-
-			window.location.href = 'http://localhost:8080/WebsiteBanNhacCu/admin/san-pham/danh-sach-san-pham';
-
-			console.log("Đã xóa sản phẩm");
-			toastr.success("Đã xóa sản phẩm");
+			if(result == 1){
+				var pageHidden = document.getElementById("pageValue");//gia tri hiden
+				var viewPage = document.getElementById("viewPage");//gia tri hien thi trang hien tai
+				viewPage.value = 1; //gan lai  hien thi trang hien tai
+				pageHidden.value = 1; //gan lai gia tri bien hidden
+				
+				window.location.href = 'http://localhost:8080/WebsiteBanNhacCu/admin/san-pham/danh-sach-san-pham';
+	
+				toastr.success("Đã xóa sản phẩm");
+			}else{
+				toastr.error('sản phẩm này không thể xóa');
+			}
 		},
 		error: function () {
 			alert('sản phẩm này không thể xóa');
-			toastr.error('sản phẩm này không thể xóa');
+			
 		},
 	});
 }

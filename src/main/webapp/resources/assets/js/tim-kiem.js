@@ -51,7 +51,7 @@ $(".xuatXu").click(() => {
 $("#inputGroupSelect").on("change", function () {
 	sort = this.value;
 
-	timKiem();
+	// timKiem();
 });
 
 $("#giaDau").change(function () {
@@ -182,8 +182,9 @@ function redirectNext() {
 	}
 	else if (PAGE_PATH.includes("tim-kiem-san-pham")) {
 
-		console.log("file path: " + PAGE_PATH);
 		SearchTenSanPham = window.location.href.split("=")[1].split("&")[0];
+
+		console.log("ten tim kiem: "+SearchTenSanPham);
 
 		loais = [];
 		thuongHieus = [];
@@ -192,7 +193,7 @@ function redirectNext() {
 
 		flagPageBefore = page;
 		page++;
-		timKiem(`http://localhost:8080/WebsiteBanNhacCu/danh-sach-san-pham/tim-kiem-san-pham?tenSanPham=${SearchTenSanPham}&page=` + page);
+		timKiem('http://localhost:8080/WebsiteBanNhacCu/danh-sach-san-pham/tim-kiem-san-pham?tenSanPham='+SearchTenSanPham+'&page=' + page);
 	}
 	else {
 
@@ -273,6 +274,7 @@ function redirectPrevius() {
 
 			SearchTenSanPham = window.location.href.split("=")[1].split("&")[0];
 
+			console.log("ten tim kiem: "+SearchTenSanPham);
 			loais = [];
 			thuongHieus = [];
 			dongSanPhams = [];
