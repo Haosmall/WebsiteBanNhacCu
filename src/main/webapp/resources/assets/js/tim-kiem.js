@@ -48,12 +48,6 @@ $(".xuatXu").click(() => {
 	}
 });
 
-$("#inputGroupSelect").on("change", function () {
-	sort = this.value;
-
-	// timKiem();
-});
-
 $("#giaDau").change(function () {
 	if ($("#giaDau").val() != "") {
 		giaDau = $("#giaDau").val();
@@ -117,6 +111,7 @@ function timKiem(callUrl) {
 		else {
 			console.log("page " + page + "=====bfire: " + flagPageBefore);
 			page = flagPageBefore;
+            toastr.error("Không tìm thấy");
 		}
 	});
 }
@@ -301,3 +296,85 @@ $('#tenSanPham').change(
 
 	}
 );
+
+$("#inputGroupSelect").on("change", function () {
+	sort = this.value;
+
+    const PAGE_PATH = window.location.pathname;
+	if (PAGE_PATH.includes("LSP") && !PAGE_PATH.includes("TH")) {
+		var maLoai = PAGE_PATH.split("/")[3].split("?")[0];
+		loais.push(maLoai);
+
+		SearchTenSanPham = '';
+		thuongHieus = [];
+		dongSanPhams = [];
+		xuatXus = [];
+
+		flagPageBefore = page;
+		timKiem(`http://localhost:8080/WebsiteBanNhacCu/danh-sach-san-pham/${maLoai}?page=` + page);
+	}
+	else if (PAGE_PATH.includes("TH") && !PAGE_PATH.includes("LSP")) {
+		var maTH = PAGE_PATH.split("/")[3].split("?")[0];
+		thuongHieus.push(maTH);
+
+		SearchTenSanPham = '';
+		loais = [];
+		dongSanPhams = [];
+		xuatXus = [];
+
+		flagPageBefore = page;
+
+		timKiem(`http://localhost:8080/WebsiteBanNhacCu/danh-sach-san-pham/${maTH}?page=` + page);
+	}
+	else if (PAGE_PATH.includes("DSP")) {
+		var maDong = PAGE_PATH.split("/")[3].split("?")[0];
+		dongSanPhams.push(maDong);
+
+		SearchTenSanPham = '';
+		loais = [];
+		thuongHieus = [];
+		xuatXus = [];
+
+		flagPageBefore = page;
+
+		timKiem(`http://localhost:8080/WebsiteBanNhacCu/danh-sach-san-pham/${maDong}?page=` + page);
+	}
+	else if (PAGE_PATH.includes("LSP") && PAGE_PATH.includes("TH")) {
+		var maLoai = PAGE_PATH.split("/")[3];
+		var maTH = PAGE_PATH.split("/")[4].split("?")[0];
+
+		console.log("maloai " + maLoai + "--------maTH " + maTH);
+
+		loais.push(maLoai);
+		thuongHieus.push(maTH);
+
+		SearchTenSanPham = '';
+		dongSanPhams = [];
+		xuatXus = [];
+
+		flagPageBefore = page;
+		page++;
+		timKiem(`http://localhost:8080/WebsiteBanNhacCu/danh-sach-san-pham/${maLoai}/${maTH}?page=` + page);
+	}
+	else if (PAGE_PATH.includes("tim-kiem-san-pham")) {
+
+		SearchTenSanPham = window.location.href.split("=")[1].split("&")[0];
+
+		console.log("ten tim kiem: "+SearchTenSanPham);
+
+		loais = [];
+		thuongHieus = [];
+		dongSanPhams = [];
+		xuatXus = [];
+
+		flagPageBefore = page;
+
+		timKiem('http://localhost:8080/WebsiteBanNhacCu/danh-sach-san-pham/tim-kiem-san-pham?tenSanPham='+SearchTenSanPham+'&page=' + page);
+	}
+	else {
+
+		flagPageBefore = page;
+
+		timKiem("http://localhost:8080/WebsiteBanNhacCu/danh-sach-san-pham?page=" + page);
+	}
+});
