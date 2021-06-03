@@ -83,7 +83,7 @@
 
 									<input type="button" class="btn btn-danger table__btn"
 									value="Xóa"
-									onclick="location.href='<c:url value='/admin/nha-cung-cap/xoa-nha-cung-cap?id=${ nhaCungCap.maNhaCungCap }' />'">
+									onclick="xoa('${ nhaCungCap.maNhaCungCap }')">
 
 								</td>
 							</tr>

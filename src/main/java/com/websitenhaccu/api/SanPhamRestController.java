@@ -71,6 +71,16 @@ public class SanPhamRestController {
 
 	}
 
+	@DeleteMapping("/xoa-mau-san-pham")
+	public int xoaMauSanPham(@RequestParam("maSanPham") String maSanPham, @RequestParam("maMau") int maMau) {
+		List<ChiTietHoaDon> chiTietHoaDons = chiTietHoaDonService.getChiTietHoaDonTheoMauSanPham(maSanPham, maMau);
+		if (chiTietHoaDons.size() == 0) {
+			mauSanPhamService.xoaMauSanPham(maSanPham, maMau);
+			return 1;
+		}
+		return -1;
+	}
+	
 	@GetMapping
 	public ResponseEntity<SanPhamDTO> getSanPhamTheoMa(@RequestParam("id") String maSanPham) {
 		SanPhamDTO sanPhamDTO = sanPhamService.getSanPhamDTOTheoID(maSanPham);

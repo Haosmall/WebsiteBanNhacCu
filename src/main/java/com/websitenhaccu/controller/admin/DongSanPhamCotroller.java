@@ -1,5 +1,7 @@
 package com.websitenhaccu.controller.admin;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +15,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.websitenhaccu.dto.SanPhamDTO;
 import com.websitenhaccu.entity.DongSanPham;
 import com.websitenhaccu.entity.LoaiSanPham;
+import com.websitenhaccu.entity.SanPham;
 import com.websitenhaccu.entity.ThuongHieu;
 import com.websitenhaccu.service.DongSanPhamService;
 import com.websitenhaccu.service.LoaiSanPhamService;
+import com.websitenhaccu.service.SanPhamService;
 import com.websitenhaccu.service.ThuongHieuService;
 import com.websitenhaccu.validator.DongSanPhamValidator;
 
@@ -29,6 +34,9 @@ public class DongSanPhamCotroller {
 	
 	@Autowired
 	private LoaiSanPhamService loaiSanPhamService;
+	
+	@Autowired
+	private SanPhamService sanPhamService;
 	
 	@Autowired
 	private ThuongHieuService thuongHieuService;
@@ -99,13 +107,14 @@ public class DongSanPhamCotroller {
 		return "redirect:/admin/dong-san-pham/danh-sach-dong-san-pham";
 	}
 
-	@GetMapping(value = "/xoa-dong-san-pham")
-	public String xoaDongSanPham(@RequestParam("id") String id) {
-
-		dongSanPhamService.XoaDongSanPham(id);
-
-		return "redirect:/admin/dong-san-pham/danh-sach-dong-san-pham";
-	}
+//	@GetMapping(value = "/xoa-dong-san-pham")
+//	public String xoaDongSanPham(@RequestParam("id") String id) {
+//		
+//		List<SanPhamDTO> sanPhams = sanPhamService.timKiemSanPhamTheoNhieuDieuKien("", null, 0, 0,new ArrayList<String>(Arrays.asList(id)), null, null, 0, 10, 0);
+//		dongSanPhamService.XoaDongSanPham(id);
+//
+//		return "redirect:/admin/dong-san-pham/danh-sach-dong-san-pham";
+//	}
 
 	@GetMapping("/cap-nhat-dong-san-pham")
 	public String CapNhatDongSanPham(@RequestParam("id") String id, Model model) {

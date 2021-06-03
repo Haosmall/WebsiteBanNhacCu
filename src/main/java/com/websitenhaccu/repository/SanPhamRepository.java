@@ -19,16 +19,21 @@ public interface SanPhamRepository extends JpaRepository<SanPham, String>, JpaSp
 	public SanPham findByTenSanPhamAndDongSanPhamTenDongSanPhamAndXuatXuAndDongSanPhamThuongHieuTenThuongHieu(
 			String tenSanPham, String tenDongSanPham, String xuatXu, String tenThuongHieu);
 
-	public List<SanPham> findByTenSanPhamContainingAndXuatXuContainingAndDongSanPhamThuongHieuIdContainingAndDongSanPhamLoaiSanPhamIdContaining(String tenSanPham, String xuatXu, String idThuongHieu, String idLoaiSanPham, Pageable pageable);
+	public List<SanPham> findByTenSanPhamContainingAndXuatXuContainingAndDongSanPhamThuongHieuIdContainingAndDongSanPhamLoaiSanPhamIdContaining(
+			String tenSanPham, String xuatXu, String idThuongHieu, String idLoaiSanPham, Pageable pageable);
 //			String tenSanPham, String xuatXu, String idThuongHieu, String idLoaiSanPham);
-	
-	public List<SanPham> findByDongSanPhamLoaiSanPhamIdOrDongSanPhamIdOrDongSanPhamThuongHieuId(String maLoai, String maDong, String maThuongHieu, Pageable pageable);
-	
-	public List<SanPham> findByDongSanPhamLoaiSanPhamIdAndDongSanPhamThuongHieuId(String maLoai, String maThuongHieu, Pageable pageable);
-	
+
+	public List<SanPham> findByDongSanPhamLoaiSanPhamIdOrDongSanPhamIdOrDongSanPhamThuongHieuId(String maLoai,
+			String maDong, String maThuongHieu, Pageable pageable);
+
+	public List<SanPham> findByDongSanPhamLoaiSanPhamIdAndDongSanPhamThuongHieuId(String maLoai, String maThuongHieu,
+			Pageable pageable);
+
+	public List<SanPham> findByNhaCungCapMaNhaCungCap(String id);
+
 	@Query(value = Constant.QUERY_DANH_SACH_XUAT_XU, nativeQuery = true)
 	public Set<String> getDanhSachXuatXu();
-	
+
 	@Query(value = Constant.QUERY_DANH_SACH_SAN_PHAM_BAN_CHAY, nativeQuery = true)
 	public List<SanPham> getDanhSachSanPhamBanChay(Pageable pageable);
 }

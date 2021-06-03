@@ -11,11 +11,14 @@ import com.websitenhaccu.dto.MauSanPhamDTO;
 import com.websitenhaccu.entity.Mau;
 import com.websitenhaccu.entity.MauSanPham;
 import com.websitenhaccu.repository.MauSanPhamRepository;
+import com.websitenhaccu.service.ChiTietHoaDonService;
 import com.websitenhaccu.service.MauSanPhamService;
 
 @Service
-public class MauSanPhamServiceImpl implements MauSanPhamService{
+public class MauSanPhamServiceImpl implements MauSanPhamService {
 
+	@Autowired
+	private ChiTietHoaDonService chiTietHoaDonService;
 	@Autowired
 	private MauSanPhamRepository mauSanPhamRepository;
 	@Autowired
@@ -34,18 +37,19 @@ public class MauSanPhamServiceImpl implements MauSanPhamService{
 	@Override
 	public void themMauSanPham(MauSanPham mauSanPham) {
 		mauSanPhamRepository.save(mauSanPham);
-		
+
 	}
 
 	@Override
-	public void xoaMauSanPham(String idSanPham) {
-		mauSanPhamRepository.customXoaMauSanPhamBySanPhamId(idSanPham);
+	public void xoaMauSanPham(String idSanPham, int idMau) {
+			MauSanPham mauSanPham = mauSanPhamRepository.findBySanPhamIdAndMauId(idSanPham, idMau);
+			mauSanPhamRepository.delete(mauSanPham);
 	}
 
 	@Override
 	public void capNhatMauSanPham(MauSanPham mauSanPham) {
 		mauSanPhamRepository.save(mauSanPham);
-		
+
 	}
 
 	@Override
@@ -56,7 +60,7 @@ public class MauSanPhamServiceImpl implements MauSanPhamService{
 	@Override
 	public List<MauSanPhamDTO> getMauSanPhamDTOTheoMaSanPham(String id) {
 		List<MauSanPhamDTO> mauSanPhamDTOs = new ArrayList<MauSanPhamDTO>();
-		mauSanPhamRepository.findBySanPhamId(id).forEach(mauSanPham ->{
+		mauSanPhamRepository.findBySanPhamId(id).forEach(mauSanPham -> {
 			MauSanPhamDTO mauSanPhamDTO = mauSanPhamConverter.toMauSanPhamDTO(mauSanPham);
 			mauSanPhamDTOs.add(mauSanPhamDTO);
 		});
@@ -68,5 +72,10 @@ public class MauSanPhamServiceImpl implements MauSanPhamService{
 //		return mauSanPhamRepository.getDanhSachSoLuongMauBySanPhamId(id);
 		return null;
 	}
-	
+
+	@Override
+	public List<MauSanPham> getDanhSachTheoMaMau(int id) {
+		return mauSanPhamRepository.findByMauId(id);
+	}
+
 }

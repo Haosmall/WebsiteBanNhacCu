@@ -162,3 +162,23 @@ document.getElementById("btnPreviusPage").onclick = function () {
     });
 
 };
+
+function xoa(id) {
+	var cf = confirm("Bạn muốn xóa nhà cung cấp này ?");
+	if (cf == true) {
+		$.ajax({
+			url: "http://localhost:8080/WebsiteBanNhacCu/api/nha-cung-cap/xoa?id=" + id ,
+			type: 'DELETE',
+			success: function (result) {
+				if(result == 1){
+					window.location.href = 'http://localhost:8080/WebsiteBanNhacCu/admin/nha-cung-cap/danh-sach-nha-cung-cap';
+					toastr.success("Đã xóa nhà cung cấp");
+				}else{
+					
+					toastr.error('Nhà cung cấp này không thể xóa');
+				}
+			}
+
+		});
+	}
+}

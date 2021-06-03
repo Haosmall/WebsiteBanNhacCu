@@ -176,17 +176,17 @@ document.getElementById("btnPreviusPage").onclick = function () {
 
 };
 
-$(".btnXoa").each(function (index) {
-
-    $(this).click(function () {
-        console.log("da nhan btnXoa")
-        var cf = confirm("Bạn muốn xóa người dùng này ?");
-        if (cf == true) {
-            let id = $(".maNguoiDung").get(index).value;
-            xoaNguoiDung(id);
-        }
-    });
-});
+//$(".btnXoa").each(function (index) {
+//
+//    $(this).click(function () {
+//        console.log("da nhan btnXoa")
+//        var cf = confirm("Bạn muốn xóa người dùng này ?");
+//        if (cf == true) {
+//            let id = $(".maNguoiDung").get(index).value;
+//            xoaNguoiDung(id);
+//        }
+//    });
+//});
 
 xoaNguoiDung = (id) => {
 

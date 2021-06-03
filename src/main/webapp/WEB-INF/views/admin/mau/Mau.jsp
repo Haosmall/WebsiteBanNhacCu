@@ -66,9 +66,7 @@
 								value="Sửa"
 								onclick="location.href='<c:url value='/admin/mau/cap-nhat-mau?id=${ mau.id }' />'">
 
-								<input type="button" class="btn btn-danger table__btn"
-								value="Xóa"
-								onclick="location.href='<c:url value='/admin/mau/xoa-mau?id=${ mau.id }' />'">
+								<input type="button" class="btn btn-danger table__btn" value="Xóa" onclick="xoa(${ mau.id })">
 
 							</td>
 						</tr>
@@ -83,6 +81,27 @@
 
 	</div>
 	<!-- /.container-fluid -->
-	<script src='<c:url value = "/static/assets/js/mau.js"/>'></script>
+	<script type="text/javascript">
+		function xoa(id) {
+			var cf = confirm("Bạn muốn xóa dòng màu này ?");
+			if (cf == true) {
+				$.ajax({
+					url: "http://localhost:8080/WebsiteBanNhacCu/api/mau-san-pham/xoa-mau?id=" + id ,
+					type: 'DELETE',
+					success: function (result) {
+						if(result == 1){
+							window.location.href = 'http://localhost:8080/WebsiteBanNhacCu/admin/mau/danh-sach-mau';
+							toastr.success("Đã xóa dòng sản phẩm");
+						}else{
+							
+							toastr.error('Màu này không thể xóa');
+						}
+					}
+		
+				});
+			}
+		}
+	</script>
+	
 </body>
 </html>

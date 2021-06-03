@@ -97,7 +97,7 @@
 
 								<input type="button" class="btn btn-danger table__btn"
 								value="Xóa"
-								onclick="location.href='<c:url value='/admin/thuong-hieu/xoa-thuong-hieu?id=${ mauSanPham.maMau }' />'">
+								onclick="xoaMauSanPham('${ sanPham.id }', ${ mauSanPham.maMau })">
 
 							</td>
 						</tr>
@@ -129,6 +129,28 @@
 		</div>
 
 	</div>
+	
+	<script type="text/javascript">
+		function xoaMauSanPham(maSanPham, maMau){
+			const url = "http://localhost:8080/WebsiteBanNhacCu/api/san-pham/xoa-mau-san-pham?maSanPham=" + maSanPham + "&maMau=" + maMau;
+			
+			$.ajax({
+				url: url,
+				type: 'DELETE',
+				success: function (result) {
+					if(result == 1){
+						
+						window.location.href = "http://localhost:8080/WebsiteBanNhacCu/admin/san-pham/xem-chi-tiet?id=" + maSanPham;
+			
+						toastr.success("Đã xóa sản phẩm");
+					}else{
+						toastr.error('Không thể xóa');
+					}
+				}
+			});
+			
+		}
+	</script>
 
 	<!-- /.container-fluid -->
 </body>

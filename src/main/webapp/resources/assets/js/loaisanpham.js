@@ -168,21 +168,22 @@ xoaSanPham = (id) => {
 	$.ajax({
 		url: apiFetch = `http://${HOST_NAME}:${PORT}/${CONTEXT_PATH}/api/loai-san-pham/xoa?id=${id}`,
 		type: 'DELETE',
-		success: function () {
-
-			var pageHidden = document.getElementById("pageValue"); //gia tri hiden
-			var viewPage = document.getElementById("viewPage"); //gia tri hien thi trang hien tai
-			viewPage.value = 1; //gan lai  hien thi trang hien tai
-			pageHidden.value = 1; //gan lai gia tri bien hidden
-
-			window.location.href = 'http://localhost:8080/WebsiteBanNhacCu/admin/loai-san-pham/danh-sach-loai-san-pham';
-
-			console.log("Đã xóa loại sản phẩm");
-			toastr.success("Đã xóa loại sản phẩm");
-		},
-		error: function () {
-			alert('Loại sản phẩm này không thể xóa');
-			toastr.error('Loại sản phẩm này không thể xóa');
+		success: function (result) {
+			if(result == 1){
+				
+				var pageHidden = document.getElementById("pageValue"); //gia tri hiden
+				var viewPage = document.getElementById("viewPage"); //gia tri hien thi trang hien tai
+				viewPage.value = 1; //gan lai  hien thi trang hien tai
+				pageHidden.value = 1; //gan lai gia tri bien hidden
+				
+				window.location.href = 'http://localhost:8080/WebsiteBanNhacCu/admin/loai-san-pham/danh-sach-loai-san-pham';
+				
+				console.log("Đã xóa loại sản phẩm");
+				toastr.success("Đã xóa loại sản phẩm");
+			}else{
+				
+				toastr.error('Loại sản phẩm này không thể xóa');
+			}
 		}
 
 	});

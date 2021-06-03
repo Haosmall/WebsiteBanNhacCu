@@ -3,9 +3,6 @@ package com.websitenhaccu.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 
 import com.websitenhaccu.entity.Mau;
 import com.websitenhaccu.entity.MauSanPham;
@@ -14,16 +11,14 @@ import com.websitenhaccu.entity.MauSanPham_PK;
 public interface MauSanPhamRepository extends JpaRepository<MauSanPham, MauSanPham_PK> {
 
 	public List<MauSanPham> findBySanPhamId(String id);
+	
+	public List<MauSanPham> findByMauId(int id);
 
 	public Mau findByMauTenMau(String tenMau);
 
 	public MauSanPham findBySanPhamIdAndMauId(String maSanPham, int maMau);
 	
-//	@Query(value = "SELECT mau_id , so_luong from Mau_SanPhams", nativeQuery = true)
-//	public List<MauSanPham> getDanhSachSoLuongMauBySanPhamId(@Param("id") String id);
+//	@Query(value = "delete from Mau_SanPhams where san_pham_id = ?1 and mau_id = ?2", nativeQuery = true)
+//	public void customXoaMauSanPhamBySanPhamId(String id, int idMau);
 	
-	@Modifying
-	@Query(value = "delete from MauSanPham m where m.sanPham.id =:id", nativeQuery = true)
-	public void customXoaMauSanPhamBySanPhamId(@Param("id") String id);
-
 }

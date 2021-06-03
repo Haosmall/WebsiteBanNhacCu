@@ -153,7 +153,7 @@ public class DangNhapController {
 		if (result)
 			return "redirect:/login";
 
-		return "common/error";
+		return "redirect:/error";
 	}
 
 	@GetMapping(value = "/logout")

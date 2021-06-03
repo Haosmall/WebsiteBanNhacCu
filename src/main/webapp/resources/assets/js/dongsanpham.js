@@ -27,9 +27,7 @@ function searchType() {
 							<td>${data[i].tenDongSanPham}</td>
 							<td>${data[i].loaiSanPham}</td>
 							<td>${data[i].thuongHieu}</td>
-							<td><input type="button" class="btn btn-primary table__btn"
-								value="Chi tiết"
-								onclick="location.href='/WebsiteBanNhacCu/admin/dong-san-pham/chi-tiet-dong-san-pham?id=${data[i].id}'">
+							<td>
 
 								<input type="button" class="btn btn-warning table__btn"
 								value="Sửa"
@@ -95,9 +93,7 @@ document.getElementById("btnNext").onclick = function () {
 							<td>${data[i].tenDongSanPham}</td>
 							<td>${data[i].loaiSanPham}</td>
 							<td>${data[i].thuongHieu}</td>
-							<td><input type="button" class="btn btn-primary table__btn"
-								value="Chi tiết"
-								onclick="location.href='/WebsiteBanNhacCu/admin/dong-san-pham/chi-tiet-dong-san-pham?id=${data[i].id}'">
+							<td>
 
 								<input type="button" class="btn btn-warning table__btn"
 								value="Sửa"
@@ -150,9 +146,7 @@ document.getElementById("btnPreviusPage").onclick = function () {
 							<td>${data[i].tenDongSanPham}</td>
 							<td>${data[i].loaiSanPham}</td>
 							<td>${data[i].thuongHieu}</td>
-							<td><input type="button" class="btn btn-primary table__btn"
-								value="Chi tiết"
-								onclick="location.href='/WebsiteBanNhacCu/admin/dong-san-pham/chi-tiet-dong-san-pham?id=${data[i].id}'">
+							<td>
 
 								<input type="button" class="btn btn-warning table__btn"
 								value="Sửa"
@@ -177,6 +171,19 @@ document.getElementById("btnPreviusPage").onclick = function () {
 function Delete(id) {
 	var cf = confirm("Bạn muốn xóa dòng sản phẩm này ?");
 	if (cf == true) {
-		window.location.href = `http://${HOST_NAME}:${PORT}/${CONTEXT_PATH}/admin/dong-san-pham/xoa-dong-san-pham?id=${ id }`;
+		$.ajax({
+			url: apiFetch = `http://localhost:8080/WebsiteBanNhacCu/api/dong-san-pham/xoa?id=${ id }`,
+			type: 'DELETE',
+			success: function (result) {
+				if(result == 1){
+					window.location.href = 'http://localhost:8080/WebsiteBanNhacCu/admin/dong-san-pham/danh-sach-dong-san-pham';
+					toastr.success("Đã xóa dòng sản phẩm");
+				}else{
+					
+					toastr.error('Dòng sản phẩm này không thể xóa');
+				}
+			}
+
+		});
 	}
 }

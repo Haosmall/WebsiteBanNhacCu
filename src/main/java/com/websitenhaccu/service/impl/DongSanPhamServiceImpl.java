@@ -76,8 +76,8 @@ public class DongSanPhamServiceImpl implements DongSanPhamService {
 	}
 
 	@Override
-	public DongSanPham getDongSanPhamBangIdThuongHieu(String idThuongHieu) {
-		return dongSanPhamRepository.findFirstByThuongHieuId(idThuongHieu);
+	public List<DongSanPham> getDongSanPhamBangIdThuongHieu(String idThuongHieu) {
+		return dongSanPhamRepository.findByThuongHieuId(idThuongHieu);
 	}
 
 }

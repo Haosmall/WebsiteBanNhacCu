@@ -41,4 +41,9 @@ public class ChiTietHoaDonServiceImpl implements ChiTietHoaDonService {
 		return chiTietHoaDonRepository.findByMauSanPhamSanPhamId(id);
 	}
 
+	@Override
+	public List<ChiTietHoaDon> getChiTietHoaDonTheoMauSanPham(String idSanPham, int idMau) {
+		return chiTietHoaDonRepository.findByMauSanPhamSanPhamIdAndMauSanPhamMauId(idSanPham, idMau);
+	}
+
 }

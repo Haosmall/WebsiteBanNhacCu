@@ -27,6 +27,6 @@ public interface DongSanPhamService {
 	
 	public DongSanPham getDongSanPhamBangIdLoaiSP(String idLoaiSanPham);
 	
-	public DongSanPham getDongSanPhamBangIdThuongHieu(String idThuongHieu);
+	public List<DongSanPham> getDongSanPhamBangIdThuongHieu(String idThuongHieu);
 
 }

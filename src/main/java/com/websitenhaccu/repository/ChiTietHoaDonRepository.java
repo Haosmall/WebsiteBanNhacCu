@@ -11,6 +11,8 @@ public interface ChiTietHoaDonRepository extends JpaRepository<ChiTietHoaDon, Ch
 
 	public List<ChiTietHoaDon> findByMauSanPhamSanPhamId(String id);
 	
+	public List<ChiTietHoaDon> findByMauSanPhamSanPhamIdAndMauSanPhamMauId(String idSanPham, int idMau);
+	
 	public List<ChiTietHoaDon> findByHoaDonId(String id);
 
 	public void deleteByHoaDonId(String maHoaDon);

@@ -65,20 +65,20 @@ xoaSanPham = (id) => {
 		url: apiFetch = `http://${HOST_NAME}:${PORT}/${CONTEXT_PATH}/api/thuong-hieu/xoa?id=${id}`,
 		type: 'DELETE',
 		success: function (result) {
-
-			var pageHidden = document.getElementById("pageValue");//gia tri hiden
-			var viewPage = document.getElementById("viewPage");//gia tri hien thi trang hien tai
-			viewPage.value = 1; //gan lai  hien thi trang hien tai
-			pageHidden.value = 1; //gan lai gia tri bien hidden
-
-			window.location.href = 'http://localhost:8080/WebsiteBanNhacCu/admin/thuong-hieu/danh-sach-thuong-hieu';
-
-			console.log("Đã xóa thương hiệu");
-			toastr.success("Đã xóa thương hiệu");
-		},
-		error: function () {
-			alert('Thương hiệu này không thể xóa');
-			toastr.error('Thương hiệu này không thể xóa');
+			if(result == 1){
+				
+				var pageHidden = document.getElementById("pageValue");//gia tri hiden
+				var viewPage = document.getElementById("viewPage");//gia tri hien thi trang hien tai
+				viewPage.value = 1; //gan lai  hien thi trang hien tai
+				pageHidden.value = 1; //gan lai gia tri bien hidden
+				
+				window.location.href = 'http://localhost:8080/WebsiteBanNhacCu/admin/thuong-hieu/danh-sach-thuong-hieu';
+				
+				toastr.success("Đã xóa thương hiệu");
+			}else{
+				
+				toastr.error('Thương hiệu này không thể xóa');
+			}
 		},
 	});
 }
@@ -91,7 +91,7 @@ $("body").on("DOMSubtreeModified", "#tableThuongHieu", function () {
 			var cf = confirm("Bạn muốn xóa thương hiệu này ?");
 			if (cf == true) {
 				let id = $(".maThuongHieu").get(index).value;
-				xoaNguoiDung(id);
+				xoaSanPham(id);
 			}
 		});
 	});

@@ -40,12 +40,11 @@ public class LoaiSanPhamRestController {
 	}
 	
 	@DeleteMapping("/xoa")
-	public HttpStatus deleteLoaiSanPham(@RequestParam("id") String id) {
+	public int deleteLoaiSanPham(@RequestParam("id") String id) {
 		if(dongSanPhamService.getDongSanPhamBangIdLoaiSP(id) != null)
-			return HttpStatus.BAD_REQUEST;
+			return -1;
 		loaiSanPhamService.XoaLoaiSanPham(id);
-		
-		return HttpStatus.OK;
+		return 1;
 	}
 	
 }

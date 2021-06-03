@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Không tìm thấy trang</title>
+<title>Có lỗi xảy ra</title>
 
     <title>Oops!</title>
 
@@ -22,7 +22,7 @@
             <div class="notfound-404">
                 <h1>Oops!</h1>
             </div>
-            <h2>Không tìm thấy trang</h2>
+            <h2>Có lỗi xảy ra</h2>
             <a href="http://localhost:8080/WebsiteBanNhacCu/">Trờ về trang chủ</a>
         </div>
     </div>

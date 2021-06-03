@@ -212,4 +212,10 @@ public class SanPhamServiceImpl implements SanPhamService {
 		
 	}
 
+
+	@Override
+	public List<SanPham> getDanhSachSanPhamTheoNhaCungCap(String id) {
+		return sanPhamRepository.findByNhaCungCapMaNhaCungCap(id);
+	}
+
 }
