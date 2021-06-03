@@ -38,17 +38,9 @@ public class NguoiDungServiceImpl implements NguoiDungService {
 	@Override
 	public NguoiDungDTO getByEmail(String email) {
 		NguoiDung user = nguoiDungRepository.findByEmail(email);
-		System.out.println(user);
 
 		if (user != null) {
 			NguoiDungDTO dto = nguoiDungConverter.toNguoiDungDTO(user);
-//			NguoiDungDTO dto = new NguoiDungDTO();
-//			dto.setUserId(user.getId());
-//			dto.setEmail(user.getEmail());
-//			dto.setRole(user.getRole());
-//			dto.setFullName(user.getHoTen());
-//			dto.setAddress(user.getDiaChi());
-//			dto.setPhone(user.getSoDienThoai());
 			return dto;
 		} else {
 			return null;
@@ -88,7 +80,6 @@ public class NguoiDungServiceImpl implements NguoiDungService {
 	@Override
 	public boolean verifyEmail(String email, String token) {
 		NguoiDung user = nguoiDungRepository.findByEmail(email);
-		System.out.println("Verify email: " + user);
 
 		if (user == null) {
 			return false;

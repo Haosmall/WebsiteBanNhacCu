@@ -34,8 +34,8 @@
 <link href='<c:url value="/static/assets/css/sb-admin-2.min.css"/>'
 	rel="stylesheet">
 
-<link rel="stylesheet"
-	href="<c:url value="/static/assets/css/style.css"/>">
+<%-- <link rel="stylesheet"
+	href="<c:url value="/static/assets/css/style.css"/>"> --%>
 	
 <style type="text/css">
 #toast-container{
@@ -337,14 +337,6 @@
 	<!-- Custom scripts for all pages-->
 	<script src='<c:url value="/static/assets/js/sb-admin-2.min.js"/>'></script>
 
-	<!-- Page level plugins -->
-	<script
-		src='<c:url value="/static/assets/vendor/chart.js/Chart.min.js"/>'></script>
-
-	<!-- Page level custom scripts -->
-	<script
-		src='<c:url value="/static/assets/js/demo/chart-area-demo.js"/>'></script>
-	<script src='<c:url value="/static/assets/js/demo/chart-pie-demo.js"/>'></script>
 	
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>

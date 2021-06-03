@@ -44,7 +44,6 @@ public class NhaCungCapController {
 	@RequestMapping("/danh-sach-nha-cung-cap")
 	public ModelAndView getUser() {
 
-//		List<NhaCungCap> nhaCungCaps = nhaCungCapService.getTatCaNhaCungCap();
 		List<NhaCungCap> nhaCungCaps = nhaCungCapService.timKiemNhaCungCap("", 0, 10);
 
 		return new ModelAndView("admin/nhacungcap/NhaCungCap", "listNhaCungCap", nhaCungCaps);

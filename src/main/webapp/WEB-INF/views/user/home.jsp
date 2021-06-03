@@ -322,9 +322,8 @@
 
 		</c:forEach>
 
-
-
-
 	</div>
+	
+	<script src="<c:url value="/static/assets/js/index_page/Slider.js"/>"></script>
 </body>
 </html>

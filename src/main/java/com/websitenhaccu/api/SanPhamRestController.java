@@ -19,7 +19,6 @@ import com.websitenhaccu.converter.SanPhamConverter;
 import com.websitenhaccu.dto.SanPhamDTO;
 import com.websitenhaccu.entity.ChiTietHoaDon;
 import com.websitenhaccu.entity.DongSanPham;
-import com.websitenhaccu.entity.HoaDon;
 import com.websitenhaccu.entity.MauSanPham;
 import com.websitenhaccu.entity.NhaCungCap;
 import com.websitenhaccu.entity.SanPham;
@@ -156,7 +155,6 @@ public class SanPhamRestController {
 				String temp = xuatXu;
 				try {
 					xuatXu = URLDecoder.decode(temp, StandardCharsets.UTF_8.name());
-					System.out.println(xuatXu);
 				} catch (UnsupportedEncodingException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -165,7 +163,6 @@ public class SanPhamRestController {
 		}
 
 		if(tenSanPham == null) {
-			System.out.println("ten da bi null");
 			tenSanPham = "";
 		}
 		try {

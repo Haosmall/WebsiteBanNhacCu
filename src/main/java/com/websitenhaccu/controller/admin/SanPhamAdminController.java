@@ -5,7 +5,6 @@ import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +29,6 @@ import com.websitenhaccu.entity.MauSanPham;
 import com.websitenhaccu.entity.NhaCungCap;
 import com.websitenhaccu.entity.SanPham;
 import com.websitenhaccu.entity.ThuongHieu;
-import com.websitenhaccu.service.ChiTietHoaDonService;
 import com.websitenhaccu.service.DongSanPhamService;
 import com.websitenhaccu.service.LoaiSanPhamService;
 import com.websitenhaccu.service.MauSanPhamService;
@@ -78,8 +76,6 @@ public class SanPhamAdminController {
 	@Autowired
 	private SanPhamDTOValidator sanPhamDTOValidator;
 	
-	@Autowired
-	private ChiTietHoaDonService chiTietHoaDonService;
 
 	@RequestMapping("/danh-sach-san-pham")
 	public String danhSachSanPham(Model model) throws IOException, SQLException {
@@ -159,7 +155,6 @@ public class SanPhamAdminController {
 			@RequestParam("maMau") int maMau, @RequestParam(value = "soLuong") String soLuong,
 			@RequestParam("hinhAnh") MultipartFile multipartFile, BindingResult bindingResult) {
 
-		System.out.println("@@@@@@@@@@@@@ controller sanpham: "+ sanPhamDTO);
 		int tongSoLuong = 0;
 		if(!soLuong.equals(""))
 			tongSoLuong = Integer.parseInt(soLuong);

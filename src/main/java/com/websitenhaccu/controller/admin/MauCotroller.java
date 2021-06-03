@@ -29,7 +29,6 @@ public class MauCotroller {
 	@GetMapping("/danh-sach-mau")
 	public ModelAndView getTatcaMau() {
 		List<Mau> danhSachMau = mauService.getTatCamau();
-		System.out.println("mau trong danh sach: " + danhSachMau.get(0));
 		return new ModelAndView("admin/mau/Mau", "listMau", danhSachMau);
 	}
 

@@ -18,7 +18,6 @@ public final class SanPhamSpecification {
 		return (root, query, criteriaBuilder) -> {
 				if ( xuatXus == null || xuatXus.size() == 0)
 					return null;
-				System.out.println("________________________ XX");
 				return root.get("xuatXu").in(xuatXus);
 			};
 	}
@@ -27,7 +26,6 @@ public final class SanPhamSpecification {
 		return (root, query, criteriaBuilder) -> {
 			if (giaDau == 0 && giaCuoi == 0)
 				return null;
-			System.out.println("________________________ Gia");
 			return criteriaBuilder.between(root.get("giaBan"), giaDau, giaCuoi);
 
 		};
@@ -41,7 +39,6 @@ public final class SanPhamSpecification {
 				return null;
 
 			Join<SanPham, DongSanPham> dongSanPhamJoin = root.join("dongSanPham");
-			System.out.println("________________________ Dong");
 			return dongSanPhamJoin.get("id").in(listDongSanPhamId);
 		};
 
@@ -53,7 +50,6 @@ public final class SanPhamSpecification {
 
 			if (listThuongHieuId == null || listThuongHieuId.size() == 0)
 				return null;
-			System.out.println("________________________ ThuongHieu");
 			Join<SanPham, DongSanPham> dongSanPhamJoin = root.join("dongSanPham");
 			Join<DongSanPham, ThuongHieu> thuongHieuJoin = dongSanPhamJoin.join("thuongHieu");
 			return thuongHieuJoin.get("id").in(listThuongHieuId);
@@ -70,7 +66,6 @@ public final class SanPhamSpecification {
 
 			Join<SanPham, DongSanPham> dongSanPhamJoin = root.join("dongSanPham");
 			Join<DongSanPham, LoaiSanPham> loaiSanPhamJoin = dongSanPhamJoin.join("loaiSanPham");
-			System.out.println("________________________ Loai");
 			return loaiSanPhamJoin.get("id").in(listLoaiSanPhamId);
 		};
 

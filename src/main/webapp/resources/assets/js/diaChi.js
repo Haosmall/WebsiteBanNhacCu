@@ -4,126 +4,107 @@ var idTinh = "";
 var idHuyen = "";
 
 // get và load dữ liệu tỉnh
-$(document).ready(function () {
-	
-	
-		const url = "https://vapi.vnappmob.com/api/province/";
-		console.log("url: ", url);
-		
-		$.get(url, function (data, status) {
-			
-			
-			if (status === "success") {
-				console.log("province_id: ", data.results);
+$(document).ready(async function () {
+	const url = "https://vapi.vnappmob.com/api/province/";
+	console.log("url: ", url);
 
-				const rs = data.results;
+	await $.get(url).then(function (data) {
+			console.log("province_id: ", data.results);
 
-				for (var i = 0; i < rs.length; i++) {
-					$("#tinh").append(
-						'<option value="' +
-							rs[i].province_id +
-							'">' +
-							rs[i].province_name +
-							"</option>"
-					);
-				}
-			}
-		
-// ====================Callback===================================
-			setTimeout(function () {
-				// Set selected Tỉnh
-				$("#tinh option")
-					.filter(function () {
-						return $(this).text() == $("#tinhThanhPho").val();
-					})
-					.prop("selected", true);
+			const rs = data.results;
 
-				// Get id tỉnh
-				var idTinh = $("#tinh").val();
-				console.log("Tỉnh: " + $("#tinhThanhPho").val());
-				console.log("id tỉnh: " + idTinh);
+			for (var i = 0; i < rs.length; i++) {
+				$("#tinh").append(
+					'<option value="' +
+						rs[i].province_id +
+						'">' +
+						rs[i].province_name +
+						"</option>"
+				);
+		}
 
-				// Load Dữ liệu Huyện theo tỉnh
-				let urlQuanHuyen = `${URL}/district/${idTinh}`;
+		// Set selected Tỉnh
+		$("#tinh option")
+			.filter(function () {
+				return $(this).text() == $("#tinhThanhPho").val();
+			})
+			.prop("selected", true);
 
-				$.get(urlQuanHuyen, function (data, status) {
-					const rs = data.results;
+		// ====================Callback===================================
+	});
 
-					$("#xa").html(
-						"<option selected value='-1'>Chọn Xã/ Phường</option>"
-					);
+	// Get id tỉnh
+	var idTinh = $("#tinh").val();
+	console.log("Tỉnh: " + $("#tinhThanhPho").val());
+	console.log("id tỉnh: " + idTinh);
 
-					for (var i = 0; i < rs.length; i++) {
-						$("#huyen").append(
-							'<option value="' +
-								rs[i].district_id +
-								'">' +
-								rs[i].district_name +
-								"</option>"
-						);
-					}
-				});
+	// Load Dữ liệu Huyện theo tỉnh
+	let urlQuanHuyen = `${URL}/district/${idTinh}`;
 
-				// Set selected Huyện
-				setTimeout(function () {
-					$("#huyen option")
-						.filter(function () {
-							return $(this).text() == $("#quanHuyen").val();
-						})
-						.prop("selected", true);
+	await $.get(urlQuanHuyen).then(function (data) {
+		const rs = data.results;
 
-					// Get id huyện
-					var idHuyen = $("#huyen").val();
-					console.log("Huyện: " + $("#quanHuyen").val());
-					console.log("id huyện: " + idHuyen);
+		$("#xa").html("<option selected value='-1'>Chọn Xã/ Phường</option>");
 
-					// Load Dữ liệu Xã theo Huyện
-					let urlPhuongXa = `${URL}/ward/${idHuyen}`;
-					$("#xa").html(
-						"<option selected value='-1'>Chọn Xã/ Phường</option>"
-					);
+		for (var i = 0; i < rs.length; i++) {
+			$("#huyen").append(
+				'<option value="' +
+					rs[i].district_id +
+					'">' +
+					rs[i].district_name +
+					"</option>"
+			);
+		}
 
-					$.get(urlPhuongXa, function (data, status) {
-						const rs = data.results;
+		$("#huyen option")
+			.filter(function () {
+				return $(this).text() == $("#quanHuyen").val();
+			})
+			.prop("selected", true);
+	});
 
-						for (var i = 0; i < rs.length; i++) {
-							$("#xa").append(
-								'<option value="' +
-									rs[i].ward_id +
-									'">' +
-									rs[i].ward_name +
-									"</option>"
-							);
-						}
-					});
+	// Set selected Huyện
 
-					setTimeout(function () {
-						$("#xa option")
-							.filter(function () {
-								return (
-									$(this).text() == $("#phuongXa").val()
-								);
-							})
-							.prop("selected", true);
+	// Get id huyện
+	var idHuyen = $("#huyen").val();
+	console.log("Huyện: " + $("#quanHuyen").val());
+	console.log("id huyện: " + idHuyen);
 
-						// Get id xã
-						var idXa = $("#xa").val();
-						console.log("Xã: " + $("#phuongXa").val());
-						console.log("id Xã: " + idXa);
-					}, 200);
-				}, 200);
-			}, 200);
-			
-// ================================
-		});
+	// Load Dữ liệu Xã theo Huyện
+	let urlPhuongXa = `${URL}/ward/${idHuyen}`;
+	$("#xa").html("<option selected value='-1'>Chọn Xã/ Phường</option>");
+
+	await $.get(urlPhuongXa).then(function (data) {
+		const rs = data.results;
+
+		for (var i = 0; i < rs.length; i++) {
+			$("#xa").append(
+				'<option value="' +
+					rs[i].ward_id +
+					'">' +
+					rs[i].ward_name +
+					"</option>"
+			);
+		}
+	});
+
+	$("#xa option")
+		.filter(function () {
+			return $(this).text() == $("#phuongXa").val();
+		})
+		.prop("selected", true);
+
+	// Get id xã
+	var idXa = $("#xa").val();
+	console.log("Xã: " + $("#phuongXa").val());
+	console.log("id Xã: " + idXa);
+
+	// ================================
+});
 
 // $("#huyen").html("<option selected >Chọn Huyện/ Quận</option>");
 // $("#xa").html("<option selected >Chọn Xã/ Phường</option>");
-//		
-		
-	
-});
-
+//
 
 // get và load dữ liệu huyện/ quận theo tỉnh/ thành phố
 // và xã/ phường theo huyện/ quận
@@ -137,7 +118,7 @@ $("select").change(function () {
 	if (id === "tinh") {
 		let urlQuanHuyen = `${URL}/district/${valueSelected}`;
 
-		$.get(urlQuanHuyen, function (data, status) {
+		$.get(urlQuanHuyen, function (data) {
 			const rs = data.results;
 
 			$("#huyen").html(
@@ -165,11 +146,9 @@ $("select").change(function () {
 
 	if (id === "huyen") {
 		let urlPhuongXa = `${URL}/ward/${valueSelected}`;
-		$("#xa").html(
-			"<option selected value='-1'>Chọn Xã/ Phường</option>"
-		);
+		$("#xa").html("<option selected value='-1'>Chọn Xã/ Phường</option>");
 
-		$.get(urlPhuongXa, function (data, status) {
+		$.get(urlPhuongXa, function (data) {
 			const rs = data.results;
 
 			for (var i = 0; i < rs.length; i++) {

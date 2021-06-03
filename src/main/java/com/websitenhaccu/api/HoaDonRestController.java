@@ -49,9 +49,6 @@ public class HoaDonRestController {
 	private ChiTietHoaDonConverter chiTietHoaDonConverter;
 
 	@Autowired
-	private HoaDonService HoaDonService;
-
-	@Autowired
 	private BinhLuanService binhLuanService;
 
 	@Autowired
