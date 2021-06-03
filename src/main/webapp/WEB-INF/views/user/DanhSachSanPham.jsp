@@ -11,6 +11,12 @@
 
 
 <style type="text/css">
+
+.pagination a{
+	color: #fff;
+	text-decoration: none;
+}
+
 .partition_price {
 	margin-top: 10px;
 	height: 110px;
@@ -57,12 +63,13 @@
 
 <link rel="stylesheet"
 	href='<c:url value ="/static/assets/css/admin/AlignButton.css"/>'>
+<link rel="stylesheet"
+	href='<c:url value ="/static/assets/css/loader.css"/>'>
 </head>
 
 <body>
 
-
-	<div class="container wrapper mt-3">
+	<div class="container wrapper mt-3" >
 
 		<!-- <div class="row wrapper__title pt-3">
 			<h2 class="col offset-2">Đàn Guitar Electric</h2>
@@ -71,7 +78,7 @@
 		<div class="row wrapper__listProduct">
 
 			<!-- Left Side (tìm kiếm) -->
-			<div class="col-2  wrapper__listProduct__leftSide">
+			<div class="col-2  wrapper__listProduct__leftSide" >
 
 
 				<div class="partition_price">
@@ -226,12 +233,13 @@
 	<div class="page d-flex justify-content-center">
 		<ul class="pagination ">
 
-			<li class="page-item"><button class="page-link color btn_interact"
-					onclick="redirectPrevius()">Trang trước</button></li>
+			<li class="page-item">
+			<a href="#top_frame"><button class="page-link color btn_interact"
+					onclick="redirectPrevius()">Trang trước</button></a></li>
 			<li><input type="text" readonly class="form-control textPage adjust--input"
 				id="viewPage" value="1"></li>
-			<li class="page-item"><button class="page-link color btn_interact"
-					onclick="redirectNext()">Trang Sau</button></li>
+			<li class="page-item"><a href="#top_frame"><button class="page-link color btn_interact"
+					onclick="redirectNext()">Trang Sau</button></a></li>
 		</ul>
 	</div>
 

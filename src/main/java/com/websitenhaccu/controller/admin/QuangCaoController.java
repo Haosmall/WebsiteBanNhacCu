@@ -89,6 +89,7 @@ public class QuangCaoController {
 		return "redirect:/admin/quang-cao";
 	}
 
+	
 	@GetMapping(value = "/xoa-quang-cao")
 	public String xoaQuangCao(@RequestParam("id") int id) {
 
