@@ -23,7 +23,7 @@
 
 
 
-			<form:form method="POST" modelAttribute="user">
+			<form:form method="POST" modelAttribute="user" onSubmit="if(!confirm('Bạn có muốn cập nhật thông tin?')){return false;}">
 				<form:hidden path="userId" />
 				<div class="form-group row">
 					<label for="fullName" class="col-sm-2 col-form-label">Họ và
