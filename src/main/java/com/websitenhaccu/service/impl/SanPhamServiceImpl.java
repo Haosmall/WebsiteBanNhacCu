@@ -163,10 +163,13 @@ public class SanPhamServiceImpl implements SanPhamService {
 
 	@Override
 	public List<SanPhamDTO> danhSachSanPhamBanChay(int page, int size) {
-		List<SanPham> sanPhams = sanPhamRepository.getDanhSachSanPhamBanChay(PageRequest.of(page, size));
+		List<String> sanPhamId = sanPhamRepository.getDanhSachSanPhamBanChay(PageRequest.of(page, size));
+		
 		List<SanPhamDTO> sanPhamDTOs = new ArrayList<SanPhamDTO>();
-		sanPhams.forEach(sp -> {
-			SanPhamDTO sanPhamDTO = sanPhamConverter.toSanPhamDTO(sp);
+		
+		sanPhamId.forEach(id ->{
+			SanPham sanPham = sanPhamRepository.findById(id).get();
+			SanPhamDTO sanPhamDTO = sanPhamConverter.toSanPhamDTO(sanPham);
 			sanPhamDTOs.add(sanPhamDTO);
 		});
 		return sanPhamDTOs;

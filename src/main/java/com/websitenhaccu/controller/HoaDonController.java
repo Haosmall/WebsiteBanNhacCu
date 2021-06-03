@@ -92,7 +92,11 @@ public class HoaDonController {
 		String message = "";
 
 		List<ChiTietHoaDonDTO> chiTietHoaDonDTOs = hoaDonDTO.getChiTietHoaDonDTOs();
-
+		
+		if(chiTietHoaDonDTOs.size() == 0) {
+			return "redirect:/gio-hang";
+		}
+		
 		for (ChiTietHoaDonDTO cthd : chiTietHoaDonDTOs) {
 			MauSanPhamDTO mauSanPhamDTO = cthd.getMauSanPhamDTO();
 			MauSanPham temp = mauSanPhamService.getMauSanPhamTheoMaSanPhamVaMaMau(mauSanPhamDTO.getMaSanPham(),

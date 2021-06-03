@@ -168,19 +168,19 @@
 			<c:forEach items="${ binhLuans }" var="binhLuan">
 				<c:choose>
 					<c:when test="${ binhLuan.danhGia == 1 }">
-						<c:set value="${ motSao += 1 }" var="motSao"/>
+						<c:set value="${ motSao + 1 }" var="motSao"/>
 					</c:when>
 					<c:when test="${ binhLuan.danhGia == 2 }">
-						<c:set value="${ haiSao += 1 }" var="haiSao"/>
+						<c:set value="${ haiSao + 1 }" var="haiSao"/>
 					</c:when>
 					<c:when test="${ binhLuan.danhGia == 3 }">
-						<c:set value="${ baSao += 1 }" var="baSao"/>
+						<c:set value="${ baSao + 1 }" var="baSao"/>
 					</c:when>
 					<c:when test="${ binhLuan.danhGia == 4 }">
-						<c:set value="${ bonSao += 1 }" var="bonSao"/>
+						<c:set value="${ bonSao + 1 }" var="bonSao"/>
 					</c:when>
 					<c:when test="${ binhLuan.danhGia == 5 }">
-						<c:set value="${ namSao += 1 }" var="namSao"/>
+						<c:set value="${ namSao + 1 }" var="namSao"/>
 					</c:when>
 				
 				</c:choose>

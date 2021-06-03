@@ -34,6 +34,8 @@ public interface SanPhamRepository extends JpaRepository<SanPham, String>, JpaSp
 	@Query(value = Constant.QUERY_DANH_SACH_XUAT_XU, nativeQuery = true)
 	public Set<String> getDanhSachXuatXu();
 
+//	@Query(value = Constant.QUERY_DANH_SACH_SAN_PHAM_BAN_CHAY, nativeQuery = true)
+//	public List<SanPham> getDanhSachSanPhamBanChay(Pageable pageable);
 	@Query(value = Constant.QUERY_DANH_SACH_SAN_PHAM_BAN_CHAY, nativeQuery = true)
-	public List<SanPham> getDanhSachSanPhamBanChay(Pageable pageable);
+	public List<String> getDanhSachSanPhamBanChay(Pageable pageable);
 }
