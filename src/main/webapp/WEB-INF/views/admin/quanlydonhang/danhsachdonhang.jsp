@@ -72,8 +72,8 @@
 										- Màu: ${ chiTietHoaDonDTO.mauSanPhamDTO.tenMau } - Số lượng:
 										${ chiTietHoaDonDTO.soLuong }</p>
 								</c:forEach></td>
-							<td><fmt:formatNumber type="number"
-									value="${ hoaDonDTO.tongTien }" /> VNĐ</td>
+							<td><fmt:formatNumber
+								type="number" value="${ hoaDonDTO.tongTien }" /> VNĐ</td>
 							<td>${ hoaDonDTO.trangThai }</td>
 							<td><button class="btn btn-danger"
 									onclick="chiTietDonHang('${ hoaDonDTO.id }')">Xem chi

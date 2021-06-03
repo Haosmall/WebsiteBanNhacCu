@@ -30,7 +30,7 @@
 				<b>Xuất xứ: </b> ${ sanPham.xuatXu }
 			</div>
 			<div>
-				<b>Bảo hành: </b> ${ sanPham.baoHanh } năm
+				<b>Bảo hành: </b> ${ sanPham.baoHanh } tháng
 			</div>
 			<div>
 				<b>Giá nhập: </b>

@@ -56,14 +56,14 @@
 							>
 							<span class="id--sanpham">Mã sản phẩm: </span><span class="id--sanpham" id='maSP'>${ sanPhamDTO.id }</span>
 							<span>Thương hiệu: <b class="brand">${ sanPhamDTO.tenThuongHieu }</b></span>
-							<div class="start-ratting">
+							<!-- <div class="start-ratting">
 								<span class="fa fa-star checked"></span>
 								<span class="fa fa-star checked"></span>
 								<span class="fa fa-star checked"></span>
 								<span class="fa fa-star checked"></span>
 								<span class="fa fa-star"></span>
 								<a href="">8 đánh giá</a>
-							</div>
+							</div> -->
 
 							<span
 								>Giá bán:
@@ -132,7 +132,7 @@
 										</tr>
 										<tr>
 											<td>Bảo hành</td>
-											<td>${ sanPhamDTO.baoHanh } năm</td>
+											<td>${ sanPhamDTO.baoHanh } tháng</td>
 										</tr>
 									</tbody>
 								</table>

@@ -92,7 +92,7 @@
 
 					<p class="totalPrice">
 						Tổng thanh toán: <span class="price"><fmt:formatNumber
-								type="number" value="${ hoaDonDTO.tongTien }" /> VNĐ</span>
+								type="number" value="${ hoaDonDTO.tongTien }" /></span>
 					</p>
 
 					<hr>
