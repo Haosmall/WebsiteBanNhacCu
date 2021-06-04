@@ -106,6 +106,7 @@
 		
 	</script>
 	<script src="<c:url value="/static/assets/js/diaChi.js"/>"></script>
+	<script src="<c:url value="/static/assets/js/validate/ValidateRegister.js"/>"></script>
 	<script type="text/javascript">
 		function thayDoiTrangThai(){
 			document.getElementById("trangThai").value = document.getElementById("trangThaiCbo").value;

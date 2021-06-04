@@ -28,10 +28,12 @@ public class MauValidator implements Validator{
 		
 		Mau mau = (Mau) target;
 		
+		Mau mauFind = mauService.getMauTheoTenMau(mau.getTenMau());
+		
 		if(mau.getTenMau() == null || mau.getTenMau().trim() == "") {
 			errors.rejectValue("tenMau", null, "Tên màu không được bỏ trống");
 		}
-		else if(mauService.getMauTheoTenMau(mau.getTenMau()) != null) {
+		else if(mauFind != null && mauFind.getId() != mau.getId()) {
 			errors.rejectValue("tenMau", null, "Màu đã tồn tại");
 		}
 	}

@@ -83,7 +83,7 @@ public class ThuongHieuCotroller {
 		
 		thuongHieuValidator.validate(thuongHieu, bindingResult);
 		if (bindingResult.hasErrors()) {
-			model.addAttribute("thuongHieu", thuongHieu);
+			model.addAttribute("thuongHieu", thuongHieuDTO);
 			model.addAttribute("formTitle", "Thêm thương hiệu");
 			model.addAttribute("formButton", "Thêm");
 			return "admin/thuonghieu/FormThuongHieu";

@@ -66,18 +66,22 @@
 							<td>${ hoaDonDTO.id }</td>
 							<td><fmt:formatDate pattern="dd-MM-yyyy"
 									value="${ hoaDonDTO.ngayLapHD }" /></td>
-							<td><c:set var="tongTien" value="0" /> <c:forEach
+							<td>
+								<c:set var="tongTien" value="0" />
+								<c:forEach
 									items="${ hoaDonDTO.chiTietHoaDonDTOs }" var="chiTietHoaDonDTO">
 									<p>Sản phẩm: ${ chiTietHoaDonDTO.mauSanPhamDTO.tenSanPham }
 										- Màu: ${ chiTietHoaDonDTO.mauSanPhamDTO.tenMau } - Số lượng:
 										${ chiTietHoaDonDTO.soLuong }</p>
-								</c:forEach></td>
-							<td><fmt:formatNumber
-								type="number" value="${ hoaDonDTO.tongTien }" /> VNĐ</td>
+								</c:forEach>
+							</td>
+							<td>
+								<fmt:formatNumber type="number" value="${ hoaDonDTO.tongTien }" /> VNĐ
+							</td>
 							<td>${ hoaDonDTO.trangThai }</td>
-							<td><button class="btn btn-danger"
-									onclick="chiTietDonHang('${ hoaDonDTO.id }')">Xem chi
-									tiết</button></td>
+							<td>
+								<button class="btn btn-danger" onclick="chiTietDonHang('${ hoaDonDTO.id }')">Xem chi tiết</button>
+							</td>
 						</tr>
 
 					</c:forEach>
@@ -89,7 +93,7 @@
 
 
 	</div>
-	<input type="hidden" id="pageValue" value="${ page + 1}" />
+	<input type="hidden" id="pageValue" value="${page + 1}" />
 
 	<div class="form-group row adjust_button">
 

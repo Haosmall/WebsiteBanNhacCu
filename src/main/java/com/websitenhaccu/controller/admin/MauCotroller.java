@@ -88,8 +88,8 @@ public class MauCotroller {
 		mauValidator.validate(mau, bindingResult);
 
 		if (bindingResult.hasErrors()) {
-			model.addAttribute("formTitle", "Thêm màu");
-			model.addAttribute("formButton", "Thêm");
+			model.addAttribute("formTitle", "Cập nhật màu");
+			model.addAttribute("formButton", "Cập nhật");
 			return "admin/mau/FormMau";
 		}
 		mauService.capNhatMau(mau);
