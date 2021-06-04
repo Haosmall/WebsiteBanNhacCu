@@ -116,7 +116,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 		return bundleMessageSource;
 	}
 
-	// Gởi email
+	// Gửi email
 	@Bean
 	public JavaMailSender getMailSender() {
 		JavaMailSenderImpl mailSender = new JavaMailSenderImpl();

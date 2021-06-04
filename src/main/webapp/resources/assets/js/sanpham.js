@@ -375,7 +375,7 @@ $("body").on("DOMSubtreeModified", "#tableSanPham", function () {
 			var cf = confirm("Bạn muốn xóa sản phẩm này ?");
 			if (cf == true) {
 				let id = $(".maSanPham").get(index).value;
-				xoaNguoiDung(id);
+				xoaSanPham(id);
 			}
 		});
 	});

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -151,14 +152,14 @@ public class SanPhamAdminController {
 	}
 
 	@PostMapping(value = "/them-san-pham")
-	public String themSanPham(Model model, @ModelAttribute("sanPhamDTO") SanPhamDTO sanPhamDTO,
+	public String themSanPham(Model model,@ModelAttribute("sanPhamDTO") SanPhamDTO sanPhamDTO,
 			@RequestParam("maMau") int maMau, @RequestParam(value = "soLuong") String soLuong,
 			@RequestParam("hinhAnh") MultipartFile multipartFile, BindingResult bindingResult) {
-
+		
 		int tongSoLuong = 0;
 		if(!soLuong.equals(""))
 			tongSoLuong = Integer.parseInt(soLuong);
-		
+	
 		sanPhamDTO.setTongSoLuong(tongSoLuong);
 		
 		sanPhamDTOValidator.validate(sanPhamDTO, bindingResult);

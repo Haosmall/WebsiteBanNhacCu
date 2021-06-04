@@ -85,10 +85,7 @@
 	</div>
 
 
-	<script
-		src="<c:url value="/static/assets/js/ThongTinCaNhan/ThongTinCaNhan.js"/>">
-		
-	</script>
+	<script src="<c:url value="/static/assets/js/ThongTinCaNhan/ThongTinCaNhan.js"/>"></script>
 	<script src="<c:url value="/static/assets/js/diaChi.js"/>"></script>
 </body>
 </html>

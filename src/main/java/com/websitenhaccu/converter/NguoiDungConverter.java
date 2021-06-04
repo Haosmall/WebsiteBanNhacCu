@@ -89,7 +89,7 @@ public class NguoiDungConverter {
 		NguoiDung userOld = nguoiDungService.getNguoiDungById(id);
 
 		ROLE role = NguoiDungDTO.getRole() == null ? userOld.getRole() : NguoiDungDTO.getRole();
-		String password = passwordEncoder.encode(userOld.getPassword());
+		String password = userOld.getPassword();
 		boolean enabled = userOld.isTrangThai();
 		String verifyCode = userOld.getMaXacNhan();
 

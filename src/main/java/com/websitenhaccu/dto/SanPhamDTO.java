@@ -2,13 +2,13 @@ package com.websitenhaccu.dto;
 
 import java.util.List;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 public class SanPhamDTO {
 
 	private String id;
@@ -17,16 +17,20 @@ public class SanPhamDTO {
 
 	private String moTa;
 
+	@Setter(AccessLevel.NONE)
 	private double giaNhap;
 
+	@Setter(AccessLevel.NONE)
 	private double giaBan;
 
 	private String xuatXu;
 
 	private boolean trangThai;
 
+	@Setter(AccessLevel.NONE)
 	private int baoHanh;
 
+	@Setter(AccessLevel.NONE)
 	private int namSanXuat;
 
 	private String maNhaCungCap;
@@ -51,6 +55,8 @@ public class SanPhamDTO {
 	
 	private int tongSoLuong;
 	
+	
+	
 	public SanPhamDTO(String id, String tenSanPham, String moTa) {
 		super();
 		this.id = id;
@@ -58,13 +64,6 @@ public class SanPhamDTO {
 		this.moTa = moTa;
 	}
 
-	/**
-	 * @param id
-	 * @param tenSanPham
-	 * @param xuatXu
-	 * @param maLoaiSanPham
-	 * @param maThuongHieu
-	 */
 	public SanPhamDTO(String id, String tenSanPham, String xuatXu, String loaiSanPham, String thuongHieu) {
 		super();
 		this.id = id;
@@ -74,26 +73,7 @@ public class SanPhamDTO {
 		this.maThuongHieu = thuongHieu;
 	}
 
-	/**
-	 * @param id
-	 * @param tenSanPham
-	 * @param moTa
-	 * @param giaNhap
-	 * @param giaBan
-	 * @param xuatXu
-	 * @param trangThai
-	 * @param baoHanh
-	 * @param namSanXuat
-	 * @param maNhaCungCap
-	 * @param tenNhaCungCap
-	 * @param maDongSanPham
-	 * @param tenDongSanPham
-	 * @param maLoaiSanPham
-	 * @param tenLoaiSanPham
-	 * @param maThuongHieu
-	 * @param tenThuongHieu
-	 * @param hinhAnhBase64
-	 */
+	
 	public SanPhamDTO(String id, String tenSanPham, String moTa, double giaNhap, double giaBan, String xuatXu,
 			boolean trangThai, int baoHanh, int namSanXuat, String maNhaCungCap, String tenNhaCungCap,
 			String maDongSanPham, String tenDongSanPham, String maLoaiSanPham, String tenLoaiSanPham,
@@ -119,14 +99,6 @@ public class SanPhamDTO {
 		this.hinhAnhBase64 = hinhAnhBase64;
 	}
 
-	/**
-	 * @param id
-	 * @param tenSanPham
-	 * @param xuatXu
-	 * @param tenLoaiSanPham
-	 * @param tenThuongHieu
-	 * @param hinhAnhBase64
-	 */
 	public SanPhamDTO(String id, String tenSanPham, String xuatXu, String tenLoaiSanPham, String tenThuongHieu,
 			int tongSoLuong) {
 		super();
@@ -138,27 +110,6 @@ public class SanPhamDTO {
 		this.tongSoLuong = tongSoLuong;
 	}
 
-	/**
-	 * @param id
-	 * @param tenSanPham
-	 * @param moTa
-	 * @param giaNhap
-	 * @param giaBan
-	 * @param xuatXu
-	 * @param trangThai
-	 * @param baoHanh
-	 * @param namSanXuat
-	 * @param maNhaCungCap
-	 * @param tenNhaCungCap
-	 * @param maDongSanPham
-	 * @param tenDongSanPham
-	 * @param maLoaiSanPham
-	 * @param tenLoaiSanPham
-	 * @param maThuongHieu
-	 * @param tenThuongHieu
-	 * @param hinhAnhBase64
-	 * @param listMauSanPhamDTOs
-	 */
 	public SanPhamDTO(String id, String tenSanPham, String moTa, double giaNhap, double giaBan, String xuatXu,
 			boolean trangThai, int baoHanh, int namSanXuat, String maNhaCungCap, String tenNhaCungCap,
 			String maDongSanPham, String tenDongSanPham, String maLoaiSanPham, String tenLoaiSanPham,
@@ -184,5 +135,47 @@ public class SanPhamDTO {
 		this.hinhAnhBase64 = hinhAnhBase64;
 		this.listMauSanPhamDTOs = listMauSanPhamDTOs;
 	}
-	
+
+	public SanPhamDTO() {
+		this.giaNhap = 0;
+		this.giaBan = 0;
+		this.baoHanh = 0;
+		this.namSanXuat = 0;
+	}
+	public void setNamSanXuat(Integer namSanXuat) {
+		
+		if (namSanXuat == null) {
+			this.namSanXuat = 0;
+			return;
+		}
+		
+		this.namSanXuat = namSanXuat;
+	}
+
+	public void setGiaNhap(Double giaNhap) {
+		
+		if (giaNhap == null) {
+			this.giaNhap = 0;
+			return;
+		}
+		this.giaNhap = giaNhap;
+	}
+
+	public void setGiaBan(Double giaBan) {
+		if (giaBan == null) {
+			this.giaBan = 0;
+			return;
+		}
+		this.giaBan = giaBan;
+	}
+
+	public void setBaoHanh(Integer baoHanh) {
+		if (baoHanh == null) {
+			this.baoHanh = 0;
+			return;
+		}
+		this.baoHanh = baoHanh;
+	}
+
+
 }

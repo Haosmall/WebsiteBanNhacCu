@@ -94,7 +94,7 @@
 						<div class="col-lg-4">
 							<div class="form-group">
 								<label>Bảo hành:</label>
-								<form:input path="baoHanh" class="form-control" />
+								<form:input path="baoHanh" class="form-control" type="number"/>
 								<form:errors path="baoHanh" cssClass="error"></form:errors>
 							</div>
 						</div>
@@ -105,7 +105,7 @@
 						<div class="col-lg-6">
 							<div class="form-group">
 								<label>Giá nhập:</label>
-								<form:input path="giaNhap" value="${giaNhap}" class="form-control" />
+								<form:input path="giaNhap" value="${giaNhap}" class="form-control" type="number"/>
 								<form:errors path="giaNhap" cssClass="error"></form:errors>
 							</div>
 						</div>
@@ -113,7 +113,7 @@
 						<div class="col-lg-6">
 							<div class="form-group">
 								<label>Giá bán:</label>
-								<form:input path="giaBan" value="${giaBan}" class="form-control" />
+								<form:input path="giaBan" value="${giaBan}" class="form-control" type="number"/>
 								<form:errors path="giaBan" cssClass="error"></form:errors>
 							</div>
 						</div>
@@ -173,7 +173,7 @@
 							<div class="col-lg-3">
 								<div class="form-group">
 									<label>Số lượng:</label> <input name="soLuong"
-										class="form-control" />
+										class="form-control" type="number" value="1"/>
 										<form:errors path="tongSoLuong" cssClass="error"></form:errors>
 								</div>
 							</div>
