@@ -32,17 +32,17 @@ public class SanPhamDTOValidator implements Validator {
 		if (sanPhamDTO.getNamSanXuat() <= 1700) {
 			errors.rejectValue("namSanXuat", null, "Năm sản xuất không hợp lệ");
 		}
-		if (sanPhamDTO.getBaoHanh() == 0 || String.valueOf(sanPhamDTO.getBaoHanh()).trim().equals("")) {
+		if (sanPhamDTO.getBaoHanh() <= 0) {
 			errors.rejectValue("baoHanh", null, "Bảo hành không được bỏ trống");
 		}
-		if (sanPhamDTO.getGiaNhap() == 0 || String.valueOf(sanPhamDTO.getGiaNhap()).trim().equals("")) {
+		if (sanPhamDTO.getGiaNhap() <= 0) {
 			errors.rejectValue("giaNhap", null, "Giá nhập không được bỏ trống");
 		}
-		if (sanPhamDTO.getGiaBan() == 0 || String.valueOf(sanPhamDTO.getGiaBan()).trim().equals("")) {
+		if (sanPhamDTO.getGiaBan() <= 0) {
 			errors.rejectValue("giaBan", null, "Giá bán không được bỏ trống");
 		}
 
-		if (sanPhamDTO.getTongSoLuong() == 0 || String.valueOf(sanPhamDTO.getTongSoLuong()).trim().equals("")) {
+		if (sanPhamDTO.getTongSoLuong() <= 0) {
 			errors.rejectValue("tongSoLuong", null, "Số lượng không được bỏ trống");
 		}
 	}
