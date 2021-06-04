@@ -108,8 +108,10 @@ public class ThuongHieuCotroller {
 	@GetMapping("/cap-nhat-thuong-hieu")
 	public String CapNhatThuongHieu(@RequestParam("id") String id, Model model) throws SQLException {
 		ThuongHieu thuongHieu = thuongHieuService.getThuonghieuBangMa(id);
+		
 		model.addAttribute("formTitle", "Cập nhật thương hiệu");
 		model.addAttribute("formButton", "Cập nhật");
+		
 		model.addAttribute("thuongHieu", thuongHieu);
 		model.addAttribute("blob", thuongHieu.getHinhAnh());
 
@@ -127,7 +129,7 @@ public class ThuongHieuCotroller {
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("formTitle", "Cập nhật thương hiệu");
 			model.addAttribute("formButton", "Cập nhật");
-			model.addAttribute("thuongHieu", thuongHieu);
+			model.addAttribute("thuongHieu", thuongHieuDTO);
 			model.addAttribute("blob", thuongHieu.getHinhAnh());
 			return "admin/thuonghieu/FormThuongHieu";
 		}

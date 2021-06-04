@@ -29,6 +29,7 @@ public class ThuongHieuValidator implements Validator{
 		ThuongHieu thuongHieu = (ThuongHieu) target;
 		
 		ThuongHieu th = thuongHieuService.getThuonghieuBangTenThuonghieu(thuongHieu.getTenThuongHieu());
+		
 		if(thuongHieu.getTenThuongHieu() == null || thuongHieu.getTenThuongHieu().trim().equals("")) {
 			System.out.println("loi o ten");
 			errors.rejectValue("tenThuongHieu", null, "Tên thương hiệu không được bỏ trống");

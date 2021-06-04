@@ -55,6 +55,7 @@ public class ThuongHieuServiceImpl implements ThuongHieuService {
 				return;
 			} else {
 				ThuongHieu thuongHieu2 = getThuonghieuBangMa(thuongHieu.getId());
+				
 				if (thuongHieu2.getHinhAnh() != null) {
 					thuongHieu.setHinhAnh(thuongHieu2.getHinhAnh());
 					thuonghieuRepository.save(thuongHieu);

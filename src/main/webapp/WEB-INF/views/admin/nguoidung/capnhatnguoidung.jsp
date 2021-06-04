@@ -10,6 +10,8 @@
 
 <link rel="stylesheet"
 	href="<c:url value="/static/assets/css/ThongTinCaNhan/ThongTinCaNhan.css"/>" />
+<link rel="stylesheet"
+	href='<c:url value ="/static/assets/css/errors.css"/>'>
 </head>
 <body>
 <div class="container" style="padding: 0">
@@ -28,6 +30,7 @@
 					<div class="col-sm-10">
 						<%-- <form:input type="text" class="form-control" path="fullName"  /> --%>
 						<form:input type="text" class="form-control" path="fullName" />
+						<form:errors path="fullName" cssClass="error"></form:errors>
 					</div>
 				</div>
 				<div class="form-group row">
@@ -35,6 +38,7 @@
 						điện thoại</label>
 					<div class="col-sm-10">
 						<form:input type="text" class="form-control" path="phone" />
+						<form:errors path="phone" cssClass="error"></form:errors>
 					</div>
 				</div>
 
@@ -43,6 +47,7 @@
 					<div class="col-sm-10">
 						<form:input type="text" readonly="true" class="form-control"
 							path="email" />
+						<form:errors path="email" cssClass="error"></form:errors>
 					</div>
 				</div>
 
@@ -67,9 +72,6 @@
 						<form:input placeholder="Số nhà/tên đường" type="text"
 							class="form-control mt-3" path="diaChi" />
 						<span class="checkDiaChi"></span>
-						
-						
-						
 					</div>
 
 				</div>
@@ -106,7 +108,6 @@
 		
 	</script>
 	<script src="<c:url value="/static/assets/js/diaChi.js"/>"></script>
-	<script src="<c:url value="/static/assets/js/validate/ValidateRegister.js"/>"></script>
 	<script type="text/javascript">
 		function thayDoiTrangThai(){
 			document.getElementById("trangThai").value = document.getElementById("trangThaiCbo").value;

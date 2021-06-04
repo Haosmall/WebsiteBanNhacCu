@@ -6,13 +6,18 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 import com.websitenhaccu.dto.NguoiDungDTO;
+import com.websitenhaccu.entity.NguoiDung;
 import com.websitenhaccu.repository.NguoiDungRepository;
+import com.websitenhaccu.service.NguoiDungService;
 
 @Component
 public class CapNhatNguoiDungValidator implements Validator {
 
 	@Autowired
 	NguoiDungRepository nguoidung;
+	
+	@Autowired
+	private NguoiDungService nguoiDungService;
 	
 	@Override
 	public boolean supports(Class<?> clazz) {
@@ -37,15 +42,14 @@ public class CapNhatNguoiDungValidator implements Validator {
 		if (userDTO.getFullName() == null || userDTO.getPhone().trim().length() == 0) {
 			errors.rejectValue("phone", null, "Số điện thoại không được bỏ trống");
 		} else {
-
 			// số điện thoại phải có 10 số
 			if (!userDTO.getPhone().trim().matches("\\d{10}")) {
 				errors.rejectValue("phone", null, "Số điện thoại không đúng định dạng");
 			}
-
 		}
 
 		// email không được bỏ trống
+		
 		if (userDTO.getFullName() == null || userDTO.getEmail().trim().length() == 0) {
 			errors.rejectValue("email", null, "Email không được bỏ trống");
 		} else {
@@ -56,24 +60,16 @@ public class CapNhatNguoiDungValidator implements Validator {
 			}
 			
 			else {
-				if(nguoidung.existsByEmail(userDTO.getEmail())) {
+				NguoiDung ndFind = nguoiDungService.getNguoiDungTheoEmail(userDTO.getEmail());
+//				if(nguoidung.existsByEmail(userDTO.getEmail()) && ndFind.getId() != userDTO.getUserId()) {
+//					System.out.println("id use dto truyen vao: "+ userDTO.getUserId()+" ------id ng dung trong database: "+ ndFind.getId());
+//					errors.rejectValue("email", null, "Email đã tồn tại");
+//				}
+				if(ndFind != null && ndFind.getId() != userDTO.getUserId()) {
+					System.out.println("id use dto truyen vao: "+ userDTO.getUserId()+" ------id ng dung trong database: "+ ndFind.getId());
 					errors.rejectValue("email", null, "Email đã tồn tại");
 				}
 			}
-		}
-
-		// kiểm tra địa chỉ
-//		if (userDTO.getFullName() == null || userDTO.getAddress().trim().length() == 0) {
-//			errors.rejectValue("address", null, "Địa chỉ không được bỏ trống");
-//		}
-
-//		Kiểm tra mật khẩu
-		if (userDTO.getFullName() == null || userDTO.getPassword().trim().length() == 0) {
-			errors.rejectValue("password", null, "Mật khẩu không được để trống");
-		} else if (userDTO.getFullName() == null || userDTO.getPasswordConf().trim().length() == 0) {
-			errors.rejectValue("passwordConf", null, "Mật khẩu không được để trống");
-		} else if (!userDTO.getPassword().equals(userDTO.getPasswordConf())) {
-			errors.rejectValue("passwordConf", null, "Mật khẩu không khớp");
 		}
 
 	}

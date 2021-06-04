@@ -28,10 +28,12 @@ public class LoaiSanPhamValidator implements Validator{
 		
 		LoaiSanPham loaiSanPham = (LoaiSanPham) target;
 		
+		LoaiSanPham lspFInd = loaiSanPhamService.getLoaiSanPhamTheoTen(loaiSanPham.getTenLoaiSanPham());
+		
 		if(loaiSanPham.getTenLoaiSanPham().trim() == "") {
 			errors.rejectValue("tenLoaiSanPham", null, "Tên loại sản phẩm không được bỏ trống");
 		}
-		else if(loaiSanPhamService.getLoaiSanPhamTheoTen(loaiSanPham.getTenLoaiSanPham()) != null) {
+		else if(lspFInd != null && lspFInd.getId() != loaiSanPham.getId()) {
 			errors.rejectValue("tenLoaiSanPham", null, "Tên loại sản phẩm đã tồn tại");
 		}
 	}

@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +18,7 @@ import com.websitenhaccu.dto.NguoiDungDTO;
 import com.websitenhaccu.entity.NguoiDung;
 import com.websitenhaccu.service.HoaDonService;
 import com.websitenhaccu.service.NguoiDungService;
+import com.websitenhaccu.validator.CapNhatNguoiDungValidator;
 
 @Controller
 @RequestMapping("/admin/nguoi-dung")
@@ -30,6 +32,9 @@ public class NguoiDungAdminCotroller {
 	
 	@Autowired
 	private HoaDonService hoaDonService;
+	
+	@Autowired
+	private CapNhatNguoiDungValidator capNhatNguoiDungValidator;
 	
 	@GetMapping("/danh-sach-nguoi-dung")
 	private String getAllKhachHang(Model model) {
@@ -74,7 +79,19 @@ public class NguoiDungAdminCotroller {
 	}
 	
 	@PostMapping("/cap-nhat-nguoi-dung")
-	private String capNhatThongTinNguoiDung(@ModelAttribute("user") NguoiDungDTO nguoiDungDTO, @RequestParam("trangThai") String trangThai) {
+	private String capNhatThongTinNguoiDung(@ModelAttribute("user") NguoiDungDTO nguoiDungDTO, @RequestParam("trangThai") String trangThai, BindingResult bindingResult, Model model) {
+		
+		capNhatNguoiDungValidator.validate(nguoiDungDTO, bindingResult);
+		if (bindingResult.hasErrors()) {
+			NguoiDung nguoiDung = nguoiDungService.getNguoiDungById(nguoiDungDTO.getUserId());
+
+			model.addAttribute("user", nguoiDungDTO);
+			if(nguoiDung.isTrangThai() == true)
+				model.addAttribute("trangThai", 1);
+			else 
+				model.addAttribute("trangThai", 0);
+			return "/admin/nguoidung/capnhatnguoidung";
+		}
 		
 		NguoiDung nguoiDung = nguoiDungConverter.toUpdateUser(nguoiDungDTO);
 		nguoiDung.setTrangThai(trangThai.equals("1") ? true : false);
